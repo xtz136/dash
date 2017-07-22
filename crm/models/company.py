@@ -41,7 +41,7 @@ class Company(models.Model):
                   ('ad', '广告'), ('property', '房地产'), ('service', '服务业'),
                   ('trade', '贸易'), ('entertainment', '娱乐'))
     industry = models.CharField(
-        choices=INDUSTIES, name="所属行业", default='auto_parts', max_length=50)
+        choices=INDUSTRIES, name="所属行业", default='auto_parts', max_length=50)
 
     BRANCHES = (("baiyun", "白云区"), ("tianhe", "天河区"), ("panyu", "番禺区"),
                 ("yuexiu", "越秀区"), ("haizhu", "海珠区"), ("zengcheng", "增城区"),
@@ -55,7 +55,7 @@ class Company(models.Model):
     national_tax_branch = models.CharField(
         choices=BRANCHES, name="国税所属分局", blank=True, max_length=10)
     national_tax_phone = models.CharField(
-        name="电话", blank=True, max_length=255)
+        name="国税电话", blank=True, max_length=255)
 
     local_tax_id = models.CharField(name="地税登记证", blank=True, max_length=255)
     local_tax_sn = models.CharField(name="地税编码", blank=True, max_length=255)
@@ -63,7 +63,7 @@ class Company(models.Model):
         name="地税专管员", blank=True, max_length=255)
     local_tax_branch = models.CharField(
         choices=BRANCHES, name="地税所属分局", blank=True, max_length=10)
-    local_tax_phone = models.CharField(name="电话", blank=True, max_length=255)
+    local_tax_phone = models.CharField(name="地税电话", blank=True, max_length=255)
 
     taxpayer_bank = models.CharField(name="纳税开户银行", blank=True, max_length=255)
     taxpayer_account = models.CharField(

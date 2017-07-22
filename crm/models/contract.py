@@ -4,6 +4,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from django.utils import timezone
 
 from .company import Company
+from core.models import Attachment
 
 
 class Contract(models.Model):
