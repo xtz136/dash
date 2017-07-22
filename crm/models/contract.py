@@ -32,7 +32,7 @@ class Contract(models.Model):
     subscription_type = models.CharField(
         verbose_name='结算类型', choices=SUBSCRIPTION_TYPES, max_length=10)
     duration = models.PositiveIntegerField(
-        verbose_name="服务期限", help_text='选择结算类型，自动按一次性/月/季度/年结算', default=3)
+        verbose_name="服务期", help_text='选择结算类型，自动按一次性/月/季度/年结算', default=3)
 
     created = models.DateField(verbose_name="创建日期", default=timezone.now)
     expired_at = models.DateField(verbose_name="到期日期")
@@ -58,12 +58,20 @@ class Contract(models.Model):
         verbose_name="合同状态", default='draft', max_length=10, choices=STATUS)
 
     updated = models.DateTimeField(auto_now=True)
+    company_title = models.CharField(
+        verbose_name="公司抬头",
+        editable=False,  max_length=255)
+    salesman_name = models.CharField(
+        verbose_name="业务员",
+        editable=False, max_length=100)
     attachments = GenericRelation(Attachment)
 
     def __str__(self):
         return self.title
 
     def save(self, *args, **kwargs):
+        self.company_title = self.company.title
+        self.salesman_name = self.salesman.username
         if not self.receivables:
             self.receivables = self.amount
         return super(Contract, self).save(*args, **kwargs)
