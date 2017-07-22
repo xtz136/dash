@@ -23,9 +23,10 @@ class Attachment(models.Model):
     )
 
     name = models.CharField(
-        name='附件名称',
+        verbose_name='附件名称',
         help_text='不填写默认为文件名',
         db_index=True,
+        blank=True,
         max_length=255)
 
     creator = models.ForeignKey(User, blank=True, null=True)
@@ -40,7 +41,7 @@ class Attachment(models.Model):
     object_id = models.PositiveIntegerField(default=0)
     content_object = GenericForeignKey('content_type', 'object_id')
     content_type = models.ForeignKey(ContentType,
-        on_delete=models.CASCADE)
+                                     null=True, blank=True)
 
     # meta info
     created = models.DateTimeField(auto_now_add=True)
@@ -48,3 +49,8 @@ class Attachment(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.name:
+            self.name = self.file.name
+        super(Attachment, self).save(*args, **kwargs)
