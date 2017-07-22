@@ -8,22 +8,22 @@ from core.models import Attachment
 
 
 class People(models.Model):
-    name = models.CharField(name="企业名称",  max_length=255)
-    sfz = models.CharField(name="身份证",  max_length=255, unique=True)
+    name = models.CharField(verbose_name="姓名",  max_length=255)
+    sfz = models.CharField(verbose_name="身份证",  max_length=255, unique=True)
 
     GENDERS = (("male", "男性"), ("female", "女性"))
     gender = models.CharField(
-        name="性别", choices=GENDERS, default="male", max_length=5)
+        verbose_name="性别", choices=GENDERS, default="male", max_length=5)
 
-    birthdate = models.DateField(name="生日", blank=True)
-    phone = models.CharField(name="电话", blank=True, max_length=100)
+    birthdate = models.DateField(verbose_name="生日", blank=True)
+    phone = models.CharField(verbose_name="电话", blank=True, max_length=100)
 
     # 社交账号
-    wechat = models.CharField(name="微信", blank=True, max_length=100)
-    weibo = models.CharField(name="微博", blank=True, max_length=100)
-    qq = models.CharField(name="QQ", blank=True, max_length=100)
+    wechat = models.CharField(verbose_name="微信", blank=True, max_length=100)
+    weibo = models.CharField(verbose_name="微博", blank=True, max_length=100)
+    qq = models.CharField(verbose_name="QQ", blank=True, max_length=100)
 
-    note = models.TextField(name="备注", blank=True)
+    note = models.TextField(verbose_name="备注", blank=True)
 
     def __str__(self):
         return self.name
