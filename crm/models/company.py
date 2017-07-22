@@ -69,6 +69,7 @@ class Company(models.Model):
         name="公司状态", default='normal', max_length=10, choices=STATUS)
     # 附件
     website = models.CharField(name="公司网站", blank=True, max_length=255)
+    note = models.TextField(name="备注", blank=True)
 
     attachments = GenericRelation(Attachment)
     created = models.DateTimeField(auto_now_add=True)
