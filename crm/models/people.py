@@ -1,13 +1,15 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.contrib.contenttypes.fields import GenericRelation
+from django.utils import timezone
+from datetime import timedelta
 
 from core.models import Attachment
 
 
 class People(models.Model):
-    name = models.CharField(name="企业名称", blank=True, max_length=255)
-    sfz = models.CharField(name="身份证", blank=True, max_length=255, unique=True)
+    name = models.CharField(name="企业名称",  max_length=255)
+    sfz = models.CharField(name="身份证",  max_length=255, unique=True)
 
     GENDERS = (("male", "男性"), ("female", "女性"))
     gender = models.CharField(
@@ -25,3 +27,9 @@ class People(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def age(self):
+        if self.birthdate
+            return (timezone.now() - self.birthdate) // timedelta(days=365.2425)
+        return 0
