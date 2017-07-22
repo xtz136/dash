@@ -1,0 +1,39 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ALLOWED_HOSTS	../dash/settings.py	/^ALLOWED_HOSTS = []$/;"	kind:variable	line:28
+AUTH_PASSWORD_VALIDATORS	../dash/settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	kind:variable	line:87
+BASE_DIR	../dash/settings.py	/^BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))$/;"	kind:variable	line:16
+DATABASES	../dash/settings.py	/^DATABASES = {$/;"	kind:variable	line:76
+DEBUG	../dash/settings.py	/^DEBUG = True$/;"	kind:variable	line:26
+INSTALLED_APPS	../dash/settings.py	/^INSTALLED_APPS = [$/;"	kind:variable	line:33
+LANGUAGE_CODE	../dash/settings.py	/^LANGUAGE_CODE = 'en-us'$/;"	kind:variable	line:106
+MIDDLEWARE	../dash/settings.py	/^MIDDLEWARE = [$/;"	kind:variable	line:42
+ROOT_URLCONF	../dash/settings.py	/^ROOT_URLCONF = 'dash.urls'$/;"	kind:variable	line:52
+SECRET_KEY	../dash/settings.py	/^SECRET_KEY = 'c#u!hg_vaqwg*s-bq3$ip$etq^r0+wq8sp&v6gonuc6ojh8^qy'$/;"	kind:variable	line:23
+STATIC_URL	../dash/settings.py	/^STATIC_URL = '\/static\/'$/;"	kind:variable	line:120
+TEMPLATES	../dash/settings.py	/^TEMPLATES = [$/;"	kind:variable	line:54
+TIME_ZONE	../dash/settings.py	/^TIME_ZONE = 'UTC'$/;"	kind:variable	line:108
+USE_I18N	../dash/settings.py	/^USE_I18N = True$/;"	kind:variable	line:110
+USE_L10N	../dash/settings.py	/^USE_L10N = True$/;"	kind:variable	line:112
+USE_TZ	../dash/settings.py	/^USE_TZ = True$/;"	kind:variable	line:114
+WSGI_APPLICATION	../dash/settings.py	/^WSGI_APPLICATION = 'dash.wsgi.application'$/;"	kind:variable	line:70
+__init__.py	../dash/__init__.py	1;"	kind:file	line:1
+admin	../dash/urls.py	/^from django.contrib import admin$/;"	kind:namespace	line:17
+application	../dash/wsgi.py	/^application = get_wsgi_application()$/;"	kind:variable	line:16
+django	../manage.py	/^            import django$/;"	kind:namespace	line:14
+execute_from_command_line	../manage.py	/^        from django.core.management import execute_from_command_line$/;"	kind:namespace	line:8
+get_wsgi_application	../dash/wsgi.py	/^from django.core.wsgi import get_wsgi_application$/;"	kind:namespace	line:12
+manage.py	../manage.py	1;"	kind:file	line:1
+os	../dash/settings.py	/^import os$/;"	kind:namespace	line:13
+os	../dash/wsgi.py	/^import os$/;"	kind:namespace	line:10
+os	../manage.py	/^import os$/;"	kind:namespace	line:2
+settings.py	../dash/settings.py	1;"	kind:file	line:1
+sys	../manage.py	/^import sys$/;"	kind:namespace	line:3
+url	../dash/urls.py	/^from django.conf.urls import url$/;"	kind:namespace	line:16
+urlpatterns	../dash/urls.py	/^urlpatterns = [$/;"	kind:variable	line:19
+urls.py	../dash/urls.py	1;"	kind:file	line:1
+wsgi.py	../dash/wsgi.py	1;"	kind:file	line:1

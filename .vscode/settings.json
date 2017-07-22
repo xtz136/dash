@@ -1,0 +1,23 @@
+{
+  "[cpp]": {
+    "editor.quickSuggestions": false
+  },
+  "[c]": {
+    "editor.quickSuggestions": false
+  },
+  "window.zoomLevel": 0,
+  "editor.tabCompletion": true,
+  "vim.disableAnnoyingNeovimMessage": true,
+  "editor.formatOnSave": true,
+  "python.pythonPath": "/Users/yxy/.virtualenvs/crm/bin/python",
+  "html.format.enable": false,
+  "python.linting.pep8Path": "/Users/yxy/.virtualenvs/crm/bin/pep8",
+  "python.linting.pep8Enabled": true,
+  "python.linting.lintOnSave": false,
+  "python.linting.pylintEnabled": false,
+  "python.formatting.provider": "yapf",
+  "python.formatting.yapfArgs": [
+    "--style",
+    "{based_on_style: chromium, dedent_closing_brackets: true, indent_width: 4, coalesce_brackets: true}"
+  ]
+}
