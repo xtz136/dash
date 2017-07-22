@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'crm',]
+    'crm'
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -45,7 +46,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',]
+    'django.middleware.clickjacking.XFrameOptionsMiddleware', ]
 
 ROOT_URLCONF = 'dash.urls'
 
@@ -59,7 +60,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',],},},]
+                'django.contrib.messages.context_processors.messages', ], }, }, ]
 
 WSGI_APPLICATION = 'dash.wsgi.application'
 
@@ -69,7 +70,7 @@ WSGI_APPLICATION = 'dash.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),}}
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'), }}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -81,14 +82,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME':
-            'django.contrib.auth.password_validation.MinimumLengthValidator',},
+            'django.contrib.auth.password_validation.MinimumLengthValidator', },
     {
         'NAME':
-            'django.contrib.auth.password_validation.CommonPasswordValidator',},
+            'django.contrib.auth.password_validation.CommonPasswordValidator', },
     {
         'NAME':
             'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },]
+    }, ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -102,6 +103,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
