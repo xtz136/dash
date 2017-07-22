@@ -30,6 +30,6 @@ class People(models.Model):
 
     @property
     def age(self):
-        if self.birthdate
+        if self.birthdate:
             return (timezone.now() - self.birthdate) // timedelta(days=365.2425)
         return 0
