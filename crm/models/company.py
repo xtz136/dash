@@ -35,23 +35,27 @@ class Company(models.Model):
                 ("yuexiu", "越秀区"), ("haizhu", "海珠区"), ("zengcheng", "增城区"),
                 ("huadu", "花都区"), ("other", "其它地区"))
 
-    national_tax_id = models.CharField(name="国税登记证", blank=True, max_length=255)
+    national_tax_id = models.CharField(
+        name="国税登记证", blank=True, max_length=255)
     national_tax_sn = models.CharField(name="国税编码", blank=True, max_length=255)
     national_tax_staff = models.CharField(
         name="国税专管员", blank=True, max_length=255)
     national_tax_branch = models.CharField(
         choices=BRANCHES, name="国税所属分局", blank=True, max_length=10)
-    national_tax_phone = models.CharField(name="电话", blank=True, max_length=255)
+    national_tax_phone = models.CharField(
+        name="电话", blank=True, max_length=255)
 
     local_tax_id = models.CharField(name="地税登记证", blank=True, max_length=255)
     local_tax_sn = models.CharField(name="地税编码", blank=True, max_length=255)
-    local_tax_staff = models.CharField(name="地税专管员", blank=True, max_length=255)
+    local_tax_staff = models.CharField(
+        name="地税专管员", blank=True, max_length=255)
     local_tax_branch = models.CharField(
         choices=BRANCHES, name="地税所属分局", blank=True, max_length=10)
     local_tax_phone = models.CharField(name="电话", blank=True, max_length=255)
 
     taxpayer_bank = models.CharField(name="纳税开户银行", blank=True, max_length=255)
-    taxpayer_account = models.CharField(name="纳税账号", blank=True, max_length=255)
+    taxpayer_account = models.CharField(
+        name="纳税账号", blank=True, max_length=255)
 
     # social security
     ss_bank = models.CharField(
@@ -60,9 +64,19 @@ class Company(models.Model):
         name="代扣社保账号", help_text="不填，默认为纳税账号", blank=True, max_length=255)
     ss_number = models.CharField(name="单位社保号", blank=True, max_length=255)
 
-    CREDIT_RATINGS = (('good', '良好'), ('bad', '差'), ('very_bad', '很差'),)
+    CREDIT_RATINGS = (('good', '良好'), ('bad', '差'), ('very_bad', '很差'))
     credit_rating = models.CharField(
         name="信用评级", default='good', max_length=10, choices=CREDIT_RATINGS)
+
+    TAXPAYER_TYPES = (('general', '一般纳税人'), ('small', '小规模纳税人'))
+    taxpayer_type = models.CharField(
+        name="纳税人类型", default='small', max_length=10, choices=TAXPAYER_TYPES)
+
+    # 规模
+    SCALE_SIZES = (('small', '小型企业 (50人以下)'), ('medium', '中型企业 (50-200人)'),
+                   ('large', '大型企业 (200人以上)'))
+    scale_size = models.CharField(
+        name="规模", default='small', max_length=10, choices=SCALE_SIZES)
 
     STATUS = (('normal', '正常'), ('suspend', '暂停'), ('halted', '终止'))
     status = models.CharField(
