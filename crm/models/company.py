@@ -7,14 +7,26 @@ from core.models import Attachment
 
 class Company(models.Model):
     title = models.CharField(name="企业名称", blank=True, max_length=255)
+
+    TYPES = (
+        ('limited', '有限责任公司'),
+        ('stock', '股份有限公司'),
+        ('partnership', '合伙企业(有限合伙)'),
+        ('collective', '集体所有制(股份合作)'),
+        ('sole', '个人独资企业'),
+    )
+    type = models.CharField(name="公司类型", choices=TYPES,
+                            default='limited', max_length=20)
     registered_capital = models.DecimalField(
         name="注册资金", max_digits=20, decimal_places=0)
     address = models.CharField(name="地址", blank=True, max_length=255)
 
-    saleman = models.ForeignKey(
-        User, name="业务员", blank=True, null=True, related_name="salesmen")
+    # 主要业务负责人
+    salesman = models.ForeignKey(
+        User, name="业务员", blank=True, null=True, related_name="customers")
+    # 管账人
     bookkeeper = models.ForeignKey(
-        User, name="记账会计", blank=True, null=True, related_name="bookkeeps")
+        User, name="记账会计", blank=True, null=True, related_name="accounts")
 
     # unified social credit code
     uscc = models.CharField(name="社会统一信用代码号", blank=True, max_length=255)
@@ -78,7 +90,7 @@ class Company(models.Model):
     scale_size = models.CharField(
         name="规模", default='small', max_length=10, choices=SCALE_SIZES)
 
-    STATUS = (('normal', '正常'), ('suspend', '暂停'), ('halted', '终止'))
+    STATUS = (('normal', '正常'), ('closed', '关闭'))
     status = models.CharField(
         name="公司状态", default='normal', max_length=10, choices=STATUS)
     # 附件
@@ -97,4 +109,4 @@ class Company(models.Model):
             self.ss_bank = self.taxpayer_bank
         if not self.ss_account:
             self.ss_account = self.taxpayer_account
-        super(Company, self).save(*args, **kwargs)
+        return super(Company, self).save(*args, **kwargs)
