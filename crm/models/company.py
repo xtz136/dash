@@ -114,12 +114,14 @@ class Company(models.Model):
         verbose_name="公司状态", default='normal', max_length=10, choices=STATUS)
     # 附件
     website = models.CharField(verbose_name="公司网站", blank=True, max_length=255)
-    note = models.TextField(verbose_name="备注", blank=True)
+    note = models.TextField(
+        verbose_name="备注", blank=True, help_text='可添加公司的其它备注信息')
 
     attachments = GenericRelation(Attachment)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    has_expired = models.BooleanField(default=False, editable=False)
+    has_expired = models.BooleanField(
+        default=False, editable=False, verbose_name='执照过期')
 
     # TODO: 海关信息
 

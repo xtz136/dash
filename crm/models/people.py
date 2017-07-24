@@ -9,8 +9,9 @@ from core.models import Attachment
 
 
 class People(models.Model):
+    user = models.OneToOneField(User, blank=True, null=True)
     name = models.CharField(verbose_name="姓名",  max_length=255)
-    sfz = models.CharField(verbose_name="身份证",  max_length=255, unique=True)
+    sfz = models.CharField(verbose_name="身份证", max_length=255, blank=True)
 
     GENDERS = (("male", "男性"), ("female", "女性"))
     gender = models.CharField(
