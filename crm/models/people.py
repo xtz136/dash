@@ -6,20 +6,17 @@ from datetime import timedelta
 from core.models import Attachment
 
 from core.models import Attachment
-from .department import Department
 
 
 class People(models.Model):
-    user = models.OneToOneField(
-        User, verbose_name='登陆用户', blank=True, null=True)
     name = models.CharField(verbose_name="姓名",  max_length=255)
-    sfz = models.CharField(verbose_name="身份证", max_length=255, blank=True)
+    sfz = models.CharField(verbose_name="身份证",  max_length=255, unique=True)
 
     GENDERS = (("male", "男性"), ("female", "女性"))
     gender = models.CharField(
         verbose_name="性别", choices=GENDERS, default="male", max_length=10)
 
-    birthdate = models.DateField(verbose_name="生日", blank=True)
+    birthdate = models.DateField(verbose_name="生日", blank=True, null=True)
     phone = models.CharField(verbose_name="电话", blank=True, max_length=100)
 
     # 社交账号
