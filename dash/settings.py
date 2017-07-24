@@ -111,3 +111,5 @@ MEDIA_URL = "/media/"
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+from .local import *
