@@ -22,8 +22,7 @@ class ContractInline(admin.TabularInline):
 class CompanyModelAdmin(admin.ModelAdmin):
     list_display = ('title', 'view_expired_at', 'industry',
                     'taxpayer_type', 'scale_size', 'view_expired_at',
-                    'has_expired',
-                    'download')
+                    'has_expired', 'download')
     list_filter = ('type', 'salesman', 'industry',
                    'taxpayer_type', 'scale_size', 'status', 'has_expired')
     search_fields = ('title', )
@@ -32,6 +31,46 @@ class CompanyModelAdmin(admin.ModelAdmin):
         ShareHolderInline,
         AttachmentInline
     ]
+
+    fieldsets = (
+        ('公司信息', {
+            'fields': ('title', 'type', 'registered_capital',
+                       'industry', 'taxpayer_type', 'scale_size',
+                       'credit_rating',
+                       'address',
+                       'uscc', 'business_license',
+                       'website', 'salesman', 'bookkeeper',
+                       'registered_at', 'expired_at',
+                       'status', 'note')
+        }),
+        ('银行信息', {
+            'fields': (
+                'ss_number',
+                ('taxpayer_bank', 'taxpayer_account'),
+                ('ss_bank', 'ss_account', ),
+            )
+        }),
+        ('国税', {
+            # 'classes': ('collapse',),
+            'fields': (
+                'national_tax_branch',
+                'national_tax_id',
+                'national_tax_sn',
+                'national_tax_staff',
+                'national_tax_phone')
+        }),
+        ('地税', {
+            'fields': (
+                'local_tax_branch',
+                'local_tax_id',
+                'local_tax_sn',
+                'local_tax_staff',
+                'local_tax_phone')
+        }),
+        ('海关信息', {
+            'fields': ()
+        }),
+    )
 
     def download(self, obj):
         return mark_safe('<a href="#">附件</a>')
