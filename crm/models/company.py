@@ -5,6 +5,9 @@ from django.utils import timezone
 
 from core.models import Attachment
 
+User.add_to_class("__str__", lambda u: "{0}{1}".format(
+    u.last_name, u.first_name) if u.last_name else u.username)
+
 
 class Company(models.Model):
     title = models.CharField(verbose_name="企业名称", unique=True, max_length=255)
