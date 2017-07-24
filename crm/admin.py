@@ -1,15 +1,41 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
+from django.contrib.contenttypes.admin import GenericTabularInline
 
 from .models import Company, People, ShareHolder, Contract
+from core.models import Attachment
+
+
+class AttachmentInline(GenericTabularInline):
+    model = Attachment
+
+
+class ShareHolderInline(admin.TabularInline):
+    model = ShareHolder
+
+
+class ContractInline(admin.TabularInline):
+    model = Contract
 
 
 @admin.register(Company)
 class CompanyModelAdmin(admin.ModelAdmin):
     list_display = ('title', 'view_expired_at', 'industry',
-                    'taxpayer_type', 'scale_size')
+                    'taxpayer_type', 'scale_size', 'view_expired_at',
+                    'has_expired',
+                    'download')
     list_filter = ('type', 'salesman', 'industry',
-                   'taxpayer_type', 'scale_size', 'status')
+                   'taxpayer_type', 'scale_size', 'status', 'has_expired')
+    search_fields = ('title', )
+    inlines = [
+        ContractInline,
+        ShareHolderInline,
+        AttachmentInline
+    ]
+
+    def download(self, obj):
+        return mark_safe('<a href="#">附件</a>')
+    download.short_description = '下载附件'
 
     def view_expired_at(self, obj):
         return obj.expired_at
@@ -30,6 +56,9 @@ class ContractModelAdmin(admin.ModelAdmin):
                     'duration',
                     'created', 'expired_at')
     search_fields = ('company_title', 'salesmane_name')
+    inlines = [
+        AttachmentInline
+    ]
 
     def view_arrearage(self, obj):
         if obj.arrearage > 0:
@@ -41,6 +70,9 @@ class ContractModelAdmin(admin.ModelAdmin):
 @admin.register(People)
 class PeopleModelAdmin(admin.ModelAdmin):
     list_display = ('name', 'sfz', 'phone')
+    inlines = [
+        AttachmentInline
+    ]
 
 
 @admin.register(ShareHolder)

@@ -75,3 +75,7 @@ class Contract(models.Model):
         if not self.receivables:
             self.receivables = self.amount
         return super(Contract, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "合同"
+        verbose_name_plural = "合同"

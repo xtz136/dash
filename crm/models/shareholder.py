@@ -29,3 +29,5 @@ class ShareHolder(models.Model):
 
     class Meta:
         unique_together = ('people', 'company')
+        verbose_name = "股份持有人"
+        verbose_name_plural = "股份持有人"

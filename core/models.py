@@ -33,7 +33,7 @@ class Attachment(models.Model):
 
     file_type = models.CharField(
         choices=FILE_TYPES,
-        name='文件类型',
+        verbose_name='文件类型',
         max_length=20,
         default='general')
     file = models.FileField(upload_to='upload_path')
@@ -54,3 +54,7 @@ class Attachment(models.Model):
         if not self.name:
             self.name = self.file.name
         super(Attachment, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "附件"
+        verbose_name_plural = "附件"

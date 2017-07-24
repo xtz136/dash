@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.contrib.contenttypes.fields import GenericRelation
+from django.utils import timezone
 
 from core.models import Attachment
 
@@ -85,11 +86,17 @@ class Company(models.Model):
 
     CREDIT_RATINGS = (('good', '良好'), ('bad', '差'), ('very_bad', '很差'))
     credit_rating = models.CharField(
-        verbose_name="信用评级", default='good', max_length=10, choices=CREDIT_RATINGS)
+        verbose_name="信用评级",
+        default='good',
+        max_length=10,
+        choices=CREDIT_RATINGS)
 
     TAXPAYER_TYPES = (('general', '一般纳税人'), ('small', '小规模纳税人'))
     taxpayer_type = models.CharField(
-        verbose_name="纳税人类型", default='small', max_length=10, choices=TAXPAYER_TYPES)
+        verbose_name="纳税人类型",
+        default='small',
+        max_length=10,
+        choices=TAXPAYER_TYPES)
 
     # 规模
     SCALE_SIZES = (('small', '小型企业 (50人以下)'), ('medium', '中型企业 (50-200人)'),
@@ -97,8 +104,13 @@ class Company(models.Model):
     scale_size = models.CharField(
         verbose_name="规模", default='small', max_length=10, choices=SCALE_SIZES)
 
-    STATUS = (('normal', '正常'), ('closed', '关闭'))
+    STATUS = (('normal', '正常'),
+              ('closed', '关闭'),
+              ('suspend', '暂停'),
+              ('interest', '意向'),
+              ('halted', '终止'))
     status = models.CharField(
+        help_text="暂停：客户欠费违约暂停服务",
         verbose_name="公司状态", default='normal', max_length=10, choices=STATUS)
     # 附件
     website = models.CharField(verbose_name="公司网站", blank=True, max_length=255)
@@ -107,6 +119,9 @@ class Company(models.Model):
     attachments = GenericRelation(Attachment)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    has_expired = models.BooleanField(default=False, editable=False)
+
+    # TODO: 海关信息
 
     def __str__(self):
         return self.title
@@ -116,4 +131,10 @@ class Company(models.Model):
             self.ss_bank = self.taxpayer_bank
         if not self.ss_account:
             self.ss_account = self.taxpayer_account
+        self.has_expired = not self.expired_at or (
+            self.expired_at <= timezone.now().date())
         return super(Company, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "公司"
+        verbose_name_plural = "公司"
