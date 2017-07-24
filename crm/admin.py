@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 from django.contrib.contenttypes.admin import GenericTabularInline
+from django.utils import timezone
 
 from .models import Company, People, ShareHolder, Contract
 from core.models import Attachment
@@ -21,14 +22,35 @@ class ContractInline(admin.TabularInline):
     model = Contract
 
 
+class HasExpiredFilter(admin.SimpleListFilter):
+    title = '是否过期'
+    parameter_name = 'has_expired'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('expired', '已过期'),
+            ('not_expire', '未过期'),
+        )
+
+    def queryset(self, request, queryset):
+
+        if self.value() == 'expired':
+            return queryset.filter(expired_at__lte=timezone.now())
+        elif self.value() == 'not_expire':
+            return queryset.filter(expired_at__gt=timezone.now())
+        return queryset
+
+
 @admin.register(Company)
 class CompanyModelAdmin(admin.ModelAdmin):
-    list_display = ('title', 'view_expired_at', 'industry',
+    list_display = ('title', 'industry',
+                    'salesman', 'bookkeeper',
                     'taxpayer_type', 'scale_size', 'view_expired_at',
-                    'has_expired', 'download')
+                    'status', 'download')
     list_filter = ('type', 'salesman', 'industry',
-                   'taxpayer_type', 'scale_size', 'status', 'has_expired')
-    search_fields = ('title', )
+                   HasExpiredFilter,
+                   'taxpayer_type', 'scale_size', 'status')
+    search_fields = ('title', 'info')
     inlines = [
         # ContractInline,
         ShareHolderInline,
@@ -77,11 +99,11 @@ class CompanyModelAdmin(admin.ModelAdmin):
 
     def download(self, obj):
         return mark_safe('<a href="#">附件</a>')
-    download.short_description = '下载附件'
+    download.short_description = '下载'
 
     def view_expired_at(self, obj):
         return obj.expired_at
-    view_expired_at.empty_value_display = '无期限'
+    view_expired_at.empty_value_display = '永久有效'
     view_expired_at.short_description = '执照过期日期'
 
 

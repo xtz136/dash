@@ -127,10 +127,11 @@ class Company(models.Model):
     attachments = GenericRelation(Attachment)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    has_expired = models.BooleanField(
-        default=False, editable=False, verbose_name='执照过期')
 
     # TODO: 海关信息
+    @property
+    def has_expired(self):
+        return self.expired_at and (self.expired_at <= timezone.now().date())
 
     def __str__(self):
         return self.title
@@ -140,8 +141,6 @@ class Company(models.Model):
             self.ss_bank = self.taxpayer_bank
         if not self.ss_account:
             self.ss_account = self.taxpayer_account
-        self.has_expired = not self.expired_at or (
-            self.expired_at <= timezone.now().date())
         return super(Company, self).save(*args, **kwargs)
 
     class Meta:
