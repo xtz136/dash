@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 from django.contrib.contenttypes.admin import GenericTabularInline
 
-from .models import Company, People, ShareHolder, Contract
+from .models import Company, People, ShareHolder, Contract, Department
 from core.models import Attachment
 
 
@@ -121,3 +121,8 @@ class ShareHolderModelAdmin(admin.ModelAdmin):
     def view_share(self, obj):
         return '{:.2f}%'.format(obj.share * 100)
     view_share.short_description = '占比'
+
+
+@admin.register(Department)
+class DepartmentModelAdmin(admin.ModelAdmin):
+    list_display = ('title', 'company_title')
