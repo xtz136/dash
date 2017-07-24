@@ -123,5 +123,5 @@ class ShareHolderModelAdmin(admin.ModelAdmin):
     list_display = ('company_title', 'people_name', 'role', 'view_share')
 
     def view_share(self, obj):
-        return '{:.2f}%'.format(obj.share * 100)
+        return '{:.2f}%'.format(obj.share)
     view_share.short_description = '占比'
