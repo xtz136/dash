@@ -15,8 +15,12 @@ class ShareHolder(models.Model):
                             default="share", max_length=10)
     share = models.FloatField(verbose_name="占比", default=.1)
 
-    people_name = models.CharField(max_length=200, editable=False, blank=True)
+    people_name = models.CharField(verbose_name='姓名',
+                                   max_length=200,
+                                   editable=False,
+                                   blank=True)
     company_title = models.CharField(
+        verbose_name='公司名',
         max_length=255, editable=False, blank=True)
 
     def __str__(self):

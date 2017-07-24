@@ -12,8 +12,6 @@ from .department import Department
 class People(models.Model):
     user = models.OneToOneField(
         User, verbose_name='登陆用户', blank=True, null=True)
-    department = models.ForeignKey(
-        Department, verbose_name='所属部门', blank=True, null=True)
     name = models.CharField(verbose_name="姓名",  max_length=255)
     sfz = models.CharField(verbose_name="身份证", max_length=255, blank=True)
 

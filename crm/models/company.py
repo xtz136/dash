@@ -23,11 +23,15 @@ class Company(models.Model):
     address = models.CharField(verbose_name="地址", blank=True, max_length=255)
 
     # 主要业务负责人
-    salesman = models.ForeignKey(
-        User, verbose_name="业务员", blank=True, null=True, related_name="customers")
+    salesman = models.ForeignKey(User,
+                                 verbose_name="业务员",
+                                 blank=True, null=True,
+                                 related_name="customers")
     # 管账人
-    bookkeeper = models.ForeignKey(
-        User, verbose_name="记账会计", blank=True, null=True, related_name="accounts")
+    bookkeeper = models.ForeignKey(User,
+                                   verbose_name="记账会计",
+                                   blank=True, null=True,
+                                   related_name="accounts")
 
     # unified social credit code
     uscc = models.CharField(verbose_name="社会统一信用代码号",

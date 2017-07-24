@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 from django.contrib.contenttypes.admin import GenericTabularInline
 
-from .models import Company, People, ShareHolder, Contract, Department
+from .models import Company, People, ShareHolder, Contract
 from core.models import Attachment
 
 
@@ -116,13 +116,9 @@ class PeopleModelAdmin(admin.ModelAdmin):
 
 @admin.register(ShareHolder)
 class ShareHolderModelAdmin(admin.ModelAdmin):
+    search_fields = ('company_title', 'people_name')
     list_display = ('company_title', 'people_name', 'role', 'view_share')
 
     def view_share(self, obj):
         return '{:.2f}%'.format(obj.share * 100)
     view_share.short_description = '占比'
-
-
-@admin.register(Department)
-class DepartmentModelAdmin(admin.ModelAdmin):
-    list_display = ('title', 'company_title')
