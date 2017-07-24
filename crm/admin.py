@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.db.models import Q
 from django.utils.safestring import mark_safe
 from django.contrib.contenttypes.admin import GenericTabularInline
 from django.utils import timezone
@@ -37,7 +38,8 @@ class HasExpiredFilter(admin.SimpleListFilter):
         if self.value() == 'expired':
             return queryset.filter(expired_at__lte=timezone.now())
         elif self.value() == 'not_expire':
-            return queryset.filter(expired_at__gt=timezone.now())
+            return queryset.filter(
+                Q(expired_at__gt=timezone.now()) | Q(expired_at=None))
         return queryset
 
 
