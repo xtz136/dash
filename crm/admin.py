@@ -13,6 +13,7 @@ class AttachmentInline(GenericTabularInline):
 
 class ShareHolderInline(admin.TabularInline):
     model = ShareHolder
+    raw_id_fields = ('people', )
     extra = 1
 
 
