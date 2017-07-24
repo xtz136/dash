@@ -14,7 +14,7 @@ class People(models.Model):
 
     GENDERS = (("male", "男性"), ("female", "女性"))
     gender = models.CharField(
-        verbose_name="性别", choices=GENDERS, default="male", max_length=5)
+        verbose_name="性别", choices=GENDERS, default="male", max_length=10)
 
     birthdate = models.DateField(verbose_name="生日", blank=True)
     phone = models.CharField(verbose_name="电话", blank=True, max_length=100)
