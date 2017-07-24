@@ -28,7 +28,7 @@ class CompanyModelAdmin(admin.ModelAdmin):
                    'taxpayer_type', 'scale_size', 'status', 'has_expired')
     search_fields = ('title', )
     inlines = [
-        ContractInline,
+        # ContractInline,
         ShareHolderInline,
         AttachmentInline
     ]
