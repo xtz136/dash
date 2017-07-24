@@ -8,10 +8,12 @@ from core.models import Attachment
 
 class AttachmentInline(GenericTabularInline):
     model = Attachment
+    extra = 2
 
 
 class ShareHolderInline(admin.TabularInline):
     model = ShareHolder
+    extra = 1
 
 
 class ContractInline(admin.TabularInline):
