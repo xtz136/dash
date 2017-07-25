@@ -63,7 +63,7 @@ class CompanyModelAdmin(admin.ModelAdmin):
         ShareHolderInline,
         AttachmentInline
     ]
-    raw_id_fields = ('national_tax_office', )
+    raw_id_fields = ('national_tax_office', 'local_tax_office')
 
     fieldsets = (
         ('公司信息', {
@@ -174,7 +174,7 @@ class ShareHolderModelAdmin(admin.ModelAdmin):
 class TaxBureauModelAdmin(admin.ModelAdmin):
     search_fields = ('office', 'address')
     list_filter = ('district', 'bureau')
-    list_display = ('district', 'office', 'address', 'view_map')
+    list_display = ('office', 'district', 'address', 'view_map')
 
     def view_map(self, obj):
         return mark_safe(
