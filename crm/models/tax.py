@@ -35,7 +35,9 @@ class TaxBureau(models.Model):
 
     def __str__(self):
         return "{0} {1} {2}".format(
-            self.bureau, self.district, self.office)
+            self.get_bureau_display(),
+            self.get_district_display(),
+            self.office)
 
     class Meta:
         verbose_name = '税局'

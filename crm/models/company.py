@@ -4,6 +4,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from django.utils import timezone
 
 from core.models import Attachment
+from .tax import TaxBureau
 
 User.add_to_class("__str__", lambda u: "{0}{1}".format(
     u.last_name, u.first_name) if u.last_name else u.username)
@@ -68,8 +69,14 @@ class Company(models.Model):
         verbose_name="国税编码", blank=True, max_length=255)
     national_tax_staff = models.CharField(
         verbose_name="国税专管员", blank=True, max_length=255)
-    national_tax_branch = models.CharField(
-        choices=BRANCHES, verbose_name="国税所属分局", blank=True, max_length=10)
+
+    national_tax_office = models.ForeignKey(
+        TaxBureau,
+        verbose_name="国税所属分局",
+        limit_choices_to={'bureau': 'national'},
+        blank=True,
+        null=True)
+
     national_tax_phone = models.CharField(
         verbose_name="国税电话", blank=True, max_length=255)
 

@@ -63,6 +63,7 @@ class CompanyModelAdmin(admin.ModelAdmin):
         ShareHolderInline,
         AttachmentInline
     ]
+    raw_id_fields = ('national_tax_office', )
 
     fieldsets = (
         ('公司信息', {
@@ -86,7 +87,7 @@ class CompanyModelAdmin(admin.ModelAdmin):
         ('国税', {
             # 'classes': ('collapse',),
             'fields': (
-                'national_tax_branch',
+                'national_tax_office',
                 'national_tax_id',
                 'national_tax_sn',
                 'national_tax_staff',
