@@ -101,7 +101,14 @@ class CompanyModelAdmin(admin.ModelAdmin):
                 'local_tax_phone')
         }),
         ('海关信息', {
-            'fields': ()
+            'fields': (
+                'custom_entry_no',
+                'custom_org_code',
+                'custom_register_no',
+                'custom_registered_at',
+                'custom_expired_at',
+                'premise',
+            )
         }),
     )
 

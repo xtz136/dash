@@ -122,6 +122,37 @@ class Company(models.Model):
         max_length=10,
         choices=TAXPAYER_TYPES)
 
+    # 海关信息
+    custom_entry_no = models.CharField(
+        verbose_name='海关登记编号',
+        blank=True,
+        max_length=255)
+
+    custom_register_no = models.CharField(
+        verbose_name='海关注册编码',
+        blank=True,
+        max_length=255)
+
+    custom_org_code = models.CharField(
+        verbose_name='海关组织机构代码',
+        blank=True,
+        max_length=255)
+
+    custom_registered_at = models.DateField(
+        verbose_name='海关登记日期',
+        blank=True,
+        null=True)
+
+    custom_expired_at = models.DateField(
+        verbose_name="有效期",
+        null=True,
+        blank=True)
+
+    premise = models.CharField(
+        verbose_name="经营场地（英文)",
+        max_length=255,
+        blank=True)
+
     # 规模
     SCALE_SIZES = (('small', '小型企业 (50人以下)'), ('medium', '中型企业 (50-200人)'),
                    ('large', '大型企业 (200人以上)'))
@@ -145,7 +176,6 @@ class Company(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    # TODO: 海关信息
     @property
     def has_expired(self):
         return self.expired_at and (self.expired_at <= timezone.now().date())
