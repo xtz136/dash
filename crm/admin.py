@@ -167,3 +167,16 @@ class ShareHolderModelAdmin(admin.ModelAdmin):
     def view_share(self, obj):
         return '{:.2f}%'.format(obj.share)
     view_share.short_description = '占比'
+
+
+@admin.register(TaxBureau)
+class TaxBureauModelAdmin(admin.ModelAdmin):
+    search_fields = ('office', 'address')
+    list_filter = ('district', 'bureau')
+    list_display = ('district', 'office', 'address', 'view_map')
+
+    def view_map(self, obj):
+        return mark_safe(
+            "<a href='http://api.map.baidu.com/geocoder?address={0}{1}&output=html' target='_blank'>查看地图</a>".format(
+                obj.get_district_display(), obj.office))
+    view_map.short_description = '查看地图信息'
