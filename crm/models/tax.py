@@ -23,13 +23,19 @@ class TaxBureau(models.Model):
         blank=True,
         max_length=50)
 
+    office = models.CharField(
+        verbose_name='分局名称',
+        blank=True,
+        max_length=255)
+
     address = models.CharField(
         blank=True,
         max_length=255,
         verbose_name="地址")
 
     def __str__(self):
-        return "{0} {1}".format(self.district, self.bureau)
+        return "{0} {1} {2}".format(
+            self.bureau, self.district, self.office)
 
     class Meta:
         verbose_name = '税局'

@@ -6,7 +6,7 @@ from django.utils.safestring import mark_safe
 from django.contrib.contenttypes.admin import GenericTabularInline
 from django.utils import timezone
 
-from .models import Company, People, ShareHolder, Contract
+from .models import Company, People, ShareHolder, Contract, TaxBureau
 from core.models import Attachment
 
 
