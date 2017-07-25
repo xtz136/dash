@@ -154,6 +154,7 @@ class ShareHolderModelAdmin(admin.ModelAdmin):
     search_fields = ('company_title', 'people_name', 'info')
     list_display = ('company_title', 'people_name',
                     'phone', 'role', 'view_share', 'is_contactor')
+    raw_id_fields = ('people', 'company')
     list_filter = ('is_contactor', )
 
     def view_share(self, obj):
