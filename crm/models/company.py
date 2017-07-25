@@ -86,8 +86,11 @@ class Company(models.Model):
         verbose_name="地税编码", blank=True, max_length=255)
     local_tax_staff = models.CharField(
         verbose_name="地税专管员", blank=True, max_length=255)
-    local_tax_branch = models.CharField(
-        choices=BRANCHES, verbose_name="地税所属分局", blank=True, max_length=10)
+    local_tax_office = models.ForeignKey(
+        TaxBureau,
+        limit_choices_to={'bureau': 'local'},
+        verbose_name="地税所属分局",
+        blank=True, null=True)
     local_tax_phone = models.CharField(
         verbose_name="地税电话", blank=True, max_length=255)
 
