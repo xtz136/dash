@@ -95,7 +95,7 @@ class CompanyModelAdmin(admin.ModelAdmin):
         }),
         ('地税', {
             'fields': (
-                'local_tax_branch',
+                'local_tax_office',
                 'local_tax_id',
                 'local_tax_sn',
                 'local_tax_staff',
