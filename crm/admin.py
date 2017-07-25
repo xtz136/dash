@@ -52,7 +52,7 @@ class CompanyModelAdmin(admin.ModelAdmin):
     list_filter = ('type', 'salesman', 'industry',
                    HasExpiredFilter,
                    'taxpayer_type', 'scale_size', 'status')
-    search_fields = ('title', 'info')
+    search_fields = ('title', 'note')
     inlines = [
         # ContractInline,
         ShareHolderInline,
