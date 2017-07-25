@@ -17,6 +17,8 @@ class ShareHolder(models.Model):
     is_contactor = models.BooleanField(default=False,
                                        verbose_name="主要联系人")
 
+    phone = models.CharField(verbose_name="联系人电话", blank=True,
+                             max_length=200)
     info = models.TextField(verbose_name="备注", blank=True)
     people_name = models.CharField(verbose_name='姓名',
                                    max_length=200,
@@ -29,11 +31,9 @@ class ShareHolder(models.Model):
     def __str__(self):
         return "{0} - {1}".format(self.company_title, self.people_name)
 
-    @property
-    def phone(self):
-        return self.people.phone
-
     def save(self, *args, **kwargs):
+        if not self.phone:
+            self.phone = self.people.phone
         self.people_name = self.people.name
         self.company_title = self.company.title
         super(ShareHolder, self).save(*args, **kwargs)

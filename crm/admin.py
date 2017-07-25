@@ -20,7 +20,7 @@ class ShareHolderInline(admin.TabularInline):
     raw_id_fields = ('people', )
     extra = 1
     formfield_overrides = {
-        models.TextField: {'widget': Textarea(attrs={'rows': 2, 'cols': 40})}
+        models.TextField: {'widget': Textarea(attrs={'rows': 1, 'cols': 40})}
     }
 
 
@@ -153,8 +153,7 @@ class PeopleModelAdmin(admin.ModelAdmin):
 class ShareHolderModelAdmin(admin.ModelAdmin):
     search_fields = ('company_title', 'people_name', 'info')
     list_display = ('company_title', 'people_name',
-                    'phone',
-                    'role', 'view_share', 'is_contactor')
+                    'phone', 'role', 'view_share', 'is_contactor')
     list_filter = ('is_contactor', )
 
     def view_share(self, obj):
