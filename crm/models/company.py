@@ -72,6 +72,7 @@ class Company(models.Model):
 
     national_tax_office = models.ForeignKey(
         TaxBureau,
+        related_name='national_taxes',
         verbose_name="国税所属分局",
         limit_choices_to={'bureau': 'national'},
         blank=True,
@@ -88,6 +89,7 @@ class Company(models.Model):
         verbose_name="地税专管员", blank=True, max_length=255)
     local_tax_office = models.ForeignKey(
         TaxBureau,
+        related_name='local_taxes',
         limit_choices_to={'bureau': 'local'},
         verbose_name="地税所属分局",
         blank=True, null=True)
