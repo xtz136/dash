@@ -77,7 +77,7 @@ class CompanyModelAdmin(admin.ModelAdmin):
         }),
         ('银行信息', {
             'fields': (
-                'ss_number',
+                ('ss_number', 'ss_date'),
                 ('taxpayer_bank', 'taxpayer_account'),
                 ('ss_bank', 'ss_account'),
                 ('individual_bank', 'individual_account')
