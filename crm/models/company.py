@@ -14,6 +14,7 @@ class Company(models.Model):
 
     TYPES = (
         ('limited', '有限责任公司'),
+        ('individual', '个体工商户'),
         ('stock', '股份有限公司'),
         ('partnership', '合伙企业(有限合伙)'),
         ('collective', '集体所有制(股份合作)'),
@@ -24,6 +25,10 @@ class Company(models.Model):
     registered_capital = models.DecimalField(
         verbose_name="注册资金", max_digits=20, decimal_places=0)
     address = models.CharField(verbose_name="地址", blank=True, max_length=255)
+    op_address = models.CharField(
+        verbose_name="实际经营地址",
+        help_text="不填，默认为公司注册地址",
+        blank=True, max_length=255)
 
     # 主要业务负责人
     salesman = models.ForeignKey(User,
@@ -50,7 +55,8 @@ class Company(models.Model):
                   ('ad', '广告'), ('property', '房地产'), ('service', '服务业'),
                   ('trade', '贸易'), ('entertainment', '娱乐'))
     industry = models.CharField(
-        choices=INDUSTRIES, verbose_name="所属行业", default='auto_parts', max_length=50)
+        choices=INDUSTRIES, verbose_name="所属行业", default='auto_parts',
+        max_length=50)
 
     BRANCHES = (("baiyun", "白云区"), ("tianhe", "天河区"), ("panyu", "番禺区"),
                 ("yuexiu", "越秀区"), ("haizhu", "海珠区"), ("zengcheng", "增城区"),
@@ -90,6 +96,17 @@ class Company(models.Model):
         verbose_name="代扣社保账号", help_text="不填，默认为纳税账号", blank=True, max_length=255)
     ss_number = models.CharField(
         verbose_name="单位社保号", blank=True, max_length=255)
+    ss_date = models.DateField(verbose_name="社保购买时间", blank=True, null=True)
+
+    # 个体户
+    individual_bank = models.CharField(
+        verbose_name='基本户开户银行',
+        blank=True,
+        max_length=255)
+    individual_account = models.CharField(
+        verbose_name='基本户开账号',
+        blank=True,
+        max_length=255)
 
     CREDIT_RATINGS = (('good', '良好'), ('bad', '差'), ('very_bad', '很差'))
     credit_rating = models.CharField(
@@ -137,6 +154,8 @@ class Company(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
+        if not self.op_address:
+            self.op_address = self.address
         if not self.ss_bank:
             self.ss_bank = self.taxpayer_bank
         if not self.ss_account:

@@ -52,7 +52,7 @@ class CompanyModelAdmin(admin.ModelAdmin):
     list_filter = ('type', 'salesman', 'industry',
                    HasExpiredFilter,
                    'taxpayer_type', 'scale_size', 'status')
-    search_fields = ('title', 'note')
+    search_fields = ('title', 'note', 'address', 'op_address')
     inlines = [
         # ContractInline,
         ShareHolderInline,
@@ -64,7 +64,7 @@ class CompanyModelAdmin(admin.ModelAdmin):
             'fields': ('title', 'type', 'registered_capital',
                        'industry', 'taxpayer_type', 'scale_size',
                        'credit_rating',
-                       'address',
+                       'address', 'op_address',
                        'uscc', 'business_license',
                        'website', 'salesman', 'bookkeeper',
                        'registered_at', 'expired_at',
@@ -74,7 +74,8 @@ class CompanyModelAdmin(admin.ModelAdmin):
             'fields': (
                 'ss_number',
                 ('taxpayer_bank', 'taxpayer_account'),
-                ('ss_bank', 'ss_account', ),
+                ('ss_bank', 'ss_account'),
+                ('individual_address', 'individual_account')
             )
         }),
         ('国税', {
@@ -128,13 +129,15 @@ class ContractModelAdmin(admin.ModelAdmin):
 
     def view_arrearage(self, obj):
         if obj.arrearage > 0:
-            return mark_safe('<span style="color:red">-{0}</span>'.format(obj.arrearage))
+            return mark_safe('<span style="color:red">-{0}</span>'
+                             .format(obj.arrearage))
         return obj.arrearage
     view_arrearage.short_description = '欠款'
 
 
 @admin.register(People)
 class PeopleModelAdmin(admin.ModelAdmin):
+    search_fields = ('name', 'sfz', 'phone')
     list_display = ('name', 'sfz', 'phone')
     inlines = [
         AttachmentInline
@@ -143,8 +146,11 @@ class PeopleModelAdmin(admin.ModelAdmin):
 
 @admin.register(ShareHolder)
 class ShareHolderModelAdmin(admin.ModelAdmin):
-    search_fields = ('company_title', 'people_name')
-    list_display = ('company_title', 'people_name', 'role', 'view_share')
+    search_fields = ('company_title', 'people_name', 'info')
+    list_display = ('company_title', 'people_name',
+                    'phone',
+                    'role', 'view_share', 'is_contactor')
+    list_filter = ('is_contactor', )
 
     def view_share(self, obj):
         return '{:.2f}%'.format(obj.share)

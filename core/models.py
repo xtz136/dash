@@ -19,6 +19,8 @@ class Attachment(models.Model):
         ('contract', '合同'),
         ('sfz', '身份证'),
         ('legal_man', '企业法人营业执照'),
+        ('bank', '银行开户许可证'),
+        ('credit', '机构信用代码证'),
         ('business_license', '营业执照副本'),
     )
 
