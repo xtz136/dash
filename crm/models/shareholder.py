@@ -5,8 +5,8 @@ from .company import Company
 
 
 class ShareHolder(models.Model):
-    people = models.ForeignKey(People)
-    company = models.ForeignKey(Company)
+    people = models.ForeignKey(People, verbose_name="客户")
+    company = models.ForeignKey(Company, verbose_name="公司")
 
     ROLES = (
         ('legal', '法人'), ('share', '股东')
