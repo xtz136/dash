@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.db import models
+from django.forms import Textarea
 from django.db.models import Q
 from django.utils.safestring import mark_safe
 from django.contrib.contenttypes.admin import GenericTabularInline
@@ -17,6 +19,9 @@ class ShareHolderInline(admin.TabularInline):
     model = ShareHolder
     raw_id_fields = ('people', )
     extra = 1
+    formfield_overrides = {
+        models.TextField: {'widget': Textarea(attrs={'rows': 2, 'cols': 40})}
+    }
 
 
 class ContractInline(admin.TabularInline):
@@ -75,7 +80,7 @@ class CompanyModelAdmin(admin.ModelAdmin):
                 'ss_number',
                 ('taxpayer_bank', 'taxpayer_account'),
                 ('ss_bank', 'ss_account'),
-                ('individual_address', 'individual_account')
+                ('individual_bank', 'individual_account')
             )
         }),
         ('国税', {
