@@ -59,10 +59,6 @@ class Company(models.Model):
         choices=INDUSTRIES, verbose_name="所属行业", default='auto_parts',
         max_length=50)
 
-    BRANCHES = (("baiyun", "白云区"), ("tianhe", "天河区"), ("panyu", "番禺区"),
-                ("yuexiu", "越秀区"), ("haizhu", "海珠区"), ("zengcheng", "增城区"),
-                ("huadu", "花都区"), ("other", "其它地区"))
-
     national_tax_id = models.CharField(
         verbose_name="国税登记证", blank=True, max_length=255)
     national_tax_sn = models.CharField(
