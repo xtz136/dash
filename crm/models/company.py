@@ -162,18 +162,16 @@ class Company(models.Model):
         blank=True)
 
     # 规模
-    SCALE_SIZES = (('small', '小型企业 (50人以下)'), ('medium', '中型企业 (50-200人)'),
+    SCALE_SIZES = (('small', '小型企业 (50人以内)'),
+                   ('medium', '中型企业 (50-200人)'),
                    ('large', '大型企业 (200人以上)'))
     scale_size = models.CharField(
         verbose_name="规模", default='small', max_length=10, choices=SCALE_SIZES)
 
     STATUS = (('normal', '正常'),
-              ('closed', '关闭'),
-              ('suspend', '暂停'),
-              ('interest', '意向'),
-              ('halted', '终止'))
+              ('abnormal', '经营异常'))
     status = models.CharField(
-        help_text="暂停：客户欠费违约暂停服务",
+        help_text="经营异常: 已被工商局列入经营异常名录",
         verbose_name="公司状态", default='normal', max_length=10, choices=STATUS)
     # 附件
     website = models.CharField(verbose_name="公司网站", blank=True, max_length=255)
