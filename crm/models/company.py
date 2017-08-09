@@ -53,6 +53,7 @@ class Company(models.Model):
         verbose_name="营业执照号", blank=True, max_length=255)
 
     INDUSTRIES = (('auto_parts', '汽配'), ('food', '餐饮'), ('clother', '服装'),
+                  ('wholesale', '批发业'), ('arch', '建筑'), ('shopping', '商贸'),
                   ('ad', '广告'), ('property', '房地产'), ('service', '服务业'),
                   ('trade', '贸易'), ('entertainment', '娱乐'))
     industry = models.CharField(
