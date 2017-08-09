@@ -44,7 +44,7 @@ def get_or_create_user(username):
 
 
 def const2str(consts, label):
-    return [i[0] for i in consts if i[1] == label][0]
+    return [i[0] for i in consts if i[1] == label.strip()][0]
 
 
 def handle_import_company(f):
@@ -59,9 +59,11 @@ def handle_import_company(f):
         data.pop('no')
         data['registered_at'] = data['registered_at'].strip() or None
         data['expired_at'] = data['expired_at'].strip() or None
+        data['expired_at'] = None if data['expired_at'] == '长期' else data['expired_at']
         data['ss_date'] = data['ss_date'].strip() or None
 
         data['industry'] = const2str(Company.INDUSTRIES, data['industry'])
+        data['type'] = const2str(Company.TYPES, data['type'])
         data['taxpayer_type'] = const2str(
             Company.TAXPAYER_TYPES, data['taxpayer_type'])
         data['status'] = const2str(
