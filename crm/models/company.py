@@ -46,8 +46,10 @@ class Company(models.Model):
     uscc = models.CharField(verbose_name="社会统一信用代码号",
                             blank=True, max_length=255)
 
-    registered_at = models.DateField(verbose_name="注册日期", blank=True)
-    expired_at = models.DateField(verbose_name="执照有效日期", blank=True, null=True)
+    registered_at = models.DateField(
+        verbose_name="注册日期", blank=True, null=True)
+    expired_at = models.DateField(
+        verbose_name="执照有效日期", blank=True, null=True)
 
     business_license = models.CharField(
         verbose_name="营业执照号", blank=True, max_length=255)
