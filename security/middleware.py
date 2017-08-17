@@ -31,7 +31,7 @@ class RestrictIPMiddleware(object):
         user = getattr(request, 'user', None)
         if user and not user.is_superuser:
             profile = getattr(user, 'profile', None)
-            if profile and not profile.is_manager:
+            if not profile or not profile.is_manager:
                 ip = get_ip(request)
                 is_banned = False
                 try:
