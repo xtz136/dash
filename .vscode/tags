@@ -9,41 +9,72 @@
 0002_auto_20170723_0342.py	../crm/migrations/0002_auto_20170723_0342.py	1;"	kind:file	line:1
 0002_auto_20170723_0434.py	../core/migrations/0002_auto_20170723_0434.py	1;"	kind:file	line:1
 0003_auto_20170723_0401.py	../crm/migrations/0003_auto_20170723_0401.py	1;"	kind:file	line:1
+0003_auto_20170725_1202.py	../core/migrations/0003_auto_20170725_1202.py	1;"	kind:file	line:1
 0004_auto_20170723_0405.py	../crm/migrations/0004_auto_20170723_0405.py	1;"	kind:file	line:1
 0005_auto_20170723_0434.py	../crm/migrations/0005_auto_20170723_0434.py	1;"	kind:file	line:1
 0006_auto_20170723_1214.py	../crm/migrations/0006_auto_20170723_1214.py	1;"	kind:file	line:1
 0007_auto_20170724_1452.py	../crm/migrations/0007_auto_20170724_1452.py	1;"	kind:file	line:1
+0008_auto_20170725_0000.py	../crm/migrations/0008_auto_20170725_0000.py	1;"	kind:file	line:1
+0009_auto_20170725_0001.py	../crm/migrations/0009_auto_20170725_0001.py	1;"	kind:file	line:1
+0010_department.py	../crm/migrations/0010_department.py	1;"	kind:file	line:1
+0011_auto_20170725_0016.py	../crm/migrations/0011_auto_20170725_0016.py	1;"	kind:file	line:1
+0012_auto_20170725_0023.py	../crm/migrations/0012_auto_20170725_0023.py	1;"	kind:file	line:1
+0013_remove_people_department.py	../crm/migrations/0013_remove_people_department.py	1;"	kind:file	line:1
+0014_auto_20170725_0047.py	../crm/migrations/0014_auto_20170725_0047.py	1;"	kind:file	line:1
+0015_auto_20170725_0054.py	../crm/migrations/0015_auto_20170725_0054.py	1;"	kind:file	line:1
+0016_remove_company_has_expired.py	../crm/migrations/0016_remove_company_has_expired.py	1;"	kind:file	line:1
+0017_auto_20170725_0140.py	../crm/migrations/0017_auto_20170725_0140.py	1;"	kind:file	line:1
+0018_auto_20170725_1202.py	../crm/migrations/0018_auto_20170725_1202.py	1;"	kind:file	line:1
+0019_auto_20170725_1206.py	../crm/migrations/0019_auto_20170725_1206.py	1;"	kind:file	line:1
+0020_shareholder_phone.py	../crm/migrations/0020_shareholder_phone.py	1;"	kind:file	line:1
+0021_auto_20170725_2018.py	../crm/migrations/0021_auto_20170725_2018.py	1;"	kind:file	line:1
+0022_taxbureau.py	../crm/migrations/0022_taxbureau.py	1;"	kind:file	line:1
+0023_taxbureau_office.py	../crm/migrations/0023_taxbureau_office.py	1;"	kind:file	line:1
+0024_auto_20170725_2052.py	../crm/migrations/0024_auto_20170725_2052.py	1;"	kind:file	line:1
+0025_auto_20170725_2100.py	../crm/migrations/0025_auto_20170725_2100.py	1;"	kind:file	line:1
+0026_auto_20170725_2142.py	../crm/migrations/0026_auto_20170725_2142.py	1;"	kind:file	line:1
+0027_auto_20170726_2141.py	../crm/migrations/0027_auto_20170726_2141.py	1;"	kind:file	line:1
+0028_auto_20170810_0115.py	../crm/migrations/0028_auto_20170810_0115.py	1;"	kind:file	line:1
+0029_auto_20170816_1332.py	../crm/migrations/0029_auto_20170816_1332.py	1;"	kind:file	line:1
 ALLOWED_HOSTS	../dash/settings.py	/^ALLOWED_HOSTS = []$/;"	kind:variable	line:27
 AUTH_PASSWORD_VALIDATORS	../dash/settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	kind:variable	line:78
 AppConfig	../core/apps.py	/^from django.apps import AppConfig$/;"	kind:namespace	line:1
 AppConfig	../crm/apps.py	/^from django.apps import AppConfig$/;"	kind:namespace	line:1
 Attachment	../core/admin.py	/^from .models import Attachment$/;"	kind:namespace	line:3
 Attachment	../core/models.py	/^class Attachment(models.Model):$/;"	kind:class	line:14
-Attachment	../crm/admin.py	/^from core.models import Attachment$/;"	kind:namespace	line:6
+Attachment	../crm/admin.py	/^from core.models import Attachment$/;"	kind:namespace	line:10
 Attachment	../crm/models/company.py	/^from core.models import Attachment$/;"	kind:namespace	line:6
 Attachment	../crm/models/contract.py	/^from core.models import Attachment$/;"	kind:namespace	line:7
 Attachment	../crm/models/people.py	/^from core.models import Attachment$/;"	kind:namespace	line:6
 Attachment	../crm/models/people.py	/^from core.models import Attachment$/;"	kind:namespace	line:8
-AttachmentInline	../crm/admin.py	/^class AttachmentInline(GenericTabularInline):$/;"	kind:class	line:9
+AttachmentInline	../crm/admin.py	/^class AttachmentInline(GenericTabularInline):$/;"	kind:class	line:13
 AttachmentModelAdmin	../core/admin.py	/^class AttachmentModelAdmin(admin.ModelAdmin):$/;"	kind:class	line:10
 BASE_DIR	../dash/settings.py	/^BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))$/;"	kind:variable	line:16
-BRANCHES	../crm/models/company.py	/^    BRANCHES = (("baiyun", "白云区"), ("tianhe", "天河区"), ("panyu", "番禺区"),$/;"	kind:variable	line:48
+BUREAUS	../crm/models/tax.py	/^    BUREAUS = ($/;"	kind:variable	line:28
 CONTRACT_TYPES	../crm/models/contract.py	/^    CONTRACT_TYPES = ($/;"	kind:variable	line:18
-CREDIT_RATINGS	../crm/models/company.py	/^    CREDIT_RATINGS = (('good', '良好'), ('bad', '差'), ('very_bad', '很差'))$/;"	kind:variable	line:87
-Company	../crm/admin.py	/^from .models import Company, People, ShareHolder, Contract$/;"	kind:namespace	line:5
-Company	../crm/models/company.py	/^class Company(models.Model):$/;"	kind:class	line:9
+CREDIT_RATINGS	../crm/models/company.py	/^    CREDIT_RATINGS = (('good', '良好'), ('bad', '差'), ('very_bad', '很差'))$/;"	kind:variable	line:122
+Company	../crm/admin.py	/^from .models import Company, People, ShareHolder, Contract, TaxBureau$/;"	kind:namespace	line:9
+Company	../crm/forms.py	/^from crm.models import Company$/;"	kind:namespace	line:2
+Company	../crm/models/company.py	/^class Company(models.Model):$/;"	kind:class	line:13
 Company	../crm/models/contract.py	/^from .company import Company$/;"	kind:namespace	line:6
+Company	../crm/models/department.py	/^from .company import Company$/;"	kind:namespace	line:2
 Company	../crm/models/shareholder.py	/^from .company import Company$/;"	kind:namespace	line:4
-CompanyModelAdmin	../crm/admin.py	/^class CompanyModelAdmin(admin.ModelAdmin):$/;"	kind:class	line:22
+Company	../crm/views.py	/^from .models import Company, People, ShareHolder$/;"	kind:namespace	line:10
+CompanyForm	../crm/forms.py	/^class CompanyForm(ModelForm):$/;"	kind:class	line:5
+CompanyForm	../crm/views.py	/^from .forms import CompanyForm$/;"	kind:namespace	line:9
+CompanyModelAdmin	../crm/admin.py	/^class CompanyModelAdmin(admin.ModelAdmin):$/;"	kind:class	line:52
+CompanyRecord	../crm/views.py	/^CompanyRecord = namedtuple('CompanyRecord', company_fields)$/;"	kind:variable	line:34
 ContentType	../core/models.py	/^from django.contrib.contenttypes.models import ContentType$/;"	kind:namespace	line:4
-Contract	../crm/admin.py	/^from .models import Company, People, ShareHolder, Contract$/;"	kind:namespace	line:5
+Contract	../crm/admin.py	/^from .models import Company, People, ShareHolder, Contract, TaxBureau$/;"	kind:namespace	line:9
 Contract	../crm/models/contract.py	/^class Contract(models.Model):$/;"	kind:class	line:10
-ContractInline	../crm/admin.py	/^class ContractInline(admin.TabularInline):$/;"	kind:class	line:17
-ContractModelAdmin	../crm/admin.py	/^class ContractModelAdmin(admin.ModelAdmin):$/;"	kind:class	line:47
+ContractInline	../crm/admin.py	/^class ContractInline(admin.TabularInline):$/;"	kind:class	line:27
+ContractModelAdmin	../crm/admin.py	/^class ContractModelAdmin(admin.ModelAdmin):$/;"	kind:class	line:127
 CoreConfig	../core/apps.py	/^class CoreConfig(AppConfig):$/;"	kind:class	line:4
 CrmConfig	../crm/apps.py	/^class CrmConfig(AppConfig):$/;"	kind:class	line:4
 DATABASES	../dash/settings.py	/^DATABASES = {$/;"	kind:variable	line:70
 DEBUG	../dash/settings.py	/^DEBUG = True$/;"	kind:variable	line:25
+DISTRICTS	../crm/models/tax.py	/^    DISTRICTS = ($/;"	kind:variable	line:5
+Department	../crm/models/department.py	/^class Department(models.Model):$/;"	kind:class	line:5
 Employee	../crm/models/employee.py	/^class Employee(models.Model):$/;"	kind:class	line:4
 FILE_TYPES	../core/models.py	/^    FILE_TYPES = ($/;"	kind:variable	line:17
 GENDERS	../crm/models/people.py	/^    GENDERS = (("male", "男性"), ("female", "女性"))$/;"	kind:variable	line:15
@@ -51,21 +82,27 @@ GenericForeignKey	../core/models.py	/^from django.contrib.contenttypes.fields im
 GenericRelation	../crm/models/company.py	/^from django.contrib.contenttypes.fields import GenericRelation$/;"	kind:namespace	line:3
 GenericRelation	../crm/models/contract.py	/^from django.contrib.contenttypes.fields import GenericRelation$/;"	kind:namespace	line:3
 GenericRelation	../crm/models/people.py	/^from django.contrib.contenttypes.fields import GenericRelation$/;"	kind:namespace	line:3
-GenericTabularInline	../crm/admin.py	/^from django.contrib.contenttypes.admin import GenericTabularInline$/;"	kind:namespace	line:3
-INDUSTRIES	../crm/models/company.py	/^    INDUSTRIES = (('auto_parts', '汽配'), ('food', '餐饮'), ('clother', '服装'),$/;"	kind:variable	line:42
+GenericTabularInline	../crm/admin.py	/^from django.contrib.contenttypes.admin import GenericTabularInline$/;"	kind:namespace	line:6
+HasExpiredFilter	../crm/admin.py	/^class HasExpiredFilter(admin.SimpleListFilter):$/;"	kind:class	line:31
+INDUSTRIES	../crm/models/company.py	/^    INDUSTRIES = (('auto_parts', '汽配'), ('food', '餐饮'), ('clother', '服装'),$/;"	kind:variable	line:57
 INSTALLED_APPS	../dash/settings.py	/^INSTALLED_APPS = [$/;"	kind:variable	line:31
+ImportFileForm	../crm/views.py	/^class ImportFileForm(forms.Form):$/;"	kind:class	line:13
 Industry	../crm/models/industry.py	/^class Industry(models.Model):$/;"	kind:class	line:4
 LANGUAGE_CODE	../dash/settings.py	/^LANGUAGE_CODE = 'zh-hans'$/;"	kind:variable	line:97
 MEDIA_ROOT	../dash/settings.py	/^MEDIA_ROOT = os.path.join(BASE_DIR, "media")$/;"	kind:variable	line:107
 MEDIA_URL	../dash/settings.py	/^MEDIA_URL = "\/media\/"$/;"	kind:variable	line:108
 MIDDLEWARE	../dash/settings.py	/^MIDDLEWARE = [$/;"	kind:variable	line:42
-Meta	../core/models.py	/^    class Meta:$/;"	kind:class	line:58
-Meta	../crm/models/company.py	/^    class Meta:$/;"	kind:class	line:138
+Meta	../core/models.py	/^    class Meta:$/;"	kind:class	line:60
+Meta	../crm/forms.py	/^    class Meta:$/;"	kind:class	line:6
+Meta	../crm/models/company.py	/^    class Meta:$/;"	kind:class	line:204
 Meta	../crm/models/contract.py	/^    class Meta:$/;"	kind:class	line:79
+Meta	../crm/models/department.py	/^    class Meta:$/;"	kind:class	line:25
 Meta	../crm/models/people.py	/^    class Meta:$/;"	kind:class	line:39
-Meta	../crm/models/shareholder.py	/^    class Meta:$/;"	kind:class	line:30
+Meta	../crm/models/shareholder.py	/^    class Meta:$/;"	kind:class	line:41
+Meta	../crm/models/tax.py	/^    class Meta:$/;"	kind:class	line:54
 Migration	../core/migrations/0001_initial.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:10
 Migration	../core/migrations/0002_auto_20170723_0434.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	../core/migrations/0003_auto_20170725_1202.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
 Migration	../crm/migrations/0001_initial.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:11
 Migration	../crm/migrations/0002_auto_20170723_0342.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
 Migration	../crm/migrations/0003_auto_20170723_0401.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
@@ -73,28 +110,60 @@ Migration	../crm/migrations/0004_auto_20170723_0405.py	/^class Migration(migrati
 Migration	../crm/migrations/0005_auto_20170723_0434.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
 Migration	../crm/migrations/0006_auto_20170723_1214.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
 Migration	../crm/migrations/0007_auto_20170724_1452.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
-People	../crm/admin.py	/^from .models import Company, People, ShareHolder, Contract$/;"	kind:namespace	line:5
+Migration	../crm/migrations/0008_auto_20170725_0000.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	../crm/migrations/0009_auto_20170725_0001.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:10
+Migration	../crm/migrations/0010_department.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:9
+Migration	../crm/migrations/0011_auto_20170725_0016.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:9
+Migration	../crm/migrations/0012_auto_20170725_0023.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:10
+Migration	../crm/migrations/0013_remove_people_department.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	../crm/migrations/0014_auto_20170725_0047.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:10
+Migration	../crm/migrations/0015_auto_20170725_0054.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	../crm/migrations/0016_remove_company_has_expired.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	../crm/migrations/0017_auto_20170725_0140.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	../crm/migrations/0018_auto_20170725_1202.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	../crm/migrations/0019_auto_20170725_1206.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	../crm/migrations/0020_shareholder_phone.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	../crm/migrations/0021_auto_20170725_2018.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:9
+Migration	../crm/migrations/0022_taxbureau.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	../crm/migrations/0023_taxbureau_office.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	../crm/migrations/0024_auto_20170725_2052.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:9
+Migration	../crm/migrations/0025_auto_20170725_2100.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:9
+Migration	../crm/migrations/0026_auto_20170725_2142.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	../crm/migrations/0027_auto_20170726_2141.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	../crm/migrations/0028_auto_20170810_0115.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	../crm/migrations/0029_auto_20170816_1332.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+ModelForm	../crm/forms.py	/^from django.forms import ModelForm$/;"	kind:namespace	line:1
+People	../crm/admin.py	/^from .models import Company, People, ShareHolder, Contract, TaxBureau$/;"	kind:namespace	line:9
 People	../crm/models/people.py	/^class People(models.Model):$/;"	kind:class	line:11
 People	../crm/models/shareholder.py	/^from .people import People$/;"	kind:namespace	line:3
-PeopleModelAdmin	../crm/admin.py	/^class PeopleModelAdmin(admin.ModelAdmin):$/;"	kind:class	line:71
+People	../crm/views.py	/^from .models import Company, People, ShareHolder$/;"	kind:namespace	line:10
+PeopleModelAdmin	../crm/admin.py	/^class PeopleModelAdmin(admin.ModelAdmin):$/;"	kind:class	line:152
+Q	../crm/admin.py	/^from django.db.models import Q$/;"	kind:namespace	line:4
 ROLES	../crm/models/shareholder.py	/^    ROLES = ($/;"	kind:variable	line:11
 ROOT_URLCONF	../dash/settings.py	/^ROOT_URLCONF = 'dash.urls'$/;"	kind:variable	line:51
-SCALE_SIZES	../crm/models/company.py	/^    SCALE_SIZES = (('small', '小型企业 (50人以下)'), ('medium', '中型企业 (50-200人)'),$/;"	kind:variable	line:102
+SCALE_SIZES	../crm/models/company.py	/^    SCALE_SIZES = (('small', '小型企业 (50人以内)'),$/;"	kind:variable	line:168
 SECRET_KEY	../dash/settings.py	/^SECRET_KEY = 'c#u!hg_vaqwg*s-bq3$ip$etq^r0+wq8sp&v6gonuc6ojh8^qy'$/;"	kind:variable	line:22
 STATIC_URL	../dash/settings.py	/^STATIC_URL = '\/static\/'$/;"	kind:variable	line:113
-STATUS	../crm/models/company.py	/^    STATUS = (('normal', '正常'),$/;"	kind:variable	line:107
+STATUS	../crm/models/company.py	/^    STATUS = (('normal', '正常'),$/;"	kind:variable	line:174
 STATUS	../crm/models/contract.py	/^    STATUS = ($/;"	kind:variable	line:48
 SUBSCRIPTION_TYPES	../crm/models/contract.py	/^    SUBSCRIPTION_TYPES = ($/;"	kind:variable	line:26
-ShareHolder	../crm/admin.py	/^from .models import Company, People, ShareHolder, Contract$/;"	kind:namespace	line:5
+ShareHolder	../crm/admin.py	/^from .models import Company, People, ShareHolder, Contract, TaxBureau$/;"	kind:namespace	line:9
 ShareHolder	../crm/models/shareholder.py	/^class ShareHolder(models.Model):$/;"	kind:class	line:7
-ShareHolderInline	../crm/admin.py	/^class ShareHolderInline(admin.TabularInline):$/;"	kind:class	line:13
-ShareHolderModelAdmin	../crm/admin.py	/^class ShareHolderModelAdmin(admin.ModelAdmin):$/;"	kind:class	line:79
-TAXPAYER_TYPES	../crm/models/company.py	/^    TAXPAYER_TYPES = (('general', '一般纳税人'), ('small', '小规模纳税人'))$/;"	kind:variable	line:94
+ShareHolder	../crm/views.py	/^from .models import Company, People, ShareHolder$/;"	kind:namespace	line:10
+ShareHolderInline	../crm/admin.py	/^class ShareHolderInline(admin.TabularInline):$/;"	kind:class	line:18
+ShareHolderModelAdmin	../crm/admin.py	/^class ShareHolderModelAdmin(admin.ModelAdmin):$/;"	kind:class	line:161
+TAXPAYER_TYPES	../crm/models/company.py	/^    TAXPAYER_TYPES = (('general', '一般纳税人'), ('small', '小规模纳税人'))$/;"	kind:variable	line:129
 TEMPLATES	../dash/settings.py	/^TEMPLATES = [$/;"	kind:variable	line:53
 TIME_ZONE	../dash/settings.py	/^TIME_ZONE = 'Asia\/Shanghai'$/;"	kind:variable	line:99
-TYPES	../crm/models/company.py	/^    TYPES = ($/;"	kind:variable	line:12
+TYPES	../crm/models/company.py	/^    TYPES = ($/;"	kind:variable	line:16
+TaxBureau	../crm/admin.py	/^from .models import Company, People, ShareHolder, Contract, TaxBureau$/;"	kind:namespace	line:9
+TaxBureau	../crm/models/company.py	/^from .tax import TaxBureau$/;"	kind:namespace	line:7
+TaxBureau	../crm/models/tax.py	/^class TaxBureau(models.Model):$/;"	kind:class	line:4
+TaxBureauModelAdmin	../crm/admin.py	/^class TaxBureauModelAdmin(admin.ModelAdmin):$/;"	kind:class	line:174
 TestCase	../core/tests.py	/^from django.test import TestCase$/;"	kind:namespace	line:1
 TestCase	../crm/tests.py	/^from django.test import TestCase$/;"	kind:namespace	line:1
+TextIOWrapper	../crm/views.py	/^from io import TextIOWrapper$/;"	kind:namespace	line:2
+Textarea	../crm/admin.py	/^from django.forms import Textarea$/;"	kind:namespace	line:3
 USE_I18N	../dash/settings.py	/^USE_I18N = True$/;"	kind:variable	line:101
 USE_L10N	../dash/settings.py	/^USE_L10N = True$/;"	kind:variable	line:103
 USE_TZ	../dash/settings.py	/^USE_TZ = True$/;"	kind:variable	line:105
@@ -103,6 +172,7 @@ User	../crm/models/company.py	/^from django.contrib.auth.models import User$/;"	
 User	../crm/models/contract.py	/^from django.contrib.auth.models import User$/;"	kind:namespace	line:1
 User	../crm/models/employee.py	/^from django.contrib.auth.models import User$/;"	kind:namespace	line:1
 User	../crm/models/people.py	/^from django.contrib.auth.models import User$/;"	kind:namespace	line:1
+User	../crm/views.py	/^from django.contrib.auth.models import User$/;"	kind:namespace	line:6
 WSGI_APPLICATION	../dash/settings.py	/^WSGI_APPLICATION = 'dash.wsgi.application'$/;"	kind:variable	line:65
 __init__.py	../core/__init__.py	1;"	kind:file	line:1
 __init__.py	../core/migrations/__init__.py	1;"	kind:file	line:1
@@ -110,15 +180,18 @@ __init__.py	../crm/__init__.py	1;"	kind:file	line:1
 __init__.py	../crm/migrations/__init__.py	1;"	kind:file	line:1
 __init__.py	../crm/models/__init__.py	1;"	kind:file	line:1
 __init__.py	../dash/__init__.py	1;"	kind:file	line:1
-__str__	../core/models.py	/^    def __str__(self):$/;"	kind:member	line:50
-__str__	../crm/models/company.py	/^    def __str__(self):$/;"	kind:member	line:126
+__str__	../core/models.py	/^    def __str__(self):$/;"	kind:member	line:52
+__str__	../crm/models/company.py	/^    def __str__(self):$/;"	kind:member	line:192
 __str__	../crm/models/contract.py	/^    def __str__(self):$/;"	kind:member	line:69
+__str__	../crm/models/department.py	/^    def __str__(self):$/;"	kind:member	line:18
 __str__	../crm/models/industry.py	/^    def __str__(self):$/;"	kind:member	line:7
 __str__	../crm/models/people.py	/^    def __str__(self):$/;"	kind:member	line:30
-__str__	../crm/models/shareholder.py	/^    def __str__(self):$/;"	kind:member	line:22
-actions_on_bottom	../crm/admin.py	/^    actions_on_bottom = True$/;"	kind:variable	line:51
-actions_on_top	../crm/admin.py	/^    actions_on_top = False$/;"	kind:variable	line:50
-address	../crm/models/company.py	/^    address = models.CharField(verbose_name="地址", blank=True, max_length=255)$/;"	kind:variable	line:23
+__str__	../crm/models/shareholder.py	/^    def __str__(self):$/;"	kind:member	line:31
+__str__	../crm/models/tax.py	/^    def __str__(self):$/;"	kind:member	line:48
+actions_on_bottom	../crm/admin.py	/^    actions_on_bottom = True$/;"	kind:variable	line:131
+actions_on_top	../crm/admin.py	/^    actions_on_top = False$/;"	kind:variable	line:130
+address	../crm/models/company.py	/^    address = models.CharField(verbose_name="地址", blank=True, max_length=255)$/;"	kind:variable	line:28
+address	../crm/models/tax.py	/^    address = models.CharField($/;"	kind:variable	line:43
 admin	../core/admin.py	/^from django.contrib import admin$/;"	kind:namespace	line:1
 admin	../crm/admin.py	/^from django.contrib import admin$/;"	kind:namespace	line:1
 admin	../dash/urls.py	/^from django.contrib import admin$/;"	kind:namespace	line:17
@@ -130,42 +203,90 @@ application	../dash/wsgi.py	/^application = get_wsgi_application()$/;"	kind:vari
 apps.py	../core/apps.py	1;"	kind:file	line:1
 apps.py	../crm/apps.py	1;"	kind:file	line:1
 arrearage	../crm/models/contract.py	/^    arrearage = models.DecimalField($/;"	kind:variable	line:45
-attachments	../crm/models/company.py	/^    attachments = GenericRelation(Attachment)$/;"	kind:variable	line:119
+attachments	../crm/models/company.py	/^    attachments = GenericRelation(Attachment)$/;"	kind:variable	line:184
 attachments	../crm/models/contract.py	/^    attachments = GenericRelation(Attachment)$/;"	kind:variable	line:67
 attachments	../crm/models/people.py	/^    attachments = GenericRelation(Attachment)$/;"	kind:variable	line:28
-birthdate	../crm/models/people.py	/^    birthdate = models.DateField(verbose_name="生日", blank=True)$/;"	kind:variable	line:19
-blank	../core/models.py	/^        blank=True,$/;"	kind:variable	line:29
-bookkeeper	../crm/models/company.py	/^    bookkeeper = models.ForeignKey($/;"	kind:variable	line:29
-business_license	../crm/models/company.py	/^    business_license = models.CharField($/;"	kind:variable	line:39
-choices	../core/models.py	/^        choices=FILE_TYPES,$/;"	kind:variable	line:35
-choices	../crm/models/company.py	/^        choices=CREDIT_RATINGS)$/;"	kind:variable	line:92
-choices	../crm/models/company.py	/^        choices=TAXPAYER_TYPES)$/;"	kind:variable	line:99
+birthdate	../crm/models/people.py	/^    birthdate = models.DateField(verbose_name="生日", blank=True, null=True)$/;"	kind:variable	line:19
+blank	../core/models.py	/^        blank=True,$/;"	kind:variable	line:31
+blank	../crm/models/company.py	/^        blank=True)$/;"	kind:variable	line:160
+blank	../crm/models/company.py	/^        blank=True)$/;"	kind:variable	line:165
+blank	../crm/models/company.py	/^        blank=True,$/;"	kind:variable	line:115
+blank	../crm/models/company.py	/^        blank=True,$/;"	kind:variable	line:119
+blank	../crm/models/company.py	/^        blank=True,$/;"	kind:variable	line:139
+blank	../crm/models/company.py	/^        blank=True,$/;"	kind:variable	line:144
+blank	../crm/models/company.py	/^        blank=True,$/;"	kind:variable	line:149
+blank	../crm/models/company.py	/^        blank=True,$/;"	kind:variable	line:154
+blank	../crm/models/company.py	/^        blank=True,$/;"	kind:variable	line:77
+blank	../crm/models/department.py	/^                                     blank=True,$/;"	kind:variable	line:14
+blank	../crm/models/department.py	/^                             blank=True,$/;"	kind:variable	line:8
+blank	../crm/models/shareholder.py	/^                                   blank=True)$/;"	kind:variable	line:26
+blank	../crm/models/tax.py	/^        blank=True,$/;"	kind:variable	line:25
+blank	../crm/models/tax.py	/^        blank=True,$/;"	kind:variable	line:35
+blank	../crm/models/tax.py	/^        blank=True,$/;"	kind:variable	line:40
+blank	../crm/models/tax.py	/^        blank=True,$/;"	kind:variable	line:44
+bookkeeper	../crm/models/company.py	/^    bookkeeper = models.ForeignKey(User,$/;"	kind:variable	line:40
+bureau	../crm/models/tax.py	/^    bureau = models.CharField($/;"	kind:variable	line:32
+business_license	../crm/models/company.py	/^    business_license = models.CharField($/;"	kind:variable	line:54
+choices	../core/models.py	/^        choices=FILE_TYPES,$/;"	kind:variable	line:37
+choices	../crm/models/company.py	/^        choices=CREDIT_RATINGS)$/;"	kind:variable	line:127
+choices	../crm/models/company.py	/^        choices=TAXPAYER_TYPES)$/;"	kind:variable	line:134
+choices	../crm/models/tax.py	/^        choices=BUREAUS,$/;"	kind:variable	line:34
+choices	../crm/models/tax.py	/^        choices=DISTRICTS,$/;"	kind:variable	line:24
+choices	../crm/views.py	/^        choices=($/;"	kind:variable	line:17
 company	../crm/models/contract.py	/^    company = models.ForeignKey($/;"	kind:variable	line:13
-company	../crm/models/shareholder.py	/^    company = models.ForeignKey(Company)$/;"	kind:variable	line:9
+company	../crm/models/department.py	/^    company = models.ForeignKey(Company)$/;"	kind:variable	line:10
+company	../crm/models/shareholder.py	/^    company = models.ForeignKey(Company, verbose_name="公司")$/;"	kind:variable	line:9
 company.py	../crm/models/company.py	1;"	kind:file	line:1
+company_fields	../crm/views.py	/^company_fields = (("no,title,type,registered_capital,industry,"$/;"	kind:variable	line:23
 company_title	../crm/models/contract.py	/^    company_title = models.CharField($/;"	kind:variable	line:61
-company_title	../crm/models/shareholder.py	/^    company_title = models.CharField($/;"	kind:variable	line:19
+company_title	../crm/models/department.py	/^    company_title = models.CharField(verbose_name='公司抬头',$/;"	kind:variable	line:13
+company_title	../crm/models/shareholder.py	/^    company_title = models.CharField($/;"	kind:variable	line:27
+const2str	../crm/views.py	/^def const2str(consts, label):$/;"	kind:function	line:46
 content	../crm/models/contract.py	/^    content = models.TextField(verbose_name="合同内容", blank=True)$/;"	kind:variable	line:12
-content_object	../core/models.py	/^    content_object = GenericForeignKey('content_type', 'object_id')$/;"	kind:variable	line:42
-content_type	../core/models.py	/^    content_type = models.ForeignKey(ContentType,$/;"	kind:variable	line:43
+content_object	../core/models.py	/^    content_object = GenericForeignKey('content_type', 'object_id')$/;"	kind:variable	line:44
+content_type	../core/models.py	/^    content_type = models.ForeignKey(ContentType,$/;"	kind:variable	line:45
 contract.py	../crm/models/contract.py	1;"	kind:file	line:1
-created	../core/models.py	/^    created = models.DateTimeField(auto_now_add=True)$/;"	kind:variable	line:47
-created	../crm/models/company.py	/^    created = models.DateTimeField(auto_now_add=True)$/;"	kind:variable	line:120
+created	../core/models.py	/^    created = models.DateTimeField(auto_now_add=True)$/;"	kind:variable	line:49
+created	../crm/models/company.py	/^    created = models.DateTimeField(auto_now_add=True)$/;"	kind:variable	line:185
 created	../crm/models/contract.py	/^    created = models.DateField(verbose_name="创建日期", default=timezone.now)$/;"	kind:variable	line:37
-creator	../core/models.py	/^    creator = models.ForeignKey(User, blank=True, null=True)$/;"	kind:variable	line:32
-credit_rating	../crm/models/company.py	/^    credit_rating = models.CharField($/;"	kind:variable	line:88
-date_hierarchy	../crm/admin.py	/^    date_hierarchy = 'created'$/;"	kind:variable	line:48
+creator	../core/models.py	/^    creator = models.ForeignKey(User, blank=True, null=True)$/;"	kind:variable	line:34
+credit_rating	../crm/models/company.py	/^    credit_rating = models.CharField($/;"	kind:variable	line:123
+csv	../crm/views.py	/^import csv$/;"	kind:namespace	line:1
+custom_entry_no	../crm/models/company.py	/^    custom_entry_no = models.CharField($/;"	kind:variable	line:137
+custom_expired_at	../crm/models/company.py	/^    custom_expired_at = models.DateField($/;"	kind:variable	line:157
+custom_org_code	../crm/models/company.py	/^    custom_org_code = models.CharField($/;"	kind:variable	line:147
+custom_register_no	../crm/models/company.py	/^    custom_register_no = models.CharField($/;"	kind:variable	line:142
+custom_registered_at	../crm/models/company.py	/^    custom_registered_at = models.DateField($/;"	kind:variable	line:152
+date_hierarchy	../crm/admin.py	/^    date_hierarchy = 'created'$/;"	kind:variable	line:128
 db	../core/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
 db	../crm/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
-db_index	../core/models.py	/^        db_index=True,$/;"	kind:variable	line:28
-default	../core/models.py	/^        default='general')$/;"	kind:variable	line:38
-default	../crm/models/company.py	/^        default='good',$/;"	kind:variable	line:90
-default	../crm/models/company.py	/^        default='small',$/;"	kind:variable	line:97
+db	../crm/migrations/0009_auto_20170725_0001.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
+db	../crm/migrations/0010_department.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
+db	../crm/migrations/0011_auto_20170725_0016.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
+db	../crm/migrations/0012_auto_20170725_0023.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
+db	../crm/migrations/0014_auto_20170725_0047.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
+db	../crm/migrations/0021_auto_20170725_2018.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
+db	../crm/migrations/0024_auto_20170725_2052.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
+db	../crm/migrations/0025_auto_20170725_2100.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
+db_index	../core/models.py	/^        db_index=True,$/;"	kind:variable	line:30
+default	../core/models.py	/^        default='general')$/;"	kind:variable	line:40
+default	../crm/models/company.py	/^        default='good',$/;"	kind:variable	line:125
+default	../crm/models/company.py	/^        default='small',$/;"	kind:variable	line:132
 deletion	../core/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
 deletion	../crm/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
+deletion	../crm/migrations/0009_auto_20170725_0001.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
+deletion	../crm/migrations/0010_department.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
+deletion	../crm/migrations/0011_auto_20170725_0016.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
+deletion	../crm/migrations/0012_auto_20170725_0023.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
+deletion	../crm/migrations/0014_auto_20170725_0047.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
+deletion	../crm/migrations/0021_auto_20170725_2018.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
+deletion	../crm/migrations/0024_auto_20170725_2052.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
+deletion	../crm/migrations/0025_auto_20170725_2100.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
 department	../crm/models/employee.py	/^    department = models.CharField(max_length=100)$/;"	kind:variable	line:8
+department.py	../crm/models/department.py	1;"	kind:file	line:1
 dependencies	../core/migrations/0001_initial.py	/^    dependencies = [$/;"	kind:variable	line:14
 dependencies	../core/migrations/0002_auto_20170723_0434.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	../core/migrations/0003_auto_20170725_1202.py	/^    dependencies = [$/;"	kind:variable	line:10
 dependencies	../crm/migrations/0001_initial.py	/^    dependencies = [$/;"	kind:variable	line:15
 dependencies	../crm/migrations/0002_auto_20170723_0342.py	/^    dependencies = [$/;"	kind:variable	line:10
 dependencies	../crm/migrations/0003_auto_20170723_0401.py	/^    dependencies = [$/;"	kind:variable	line:10
@@ -173,18 +294,54 @@ dependencies	../crm/migrations/0004_auto_20170723_0405.py	/^    dependencies = [
 dependencies	../crm/migrations/0005_auto_20170723_0434.py	/^    dependencies = [$/;"	kind:variable	line:10
 dependencies	../crm/migrations/0006_auto_20170723_1214.py	/^    dependencies = [$/;"	kind:variable	line:10
 dependencies	../crm/migrations/0007_auto_20170724_1452.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	../crm/migrations/0008_auto_20170725_0000.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	../crm/migrations/0009_auto_20170725_0001.py	/^    dependencies = [$/;"	kind:variable	line:12
+dependencies	../crm/migrations/0010_department.py	/^    dependencies = [$/;"	kind:variable	line:11
+dependencies	../crm/migrations/0011_auto_20170725_0016.py	/^    dependencies = [$/;"	kind:variable	line:11
+dependencies	../crm/migrations/0012_auto_20170725_0023.py	/^    dependencies = [$/;"	kind:variable	line:12
+dependencies	../crm/migrations/0013_remove_people_department.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	../crm/migrations/0014_auto_20170725_0047.py	/^    dependencies = [$/;"	kind:variable	line:12
+dependencies	../crm/migrations/0015_auto_20170725_0054.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	../crm/migrations/0016_remove_company_has_expired.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	../crm/migrations/0017_auto_20170725_0140.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	../crm/migrations/0018_auto_20170725_1202.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	../crm/migrations/0019_auto_20170725_1206.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	../crm/migrations/0020_shareholder_phone.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	../crm/migrations/0021_auto_20170725_2018.py	/^    dependencies = [$/;"	kind:variable	line:11
+dependencies	../crm/migrations/0022_taxbureau.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	../crm/migrations/0023_taxbureau_office.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	../crm/migrations/0024_auto_20170725_2052.py	/^    dependencies = [$/;"	kind:variable	line:11
+dependencies	../crm/migrations/0025_auto_20170725_2100.py	/^    dependencies = [$/;"	kind:variable	line:11
+dependencies	../crm/migrations/0026_auto_20170725_2142.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	../crm/migrations/0027_auto_20170726_2141.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	../crm/migrations/0028_auto_20170810_0115.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	../crm/migrations/0029_auto_20170816_1332.py	/^    dependencies = [$/;"	kind:variable	line:10
+district	../crm/models/tax.py	/^    district = models.CharField($/;"	kind:variable	line:22
 django	../core/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
 django	../crm/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
 django	../crm/migrations/0001_initial.py	/^import django.utils.timezone$/;"	kind:namespace	line:8
+django	../crm/migrations/0009_auto_20170725_0001.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
+django	../crm/migrations/0010_department.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
+django	../crm/migrations/0011_auto_20170725_0016.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
+django	../crm/migrations/0012_auto_20170725_0023.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
+django	../crm/migrations/0014_auto_20170725_0047.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
+django	../crm/migrations/0021_auto_20170725_2018.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
+django	../crm/migrations/0024_auto_20170725_2052.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
+django	../crm/migrations/0025_auto_20170725_2100.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
 django	../manage.py	/^            import django$/;"	kind:namespace	line:14
-download	../crm/admin.py	/^    def download(self, obj):$/;"	kind:member	line:36
+download	../crm/admin.py	/^    def download(self, obj):$/;"	kind:member	line:116
 duration	../crm/models/contract.py	/^    duration = models.PositiveIntegerField($/;"	kind:variable	line:34
+editable	../crm/models/department.py	/^                                     editable=False,$/;"	kind:variable	line:15
+editable	../crm/models/shareholder.py	/^                                   editable=False,$/;"	kind:variable	line:25
 employee.py	../crm/models/employee.py	1;"	kind:file	line:1
-empty_value_display	../crm/admin.py	/^    empty_value_display = '-空的-'$/;"	kind:variable	line:49
+empty_value_display	../crm/admin.py	/^    empty_value_display = '-空的-'$/;"	kind:variable	line:129
 execute_from_command_line	../manage.py	/^        from django.core.management import execute_from_command_line$/;"	kind:namespace	line:8
-expired_at	../crm/models/company.py	/^    expired_at = models.DateField(verbose_name="执照有效日期", blank=True, null=True)$/;"	kind:variable	line:37
+expired_at	../crm/models/company.py	/^    expired_at = models.DateField($/;"	kind:variable	line:51
 expired_at	../crm/models/contract.py	/^    expired_at = models.DateField(verbose_name="到期日期")$/;"	kind:variable	line:38
+extra	../crm/admin.py	/^    extra = 1$/;"	kind:variable	line:21
+extra	../crm/admin.py	/^    extra = 2$/;"	kind:variable	line:15
 field	../core/migrations/0002_auto_20170723_0434.py	/^            field=models.CharField(choices=[('general', '一般文件'), ('contract', '合同'), ('sfz', '身份证'), ('legal_man', '企业法人营业执照'), ('business_license', '营业执照副本')], default='general', max_length=20, verbose_name='文件类型'),$/;"	kind:variable	line:26
+field	../core/migrations/0003_auto_20170725_1202.py	/^            field=models.CharField(choices=[('general', '一般文件'), ('contract', '合同'), ('sfz', '身份证'), ('legal_man', '企业法人营业执照'), ('bank', '银行开户许可证'), ('credit', '机构信用代码证'), ('business_license', '营业执照副本')], default='general', max_length=20, verbose_name='文件类型'),$/;"	kind:variable	line:18
 field	../crm/migrations/0002_auto_20170723_0342.py	/^            field=models.CharField(blank=True, editable=False, max_length=100),$/;"	kind:variable	line:23
 field	../crm/migrations/0002_auto_20170723_0342.py	/^            field=models.CharField(blank=True, editable=False, max_length=255),$/;"	kind:variable	line:18
 field	../crm/migrations/0002_auto_20170723_0342.py	/^            field=models.CharField(max_length=255, verbose_name='姓名'),$/;"	kind:variable	line:28
@@ -196,47 +353,134 @@ field	../crm/migrations/0005_auto_20170723_0434.py	/^            field=models.Po
 field	../crm/migrations/0006_auto_20170723_1214.py	/^            field=models.BooleanField(default=False, editable=False),$/;"	kind:variable	line:18
 field	../crm/migrations/0006_auto_20170723_1214.py	/^            field=models.CharField(choices=[('normal', '正常'), ('closed', '关闭'), ('suspend', '暂停'), ('interest', '意向'), ('halted', '终止')], default='normal', help_text='暂停：客户欠费违约暂停服务', max_length=10, verbose_name='公司状态'),$/;"	kind:variable	line:23
 field	../crm/migrations/0007_auto_20170724_1452.py	/^            field=models.CharField(choices=[('male', '男性'), ('female', '女性')], default='male', max_length=10, verbose_name='性别'),$/;"	kind:variable	line:18
+field	../crm/migrations/0008_auto_20170725_0000.py	/^            field=models.BooleanField(default=False, editable=False, verbose_name='执照过期'),$/;"	kind:variable	line:18
+field	../crm/migrations/0008_auto_20170725_0000.py	/^            field=models.TextField(blank=True, help_text='可添加公司的其它备注信息', verbose_name='备注'),$/;"	kind:variable	line:23
+field	../crm/migrations/0009_auto_20170725_0001.py	/^            field=models.CharField(blank=True, max_length=255, verbose_name='身份证'),$/;"	kind:variable	line:26
+field	../crm/migrations/0009_auto_20170725_0001.py	/^            field=models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),$/;"	kind:variable	line:21
+field	../crm/migrations/0011_auto_20170725_0016.py	/^            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='crm.Department'),$/;"	kind:variable	line:23
+field	../crm/migrations/0012_auto_20170725_0023.py	/^            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='accounts', to='crm.People', verbose_name='记账会计'),$/;"	kind:variable	line:20
+field	../crm/migrations/0012_auto_20170725_0023.py	/^            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='customers', to='crm.People', verbose_name='业务员'),$/;"	kind:variable	line:25
+field	../crm/migrations/0012_auto_20170725_0023.py	/^            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='crm.Department', verbose_name='所属部门'),$/;"	kind:variable	line:30
+field	../crm/migrations/0012_auto_20170725_0023.py	/^            field=models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='登陆用户'),$/;"	kind:variable	line:35
+field	../crm/migrations/0014_auto_20170725_0047.py	/^            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='accounts', to=settings.AUTH_USER_MODEL, verbose_name='记账会计'),$/;"	kind:variable	line:20
+field	../crm/migrations/0014_auto_20170725_0047.py	/^            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='customers', to=settings.AUTH_USER_MODEL, verbose_name='业务员'),$/;"	kind:variable	line:25
+field	../crm/migrations/0015_auto_20170725_0054.py	/^            field=models.CharField(blank=True, editable=False, max_length=200, verbose_name='姓名'),$/;"	kind:variable	line:23
+field	../crm/migrations/0015_auto_20170725_0054.py	/^            field=models.CharField(blank=True, editable=False, max_length=255, verbose_name='公司名'),$/;"	kind:variable	line:18
+field	../crm/migrations/0017_auto_20170725_0140.py	/^            field=models.CharField(max_length=255, unique=True, verbose_name='身份证'),$/;"	kind:variable	line:35
+field	../crm/migrations/0017_auto_20170725_0140.py	/^            field=models.DateField(blank=True, null=True, verbose_name='生日'),$/;"	kind:variable	line:30
+field	../crm/migrations/0018_auto_20170725_1202.py	/^            field=models.BooleanField(default=False, verbose_name='主要联系人'),$/;"	kind:variable	line:43
+field	../crm/migrations/0018_auto_20170725_1202.py	/^            field=models.CharField(blank=True, help_text='不填，默认为公司注册地址', max_length=255, verbose_name='实际经营地址'),$/;"	kind:variable	line:28
+field	../crm/migrations/0018_auto_20170725_1202.py	/^            field=models.CharField(blank=True, max_length=255, verbose_name='基本户开户地址'),$/;"	kind:variable	line:23
+field	../crm/migrations/0018_auto_20170725_1202.py	/^            field=models.CharField(blank=True, max_length=255, verbose_name='基本户开账号'),$/;"	kind:variable	line:18
+field	../crm/migrations/0018_auto_20170725_1202.py	/^            field=models.CharField(choices=[('limited', '有限责任公司'), ('individual', '个体工商户'), ('stock', '股份有限公司'), ('partnership', '合伙企业(有限合伙)'), ('collective', '集体所有制(股份合作)'), ('sole', '个人独资企业')], default='limited', max_length=20, verbose_name='公司类型'),$/;"	kind:variable	line:48
+field	../crm/migrations/0018_auto_20170725_1202.py	/^            field=models.DateField(blank=True, null=True, verbose_name='社保购买时间'),$/;"	kind:variable	line:33
+field	../crm/migrations/0018_auto_20170725_1202.py	/^            field=models.TextField(blank=True, verbose_name='备注'),$/;"	kind:variable	line:38
+field	../crm/migrations/0019_auto_20170725_1206.py	/^            field=models.CharField(blank=True, max_length=255, verbose_name='基本户开户银行'),$/;"	kind:variable	line:22
+field	../crm/migrations/0020_shareholder_phone.py	/^            field=models.CharField(blank=True, max_length=200, verbose_name='联系人电话'),$/;"	kind:variable	line:18
+field	../crm/migrations/0021_auto_20170725_2018.py	/^            field=models.CharField(blank=True, max_length=255, verbose_name='海关注册编码'),$/;"	kind:variable	line:34
+field	../crm/migrations/0021_auto_20170725_2018.py	/^            field=models.CharField(blank=True, max_length=255, verbose_name='海关登记编号'),$/;"	kind:variable	line:19
+field	../crm/migrations/0021_auto_20170725_2018.py	/^            field=models.CharField(blank=True, max_length=255, verbose_name='海关组织机构代码'),$/;"	kind:variable	line:29
+field	../crm/migrations/0021_auto_20170725_2018.py	/^            field=models.CharField(blank=True, max_length=255, verbose_name='经营场地（英文)'),$/;"	kind:variable	line:44
+field	../crm/migrations/0021_auto_20170725_2018.py	/^            field=models.DateField(blank=True, null=True, verbose_name='有效期'),$/;"	kind:variable	line:24
+field	../crm/migrations/0021_auto_20170725_2018.py	/^            field=models.DateField(blank=True, null=True, verbose_name='海关登记日期'),$/;"	kind:variable	line:39
+field	../crm/migrations/0021_auto_20170725_2018.py	/^            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='crm.Company', verbose_name='公司'),$/;"	kind:variable	line:49
+field	../crm/migrations/0021_auto_20170725_2018.py	/^            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='crm.People', verbose_name='客户'),$/;"	kind:variable	line:54
+field	../crm/migrations/0023_taxbureau_office.py	/^            field=models.CharField(blank=True, max_length=255, verbose_name='分局名称'),$/;"	kind:variable	line:18
+field	../crm/migrations/0024_auto_20170725_2052.py	/^            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='crm.TaxBureau', verbose_name='国税所属分局'),$/;"	kind:variable	line:23
+field	../crm/migrations/0025_auto_20170725_2100.py	/^            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='local_taxes', to='crm.TaxBureau', verbose_name='地税所属分局'),$/;"	kind:variable	line:23
+field	../crm/migrations/0025_auto_20170725_2100.py	/^            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='national_taxes', to='crm.TaxBureau', verbose_name='国税所属分局'),$/;"	kind:variable	line:28
+field	../crm/migrations/0026_auto_20170725_2142.py	/^            field=models.CharField(blank=True, choices=[('baiyun', '白云区'), ('tianhe', '天河区'), ('panyu', '番禺区'), ('yuexiu', '越秀区'), ('haizhu', '海珠区'), ('zengcheng', '增城区'), ('nansha', '南沙区'), ('conghua', '从化区'), ('liwan', '荔湾区'), ('huadu', '花都区'), ('huangpu', '黄埔区'), ('luogang', '萝岗区'), ('huadu', '花都区'), ('develop', '开发区'), ('other', '其它地区')], max_length=50, verbose_name='所属区'),$/;"	kind:variable	line:18
+field	../crm/migrations/0027_auto_20170726_2141.py	/^            field=models.CharField(choices=[('normal', '正常'), ('abnormal', '经营异常')], default='normal', help_text='经营异常: 已被工商局列入经营异常名录', max_length=10, verbose_name='公司状态'),$/;"	kind:variable	line:23
+field	../crm/migrations/0027_auto_20170726_2141.py	/^            field=models.CharField(choices=[('small', '小型企业 (50人以内)'), ('medium', '中型企业 (50-200人)'), ('large', '大型企业 (200人以上)')], default='small', max_length=10, verbose_name='规模'),$/;"	kind:variable	line:18
+field	../crm/migrations/0028_auto_20170810_0115.py	/^            field=models.CharField(choices=[('auto_parts', '汽配'), ('food', '餐饮'), ('clother', '服装'), ('wholesale', '批发业'), ('arch', '建筑'), ('ad', '广告'), ('property', '房地产'), ('service', '服务业'), ('trade', '贸易'), ('entertainment', '娱乐')], default='auto_parts', max_length=50, verbose_name='所属行业'),$/;"	kind:variable	line:18
+field	../crm/migrations/0028_auto_20170810_0115.py	/^            field=models.CharField(max_length=255, verbose_name='身份证'),$/;"	kind:variable	line:23
+field	../crm/migrations/0029_auto_20170816_1332.py	/^            field=models.CharField(choices=[('auto_parts', '汽配'), ('food', '餐饮'), ('clother', '服装'), ('wholesale', '批发业'), ('arch', '建筑'), ('shopping', '商贸'), ('ad', '广告'), ('property', '房地产'), ('service', '服务业'), ('trade', '贸易'), ('entertainment', '娱乐')], default='auto_parts', max_length=50, verbose_name='所属行业'),$/;"	kind:variable	line:18
+field	../crm/migrations/0029_auto_20170816_1332.py	/^            field=models.DateField(blank=True, null=True, verbose_name='注册日期'),$/;"	kind:variable	line:23
 fields	../core/migrations/0001_initial.py	/^            fields=[$/;"	kind:variable	line:22
+fields	../crm/forms.py	/^        fields = ("title,type,registered_capital,industry,"$/;"	kind:variable	line:8
 fields	../crm/migrations/0001_initial.py	/^            fields=[$/;"	kind:variable	line:22
 fields	../crm/migrations/0001_initial.py	/^            fields=[$/;"	kind:variable	line:62
 fields	../crm/migrations/0001_initial.py	/^            fields=[$/;"	kind:variable	line:83
 fields	../crm/migrations/0001_initial.py	/^            fields=[$/;"	kind:variable	line:98
-file	../core/models.py	/^    file = models.FileField(upload_to='upload_path')$/;"	kind:variable	line:39
-file_type	../core/models.py	/^    file_type = models.CharField($/;"	kind:variable	line:34
+fields	../crm/migrations/0010_department.py	/^            fields=[$/;"	kind:variable	line:18
+fields	../crm/migrations/0022_taxbureau.py	/^            fields=[$/;"	kind:variable	line:17
+fieldsets	../crm/admin.py	/^    fieldsets = ($/;"	kind:variable	line:68
+file	../core/models.py	/^    file = models.FileField(upload_to='upload_path')$/;"	kind:variable	line:41
+file	../crm/views.py	/^    file = forms.FileField()$/;"	kind:variable	line:14
+file_type	../core/models.py	/^    file_type = models.CharField($/;"	kind:variable	line:36
+formfield_overrides	../crm/admin.py	/^    formfield_overrides = {$/;"	kind:variable	line:22
+forms	../crm/views.py	/^from django import forms$/;"	kind:namespace	line:7
+forms.py	../crm/forms.py	1;"	kind:file	line:1
 gender	../crm/models/people.py	/^    gender = models.CharField($/;"	kind:variable	line:16
+get_or_create_peopel	../crm/views.py	/^def get_or_create_peopel(people):$/;"	kind:function	line:107
+get_or_create_shareholder	../crm/views.py	/^def get_or_create_shareholder(**data):$/;"	kind:function	line:97
+get_or_create_user	../crm/views.py	/^def get_or_create_user(username):$/;"	kind:function	line:37
 get_wsgi_application	../dash/wsgi.py	/^from django.core.wsgi import get_wsgi_application$/;"	kind:namespace	line:12
-has_expired	../crm/models/company.py	/^    has_expired = models.BooleanField(default=False, editable=False)$/;"	kind:variable	line:122
-help_text	../core/models.py	/^        help_text='不填写默认为文件名',$/;"	kind:variable	line:27
-help_text	../crm/models/company.py	/^        help_text="暂停：客户欠费违约暂停服务",$/;"	kind:variable	line:113
-industry	../crm/models/company.py	/^    industry = models.CharField($/;"	kind:variable	line:45
+handle_import_company	../crm/views.py	/^def handle_import_company(f):$/;"	kind:function	line:50
+has_expired	../crm/models/company.py	/^    def has_expired(self):$/;"	kind:member	line:189
+help_text	../core/models.py	/^        help_text='不填写默认为文件名',$/;"	kind:variable	line:29
+help_text	../crm/models/company.py	/^        help_text="不填，默认为公司注册地址",$/;"	kind:variable	line:31
+help_text	../crm/models/company.py	/^        help_text="经营异常: 已被工商局列入经营异常名录",$/;"	kind:variable	line:177
+import_model_view	../crm/urls.py	/^from crm.views import import_model_view$/;"	kind:namespace	line:2
+import_model_view	../crm/views.py	/^def import_model_view(request):$/;"	kind:function	line:117
+include	../crm/urls.py	/^from django.conf.urls import include, url$/;"	kind:namespace	line:1
+include	../dash/urls.py	/^from django.conf.urls import url, include$/;"	kind:namespace	line:16
+individual_account	../crm/models/company.py	/^    individual_account = models.CharField($/;"	kind:variable	line:117
+individual_bank	../crm/models/company.py	/^    individual_bank = models.CharField($/;"	kind:variable	line:113
+industry	../crm/models/company.py	/^    industry = models.CharField($/;"	kind:variable	line:61
 industry.py	../crm/models/industry.py	1;"	kind:file	line:1
+info	../crm/models/shareholder.py	/^    info = models.TextField(verbose_name="备注", blank=True)$/;"	kind:variable	line:22
 initial	../core/migrations/0001_initial.py	/^    initial = True$/;"	kind:variable	line:12
 initial	../crm/migrations/0001_initial.py	/^    initial = True$/;"	kind:variable	line:13
-inlines	../crm/admin.py	/^    inlines = [$/;"	kind:variable	line:30
-inlines	../crm/admin.py	/^    inlines = [$/;"	kind:variable	line:59
-inlines	../crm/admin.py	/^    inlines = [$/;"	kind:variable	line:73
+initial	../crm/views.py	/^        initial='Company',$/;"	kind:variable	line:16
+inlines	../crm/admin.py	/^    inlines = [$/;"	kind:variable	line:139
+inlines	../crm/admin.py	/^    inlines = [$/;"	kind:variable	line:155
+inlines	../crm/admin.py	/^    inlines = [$/;"	kind:variable	line:61
+is_contactor	../crm/models/shareholder.py	/^    is_contactor = models.BooleanField(default=False,$/;"	kind:variable	line:17
+limit_choices_to	../crm/models/company.py	/^        limit_choices_to={'bureau': 'local'},$/;"	kind:variable	line:92
+limit_choices_to	../crm/models/company.py	/^        limit_choices_to={'bureau': 'national'},$/;"	kind:variable	line:76
 list_display	../core/admin.py	/^    list_display = ('name', )$/;"	kind:variable	line:12
-list_display	../crm/admin.py	/^    list_display = ('company_title', 'people_name', 'role', 'view_share')$/;"	kind:variable	line:80
-list_display	../crm/admin.py	/^    list_display = ('company_title', 'title', 'salesman_name',$/;"	kind:variable	line:53
-list_display	../crm/admin.py	/^    list_display = ('name', 'sfz', 'phone')$/;"	kind:variable	line:72
-list_display	../crm/admin.py	/^    list_display = ('title', 'view_expired_at', 'industry',$/;"	kind:variable	line:23
+list_display	../crm/admin.py	/^    list_display = ('company_title', 'people_name',$/;"	kind:variable	line:163
+list_display	../crm/admin.py	/^    list_display = ('company_title', 'title', 'salesman_name',$/;"	kind:variable	line:133
+list_display	../crm/admin.py	/^    list_display = ('name', 'sfz', 'phone')$/;"	kind:variable	line:154
+list_display	../crm/admin.py	/^    list_display = ('office', 'district', 'address', 'view_map')$/;"	kind:variable	line:177
+list_display	../crm/admin.py	/^    list_display = ('title', 'industry',$/;"	kind:variable	line:53
 list_filter	../core/admin.py	/^    list_filter = ('file_type', )$/;"	kind:variable	line:13
-list_filter	../crm/admin.py	/^    list_filter = ('status', 'subscription_type')$/;"	kind:variable	line:52
-list_filter	../crm/admin.py	/^    list_filter = ('type', 'salesman', 'industry',$/;"	kind:variable	line:27
+list_filter	../crm/admin.py	/^    list_filter = ('district', 'bureau')$/;"	kind:variable	line:176
+list_filter	../crm/admin.py	/^    list_filter = ('is_contactor', )$/;"	kind:variable	line:166
+list_filter	../crm/admin.py	/^    list_filter = ('status', 'subscription_type')$/;"	kind:variable	line:132
+list_filter	../crm/admin.py	/^    list_filter = ('type', 'salesman', 'industry',$/;"	kind:variable	line:57
 local.py	../dash/local.py	1;"	kind:file	line:1
-local_tax_branch	../crm/models/company.py	/^    local_tax_branch = models.CharField($/;"	kind:variable	line:69
-local_tax_id	../crm/models/company.py	/^    local_tax_id = models.CharField($/;"	kind:variable	line:63
-local_tax_phone	../crm/models/company.py	/^    local_tax_phone = models.CharField($/;"	kind:variable	line:71
-local_tax_sn	../crm/models/company.py	/^    local_tax_sn = models.CharField($/;"	kind:variable	line:65
-local_tax_staff	../crm/models/company.py	/^    local_tax_staff = models.CharField($/;"	kind:variable	line:67
+local_tax_id	../crm/models/company.py	/^    local_tax_id = models.CharField($/;"	kind:variable	line:83
+local_tax_office	../crm/models/company.py	/^    local_tax_office = models.ForeignKey($/;"	kind:variable	line:89
+local_tax_phone	../crm/models/company.py	/^    local_tax_phone = models.CharField($/;"	kind:variable	line:95
+local_tax_sn	../crm/models/company.py	/^    local_tax_sn = models.CharField($/;"	kind:variable	line:85
+local_tax_staff	../crm/models/company.py	/^    local_tax_staff = models.CharField($/;"	kind:variable	line:87
+lookups	../crm/admin.py	/^    def lookups(self, request, model_admin):$/;"	kind:member	line:35
 manage.py	../manage.py	1;"	kind:file	line:1
-mark_safe	../crm/admin.py	/^from django.utils.safestring import mark_safe$/;"	kind:namespace	line:2
-max_length	../core/models.py	/^        max_length=20,$/;"	kind:variable	line:37
-max_length	../core/models.py	/^        max_length=255)$/;"	kind:variable	line:30
-max_length	../crm/models/company.py	/^        max_length=10,$/;"	kind:variable	line:91
-max_length	../crm/models/company.py	/^        max_length=10,$/;"	kind:variable	line:98
+mark_safe	../crm/admin.py	/^from django.utils.safestring import mark_safe$/;"	kind:namespace	line:5
+max_length	../core/models.py	/^        max_length=20,$/;"	kind:variable	line:39
+max_length	../core/models.py	/^        max_length=255)$/;"	kind:variable	line:32
+max_length	../crm/models/company.py	/^        max_length=10,$/;"	kind:variable	line:126
+max_length	../crm/models/company.py	/^        max_length=10,$/;"	kind:variable	line:133
+max_length	../crm/models/company.py	/^        max_length=255)$/;"	kind:variable	line:116
+max_length	../crm/models/company.py	/^        max_length=255)$/;"	kind:variable	line:120
+max_length	../crm/models/company.py	/^        max_length=255)$/;"	kind:variable	line:140
+max_length	../crm/models/company.py	/^        max_length=255)$/;"	kind:variable	line:145
+max_length	../crm/models/company.py	/^        max_length=255)$/;"	kind:variable	line:150
+max_length	../crm/models/company.py	/^        max_length=255,$/;"	kind:variable	line:164
+max_length	../crm/models/company.py	/^        max_length=50)$/;"	kind:variable	line:63
+max_length	../crm/models/department.py	/^                                     max_length=200)$/;"	kind:variable	line:16
+max_length	../crm/models/department.py	/^                             max_length=200)$/;"	kind:variable	line:9
+max_length	../crm/models/shareholder.py	/^                                   max_length=200,$/;"	kind:variable	line:24
+max_length	../crm/models/shareholder.py	/^                             max_length=200)$/;"	kind:variable	line:21
+max_length	../crm/models/tax.py	/^        max_length=255)$/;"	kind:variable	line:41
+max_length	../crm/models/tax.py	/^        max_length=255,$/;"	kind:variable	line:45
+max_length	../crm/models/tax.py	/^        max_length=50)$/;"	kind:variable	line:26
+max_length	../crm/models/tax.py	/^        max_length=50)$/;"	kind:variable	line:36
 migrations	../core/migrations/0001_initial.py	/^from django.db import migrations, models$/;"	kind:namespace	line:6
 migrations	../core/migrations/0002_auto_20170723_0434.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../core/migrations/0003_auto_20170725_1202.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
 migrations	../crm/migrations/0001_initial.py	/^from django.db import migrations, models$/;"	kind:namespace	line:6
 migrations	../crm/migrations/0002_auto_20170723_0342.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
 migrations	../crm/migrations/0003_auto_20170723_0401.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
@@ -244,11 +488,36 @@ migrations	../crm/migrations/0004_auto_20170723_0405.py	/^from django.db import 
 migrations	../crm/migrations/0005_auto_20170723_0434.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
 migrations	../crm/migrations/0006_auto_20170723_1214.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
 migrations	../crm/migrations/0007_auto_20170724_1452.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
-model	../crm/admin.py	/^    model = Attachment$/;"	kind:variable	line:10
-model	../crm/admin.py	/^    model = Contract$/;"	kind:variable	line:18
-model	../crm/admin.py	/^    model = ShareHolder$/;"	kind:variable	line:14
+migrations	../crm/migrations/0008_auto_20170725_0000.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0009_auto_20170725_0001.py	/^from django.db import migrations, models$/;"	kind:namespace	line:6
+migrations	../crm/migrations/0010_department.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0011_auto_20170725_0016.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0012_auto_20170725_0023.py	/^from django.db import migrations, models$/;"	kind:namespace	line:6
+migrations	../crm/migrations/0013_remove_people_department.py	/^from django.db import migrations$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0014_auto_20170725_0047.py	/^from django.db import migrations, models$/;"	kind:namespace	line:6
+migrations	../crm/migrations/0015_auto_20170725_0054.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0016_remove_company_has_expired.py	/^from django.db import migrations$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0017_auto_20170725_0140.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0018_auto_20170725_1202.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0019_auto_20170725_1206.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0020_shareholder_phone.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0021_auto_20170725_2018.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0022_taxbureau.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0023_taxbureau_office.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0024_auto_20170725_2052.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0025_auto_20170725_2100.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0026_auto_20170725_2142.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0027_auto_20170726_2141.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0028_auto_20170810_0115.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0029_auto_20170816_1332.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+model	../crm/admin.py	/^    model = Attachment$/;"	kind:variable	line:14
+model	../crm/admin.py	/^    model = Contract$/;"	kind:variable	line:28
+model	../crm/admin.py	/^    model = ShareHolder$/;"	kind:variable	line:19
+model	../crm/forms.py	/^        model = Company$/;"	kind:variable	line:7
+model	../crm/views.py	/^    model = forms.ChoiceField($/;"	kind:variable	line:15
 model_name	../core/migrations/0002_auto_20170723_0434.py	/^            model_name='attachment',$/;"	kind:variable	line:20
 model_name	../core/migrations/0002_auto_20170723_0434.py	/^            model_name='attachment',$/;"	kind:variable	line:24
+model_name	../core/migrations/0003_auto_20170725_1202.py	/^            model_name='attachment',$/;"	kind:variable	line:16
 model_name	../crm/migrations/0002_auto_20170723_0342.py	/^            model_name='contract',$/;"	kind:variable	line:16
 model_name	../crm/migrations/0002_auto_20170723_0342.py	/^            model_name='contract',$/;"	kind:variable	line:21
 model_name	../crm/migrations/0002_auto_20170723_0342.py	/^            model_name='people',$/;"	kind:variable	line:26
@@ -260,10 +529,63 @@ model_name	../crm/migrations/0005_auto_20170723_0434.py	/^            model_name
 model_name	../crm/migrations/0006_auto_20170723_1214.py	/^            model_name='company',$/;"	kind:variable	line:16
 model_name	../crm/migrations/0006_auto_20170723_1214.py	/^            model_name='company',$/;"	kind:variable	line:21
 model_name	../crm/migrations/0007_auto_20170724_1452.py	/^            model_name='people',$/;"	kind:variable	line:16
+model_name	../crm/migrations/0008_auto_20170725_0000.py	/^            model_name='company',$/;"	kind:variable	line:16
+model_name	../crm/migrations/0008_auto_20170725_0000.py	/^            model_name='company',$/;"	kind:variable	line:21
+model_name	../crm/migrations/0009_auto_20170725_0001.py	/^            model_name='people',$/;"	kind:variable	line:19
+model_name	../crm/migrations/0009_auto_20170725_0001.py	/^            model_name='people',$/;"	kind:variable	line:24
+model_name	../crm/migrations/0011_auto_20170725_0016.py	/^            model_name='people',$/;"	kind:variable	line:21
+model_name	../crm/migrations/0012_auto_20170725_0023.py	/^            model_name='company',$/;"	kind:variable	line:18
+model_name	../crm/migrations/0012_auto_20170725_0023.py	/^            model_name='company',$/;"	kind:variable	line:23
+model_name	../crm/migrations/0012_auto_20170725_0023.py	/^            model_name='people',$/;"	kind:variable	line:28
+model_name	../crm/migrations/0012_auto_20170725_0023.py	/^            model_name='people',$/;"	kind:variable	line:33
+model_name	../crm/migrations/0013_remove_people_department.py	/^            model_name='people',$/;"	kind:variable	line:16
+model_name	../crm/migrations/0014_auto_20170725_0047.py	/^            model_name='company',$/;"	kind:variable	line:18
+model_name	../crm/migrations/0014_auto_20170725_0047.py	/^            model_name='company',$/;"	kind:variable	line:23
+model_name	../crm/migrations/0015_auto_20170725_0054.py	/^            model_name='shareholder',$/;"	kind:variable	line:16
+model_name	../crm/migrations/0015_auto_20170725_0054.py	/^            model_name='shareholder',$/;"	kind:variable	line:21
+model_name	../crm/migrations/0016_remove_company_has_expired.py	/^            model_name='company',$/;"	kind:variable	line:16
+model_name	../crm/migrations/0017_auto_20170725_0140.py	/^            model_name='department',$/;"	kind:variable	line:16
+model_name	../crm/migrations/0017_auto_20170725_0140.py	/^            model_name='department',$/;"	kind:variable	line:20
+model_name	../crm/migrations/0017_auto_20170725_0140.py	/^            model_name='people',$/;"	kind:variable	line:24
+model_name	../crm/migrations/0017_auto_20170725_0140.py	/^            model_name='people',$/;"	kind:variable	line:28
+model_name	../crm/migrations/0017_auto_20170725_0140.py	/^            model_name='people',$/;"	kind:variable	line:33
+model_name	../crm/migrations/0018_auto_20170725_1202.py	/^            model_name='company',$/;"	kind:variable	line:16
+model_name	../crm/migrations/0018_auto_20170725_1202.py	/^            model_name='company',$/;"	kind:variable	line:21
+model_name	../crm/migrations/0018_auto_20170725_1202.py	/^            model_name='company',$/;"	kind:variable	line:26
+model_name	../crm/migrations/0018_auto_20170725_1202.py	/^            model_name='company',$/;"	kind:variable	line:31
+model_name	../crm/migrations/0018_auto_20170725_1202.py	/^            model_name='company',$/;"	kind:variable	line:46
+model_name	../crm/migrations/0018_auto_20170725_1202.py	/^            model_name='shareholder',$/;"	kind:variable	line:36
+model_name	../crm/migrations/0018_auto_20170725_1202.py	/^            model_name='shareholder',$/;"	kind:variable	line:41
+model_name	../crm/migrations/0019_auto_20170725_1206.py	/^            model_name='company',$/;"	kind:variable	line:16
+model_name	../crm/migrations/0019_auto_20170725_1206.py	/^            model_name='company',$/;"	kind:variable	line:20
+model_name	../crm/migrations/0020_shareholder_phone.py	/^            model_name='shareholder',$/;"	kind:variable	line:16
+model_name	../crm/migrations/0021_auto_20170725_2018.py	/^            model_name='company',$/;"	kind:variable	line:17
+model_name	../crm/migrations/0021_auto_20170725_2018.py	/^            model_name='company',$/;"	kind:variable	line:22
+model_name	../crm/migrations/0021_auto_20170725_2018.py	/^            model_name='company',$/;"	kind:variable	line:27
+model_name	../crm/migrations/0021_auto_20170725_2018.py	/^            model_name='company',$/;"	kind:variable	line:32
+model_name	../crm/migrations/0021_auto_20170725_2018.py	/^            model_name='company',$/;"	kind:variable	line:37
+model_name	../crm/migrations/0021_auto_20170725_2018.py	/^            model_name='company',$/;"	kind:variable	line:42
+model_name	../crm/migrations/0021_auto_20170725_2018.py	/^            model_name='shareholder',$/;"	kind:variable	line:47
+model_name	../crm/migrations/0021_auto_20170725_2018.py	/^            model_name='shareholder',$/;"	kind:variable	line:52
+model_name	../crm/migrations/0023_taxbureau_office.py	/^            model_name='taxbureau',$/;"	kind:variable	line:16
+model_name	../crm/migrations/0024_auto_20170725_2052.py	/^            model_name='company',$/;"	kind:variable	line:17
+model_name	../crm/migrations/0024_auto_20170725_2052.py	/^            model_name='company',$/;"	kind:variable	line:21
+model_name	../crm/migrations/0025_auto_20170725_2100.py	/^            model_name='company',$/;"	kind:variable	line:17
+model_name	../crm/migrations/0025_auto_20170725_2100.py	/^            model_name='company',$/;"	kind:variable	line:21
+model_name	../crm/migrations/0025_auto_20170725_2100.py	/^            model_name='company',$/;"	kind:variable	line:26
+model_name	../crm/migrations/0026_auto_20170725_2142.py	/^            model_name='taxbureau',$/;"	kind:variable	line:16
+model_name	../crm/migrations/0027_auto_20170726_2141.py	/^            model_name='company',$/;"	kind:variable	line:16
+model_name	../crm/migrations/0027_auto_20170726_2141.py	/^            model_name='company',$/;"	kind:variable	line:21
+model_name	../crm/migrations/0028_auto_20170810_0115.py	/^            model_name='company',$/;"	kind:variable	line:16
+model_name	../crm/migrations/0028_auto_20170810_0115.py	/^            model_name='people',$/;"	kind:variable	line:21
+model_name	../crm/migrations/0029_auto_20170816_1332.py	/^            model_name='company',$/;"	kind:variable	line:16
+model_name	../crm/migrations/0029_auto_20170816_1332.py	/^            model_name='company',$/;"	kind:variable	line:21
 models	../core/migrations/0001_initial.py	/^from django.db import migrations, models$/;"	kind:namespace	line:6
 models	../core/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
 models	../core/migrations/0002_auto_20170723_0434.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../core/migrations/0003_auto_20170725_1202.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
 models	../core/models.py	/^from django.db import models$/;"	kind:namespace	line:1
+models	../crm/admin.py	/^from django.db import models$/;"	kind:namespace	line:2
 models	../crm/migrations/0001_initial.py	/^from django.db import migrations, models$/;"	kind:namespace	line:6
 models	../crm/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
 models	../crm/migrations/0002_auto_20170723_0342.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
@@ -272,18 +594,49 @@ models	../crm/migrations/0004_auto_20170723_0405.py	/^from django.db import migr
 models	../crm/migrations/0005_auto_20170723_0434.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
 models	../crm/migrations/0006_auto_20170723_1214.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
 models	../crm/migrations/0007_auto_20170724_1452.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../crm/migrations/0008_auto_20170725_0000.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../crm/migrations/0009_auto_20170725_0001.py	/^from django.db import migrations, models$/;"	kind:namespace	line:6
+models	../crm/migrations/0009_auto_20170725_0001.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
+models	../crm/migrations/0010_department.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../crm/migrations/0010_department.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
+models	../crm/migrations/0011_auto_20170725_0016.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../crm/migrations/0011_auto_20170725_0016.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
+models	../crm/migrations/0012_auto_20170725_0023.py	/^from django.db import migrations, models$/;"	kind:namespace	line:6
+models	../crm/migrations/0012_auto_20170725_0023.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
+models	../crm/migrations/0014_auto_20170725_0047.py	/^from django.db import migrations, models$/;"	kind:namespace	line:6
+models	../crm/migrations/0014_auto_20170725_0047.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
+models	../crm/migrations/0015_auto_20170725_0054.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../crm/migrations/0017_auto_20170725_0140.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../crm/migrations/0018_auto_20170725_1202.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../crm/migrations/0019_auto_20170725_1206.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../crm/migrations/0020_shareholder_phone.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../crm/migrations/0021_auto_20170725_2018.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../crm/migrations/0021_auto_20170725_2018.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
+models	../crm/migrations/0022_taxbureau.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../crm/migrations/0023_taxbureau_office.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../crm/migrations/0024_auto_20170725_2052.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../crm/migrations/0024_auto_20170725_2052.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
+models	../crm/migrations/0025_auto_20170725_2100.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../crm/migrations/0025_auto_20170725_2100.py	/^import django.db.models.deletion$/;"	kind:namespace	line:6
+models	../crm/migrations/0026_auto_20170725_2142.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../crm/migrations/0027_auto_20170726_2141.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../crm/migrations/0028_auto_20170810_0115.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../crm/migrations/0029_auto_20170816_1332.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
 models	../crm/models/company.py	/^from django.db import models$/;"	kind:namespace	line:2
 models	../crm/models/contract.py	/^from django.db import models$/;"	kind:namespace	line:2
+models	../crm/models/department.py	/^from django.db import models$/;"	kind:namespace	line:1
 models	../crm/models/industry.py	/^from django.db import models$/;"	kind:namespace	line:1
 models	../crm/models/people.py	/^from django.db import models$/;"	kind:namespace	line:2
 models	../crm/models/shareholder.py	/^from django.db import models$/;"	kind:namespace	line:1
+models	../crm/models/tax.py	/^from django.db import models$/;"	kind:namespace	line:1
 models.py	../core/models.py	1;"	kind:file	line:1
 name	../core/apps.py	/^    name = 'core'$/;"	kind:variable	line:5
 name	../core/migrations/0001_initial.py	/^            name='Attachment',$/;"	kind:variable	line:21
 name	../core/migrations/0002_auto_20170723_0434.py	/^            name='attachment',$/;"	kind:variable	line:16
 name	../core/migrations/0002_auto_20170723_0434.py	/^            name='file_type',$/;"	kind:variable	line:25
 name	../core/migrations/0002_auto_20170723_0434.py	/^            name='文件类型',$/;"	kind:variable	line:21
-name	../core/models.py	/^    name = models.CharField($/;"	kind:variable	line:25
+name	../core/migrations/0003_auto_20170725_1202.py	/^            name='file_type',$/;"	kind:variable	line:17
+name	../core/models.py	/^    name = models.CharField($/;"	kind:variable	line:27
 name	../crm/apps.py	/^    name = 'crm'$/;"	kind:variable	line:5
 name	../crm/migrations/0001_initial.py	/^            name='Company',$/;"	kind:variable	line:21
 name	../crm/migrations/0001_initial.py	/^            name='Contract',$/;"	kind:variable	line:61
@@ -305,19 +658,81 @@ name	../crm/migrations/0005_auto_20170723_0434.py	/^            name='shareholde
 name	../crm/migrations/0006_auto_20170723_1214.py	/^            name='has_expired',$/;"	kind:variable	line:17
 name	../crm/migrations/0006_auto_20170723_1214.py	/^            name='status',$/;"	kind:variable	line:22
 name	../crm/migrations/0007_auto_20170724_1452.py	/^            name='gender',$/;"	kind:variable	line:17
+name	../crm/migrations/0008_auto_20170725_0000.py	/^            name='has_expired',$/;"	kind:variable	line:17
+name	../crm/migrations/0008_auto_20170725_0000.py	/^            name='note',$/;"	kind:variable	line:22
+name	../crm/migrations/0009_auto_20170725_0001.py	/^            name='sfz',$/;"	kind:variable	line:25
+name	../crm/migrations/0009_auto_20170725_0001.py	/^            name='user',$/;"	kind:variable	line:20
+name	../crm/migrations/0010_department.py	/^            name='Department',$/;"	kind:variable	line:17
+name	../crm/migrations/0011_auto_20170725_0016.py	/^            name='department',$/;"	kind:variable	line:17
+name	../crm/migrations/0011_auto_20170725_0016.py	/^            name='department',$/;"	kind:variable	line:22
+name	../crm/migrations/0012_auto_20170725_0023.py	/^            name='bookkeeper',$/;"	kind:variable	line:19
+name	../crm/migrations/0012_auto_20170725_0023.py	/^            name='department',$/;"	kind:variable	line:29
+name	../crm/migrations/0012_auto_20170725_0023.py	/^            name='salesman',$/;"	kind:variable	line:24
+name	../crm/migrations/0012_auto_20170725_0023.py	/^            name='user',$/;"	kind:variable	line:34
+name	../crm/migrations/0013_remove_people_department.py	/^            name='department',$/;"	kind:variable	line:17
+name	../crm/migrations/0014_auto_20170725_0047.py	/^            name='bookkeeper',$/;"	kind:variable	line:19
+name	../crm/migrations/0014_auto_20170725_0047.py	/^            name='salesman',$/;"	kind:variable	line:24
+name	../crm/migrations/0015_auto_20170725_0054.py	/^            name='company_title',$/;"	kind:variable	line:17
+name	../crm/migrations/0015_auto_20170725_0054.py	/^            name='people_name',$/;"	kind:variable	line:22
+name	../crm/migrations/0016_remove_company_has_expired.py	/^            name='has_expired',$/;"	kind:variable	line:17
+name	../crm/migrations/0017_auto_20170725_0140.py	/^            name='Department',$/;"	kind:variable	line:38
+name	../crm/migrations/0017_auto_20170725_0140.py	/^            name='birthdate',$/;"	kind:variable	line:29
+name	../crm/migrations/0017_auto_20170725_0140.py	/^            name='company',$/;"	kind:variable	line:17
+name	../crm/migrations/0017_auto_20170725_0140.py	/^            name='parent',$/;"	kind:variable	line:21
+name	../crm/migrations/0017_auto_20170725_0140.py	/^            name='sfz',$/;"	kind:variable	line:34
+name	../crm/migrations/0017_auto_20170725_0140.py	/^            name='user',$/;"	kind:variable	line:25
+name	../crm/migrations/0018_auto_20170725_1202.py	/^            name='individual_account',$/;"	kind:variable	line:17
+name	../crm/migrations/0018_auto_20170725_1202.py	/^            name='individual_address',$/;"	kind:variable	line:22
+name	../crm/migrations/0018_auto_20170725_1202.py	/^            name='info',$/;"	kind:variable	line:37
+name	../crm/migrations/0018_auto_20170725_1202.py	/^            name='is_contactor',$/;"	kind:variable	line:42
+name	../crm/migrations/0018_auto_20170725_1202.py	/^            name='op_address',$/;"	kind:variable	line:27
+name	../crm/migrations/0018_auto_20170725_1202.py	/^            name='ss_date',$/;"	kind:variable	line:32
+name	../crm/migrations/0018_auto_20170725_1202.py	/^            name='type',$/;"	kind:variable	line:47
+name	../crm/migrations/0019_auto_20170725_1206.py	/^            name='individual_address',$/;"	kind:variable	line:17
+name	../crm/migrations/0019_auto_20170725_1206.py	/^            name='individual_bank',$/;"	kind:variable	line:21
+name	../crm/migrations/0020_shareholder_phone.py	/^            name='phone',$/;"	kind:variable	line:17
+name	../crm/migrations/0021_auto_20170725_2018.py	/^            name='company',$/;"	kind:variable	line:48
+name	../crm/migrations/0021_auto_20170725_2018.py	/^            name='custom_entry_no',$/;"	kind:variable	line:18
+name	../crm/migrations/0021_auto_20170725_2018.py	/^            name='custom_expired_at',$/;"	kind:variable	line:23
+name	../crm/migrations/0021_auto_20170725_2018.py	/^            name='custom_org_code',$/;"	kind:variable	line:28
+name	../crm/migrations/0021_auto_20170725_2018.py	/^            name='custom_register_no',$/;"	kind:variable	line:33
+name	../crm/migrations/0021_auto_20170725_2018.py	/^            name='custom_registered_at',$/;"	kind:variable	line:38
+name	../crm/migrations/0021_auto_20170725_2018.py	/^            name='people',$/;"	kind:variable	line:53
+name	../crm/migrations/0021_auto_20170725_2018.py	/^            name='premise',$/;"	kind:variable	line:43
+name	../crm/migrations/0022_taxbureau.py	/^            name='TaxBureau',$/;"	kind:variable	line:16
+name	../crm/migrations/0023_taxbureau_office.py	/^            name='office',$/;"	kind:variable	line:17
+name	../crm/migrations/0024_auto_20170725_2052.py	/^            name='national_tax_branch',$/;"	kind:variable	line:18
+name	../crm/migrations/0024_auto_20170725_2052.py	/^            name='national_tax_office',$/;"	kind:variable	line:22
+name	../crm/migrations/0025_auto_20170725_2100.py	/^            name='local_tax_branch',$/;"	kind:variable	line:18
+name	../crm/migrations/0025_auto_20170725_2100.py	/^            name='local_tax_office',$/;"	kind:variable	line:22
+name	../crm/migrations/0025_auto_20170725_2100.py	/^            name='national_tax_office',$/;"	kind:variable	line:27
+name	../crm/migrations/0026_auto_20170725_2142.py	/^            name='district',$/;"	kind:variable	line:17
+name	../crm/migrations/0027_auto_20170726_2141.py	/^            name='scale_size',$/;"	kind:variable	line:17
+name	../crm/migrations/0027_auto_20170726_2141.py	/^            name='status',$/;"	kind:variable	line:22
+name	../crm/migrations/0028_auto_20170810_0115.py	/^            name='industry',$/;"	kind:variable	line:17
+name	../crm/migrations/0028_auto_20170810_0115.py	/^            name='sfz',$/;"	kind:variable	line:22
+name	../crm/migrations/0029_auto_20170816_1332.py	/^            name='industry',$/;"	kind:variable	line:17
+name	../crm/migrations/0029_auto_20170816_1332.py	/^            name='registered_at',$/;"	kind:variable	line:22
 name	../crm/models/employee.py	/^    name = models.CharField(max_length=100)$/;"	kind:variable	line:6
 name	../crm/models/industry.py	/^    name = models.CharField(verbose_name="行业名", max_length=200)$/;"	kind:variable	line:5
 name	../crm/models/people.py	/^    name = models.CharField(verbose_name="姓名",  max_length=255)$/;"	kind:variable	line:12
-national_tax_branch	../crm/models/company.py	/^    national_tax_branch = models.CharField($/;"	kind:variable	line:58
-national_tax_id	../crm/models/company.py	/^    national_tax_id = models.CharField($/;"	kind:variable	line:52
-national_tax_phone	../crm/models/company.py	/^    national_tax_phone = models.CharField($/;"	kind:variable	line:60
-national_tax_sn	../crm/models/company.py	/^    national_tax_sn = models.CharField($/;"	kind:variable	line:54
-national_tax_staff	../crm/models/company.py	/^    national_tax_staff = models.CharField($/;"	kind:variable	line:56
-note	../crm/models/company.py	/^    note = models.TextField(verbose_name="备注", blank=True)$/;"	kind:variable	line:117
+namedtuple	../crm/views.py	/^from collections import namedtuple$/;"	kind:namespace	line:3
+national_tax_id	../crm/models/company.py	/^    national_tax_id = models.CharField($/;"	kind:variable	line:65
+national_tax_office	../crm/models/company.py	/^    national_tax_office = models.ForeignKey($/;"	kind:variable	line:72
+national_tax_phone	../crm/models/company.py	/^    national_tax_phone = models.CharField($/;"	kind:variable	line:80
+national_tax_sn	../crm/models/company.py	/^    national_tax_sn = models.CharField($/;"	kind:variable	line:67
+national_tax_staff	../crm/models/company.py	/^    national_tax_staff = models.CharField($/;"	kind:variable	line:69
+note	../crm/models/company.py	/^    note = models.TextField($/;"	kind:variable	line:181
 note	../crm/models/people.py	/^    note = models.TextField(verbose_name="备注", blank=True)$/;"	kind:variable	line:27
-object_id	../core/models.py	/^    object_id = models.PositiveIntegerField(default=0)$/;"	kind:variable	line:41
+null	../crm/models/company.py	/^        null=True)$/;"	kind:variable	line:155
+null	../crm/models/company.py	/^        null=True)$/;"	kind:variable	line:78
+null	../crm/models/company.py	/^        null=True,$/;"	kind:variable	line:159
+object_id	../core/models.py	/^    object_id = models.PositiveIntegerField(default=0)$/;"	kind:variable	line:43
+office	../crm/models/tax.py	/^    office = models.CharField($/;"	kind:variable	line:38
+op_address	../crm/models/company.py	/^    op_address = models.CharField($/;"	kind:variable	line:29
 operations	../core/migrations/0001_initial.py	/^    operations = [$/;"	kind:variable	line:19
 operations	../core/migrations/0002_auto_20170723_0434.py	/^    operations = [$/;"	kind:variable	line:14
+operations	../core/migrations/0003_auto_20170725_1202.py	/^    operations = [$/;"	kind:variable	line:14
 operations	../crm/migrations/0001_initial.py	/^    operations = [$/;"	kind:variable	line:19
 operations	../crm/migrations/0002_auto_20170723_0342.py	/^    operations = [$/;"	kind:variable	line:14
 operations	../crm/migrations/0003_auto_20170723_0401.py	/^    operations = [$/;"	kind:variable	line:14
@@ -325,67 +740,116 @@ operations	../crm/migrations/0004_auto_20170723_0405.py	/^    operations = [$/;"
 operations	../crm/migrations/0005_auto_20170723_0434.py	/^    operations = [$/;"	kind:variable	line:14
 operations	../crm/migrations/0006_auto_20170723_1214.py	/^    operations = [$/;"	kind:variable	line:14
 operations	../crm/migrations/0007_auto_20170724_1452.py	/^    operations = [$/;"	kind:variable	line:14
+operations	../crm/migrations/0008_auto_20170725_0000.py	/^    operations = [$/;"	kind:variable	line:14
+operations	../crm/migrations/0009_auto_20170725_0001.py	/^    operations = [$/;"	kind:variable	line:17
+operations	../crm/migrations/0010_department.py	/^    operations = [$/;"	kind:variable	line:15
+operations	../crm/migrations/0011_auto_20170725_0016.py	/^    operations = [$/;"	kind:variable	line:15
+operations	../crm/migrations/0012_auto_20170725_0023.py	/^    operations = [$/;"	kind:variable	line:16
+operations	../crm/migrations/0013_remove_people_department.py	/^    operations = [$/;"	kind:variable	line:14
+operations	../crm/migrations/0014_auto_20170725_0047.py	/^    operations = [$/;"	kind:variable	line:16
+operations	../crm/migrations/0015_auto_20170725_0054.py	/^    operations = [$/;"	kind:variable	line:14
+operations	../crm/migrations/0016_remove_company_has_expired.py	/^    operations = [$/;"	kind:variable	line:14
+operations	../crm/migrations/0017_auto_20170725_0140.py	/^    operations = [$/;"	kind:variable	line:14
+operations	../crm/migrations/0018_auto_20170725_1202.py	/^    operations = [$/;"	kind:variable	line:14
+operations	../crm/migrations/0019_auto_20170725_1206.py	/^    operations = [$/;"	kind:variable	line:14
+operations	../crm/migrations/0020_shareholder_phone.py	/^    operations = [$/;"	kind:variable	line:14
+operations	../crm/migrations/0021_auto_20170725_2018.py	/^    operations = [$/;"	kind:variable	line:15
+operations	../crm/migrations/0022_taxbureau.py	/^    operations = [$/;"	kind:variable	line:14
+operations	../crm/migrations/0023_taxbureau_office.py	/^    operations = [$/;"	kind:variable	line:14
+operations	../crm/migrations/0024_auto_20170725_2052.py	/^    operations = [$/;"	kind:variable	line:15
+operations	../crm/migrations/0025_auto_20170725_2100.py	/^    operations = [$/;"	kind:variable	line:15
+operations	../crm/migrations/0026_auto_20170725_2142.py	/^    operations = [$/;"	kind:variable	line:14
+operations	../crm/migrations/0027_auto_20170726_2141.py	/^    operations = [$/;"	kind:variable	line:14
+operations	../crm/migrations/0028_auto_20170810_0115.py	/^    operations = [$/;"	kind:variable	line:14
+operations	../crm/migrations/0029_auto_20170816_1332.py	/^    operations = [$/;"	kind:variable	line:14
 options	../core/migrations/0002_auto_20170723_0434.py	/^            options={'verbose_name': '附件', 'verbose_name_plural': '附件'},$/;"	kind:variable	line:17
 options	../crm/migrations/0005_auto_20170723_0434.py	/^            options={'verbose_name': '公司', 'verbose_name_plural': '公司'},$/;"	kind:variable	line:17
 options	../crm/migrations/0005_auto_20170723_0434.py	/^            options={'verbose_name': '合同', 'verbose_name_plural': '合同'},$/;"	kind:variable	line:21
 options	../crm/migrations/0005_auto_20170723_0434.py	/^            options={'verbose_name': '股份持有人', 'verbose_name_plural': '股份持有人'},$/;"	kind:variable	line:29
 options	../crm/migrations/0005_auto_20170723_0434.py	/^            options={'verbose_name': '雇员', 'verbose_name_plural': '雇员'},$/;"	kind:variable	line:25
+options	../crm/migrations/0011_auto_20170725_0016.py	/^            options={'verbose_name': '部门', 'verbose_name_plural': '部门'},$/;"	kind:variable	line:18
+options	../crm/migrations/0022_taxbureau.py	/^            options={$/;"	kind:variable	line:23
 os	../dash/settings.py	/^import os$/;"	kind:namespace	line:13
 os	../dash/wsgi.py	/^import os$/;"	kind:namespace	line:10
 os	../manage.py	/^import os$/;"	kind:namespace	line:2
-people	../crm/models/shareholder.py	/^    people = models.ForeignKey(People)$/;"	kind:variable	line:8
+parameter_name	../crm/admin.py	/^    parameter_name = 'has_expired'$/;"	kind:variable	line:33
+parent	../crm/models/department.py	/^    parent = models.ForeignKey($/;"	kind:variable	line:11
+people	../crm/models/shareholder.py	/^    people = models.ForeignKey(People, verbose_name="客户")$/;"	kind:variable	line:8
 people.py	../crm/models/people.py	1;"	kind:file	line:1
-people_name	../crm/models/shareholder.py	/^    people_name = models.CharField(max_length=200, editable=False, blank=True)$/;"	kind:variable	line:18
+people_name	../crm/models/shareholder.py	/^    people_name = models.CharField(verbose_name='姓名',$/;"	kind:variable	line:23
 phone	../crm/models/employee.py	/^    phone = models.CharField(max_length=100)$/;"	kind:variable	line:7
 phone	../crm/models/people.py	/^    phone = models.CharField(verbose_name="电话", blank=True, max_length=100)$/;"	kind:variable	line:20
+phone	../crm/models/shareholder.py	/^    phone = models.CharField(verbose_name="联系人电话", blank=True,$/;"	kind:variable	line:20
+premise	../crm/models/company.py	/^    premise = models.CharField($/;"	kind:variable	line:162
 qq	../crm/models/people.py	/^    qq = models.CharField(verbose_name="QQ", blank=True, max_length=100)$/;"	kind:variable	line:25
+queryset	../crm/admin.py	/^    def queryset(self, request, queryset):$/;"	kind:member	line:41
+raw_id_fields	../crm/admin.py	/^    raw_id_fields = ('national_tax_office', 'local_tax_office')$/;"	kind:variable	line:66
+raw_id_fields	../crm/admin.py	/^    raw_id_fields = ('people', 'company')$/;"	kind:variable	line:165
+raw_id_fields	../crm/admin.py	/^    raw_id_fields = ('people', )$/;"	kind:variable	line:20
 receivables	../crm/models/contract.py	/^    receivables = models.DecimalField($/;"	kind:variable	line:41
 received	../crm/models/contract.py	/^    received = models.DecimalField($/;"	kind:variable	line:43
-registered_at	../crm/models/company.py	/^    registered_at = models.DateField(verbose_name="注册日期", blank=True)$/;"	kind:variable	line:36
-registered_capital	../crm/models/company.py	/^    registered_capital = models.DecimalField($/;"	kind:variable	line:21
+registered_at	../crm/models/company.py	/^    registered_at = models.DateField($/;"	kind:variable	line:49
+registered_capital	../crm/models/company.py	/^    registered_capital = models.DecimalField($/;"	kind:variable	line:26
+related_name	../crm/models/company.py	/^                                   related_name="accounts")$/;"	kind:variable	line:43
+related_name	../crm/models/company.py	/^                                 related_name="customers")$/;"	kind:variable	line:38
+related_name	../crm/models/company.py	/^        related_name='local_taxes',$/;"	kind:variable	line:91
+related_name	../crm/models/company.py	/^        related_name='national_taxes',$/;"	kind:variable	line:74
 render	../core/views.py	/^from django.shortcuts import render$/;"	kind:namespace	line:1
-render	../crm/views.py	/^from django.shortcuts import render$/;"	kind:namespace	line:1
+render	../crm/views.py	/^from django.shortcuts import render$/;"	kind:namespace	line:5
 role	../crm/models/shareholder.py	/^    role = models.CharField(verbose_name="身份", choices=ROLES,$/;"	kind:variable	line:14
-salesman	../crm/models/company.py	/^    salesman = models.ForeignKey($/;"	kind:variable	line:26
+salesman	../crm/models/company.py	/^    salesman = models.ForeignKey(User,$/;"	kind:variable	line:35
 salesman	../crm/models/contract.py	/^    salesman = models.ForeignKey($/;"	kind:variable	line:15
 salesman_name	../crm/models/contract.py	/^    salesman_name = models.CharField($/;"	kind:variable	line:64
-save	../core/models.py	/^    def save(self, *args, **kwargs):$/;"	kind:member	line:53
-save	../crm/models/company.py	/^    def save(self, *args, **kwargs):$/;"	kind:member	line:129
+save	../core/models.py	/^    def save(self, *args, **kwargs):$/;"	kind:member	line:55
+save	../crm/models/company.py	/^    def save(self, *args, **kwargs):$/;"	kind:member	line:195
 save	../crm/models/contract.py	/^    def save(self, *args, **kwargs):$/;"	kind:member	line:72
-save	../crm/models/shareholder.py	/^    def save(self, *args, **kwargs):$/;"	kind:member	line:25
-scale_size	../crm/models/company.py	/^    scale_size = models.CharField($/;"	kind:variable	line:104
+save	../crm/models/department.py	/^    def save(self, *args, **kwargs):$/;"	kind:member	line:21
+save	../crm/models/shareholder.py	/^    def save(self, *args, **kwargs):$/;"	kind:member	line:34
+scale_size	../crm/models/company.py	/^    scale_size = models.CharField($/;"	kind:variable	line:171
 search_fields	../core/admin.py	/^    search_fields = ('name',)$/;"	kind:variable	line:11
-search_fields	../crm/admin.py	/^    search_fields = ('company_title', 'salesmane_name')$/;"	kind:variable	line:58
-search_fields	../crm/admin.py	/^    search_fields = ('title', )$/;"	kind:variable	line:29
+search_fields	../crm/admin.py	/^    search_fields = ('company_title', 'people_name', 'info')$/;"	kind:variable	line:162
+search_fields	../crm/admin.py	/^    search_fields = ('company_title', 'salesmane_name')$/;"	kind:variable	line:138
+search_fields	../crm/admin.py	/^    search_fields = ('name', 'sfz', 'phone')$/;"	kind:variable	line:153
+search_fields	../crm/admin.py	/^    search_fields = ('office', 'address')$/;"	kind:variable	line:175
+search_fields	../crm/admin.py	/^    search_fields = ('title', 'note', 'address', 'op_address')$/;"	kind:variable	line:60
 settings	../core/migrations/0001_initial.py	/^from django.conf import settings$/;"	kind:namespace	line:5
 settings	../crm/migrations/0001_initial.py	/^from django.conf import settings$/;"	kind:namespace	line:5
+settings	../crm/migrations/0009_auto_20170725_0001.py	/^from django.conf import settings$/;"	kind:namespace	line:5
+settings	../crm/migrations/0012_auto_20170725_0023.py	/^from django.conf import settings$/;"	kind:namespace	line:5
+settings	../crm/migrations/0014_auto_20170725_0047.py	/^from django.conf import settings$/;"	kind:namespace	line:5
 settings.py	../dash/settings.py	1;"	kind:file	line:1
-sfz	../crm/models/people.py	/^    sfz = models.CharField(verbose_name="身份证",  max_length=255, unique=True)$/;"	kind:variable	line:13
+sfz	../crm/models/people.py	/^    sfz = models.CharField(verbose_name="身份证",  max_length=255)$/;"	kind:variable	line:13
 share	../crm/models/shareholder.py	/^    share = models.FloatField(verbose_name="占比", default=.1)$/;"	kind:variable	line:16
 shareholder.py	../crm/models/shareholder.py	1;"	kind:file	line:1
-ss_account	../crm/models/company.py	/^    ss_account = models.CharField($/;"	kind:variable	line:82
-ss_bank	../crm/models/company.py	/^    ss_bank = models.CharField($/;"	kind:variable	line:80
-ss_number	../crm/models/company.py	/^    ss_number = models.CharField($/;"	kind:variable	line:84
-status	../crm/models/company.py	/^    status = models.CharField($/;"	kind:variable	line:112
+ss_account	../crm/models/company.py	/^    ss_account = models.CharField($/;"	kind:variable	line:106
+ss_bank	../crm/models/company.py	/^    ss_bank = models.CharField($/;"	kind:variable	line:104
+ss_date	../crm/models/company.py	/^    ss_date = models.DateField(verbose_name="社保购买时间", blank=True, null=True)$/;"	kind:variable	line:110
+ss_number	../crm/models/company.py	/^    ss_number = models.CharField($/;"	kind:variable	line:108
+status	../crm/models/company.py	/^    status = models.CharField($/;"	kind:variable	line:176
 status	../crm/models/contract.py	/^    status = models.CharField($/;"	kind:variable	line:57
 subscription_type	../crm/models/contract.py	/^    subscription_type = models.CharField($/;"	kind:variable	line:32
 sys	../manage.py	/^import sys$/;"	kind:namespace	line:3
-taxpayer_account	../crm/models/company.py	/^    taxpayer_account = models.CharField($/;"	kind:variable	line:76
-taxpayer_bank	../crm/models/company.py	/^    taxpayer_bank = models.CharField($/;"	kind:variable	line:74
-taxpayer_type	../crm/models/company.py	/^    taxpayer_type = models.CharField($/;"	kind:variable	line:95
+tax.py	../crm/models/tax.py	1;"	kind:file	line:1
+taxpayer_account	../crm/models/company.py	/^    taxpayer_account = models.CharField($/;"	kind:variable	line:100
+taxpayer_bank	../crm/models/company.py	/^    taxpayer_bank = models.CharField($/;"	kind:variable	line:98
+taxpayer_type	../crm/models/company.py	/^    taxpayer_type = models.CharField($/;"	kind:variable	line:130
 tests.py	../core/tests.py	1;"	kind:file	line:1
 tests.py	../crm/tests.py	1;"	kind:file	line:1
 timedelta	../crm/models/people.py	/^from datetime import timedelta$/;"	kind:namespace	line:5
+timezone	../crm/admin.py	/^from django.utils import timezone$/;"	kind:namespace	line:7
 timezone	../crm/migrations/0001_initial.py	/^import django.utils.timezone$/;"	kind:namespace	line:8
 timezone	../crm/models/company.py	/^from django.utils import timezone$/;"	kind:namespace	line:4
 timezone	../crm/models/contract.py	/^from django.utils import timezone$/;"	kind:namespace	line:4
 timezone	../crm/models/people.py	/^from django.utils import timezone$/;"	kind:namespace	line:4
-title	../crm/models/company.py	/^    title = models.CharField(verbose_name="企业名称", unique=True, max_length=255)$/;"	kind:variable	line:10
+title	../crm/admin.py	/^    title = '是否过期'$/;"	kind:variable	line:32
+title	../crm/models/company.py	/^    title = models.CharField(verbose_name="企业名称", unique=True, max_length=255)$/;"	kind:variable	line:14
 title	../crm/models/contract.py	/^    title = models.CharField(verbose_name="合同抬头", max_length=255)$/;"	kind:variable	line:11
-type	../crm/models/company.py	/^    type = models.CharField(verbose_name="公司类型", choices=TYPES,$/;"	kind:variable	line:19
+title	../crm/models/department.py	/^    title = models.CharField(verbose_name='部门名称',$/;"	kind:variable	line:7
+type	../crm/models/company.py	/^    type = models.CharField(verbose_name="公司类型", choices=TYPES,$/;"	kind:variable	line:24
 type	../crm/models/contract.py	/^    type = models.CharField($/;"	kind:variable	line:22
 unicode_literals	../core/migrations/0001_initial.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
 unicode_literals	../core/migrations/0002_auto_20170723_0434.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../core/migrations/0003_auto_20170725_1202.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
 unicode_literals	../crm/migrations/0001_initial.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
 unicode_literals	../crm/migrations/0002_auto_20170723_0342.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
 unicode_literals	../crm/migrations/0003_auto_20170723_0401.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
@@ -393,41 +857,90 @@ unicode_literals	../crm/migrations/0004_auto_20170723_0405.py	/^from __future__ 
 unicode_literals	../crm/migrations/0005_auto_20170723_0434.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
 unicode_literals	../crm/migrations/0006_auto_20170723_1214.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
 unicode_literals	../crm/migrations/0007_auto_20170724_1452.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0008_auto_20170725_0000.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0009_auto_20170725_0001.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0010_department.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0011_auto_20170725_0016.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0012_auto_20170725_0023.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0013_remove_people_department.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0014_auto_20170725_0047.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0015_auto_20170725_0054.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0016_remove_company_has_expired.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0017_auto_20170725_0140.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0018_auto_20170725_1202.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0019_auto_20170725_1206.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0020_shareholder_phone.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0021_auto_20170725_2018.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0022_taxbureau.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0023_taxbureau_office.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0024_auto_20170725_2052.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0025_auto_20170725_2100.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0026_auto_20170725_2142.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0027_auto_20170726_2141.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0028_auto_20170810_0115.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0029_auto_20170816_1332.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
 unique_together	../crm/migrations/0001_initial.py	/^            unique_together=set([('people', 'company')]),$/;"	kind:variable	line:110
-unique_together	../crm/models/shareholder.py	/^        unique_together = ('people', 'company')$/;"	kind:variable	line:31
-updated	../core/models.py	/^    updated = models.DateTimeField(auto_now=True)$/;"	kind:variable	line:48
-updated	../crm/models/company.py	/^    updated = models.DateTimeField(auto_now=True)$/;"	kind:variable	line:121
+unique_together	../crm/models/shareholder.py	/^        unique_together = ('people', 'company')$/;"	kind:variable	line:42
+updated	../core/models.py	/^    updated = models.DateTimeField(auto_now=True)$/;"	kind:variable	line:50
+updated	../crm/models/company.py	/^    updated = models.DateTimeField(auto_now=True)$/;"	kind:variable	line:186
 updated	../crm/models/contract.py	/^    updated = models.DateTimeField(auto_now=True)$/;"	kind:variable	line:60
 upload_path	../core/models.py	/^def upload_path(instance, filename):$/;"	kind:function	line:7
-url	../dash/urls.py	/^from django.conf.urls import url$/;"	kind:namespace	line:16
+url	../crm/urls.py	/^from django.conf.urls import include, url$/;"	kind:namespace	line:1
+url	../dash/urls.py	/^from django.conf.urls import url, include$/;"	kind:namespace	line:16
+urlpatterns	../crm/urls.py	/^urlpatterns = [$/;"	kind:variable	line:4
 urlpatterns	../dash/urls.py	/^urlpatterns = [$/;"	kind:variable	line:19
+urls.py	../crm/urls.py	1;"	kind:file	line:1
 urls.py	../dash/urls.py	1;"	kind:file	line:1
-uscc	../crm/models/company.py	/^    uscc = models.CharField(verbose_name="社会统一信用代码号",$/;"	kind:variable	line:33
+uscc	../crm/models/company.py	/^    uscc = models.CharField(verbose_name="社会统一信用代码号",$/;"	kind:variable	line:46
 user	../crm/models/employee.py	/^    user = models.OneToOneField(User, blank=True, null=True)$/;"	kind:variable	line:5
 utils	../crm/migrations/0001_initial.py	/^import django.utils.timezone$/;"	kind:namespace	line:8
-verbose_name	../core/models.py	/^        verbose_name = "附件"$/;"	kind:variable	line:59
-verbose_name	../core/models.py	/^        verbose_name='文件类型',$/;"	kind:variable	line:36
-verbose_name	../core/models.py	/^        verbose_name='附件名称',$/;"	kind:variable	line:26
+verbose_name	../core/models.py	/^        verbose_name = "附件"$/;"	kind:variable	line:61
+verbose_name	../core/models.py	/^        verbose_name='文件类型',$/;"	kind:variable	line:38
+verbose_name	../core/models.py	/^        verbose_name='附件名称',$/;"	kind:variable	line:28
 verbose_name	../crm/apps.py	/^    verbose_name = '客户管理'$/;"	kind:variable	line:6
-verbose_name	../crm/models/company.py	/^        verbose_name = "公司"$/;"	kind:variable	line:139
-verbose_name	../crm/models/company.py	/^        verbose_name="信用评级",$/;"	kind:variable	line:89
-verbose_name	../crm/models/company.py	/^        verbose_name="纳税人类型",$/;"	kind:variable	line:96
+verbose_name	../crm/models/company.py	/^                                   verbose_name="记账会计",$/;"	kind:variable	line:41
+verbose_name	../crm/models/company.py	/^                                 verbose_name="业务员",$/;"	kind:variable	line:36
+verbose_name	../crm/models/company.py	/^        verbose_name = "公司"$/;"	kind:variable	line:205
+verbose_name	../crm/models/company.py	/^        verbose_name="信用评级",$/;"	kind:variable	line:124
+verbose_name	../crm/models/company.py	/^        verbose_name="国税所属分局",$/;"	kind:variable	line:75
+verbose_name	../crm/models/company.py	/^        verbose_name="地税所属分局",$/;"	kind:variable	line:93
+verbose_name	../crm/models/company.py	/^        verbose_name="实际经营地址",$/;"	kind:variable	line:30
+verbose_name	../crm/models/company.py	/^        verbose_name="有效期",$/;"	kind:variable	line:158
+verbose_name	../crm/models/company.py	/^        verbose_name="纳税人类型",$/;"	kind:variable	line:131
+verbose_name	../crm/models/company.py	/^        verbose_name="经营场地（英文)",$/;"	kind:variable	line:163
+verbose_name	../crm/models/company.py	/^        verbose_name='基本户开户银行',$/;"	kind:variable	line:114
+verbose_name	../crm/models/company.py	/^        verbose_name='基本户开账号',$/;"	kind:variable	line:118
+verbose_name	../crm/models/company.py	/^        verbose_name='海关注册编码',$/;"	kind:variable	line:143
+verbose_name	../crm/models/company.py	/^        verbose_name='海关登记日期',$/;"	kind:variable	line:153
+verbose_name	../crm/models/company.py	/^        verbose_name='海关登记编号',$/;"	kind:variable	line:138
+verbose_name	../crm/models/company.py	/^        verbose_name='海关组织机构代码',$/;"	kind:variable	line:148
 verbose_name	../crm/models/contract.py	/^        verbose_name = "合同"$/;"	kind:variable	line:80
 verbose_name	../crm/models/contract.py	/^        verbose_name="业务员",$/;"	kind:variable	line:65
 verbose_name	../crm/models/contract.py	/^        verbose_name="公司抬头",$/;"	kind:variable	line:62
+verbose_name	../crm/models/department.py	/^        verbose_name = '部门'$/;"	kind:variable	line:26
 verbose_name	../crm/models/people.py	/^        verbose_name = "雇员"$/;"	kind:variable	line:40
-verbose_name	../crm/models/shareholder.py	/^        verbose_name = "股份持有人"$/;"	kind:variable	line:32
-verbose_name_plural	../core/models.py	/^        verbose_name_plural = "附件"$/;"	kind:variable	line:60
-verbose_name_plural	../crm/models/company.py	/^        verbose_name_plural = "公司"$/;"	kind:variable	line:140
+verbose_name	../crm/models/shareholder.py	/^                                       verbose_name="主要联系人")$/;"	kind:variable	line:18
+verbose_name	../crm/models/shareholder.py	/^        verbose_name = "股份持有人"$/;"	kind:variable	line:43
+verbose_name	../crm/models/shareholder.py	/^        verbose_name='公司名',$/;"	kind:variable	line:28
+verbose_name	../crm/models/tax.py	/^        verbose_name = '税局'$/;"	kind:variable	line:55
+verbose_name	../crm/models/tax.py	/^        verbose_name="地址")$/;"	kind:variable	line:46
+verbose_name	../crm/models/tax.py	/^        verbose_name="所属区",$/;"	kind:variable	line:23
+verbose_name	../crm/models/tax.py	/^        verbose_name="税局",$/;"	kind:variable	line:33
+verbose_name	../crm/models/tax.py	/^        verbose_name='分局名称',$/;"	kind:variable	line:39
+verbose_name_plural	../core/models.py	/^        verbose_name_plural = "附件"$/;"	kind:variable	line:62
+verbose_name_plural	../crm/models/company.py	/^        verbose_name_plural = "公司"$/;"	kind:variable	line:206
 verbose_name_plural	../crm/models/contract.py	/^        verbose_name_plural = "合同"$/;"	kind:variable	line:81
+verbose_name_plural	../crm/models/department.py	/^        verbose_name_plural = '部门'$/;"	kind:variable	line:27
 verbose_name_plural	../crm/models/people.py	/^        verbose_name_plural = "雇员"$/;"	kind:variable	line:41
-verbose_name_plural	../crm/models/shareholder.py	/^        verbose_name_plural = "股份持有人"$/;"	kind:variable	line:33
-view_arrearage	../crm/admin.py	/^    def view_arrearage(self, obj):$/;"	kind:member	line:63
-view_expired_at	../crm/admin.py	/^    def view_expired_at(self, obj):$/;"	kind:member	line:40
-view_share	../crm/admin.py	/^    def view_share(self, obj):$/;"	kind:member	line:82
+verbose_name_plural	../crm/models/shareholder.py	/^        verbose_name_plural = "股份持有人"$/;"	kind:variable	line:44
+verbose_name_plural	../crm/models/tax.py	/^        verbose_name_plural = '税局'$/;"	kind:variable	line:56
+view_arrearage	../crm/admin.py	/^    def view_arrearage(self, obj):$/;"	kind:member	line:143
+view_expired_at	../crm/admin.py	/^    def view_expired_at(self, obj):$/;"	kind:member	line:120
+view_map	../crm/admin.py	/^    def view_map(self, obj):$/;"	kind:member	line:179
+view_share	../crm/admin.py	/^    def view_share(self, obj):$/;"	kind:member	line:168
 views.py	../core/views.py	1;"	kind:file	line:1
 views.py	../crm/views.py	1;"	kind:file	line:1
-website	../crm/models/company.py	/^    website = models.CharField(verbose_name="公司网站", blank=True, max_length=255)$/;"	kind:variable	line:116
+website	../crm/models/company.py	/^    website = models.CharField(verbose_name="公司网站", blank=True, max_length=255)$/;"	kind:variable	line:180
 wechat	../crm/models/people.py	/^    wechat = models.CharField(verbose_name="微信", blank=True, max_length=100)$/;"	kind:variable	line:23
 weibo	../crm/models/people.py	/^    weibo = models.CharField(verbose_name="微博", blank=True, max_length=100)$/;"	kind:variable	line:24
 wsgi.py	../dash/wsgi.py	1;"	kind:file	line:1

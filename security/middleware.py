@@ -41,5 +41,6 @@ class RestrictIPMiddleware(object):
 
                 if is_banned:
                     logout(request)
-                    return HttpResponseForbidden("登陆IP受限")
+                    return HttpResponseForbidden(
+                        "您当前的IP地址： {} 不允许登陆".format(ip))
         return self.get_response(request)
