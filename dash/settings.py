@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'crm'
+    'crm',
+    'security'
 ]
 
 MIDDLEWARE = [
@@ -46,7 +47,10 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware', ]
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'security.middleware.RestrictIPMiddleware'
+]
+
 
 ROOT_URLCONF = 'dash.urls'
 
