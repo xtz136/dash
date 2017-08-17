@@ -29,7 +29,7 @@ class RestrictIPMiddleware(object):
 
     def __call__(self, request):
         user = getattr(request, 'user', None)
-        if user and not user.is_superuser:
+        if user and user.is_authenticated and not user.is_superuser:
             profile = getattr(user, 'profile', None)
             if not profile or not profile.is_manager:
                 ip = get_ip(request)
