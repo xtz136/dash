@@ -181,6 +181,14 @@ class Company(models.Model):
     note = models.TextField(
         verbose_name="备注", blank=True, help_text='可添加公司的其它备注信息')
 
+    has_custom_info = models.BooleanField(verbose_name='是否填写海关信息',
+                                          editable=False,
+                                          default=False)
+
+    has_customer_files = models.BooleanField(
+        verbose_name='是否有存放客户资料',
+        help_text='详细的资料信息请在备注里添加',
+        default=False)
     attachments = GenericRelation(Attachment)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -193,6 +201,10 @@ class Company(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
+        self.has_custom_info = any([
+            self.custom_entry_no, self.custom_expired_at,
+            self.custom_org_code, self.custom_register_no,
+            self.custom_registered_at])
         if not self.op_address:
             self.op_address = self.address
         if not self.ss_bank:

@@ -55,7 +55,8 @@ class CompanyModelAdmin(admin.ModelAdmin):
                     'taxpayer_type', 'scale_size', 'view_expired_at',
                     'status', 'download')
     list_filter = ('type', 'salesman', 'industry',
-                   HasExpiredFilter,
+                   HasExpiredFilter, 'has_custom_info',
+                   'has_customer_files',
                    'taxpayer_type', 'scale_size', 'status')
     search_fields = ('title', 'note', 'address', 'op_address')
     inlines = [
@@ -74,7 +75,8 @@ class CompanyModelAdmin(admin.ModelAdmin):
                        'uscc', 'business_license',
                        'website', 'salesman', 'bookkeeper',
                        'registered_at', 'expired_at',
-                       'status', 'note')
+                       'status', 'has_customer_files',
+                       'note')
         }),
         ('银行信息', {
             'fields': (
