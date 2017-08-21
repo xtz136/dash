@@ -24,6 +24,7 @@ class Company(models.Model):
     type = models.CharField(verbose_name="公司类型", choices=TYPES,
                             default='limited', max_length=20)
     registered_capital = models.DecimalField(
+        help_text="单位 (万元)",
         verbose_name="注册资金", max_digits=20, decimal_places=0)
     address = models.CharField(verbose_name="地址", blank=True, max_length=255)
     op_address = models.CharField(
@@ -171,11 +172,18 @@ class Company(models.Model):
     scale_size = models.CharField(
         verbose_name="规模", default='small', max_length=10, choices=SCALE_SIZES)
 
-    STATUS = (('normal', '正常'),
-              ('abnormal', '经营异常'))
+    STATUS = (('valid', '有效'),
+              ('invalid', '无效'))
     status = models.CharField(
+        help_text="无效状态，不再为客户提供服务",
+        verbose_name="状态", default='valid', max_length=10, choices=STATUS)
+
+    IC_STATUS = (('normal', '正常'),
+                 ('abnormal', '经营异常'))
+    ic_status = models.CharField(
         help_text="经营异常: 已被工商局列入经营异常名录",
-        verbose_name="公司状态", default='normal', max_length=10, choices=STATUS)
+        verbose_name="工商状态", default='normal', max_length=10, choices=IC_STATUS)
+
     # 附件
     website = models.CharField(verbose_name="公司网站", blank=True, max_length=255)
     note = models.TextField(

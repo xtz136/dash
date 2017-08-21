@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.utils.safestring import mark_safe
 from django.contrib.contenttypes.admin import GenericTabularInline
 from django.utils import timezone
+from django.shortcuts import redirect
 
 from .models import Company, People, ShareHolder, Contract, TaxBureau
 from core.models import Attachment
@@ -57,7 +58,7 @@ class CompanyModelAdmin(admin.ModelAdmin):
     list_filter = ('type', 'salesman', 'industry',
                    HasExpiredFilter, 'has_custom_info',
                    'has_customer_files',
-                   'taxpayer_type', 'scale_size', 'status')
+                   'taxpayer_type', 'scale_size', 'status', 'ic_status')
     search_fields = ('title', 'note', 'address', 'op_address')
     inlines = [
         # ContractInline,
@@ -75,9 +76,10 @@ class CompanyModelAdmin(admin.ModelAdmin):
                        'uscc', 'business_license',
                        'website', 'salesman', 'bookkeeper',
                        'registered_at', 'expired_at',
-                       'status', 'has_customer_files',
+                       'status', 'ic_status', 'has_customer_files',
                        'note')
         }),
+
         ('银行信息', {
             'fields': (
                 ('ss_number', 'ss_date'),
@@ -123,6 +125,17 @@ class CompanyModelAdmin(admin.ModelAdmin):
         return obj.expired_at
     view_expired_at.empty_value_display = '永久有效'
     view_expired_at.short_description = '执照过期日期'
+
+    def changelist_view(self, request, extra_context=None):
+        referrer = request.META.get('HTTP_REFERER', '')
+
+        get_param = 'status__exact=valid'
+        if len(request.GET) == 0 and '?' not in referrer:
+            return redirect("{url}?{get_parms}".format(
+                url=request.path,
+                get_parms=get_param))
+        return super(CompanyModelAdmin, self).changelist_view(
+            request, extra_context=extra_context)
 
 
 @admin.register(Contract)
