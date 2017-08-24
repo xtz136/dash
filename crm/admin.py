@@ -137,6 +137,12 @@ class CompanyModelAdmin(admin.ModelAdmin):
         return super(CompanyModelAdmin, self).changelist_view(
             request, extra_context=extra_context)
 
+    actions = ['make_invalid']
+
+    def make_invalid(self, request, queryset):
+        queryset.update(status='invalid')
+    make_invalid.short_description = "修改所选的公司状态为无效"
+
 
 @admin.register(Contract)
 class ContractModelAdmin(admin.ModelAdmin):
