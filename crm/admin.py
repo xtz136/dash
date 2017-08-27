@@ -56,10 +56,10 @@ class CompanyModelAdmin(admin.ModelAdmin):
                     'taxpayer_type', 'view_expired_at',
                     'legal_people',
                     'status', 'download')
-    list_filter = ('type', 'salesman', 'industry',
-                   HasExpiredFilter, 'has_custom_info',
-                   'has_customer_files',
-                   'taxpayer_type', 'scale_size', 'status', 'ic_status')
+    list_filter = ('status', 'ic_status', HasExpiredFilter,
+                   'type', 'salesman', 'industry',
+                   'has_custom_info', 'has_customer_files',
+                   'taxpayer_type', 'scale_size')
     search_fields = ('title', 'note', 'address', 'op_address')
     inlines = [
         # ContractInline,
@@ -138,11 +138,15 @@ class CompanyModelAdmin(admin.ModelAdmin):
         return super(CompanyModelAdmin, self).changelist_view(
             request, extra_context=extra_context)
 
-    actions = ['make_invalid']
+    actions = ['make_invalid', 'make_ic_status_invalid']
 
     def make_invalid(self, request, queryset):
         queryset.update(status='invalid')
     make_invalid.short_description = "修改所选的公司状态为无效"
+
+    def make_ic_status_invalid(self, request, queryset):
+        queryset.update(ic_status='abnormal')
+    make_ic_status_invalid.short_description = "修改工商状态为异常"
 
 
 @admin.register(Contract)
