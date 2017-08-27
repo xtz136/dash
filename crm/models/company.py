@@ -193,6 +193,9 @@ class Company(models.Model):
                                           editable=False,
                                           default=False)
 
+    legal_people = models.CharField(
+        verbose_name='法人', blank=True, max_length=200)
+
     has_customer_files = models.BooleanField(
         verbose_name='是否有存放客户资料',
         help_text='详细的资料信息请在备注里添加',
@@ -219,6 +222,14 @@ class Company(models.Model):
             self.ss_bank = self.taxpayer_bank
         if not self.ss_account:
             self.ss_account = self.taxpayer_account
+
+        if not self.legal_people:
+            try:
+                self.legal_people = self.shareholder_set.get(
+                    role='legal').people.name
+            except:
+                pass
+
         return super(Company, self).save(*args, **kwargs)
 
     class Meta:

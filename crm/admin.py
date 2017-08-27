@@ -53,7 +53,8 @@ class HasExpiredFilter(admin.SimpleListFilter):
 class CompanyModelAdmin(admin.ModelAdmin):
     list_display = ('title', 'industry',
                     'salesman', 'bookkeeper',
-                    'taxpayer_type', 'scale_size', 'view_expired_at',
+                    'taxpayer_type', 'view_expired_at',
+                    'legal_people',
                     'status', 'download')
     list_filter = ('type', 'salesman', 'industry',
                    HasExpiredFilter, 'has_custom_info',
