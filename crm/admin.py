@@ -198,12 +198,12 @@ class ShareHolderModelAdmin(admin.ModelAdmin):
 
 @admin.register(TaxBureau)
 class TaxBureauModelAdmin(admin.ModelAdmin):
-    search_fields = ('office', 'address')
+    search_fields = ('full_title', 'address')
     list_filter = ('district', 'bureau')
-    list_display = ('office', 'district', 'address', 'view_map')
+    list_display = ('full_title', 'bureau', 'view_map')
 
     def view_map(self, obj):
         return mark_safe(
-            "<a href='http://api.map.baidu.com/geocoder?address={0}{1}&output=html' target='_blank'>查看地图</a>".format(
-                obj.get_district_display(), obj.office))
+            "<a href='http://api.map.baidu.com/geocoder?address={0}&output=html' target='_blank'>查看地图</a>"
+            .format(obj.full_title))
     view_map.short_description = '查看地图信息'

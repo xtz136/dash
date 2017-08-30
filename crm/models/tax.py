@@ -2,6 +2,19 @@ from django.db import models
 
 
 class TaxBureau(models.Model):
+    CITYES = (
+        ("guangzhou", "广州市"),
+        ("zhuhai", "珠海市"),
+        ("foshan", "佛山市"),
+    )
+    city = models.CharField(
+        verbose_name="市",
+        blank=True,
+        choices=CITYES,
+        default='guangzhou',
+        max_length=200,
+    )
+
     DISTRICTS = (
         ("baiyun", "白云区"),
         ("tianhe", "天河区"),
@@ -17,6 +30,8 @@ class TaxBureau(models.Model):
         ("luogang", "萝岗区"),
         ("huadu", "花都区"),
         ("develop", "开发区"),
+        ("xiangzhou", "香洲区"),
+        ("gongbei", "拱北区"),
         ("other", "其它地区"))
 
     district = models.CharField(
@@ -45,8 +60,17 @@ class TaxBureau(models.Model):
         max_length=255,
         verbose_name="地址")
 
+    full_title = models.CharField(
+        blank=True,
+        max_length=255,
+        verbose_name="全称"
+    )
+
     def __str__(self):
-        return "{0} {1} {2}".format(
+        return self.full_title
+
+    def _full_title(self):
+        return "".join(
             self.get_bureau_display(),
             self.get_district_display(),
             self.office)
@@ -54,3 +78,8 @@ class TaxBureau(models.Model):
     class Meta:
         verbose_name = '税局'
         verbose_name_plural = '税局'
+
+    def save(self, *args, **kwargs):
+        if not self.full_title:
+            self.full_title = self._full_title()
+        super(TaxBureau, self).save(*args, **kwargs)
