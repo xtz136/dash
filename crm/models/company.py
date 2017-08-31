@@ -25,7 +25,7 @@ class Company(models.Model):
                             default='limited', max_length=20)
     registered_capital = models.DecimalField(
         help_text="单位 (万元)",
-        verbose_name="注册资金", max_digits=20, decimal_places=0)
+        verbose_name="注册资金", max_digits=19, decimal_places=2)
     address = models.CharField(verbose_name="地址", blank=True, max_length=255)
     op_address = models.CharField(
         verbose_name="实际经营地址",
@@ -212,6 +212,7 @@ class Company(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
+        self.title = self.title.strip()
         self.has_custom_info = any([
             self.custom_entry_no, self.custom_expired_at,
             self.custom_org_code, self.custom_register_no,
