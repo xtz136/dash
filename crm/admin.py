@@ -94,7 +94,7 @@ class CompanyModelAdmin(admin.ModelAdmin):
             'fields': (
                 'national_tax_office',
                 'national_tax_id',
-                'national_tax_sn',
+                # 'national_tax_sn',
                 'national_tax_staff',
                 'national_tax_phone')
         }),
