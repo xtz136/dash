@@ -118,4 +118,5 @@ MEDIA_URL = "/media/"
 STATIC_URL = '/static/'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = 3600  # 1hour
 from .local import *
