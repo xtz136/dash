@@ -65,8 +65,8 @@ class Company(models.Model):
 
     national_tax_id = models.CharField(
         verbose_name="国税登记证", blank=True, max_length=255)
-    national_tax_sn = models.CharField(
-        verbose_name="国税编码", blank=True, max_length=255)
+    # national_tax_sn = models.CharField(
+    #     verbose_name="国税编码", blank=True, max_length=255)
     national_tax_staff = models.CharField(
         verbose_name="国税专管员", blank=True, max_length=255)
 
