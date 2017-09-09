@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.shortcuts import redirect
 
 from crm.models import Company, ShareHolder, Contract, TaxBureau
+from crm.actions import export_as_csv_action
 from .shareholder import ShareHolderInline
 
 from .common import AttachmentInline
