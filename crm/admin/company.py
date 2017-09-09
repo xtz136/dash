@@ -1,32 +1,14 @@
 from django.contrib import admin
 from django.db import models
-from django.forms import Textarea
 from django.db.models import Q
 from django.utils.safestring import mark_safe
-from django.contrib.contenttypes.admin import GenericTabularInline
 from django.utils import timezone
 from django.shortcuts import redirect
 
-from .models import Company, People, ShareHolder, Contract, TaxBureau
-from core.models import Attachment
+from crm.models import Company, ShareHolder, Contract, TaxBureau
+from .shareholder import ShareHolderInline
 
-
-class AttachmentInline(GenericTabularInline):
-    model = Attachment
-    extra = 2
-
-
-class ShareHolderInline(admin.TabularInline):
-    model = ShareHolder
-    raw_id_fields = ('people', )
-    extra = 1
-    formfield_overrides = {
-        models.TextField: {'widget': Textarea(attrs={'rows': 1, 'cols': 40})}
-    }
-
-
-class ContractInline(admin.TabularInline):
-    model = Contract
+from .common import AttachmentInline
 
 
 class HasExpiredFilter(admin.SimpleListFilter):
@@ -70,7 +52,7 @@ class CompanyModelAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ('公司信息', {
-            'fields': ('title', 'type', 'registered_capital',
+            'fields': ('title', 'alias', 'type', 'registered_capital',
                        'industry', 'taxpayer_type', 'scale_size',
                        'credit_rating',
                        'address', 'op_address',
@@ -79,6 +61,10 @@ class CompanyModelAdmin(admin.ModelAdmin):
                        'registered_at', 'expired_at',
                        'status', 'ic_status', 'has_customer_files',
                        'note')
+        }),
+
+        ('电子税局信息', {
+            'fields': ('tax_bureau_username', 'tax_bureau_password')
         }),
 
         ('银行信息', {
@@ -147,63 +133,3 @@ class CompanyModelAdmin(admin.ModelAdmin):
     def make_ic_status_invalid(self, request, queryset):
         queryset.update(ic_status='abnormal')
     make_ic_status_invalid.short_description = "修改工商状态为异常"
-
-
-@admin.register(Contract)
-class ContractModelAdmin(admin.ModelAdmin):
-    date_hierarchy = 'created'
-    empty_value_display = '-空的-'
-    actions_on_top = False
-    actions_on_bottom = True
-    list_filter = ('status', 'subscription_type')
-    list_display = ('company_title', 'title', 'salesman_name',
-                    'subscription_type', 'status', 'amount',
-                    'receivables', 'received', 'view_arrearage',
-                    'duration',
-                    'created', 'expired_at')
-    search_fields = ('company_title', 'salesmane_name')
-    inlines = [
-        AttachmentInline
-    ]
-
-    def view_arrearage(self, obj):
-        if obj.arrearage > 0:
-            return mark_safe('<span style="color:red">-{0}</span>'
-                             .format(obj.arrearage))
-        return obj.arrearage
-    view_arrearage.short_description = '欠款'
-
-
-@admin.register(People)
-class PeopleModelAdmin(admin.ModelAdmin):
-    search_fields = ('name', 'sfz', 'phone')
-    list_display = ('name', 'sfz', 'phone')
-    inlines = [
-        AttachmentInline
-    ]
-
-
-@admin.register(ShareHolder)
-class ShareHolderModelAdmin(admin.ModelAdmin):
-    search_fields = ('company_title', 'people_name', 'info')
-    list_display = ('company_title', 'people_name',
-                    'phone', 'role', 'view_share', 'is_contactor')
-    raw_id_fields = ('people', 'company')
-    list_filter = ('is_contactor', )
-
-    def view_share(self, obj):
-        return '{:.2f}%'.format(obj.share)
-    view_share.short_description = '占比'
-
-
-@admin.register(TaxBureau)
-class TaxBureauModelAdmin(admin.ModelAdmin):
-    search_fields = ('full_title', 'address')
-    list_filter = ('district', 'bureau')
-    list_display = ('full_title', 'bureau', 'view_map')
-
-    def view_map(self, obj):
-        return mark_safe(
-            "<a href='http://api.map.baidu.com/geocoder?address={0}&output=html' target='_blank'>查看地图</a>"
-            .format(obj.full_title))
-    view_map.short_description = '查看地图信息'
