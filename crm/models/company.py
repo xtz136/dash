@@ -19,15 +19,15 @@ class Company(models.Model):
         verbose_name="电子税务局密码",  blank=True, max_length=255)
 
     TYPES = (
-        ('limited', '有限责任公司'),
-        ('individual', '个体工商户'),
-        ('stock', '股份有限公司'),
-        ('partnership', '合伙企业(有限合伙)'),
-        ('collective', '集体所有制(股份合作)'),
-        ('sole', '个人独资企业'),
+        ('有限责任公司', '有限责任公司'),
+        ('个体工商户', '个体工商户'),
+        ('股份有限公司', '股份有限公司'),
+        ('合伙企业(有限合伙)', '合伙企业(有限合伙)'),
+        ('集体所有制(股份合作)', '集体所有制(股份合作)'),
+        ('个人独资企业', '个人独资企业')
     )
     type = models.CharField(verbose_name="公司类型", choices=TYPES,
-                            default='limited', max_length=20)
+                            default='有限责任公司', max_length=20)
     registered_capital = models.DecimalField(
         help_text="单位 (万元)",
         verbose_name="注册资金", max_digits=19, decimal_places=2)
@@ -60,12 +60,19 @@ class Company(models.Model):
     business_license = models.CharField(
         verbose_name="营业执照号", blank=True, max_length=255)
 
-    INDUSTRIES = (('auto_parts', '汽配'), ('food', '餐饮'), ('clother', '服装'),
-                  ('wholesale', '批发业'), ('arch', '建筑'), ('shopping', '商贸'),
-                  ('ad', '广告'), ('property', '房地产'), ('service', '服务业'),
-                  ('trade', '贸易'), ('entertainment', '娱乐'))
+    INDUSTRIES = [('汽配', '汽配'),
+                  ('餐饮', '餐饮'),
+                  ('服装', '服装'),
+                  ('批发业', '批发业'),
+                  ('建筑', '建筑'),
+                  ('商贸', '商贸'),
+                  ('广告', '广告'),
+                  ('房地产', '房地产'),
+                  ('服务业', '服务业'),
+                  ('贸易', '贸易'),
+                  ('娱乐', '娱乐')]
     industry = models.CharField(
-        choices=INDUSTRIES, verbose_name="所属行业", default='auto_parts',
+        choices=INDUSTRIES, verbose_name="所属行业", default='汽配',
         max_length=50)
 
     national_tax_id = models.CharField(
@@ -108,12 +115,15 @@ class Company(models.Model):
 
     # social security
     ss_bank = models.CharField(
-        verbose_name="社保开户银行", help_text="不填，默认为纳税开户行", blank=True, max_length=255)
+        verbose_name="社保开户银行",
+        help_text="不填，默认为纳税开户行", blank=True, max_length=255)
     ss_account = models.CharField(
-        verbose_name="代扣社保账号", help_text="不填，默认为纳税账号", blank=True, max_length=255)
+        verbose_name="代扣社保账号",
+        help_text="不填，默认为纳税账号", blank=True, max_length=255)
     ss_number = models.CharField(
         verbose_name="单位社保号", blank=True, max_length=255)
-    ss_date = models.DateField(verbose_name="社保购买时间", blank=True, null=True)
+    ss_date = models.DateField(
+        verbose_name="社保购买时间", blank=True, null=True)
 
     # 个体户
     individual_bank = models.CharField(
@@ -125,17 +135,17 @@ class Company(models.Model):
         blank=True,
         max_length=255)
 
-    CREDIT_RATINGS = (('good', '良好'), ('bad', '差'), ('very_bad', '很差'))
+    CREDIT_RATINGS = [('良好', '良好'), ('一般', '一般'), ('差', '差'), ('很差', '很差')]
     credit_rating = models.CharField(
         verbose_name="信用评级",
-        default='good',
+        default='良好',
         max_length=10,
         choices=CREDIT_RATINGS)
 
-    TAXPAYER_TYPES = (('general', '一般纳税人'), ('small', '小规模纳税人'))
+    TAXPAYER_TYPES = [('一般纳税人', '一般纳税人'), ('小规模纳税人', '小规模纳税人')]
     taxpayer_type = models.CharField(
         verbose_name="纳税人类型",
-        default='small',
+        default='小规模纳税人',
         max_length=10,
         choices=TAXPAYER_TYPES)
 
@@ -171,23 +181,21 @@ class Company(models.Model):
         blank=True)
 
     # 规模
-    SCALE_SIZES = (('small', '小型企业 (50人以内)'),
-                   ('medium', '中型企业 (50-200人)'),
-                   ('large', '大型企业 (200人以上)'))
+    SCALE_SIZES = [('小型企业', '小型企业'), ('中型企业人)', '中型企业人)'), ('大型企业)', '大型企业)')]
     scale_size = models.CharField(
-        verbose_name="规模", default='small', max_length=10, choices=SCALE_SIZES)
+        verbose_name="规模", default='小型企业', max_length=10, choices=SCALE_SIZES)
 
-    STATUS = (('valid', '有效'),
-              ('invalid', '无效'))
+    STATUS = [('有效', '有效'), ('无效', '无效')]
     status = models.CharField(
         help_text="无效状态，不再为客户提供服务",
-        verbose_name="状态", default='valid', max_length=10, choices=STATUS)
+        verbose_name="状态", default='有效',
+        max_length=10, choices=STATUS)
 
-    IC_STATUS = (('normal', '正常'),
-                 ('abnormal', '经营异常'))
+    IC_STATUS = [('正常', '正常'), ('经营异常', '经营异常')]
     ic_status = models.CharField(
         help_text="经营异常: 已被工商局列入经营异常名录",
-        verbose_name="工商状态", default='normal', max_length=10, choices=IC_STATUS)
+        verbose_name="工商状态",
+        default='正常', max_length=10, choices=IC_STATUS)
 
     # 附件
     website = models.CharField(verbose_name="公司网站", blank=True, max_length=255)
