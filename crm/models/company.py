@@ -1,7 +1,12 @@
+from collections import OrderedDict
+
+from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User
 from django.db import models
 from django.contrib.contenttypes.fields import GenericRelation
 from django.utils import timezone
+
+from jsonfield import JSONField
 
 from core.models import Attachment
 from .tax import TaxBureau
@@ -213,6 +218,12 @@ class Company(models.Model):
         verbose_name='是否有存放客户资料',
         help_text='详细的资料信息请在备注里添加',
         default=False)
+    shareholder_info = JSONField(
+        verbose_name="股东信息",
+        default='{}',
+        null=False,
+        load_kwargs={'object_pairs_hook': OrderedDict}
+    )
     attachments = GenericRelation(Attachment)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -220,6 +231,12 @@ class Company(models.Model):
     @property
     def has_expired(self):
         return self.expired_at and (self.expired_at <= timezone.now().date())
+
+    def show_shareholder_info(self):
+        t = ''.join(['<li>{role} {name} {phone}</li>'.format(**o)
+                     for o in self.shareholder_info])
+        return mark_safe('<ul>{0}</ul>'.format(t))
+    show_shareholder_info.short_description = '股东信息'
 
     def __str__(self):
         return self.title

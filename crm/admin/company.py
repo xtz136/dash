@@ -38,12 +38,13 @@ class CompanyModelAdmin(admin.ModelAdmin):
                     'salesman', 'bookkeeper',
                     'taxpayer_type', 'view_expired_at',
                     'legal_people',
-                    'status', 'download')
+                    'status', 'download', 'show_shareholder_info')
     list_filter = ('status', 'ic_status', HasExpiredFilter,
                    'type', 'salesman', 'industry',
                    'has_custom_info', 'has_customer_files',
                    'taxpayer_type', 'scale_size')
-    search_fields = ('title', 'note', 'address', 'op_address')
+    search_fields = ('title', 'note', 'address',
+                     'op_address', 'shareholder_info')
     inlines = [
         # ContractInline,
         ShareHolderInline,
@@ -117,7 +118,7 @@ class CompanyModelAdmin(admin.ModelAdmin):
     def changelist_view(self, request, extra_context=None):
         referrer = request.META.get('HTTP_REFERER', '')
 
-        get_param = 'status__exact=valid'
+        get_param = 'status__exact=有效'
         if len(request.GET) == 0 and '?' not in referrer:
             return redirect("{url}?{get_parms}".format(
                 url=request.path,
@@ -128,9 +129,9 @@ class CompanyModelAdmin(admin.ModelAdmin):
     actions = ['make_invalid', 'make_ic_status_invalid']
 
     def make_invalid(self, request, queryset):
-        queryset.update(status='invalid')
+        queryset.update(status='无效')
     make_invalid.short_description = "修改所选的公司状态为无效"
 
     def make_ic_status_invalid(self, request, queryset):
-        queryset.update(ic_status='abnormal')
+        queryset.update(ic_status='经营异常')
     make_ic_status_invalid.short_description = "修改工商状态为异常"

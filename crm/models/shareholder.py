@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.signals import post_save
 
 from .people import People
 from .company import Company
@@ -8,11 +9,9 @@ class ShareHolder(models.Model):
     people = models.ForeignKey(People, verbose_name="客户")
     company = models.ForeignKey(Company, verbose_name="公司")
 
-    ROLES = (
-        ('legal', '法人'), ('share', '股东')
-    )
+    ROLES = [('法人', '法人'), ('股东', '股东')]
     role = models.CharField(verbose_name="身份", choices=ROLES,
-                            default="share", max_length=10)
+                            default="股东", max_length=10)
     share = models.FloatField(verbose_name="占比", default=.1)
     is_contactor = models.BooleanField(default=False,
                                        verbose_name="主要联系人")
@@ -42,3 +41,20 @@ class ShareHolder(models.Model):
         unique_together = ('people', 'company')
         verbose_name = "股份持有人"
         verbose_name_plural = "股份持有人"
+
+
+def update_shareholder_info(sender, instance, created, raw, **kwargs):
+    info = [
+        {
+            'role': obj.role,
+            'phone': obj.phone,
+            'name': obj.people_name,
+            'share': obj.share,
+            'info': obj.info,
+            'is_contactor': obj.is_contactor,
+        } for obj in sender.objects.filter(company=instance.company)]
+    instance.company.shareholder_info = info or []
+    instance.company.save()
+
+
+post_save.connect(update_shareholder_info, sender=ShareHolder)
