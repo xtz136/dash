@@ -220,7 +220,7 @@ class Company(models.Model):
         default=False)
     shareholder_info = JSONField(
         verbose_name="股东信息",
-        default='{}',
+        default=[],
         null=False,
         load_kwargs={'object_pairs_hook': OrderedDict}
     )
