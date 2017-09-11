@@ -38,7 +38,7 @@ class CompanyModelAdmin(admin.ModelAdmin):
                     'salesman', 'bookkeeper',
                     'taxpayer_type', 'view_expired_at',
                     'legal_people',
-                    'status', 'download', 'show_shareholder_info')
+                    'status', 'show_shareholder_info')
     list_filter = ('status', 'ic_status', HasExpiredFilter,
                    'type', 'salesman', 'industry',
                    'has_custom_info', 'has_customer_files',
