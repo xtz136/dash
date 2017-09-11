@@ -1,5 +1,5 @@
 Django==1.11.3
 mysqlclient==1.3.10
 raven==6.1.0
-django-export-action
+-e git+https://github.com/fgmacedo/django-export-action.git#egg=django-export-action
 jsonfield==2.0.2
