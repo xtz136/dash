@@ -2,12 +2,14 @@ import csv
 from io import TextIOWrapper
 from collections import namedtuple
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django import forms
+from django.urls import reverse
+from django.contrib.admin.views.decorators import staff_member_required
 
 from .forms import CompanyForm
-from .models import Company, People, ShareHolder
+from .models import Company, People, ShareHolder, Item, ItemBorrowingRecord
 
 
 class ImportFileForm(forms.Form):
@@ -123,3 +125,62 @@ def import_model_view(request):
                     request.FILES['file'].file, encoding=request.encoding))
     form = ImportFileForm()
     return render(request, 'crm/import.html', {'form': form})
+
+
+from django.http import HttpResponse
+
+from django.contrib.contenttypes.models import ContentType
+from django import forms
+from django.forms import Form, ModelForm, modelformset_factory
+
+
+class ItemBorrowingRecordModelForm(ModelForm):
+    note = forms.CharField(label='备注', required=False)
+
+    class Meta:
+        fields = ('item', 'reason', 'qty', 'note')
+        model = ItemBorrowingRecord
+
+
+def get_formset(extra):
+    return modelformset_factory(
+        ItemBorrowingRecord,
+        ItemBorrowingRecordModelForm, extra=extra)
+
+
+class BorrowerForm(forms.Form):
+    borrower = forms.ModelChoiceField(queryset=User.objects.all(), label="借用人")
+
+
+@staff_member_required
+def borrow_view(request):
+    ids = request.GET.get("ids").split(",")
+    ct = request.GET.get("ct")
+    model = ContentType.objects.get_for_id(ct).model_class()
+    Formset = get_formset(len(ids))
+    if request.method == "GET":
+        formset = Formset(queryset=ItemBorrowingRecord.objects.none(),
+                          initial=[{
+                              'item': item,
+                              'borrower': request.user,
+                              'lender': request.user}
+            for item in model.objects.filter(id__in=ids)])
+        context = {
+            'borrower_form': BorrowerForm(),
+            'formset': formset
+        }
+
+        return render(request, "crm/borrow.html", context=context)
+    formset = Formset(request.POST)
+    borrower = User.objects.get(pk=request.POST['borrower'])
+    if formset.is_valid():
+        instances = formset.save()
+        for obj in instances:
+            obj.lender = request.user
+            obj.borrower = borrower
+            obj.save()
+        return redirect(reverse("admin:crm_itemborrowingrecord_changelist"))
+    context = {
+        'formset': formset
+    }
+    return render(request, "crm/borrow.html", context=context)

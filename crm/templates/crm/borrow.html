@@ -1,0 +1,53 @@
+{% extends 'admin/base_site.html' %}
+{% load i18n admin_urls admin_static %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script src="{% static "admin/js/vendor/jquery/jquery.min.js" %}"></script>
+    <script src="{% static "admin/js/jquery.init.js" %}"></script>
+    <script type="text/javascript">
+        (function ($) {
+            window.show_fields = function (event, model_ct, field, path) {
+                var check_default = $("#check_all").is(':checked');
+                $(event.target.parentNode).load(location.pathname, $.param({
+                    related: 1,
+                    model_ct: model_ct,
+                    field: field,
+                    path: path,
+                    check_default: check_default
+                }));
+            };
+            $(function () {
+                $("#check_all").click(function () {
+                    var checked = !!this.checked;
+                    $('.check_field').prop('checked', checked);
+                });
+            });
+        }(django.jQuery));
+
+    </script>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+<form method="post" action="">
+    <label>借用人: </label>
+    {{ borrower_form.borrower }}
+    {% csrf_token %}
+    {{ formset.management_form }}
+        {% for form in formset %}
+        <div>
+
+         {{ form.as_table }}
+        </div>
+          {% endfor %}
+    <input type="submit" value="提交" />
+</form>
+
+{% endblock %}
