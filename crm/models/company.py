@@ -193,13 +193,13 @@ class Company(models.Model):
     STATUS = [('有效', '有效'), ('无效', '无效')]
     status = models.CharField(
         help_text="无效状态，不再为客户提供服务",
-        verbose_name="状态", default='有效',
+        verbose_name="代理状态", default='有效',
         max_length=10, choices=STATUS)
 
     IC_STATUS = [('正常', '正常'), ('经营异常', '经营异常')]
     ic_status = models.CharField(
         help_text="经营异常: 已被工商局列入经营异常名录",
-        verbose_name="工商状态",
+        verbose_name="经营状态",
         default='正常', max_length=10, choices=IC_STATUS)
 
     # 附件
