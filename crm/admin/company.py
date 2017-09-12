@@ -37,14 +37,14 @@ class CompanyModelAdmin(admin.ModelAdmin):
     list_display = ('title', 'industry',
                     'salesman', 'bookkeeper',
                     'taxpayer_type', 'view_expired_at',
-                    'legal_people',
-                    'status', 'show_shareholder_info')
+                    # 'legal_people',
+                    'status', 'show_contactor_info', 'show_shareholder_info')
     list_filter = ('status', 'ic_status', HasExpiredFilter,
                    'type', 'salesman', 'industry',
                    'has_custom_info', 'has_customer_files',
                    'taxpayer_type', 'scale_size')
     search_fields = ('title', 'note', 'address',
-                     'op_address', 'shareholder_info')
+                     'op_address', 'legal_people')
     inlines = [
         # ContractInline,
         ShareHolderInline,
@@ -62,7 +62,7 @@ class CompanyModelAdmin(admin.ModelAdmin):
                        'website', 'salesman', 'bookkeeper',
                        'registered_at', 'expired_at',
                        'status', 'ic_status', 'has_customer_files',
-                       'note')
+                       'contactor', 'contactor_phone', 'note')
         }),
 
         ('电子税局信息', {

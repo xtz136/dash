@@ -224,6 +224,10 @@ class Company(models.Model):
         null=False,
         load_kwargs={'object_pairs_hook': OrderedDict}
     )
+    contactor = models.CharField(
+        verbose_name='负责人', max_length=255, blank=True)
+    contactor_phone = models.CharField(
+        verbose_name='联系电话', max_length=255, blank=True)
     attachments = GenericRelation(Attachment)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -237,6 +241,10 @@ class Company(models.Model):
                      for o in self.shareholder_info])
         return mark_safe('<ul>{0}</ul>'.format(t))
     show_shareholder_info.short_description = '股东信息'
+
+    def show_contactor_info(self):
+        return mark_safe('{0} {1}'.format(self.contactor, self.contactor_phone))
+    show_contactor_info.short_description = '联系人信息'
 
     def __str__(self):
         return self.title
