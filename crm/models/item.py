@@ -110,7 +110,7 @@ class ItemBorrowingRecord(models.Model):
         default=False, verbose_name="是否已归还")
     return_date = models.DateTimeField(
         blank=True, null=True, verbose_name="归还日期")
-    note = models.TextField(verbose_name="备注", blank=True)
+    note = models.CharField(verbose_name="备注", blank=True, max_length=255)
     borrower = models.ForeignKey(settings.AUTH_USER_MODEL,
                                  null=True, blank=True,
                                  verbose_name="借用人")

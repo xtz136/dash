@@ -8,7 +8,7 @@ from crm.models import Item, ItemBorrowingRecord
 @admin.register(Item)
 class ItemModelAdmin(admin.ModelAdmin):
     list_display = ("company_title", "item", "qty", "status",
-                    "borrower",  "created", "return_date")
+                    "borrower",  "created", "return_date", "note")
     search_fields = ("item", "company_title")
     list_filter = ("item", "status")
     raw_id_fields = ("company", )
