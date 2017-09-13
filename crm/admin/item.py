@@ -9,7 +9,7 @@ from crm.models import Item, ItemBorrowingRecord
 class ItemModelAdmin(admin.ModelAdmin):
     list_display = ("company_title", "item", "qty", "status",
                     "borrower",  "created", "return_date", "note")
-    search_fields = ("item", "company_title")
+    search_fields = ("item", "company_title", "note")
     list_filter = ("item", "status")
     raw_id_fields = ("company", )
     actions = ('borrow', )
