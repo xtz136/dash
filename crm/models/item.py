@@ -47,9 +47,9 @@ class Item(models.Model):
 
     borrower = models.ForeignKey(
         settings.AUTH_USER_MODEL, verbose_name="借给", blank=True, null=True)
-    return_date = models.DateField(
+    return_date = models.DateTimeField(
         verbose_name="归还日期", null=True, blank=True)
-    created = models.DateField(verbose_name="创建于", auto_now_add=True)
+    created = models.DateTimeField(verbose_name="接收时间", auto_now_add=True)
     status_updated = models.DateTimeField(
         null=True, blank=True, editable=False, verbose_name="状态更新于")
     note = models.TextField(verbose_name="备注", blank=True)

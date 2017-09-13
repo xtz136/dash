@@ -7,10 +7,11 @@ from crm.models import Item, ItemBorrowingRecord
 
 @admin.register(Item)
 class ItemModelAdmin(admin.ModelAdmin):
-    list_display = ("company_title", "item", "qty", "status",
-                    "borrower",  "created", "return_date", "note")
+    list_display = ("company_title", "item", "note", "qty", "status",
+                    "borrower",  "created", "return_date")
     search_fields = ("item", "company_title", "note")
     list_filter = ("item", "status")
+    date_hierarchy = "created"
     raw_id_fields = ("company", )
     actions = ('borrow', )
 
