@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 ]
 ADMIN_VIEW_PERMISSION_MODELS = [
     'auth.User',
-    'crm.company',
+    'crm.Company',
 ]
 
 MIDDLEWARE = [
