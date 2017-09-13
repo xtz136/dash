@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_view_permission',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +41,9 @@ INSTALLED_APPS = [
     'core',
     'crm',
     'security'
+]
+ADMIN_VIEW_PERMISSION_MODELS = [
+    'auth.User',
 ]
 
 MIDDLEWARE = [

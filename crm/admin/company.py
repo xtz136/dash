@@ -5,6 +5,8 @@ from django.utils.safestring import mark_safe
 from django.utils import timezone
 from django.shortcuts import redirect
 
+from admin_view_permission.admin import AdminViewPermissionModelAdmin
+
 from crm.models import Company, ShareHolder, Contract, TaxBureau
 from crm.actions import export_as_csv_action
 from .shareholder import ShareHolderInline
@@ -33,7 +35,7 @@ class HasExpiredFilter(admin.SimpleListFilter):
 
 
 @admin.register(Company)
-class CompanyModelAdmin(admin.ModelAdmin):
+class CompanyModelAdmin(AdminViewPermissionModelAdmin):
     list_display = ('title', 'industry',
                     'salesman', 'bookkeeper',
                     'taxpayer_type', 'view_expired_at',
