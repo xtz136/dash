@@ -44,11 +44,13 @@ class Company(models.Model):
 
     # 主要业务负责人
     salesman = models.ForeignKey(User,
+                                 on_delete=models.SET_NULL,
                                  verbose_name="业务员",
                                  blank=True, null=True,
                                  related_name="customers")
     # 管账人
     bookkeeper = models.ForeignKey(User,
+                                   on_delete=models.SET_NULL,
                                    verbose_name="记账会计",
                                    blank=True, null=True,
                                    related_name="accounts")
@@ -89,6 +91,7 @@ class Company(models.Model):
 
     national_tax_office = models.ForeignKey(
         TaxBureau,
+        on_delete=models.SET_NULL,
         related_name='national_taxes',
         verbose_name="国税所属分局",
         limit_choices_to={'bureau': 'national'},
@@ -106,6 +109,7 @@ class Company(models.Model):
         verbose_name="地税专管员", blank=True, max_length=255)
     local_tax_office = models.ForeignKey(
         TaxBureau,
+        on_delete=models.SET_NULL,
         related_name='local_taxes',
         limit_choices_to={'bureau': 'local'},
         verbose_name="地税所属分局",
