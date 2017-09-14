@@ -4,3 +4,4 @@ raven==6.1.0
 -e git+https://github.com/fgmacedo/django-export-action.git#egg=django-export-action
 jsonfield==2.0.2
 -e git+https://github.com/yxy/django-admin-view-permission.git#egg=django-admin-view-permission
+-e git+https://github.com/yxy/django-ajax-selects.git#egg=django-ajax-selects

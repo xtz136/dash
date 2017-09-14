@@ -44,15 +44,18 @@ class Item(models.Model):
     status = models.CharField(verbose_name="状态",
                               default="寄存",
                               max_length=200, choices=STATUS)
-
+    receiver = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        blank=True, null=True, verbose_name="签收者", related_name="receiver")
     borrower = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name="借给", blank=True, null=True)
+        settings.AUTH_USER_MODEL,
+        verbose_name="借给", blank=True, null=True)
     return_date = models.DateTimeField(
         verbose_name="归还日期", null=True, blank=True)
-    created = models.DateTimeField(verbose_name="接收时间", auto_now_add=True)
+    created = models.DateTimeField(verbose_name="签收时间", auto_now_add=True)
     status_updated = models.DateTimeField(
         null=True, blank=True, editable=False, verbose_name="状态更新于")
-    note = models.TextField(verbose_name="备注", blank=True)
+    note = models.CharField(verbose_name="备注", blank=True, max_length=255)
 
     def __str__(self):
         return '{0} {1}'.format(self.company_title, self.item)
@@ -63,7 +66,7 @@ class Item(models.Model):
             self.borrower = user
             self.set_status("借出")
 
-    def make_return(self):
+    def return_back(self):
         """归还"""
         self.borrower = None
         self.return_date = now()

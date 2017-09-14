@@ -37,11 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'raven.contrib.django.raven_compat',
+    'ajax_select',
     'export_action',
     'core',
     'crm',
     'security'
 ]
+
 ADMIN_VIEW_PERMISSION_MODELS = [
     'auth.User',
     'crm.Company',
@@ -64,7 +66,7 @@ ROOT_URLCONF = 'dash.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,4 +127,14 @@ STATIC_URL = '/static/'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 3600  # 1hour
+INTERNAL_IPS = '127.0.0.1'
 from .local import *
+
+if DEBUG:
+    INSTALLED_APPS += ('debug_toolbar',)
+    MIDDLEWARE += [
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    ]
+    DEBUG_TOOLBAR_CONFIG = {
+        'JQUERY_URL': '//cdn.bootcss.com/jquery/2.2.4/jquery.min.js'
+    }

@@ -1,14 +1,18 @@
 import csv
+import hashlib
 from io import TextIOWrapper
 from collections import namedtuple
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django import forms
 from django.urls import reverse
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.contenttypes.models import ContentType
 
-from .forms import CompanyForm
+from django import forms
+from django.forms import Form, ModelForm, modelformset_factory
+
+from .forms import ItemForm
 from .models import Company, People, ShareHolder, Item, ItemBorrowingRecord
 
 
@@ -127,13 +131,6 @@ def import_model_view(request):
     return render(request, 'crm/import.html', {'form': form})
 
 
-from django.http import HttpResponse
-
-from django.contrib.contenttypes.models import ContentType
-from django import forms
-from django.forms import Form, ModelForm, modelformset_factory
-
-
 class ItemBorrowingRecordModelForm(ModelForm):
     note = forms.CharField(label='备注', required=False)
 
@@ -184,3 +181,57 @@ def borrow_view(request):
         'formset': formset
     }
     return render(request, "crm/borrow.html", context=context)
+
+
+@staff_member_required
+def item_bulk_add_view(request):
+    Formset = modelformset_factory(
+        Item, fields=("item", "qty", "note"), extra=3)
+
+    if request.method == "GET":
+        formset = Formset(queryset=Item.objects.none())
+        company_form = ItemForm(initial={'receiver': request.user.username})
+    else:
+        formset = Formset(request.POST)
+        company_form = ItemForm(request.POST)
+        if formset.is_valid() and company_form.is_valid():
+            instances = formset.save(commit=False)
+            company = Company.objects.get(
+                title=company_form.cleaned_data['company'])
+            receiver = User.objects.get(
+                username=company_form.cleaned_data['receiver'])
+            for obj in instances:
+                obj.company = company
+                obj.receiver = receiver
+                obj.save()
+            if request.POST.get("gen_receipt", False):
+                return redirect(reverse("crm:item-receipt") + "?ids={0}".format(
+                    ",".join(map(lambda x: str(x.pk), instances))))
+            return redirect(reverse("admin:crm_item_changelist"))
+    context = {'opts': {'app_label': 'crm',
+                        'model_name': 'Item', 'verbose_name': '客户资料'},
+               'site_header': '',
+               "formset": formset,
+               "company_form": company_form}
+    return render(request, "crm/item_bulk_add.html", context=context)
+
+
+@staff_member_required
+def item_receipt_view(request):
+    """生成收据"""
+    ids = request.GET.get("ids", "").split(',')
+    items = Item.objects.filter(id__in=ids)
+    company = ""
+    created = ""
+    receiver = ""
+    if items:
+        company = items[0].company_title
+        created = items[0].created.strftime("%Y年%m月%d日")
+        receiver = items[0].receiver.username
+    sn = int(hashlib.sha256(",".join(sorted(ids)).encode(
+        'utf-8')).hexdigest(), 16) % 10 ** 4
+    total = sum([item.qty for item in items])
+    context = {"items": items,
+               "sn": sn, "total": total, "company": company,
+               "created": created, "receiver": receiver}
+    return render(request, "crm/item_receipt.html", context=context)

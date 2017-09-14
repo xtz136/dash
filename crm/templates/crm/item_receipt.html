@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>收据</title>
+
+    <style>
+        .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+            font-size: 16px;
+            line-height: 24px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #555;
+        }
+
+        .invoice-box table {
+            width: 100%;
+            line-height: inherit;
+            text-align: left;
+        }
+
+        .invoice-box table td {
+            padding: 5px;
+            vertical-align: top;
+        }
+
+        .invoice-box table tr td:nth-child(3) {
+            text-align: right;
+        }
+
+        .invoice-box table tr.top table td {
+            padding-bottom: 20px;
+        }
+
+        .invoice-box table tr.top table td.title {
+            font-size: 45px;
+            line-height: 45px;
+            color: #333;
+        }
+
+        .invoice-box table tr.information table td {
+            padding-bottom: 40px;
+        }
+
+        .invoice-box table tr.heading td {
+            background: #eee;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        .invoice-box table tr.details td {
+            padding-bottom: 20px;
+        }
+
+        .invoice-box table tr.item td {
+            border-bottom: 1px solid #eee;
+        }
+
+        .invoice-box table tr.item.last td {
+            border-bottom: none;
+        }
+
+        .invoice-box table tr.total td:nth-child(3) {
+            border-top: 2px solid #eee;
+            font-weight: bold;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .invoice-box table tr.top table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+
+            .invoice-box table tr.information table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+        }
+
+        @media print {
+            .printbutton {
+                visibility: hidden;
+            }
+        }
+
+        .right  {
+            position: relative;
+            right: 0px;
+            width: 300px;
+            border: 3px solid #73AD21;
+            padding: 10px;
+        }
+        .logo {
+            position: relative;
+            float: right;
+            right: 0;
+            top: 0;
+        }
+        .center {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .heading  {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="invoice-box">
+        <div class="logo">
+           <img style="width: 96px; height: auto;" src="http://crm.yuejiewl.com/media/upload_path/logowds_ObMU4ZB.png" alt="">
+        </div>
+        <div style="clear: both;"></div>
+        <h2 class="heading">证件签收收据</h2>
+        <p>今收到来自 <strong>{{ company }} </strong>证件共 {{ total }} 件。</p>
+        <table cellpadding="0" cellspacing="0">
+            <tr class="heading">
+                <td>
+                    物品名称
+                </td>
+                <td>
+                    详细信息
+                </td>
+                <td>
+                    数量
+                </td>
+            </tr>
+
+            {% for item in items %}
+            <tr class="item{% if forloop.last %} last{% endif %}">
+                <td>
+                    {{ item.item }}
+                </td>
+
+                <td>
+                    {{ item.note }}
+                </td>
+                <td>
+                    {{ item.qty }}
+                </td>
+            </tr>
+            {% endfor %}
+
+            <tr class="total">
+                <td></td>
+                <td></td>
+                <td>
+                    共: {{ total }} 件
+                </td>
+            </tr>
+        </table>
+    <p> 交接人:  </p>
+    <p> 签收人: {{ receiver }} </p>
+    <p> 签收日期: {{ created }} </p>
+
+    <input class="printbutton" type="button" onClick="window.print('invoice-box')" value="打印" />
+    </div>
+</body>
+
+</html>

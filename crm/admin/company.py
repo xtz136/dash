@@ -34,6 +34,9 @@ class HasExpiredFilter(admin.SimpleListFilter):
         return queryset
 
 
+from ajax_select import make_ajax_form
+
+
 @admin.register(Company)
 class CompanyModelAdmin(AdminViewPermissionModelAdmin):
     list_display = ('title', 'industry',
@@ -52,7 +55,12 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
         ShareHolderInline,
         AttachmentInline
     ]
-    raw_id_fields = ('national_tax_office', 'local_tax_office')
+    form = make_ajax_form(Company, {
+        'national_tax_office': 'national_tax',
+        'local_tax_office': 'local_tax',
+        'bookkeeper': 'user',
+        'salesman': 'user',
+    })
 
     fieldsets = (
         ('公司信息', {
