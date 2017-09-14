@@ -200,7 +200,6 @@ def item_bulk_add_view(request):
             return redirect(reverse("admin:crm_item_changelist"))
     context = {'opts': {'app_label': 'crm',
                         'model_name': 'Item', 'verbose_name': '客户资料'},
-               'site_header': '',
                "formset": formset,
                "company_form": company_form}
     return render(request, "crm/item_bulk_add.html", context=context)
