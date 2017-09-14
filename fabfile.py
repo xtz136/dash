@@ -1,5 +1,5 @@
 import os
-from fabric.api import run, env, cd
+from fabric.api import run, env, cd, local
 
 env.use_ssh_config = True
 env.hosts = ['yj']
@@ -30,6 +30,7 @@ def install_depends():
 
 
 def publish():
+    local('git push yj')
     with cd(APP_ROOT):
         install_depends()
         migrate()
