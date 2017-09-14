@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:'悦海财税' }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <img style="height: 50px;" src="http://crm.yuejiewl.com/media/upload_path/logowds_ObMU4ZB.png" />
+        {{ site_header|default:'悦海财税' }}
+    </a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
