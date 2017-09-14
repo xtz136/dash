@@ -18,9 +18,9 @@ User.add_to_class("__str__", lambda u: "{0}{1}".format(
 class Company(models.Model):
     title = models.CharField(verbose_name="企业名称", unique=True, max_length=255)
     alias = models.CharField(verbose_name="字号", blank=True, max_length=255)
-    tax_bureau_username = models.CharField(
+    tax_username = models.CharField(
         verbose_name="电子税务局用户名", blank=True, max_length=255)
-    tax_bureau_password = models.CharField(
+    tax_password = models.CharField(
         verbose_name="电子税务局密码",  blank=True, max_length=255)
 
     TYPES = (

@@ -76,7 +76,7 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
         }),
 
         ('电子税局信息', {
-            'fields': ('tax_bureau_username', 'tax_bureau_password')
+            'fields': ('tax_username', 'tax_password')
         }),
 
         ('银行信息', {
