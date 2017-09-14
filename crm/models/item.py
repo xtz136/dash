@@ -5,7 +5,15 @@ from django.conf import settings
 from crm.models import Company
 
 
+class AvailableManager(models.Manager):
+    def get_queryset(self):
+        return super(AvailableManager, self).get_queryset().filter(status='寄存')
+
+
 class Item(models.Model):
+    objects = models.Manager()
+    available = AvailableManager()
+
     company = models.ForeignKey(Company, verbose_name="公司")
     company_title = models.CharField(
         editable=False, blank=True, max_length=255)
@@ -56,6 +64,9 @@ class Item(models.Model):
     status_updated = models.DateTimeField(
         null=True, blank=True, editable=False, verbose_name="状态更新于")
     note = models.CharField(verbose_name="备注", blank=True, max_length=255)
+
+    def can_borrow(self):
+        return self.status == "寄存"
 
     def __str__(self):
         return '{0} {1}'.format(self.company_title, self.item)

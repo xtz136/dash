@@ -18,7 +18,7 @@ class CompanyForm(ModelForm):
                   "local_tax_office,local_tax_id,local_tax_sn,local_tax_staff,local_tax_phone").split(',')
 
 
-class ItemForm(forms.Form):
+class ItemAutoSelectForm(forms.Form):
     company = AutoCompleteField('company',
                                 label="公司",
                                 attrs={"size": 50},
@@ -31,5 +31,9 @@ class ItemForm(forms.Form):
 
 class UserAutoSelectForm(forms.Form):
     user = AutoCompleteField(
-        'user', label='用户', required=True
-    )
+        'user', label='用户', required=True)
+
+
+class BorrowerAutoSelectForm(forms.Form):
+    user = AutoCompleteField(
+        'user', label='借用者', required=True)

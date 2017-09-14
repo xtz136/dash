@@ -12,7 +12,7 @@ from django.contrib.contenttypes.models import ContentType
 from django import forms
 from django.forms import Form, ModelForm, modelformset_factory
 
-from .forms import ItemForm
+from .forms import ItemAutoSelectForm, BorrowerAutoSelectForm
 from .models import Company, People, ShareHolder, Item, ItemBorrowingRecord
 
 
@@ -131,51 +131,40 @@ def import_model_view(request):
     return render(request, 'crm/import.html', {'form': form})
 
 
-class ItemBorrowingRecordModelForm(ModelForm):
-    note = forms.CharField(label='备注', required=False)
-
-    class Meta:
-        fields = ('item', 'reason', 'qty', 'note')
-        model = ItemBorrowingRecord
-
-
-def get_formset(extra):
-    return modelformset_factory(
-        ItemBorrowingRecord,
-        ItemBorrowingRecordModelForm, extra=extra)
-
-
-class BorrowerForm(forms.Form):
-    borrower = forms.ModelChoiceField(queryset=User.objects.all(), label="借用人")
-
-
 @staff_member_required
 def borrow_view(request):
     ids = request.GET.get("ids").split(",")
     ct = request.GET.get("ct")
     model = ContentType.objects.get_for_id(ct).model_class()
-    Formset = get_formset(len(ids))
+    Formset = modelformset_factory(
+        ItemBorrowingRecord,
+        fields=('item', 'reason', 'qty', 'note'),
+        extra=len(ids))
     if request.method == "GET":
-        formset = Formset(queryset=ItemBorrowingRecord.objects.none(),
-                          initial=[{
-                              'item': item,
-                              'borrower': request.user,
-                              'lender': request.user}
-            for item in model.objects.filter(id__in=ids)])
+        borrower_form = BorrowerAutoSelectForm()
+        formset = Formset(
+            queryset=ItemBorrowingRecord.objects.none(),
+            initial=[{'item': item}
+                     for item in model.available.filter(id__in=ids)])
         context = {
-            'borrower_form': BorrowerForm(),
+            'borrower_form': borrower_form,
             'formset': formset
         }
 
         return render(request, "crm/borrow.html", context=context)
+    borrower_form = BorrowerAutoSelectForm(request.POST)
     formset = Formset(request.POST)
-    borrower = User.objects.get(pk=request.POST['borrower'])
-    if formset.is_valid():
-        instances = formset.save()
+
+    if formset.is_valid() and borrower_form.is_valid():
+        instances = formset.save(commit=False)
+        borrower = User.objects.get(
+            username=borrower_form.cleaned_data['user'])
         for obj in instances:
-            obj.lender = request.user
-            obj.borrower = borrower
-            obj.save()
+            if obj.item.can_borrow():
+                obj.lender = request.user
+                obj.borrower = borrower
+                obj.save()
+                obj.item.borrow_to(borrower)
         return redirect(reverse("admin:crm_itemborrowingrecord_changelist"))
     context = {
         'formset': formset
@@ -190,10 +179,11 @@ def item_bulk_add_view(request):
 
     if request.method == "GET":
         formset = Formset(queryset=Item.objects.none())
-        company_form = ItemForm(initial={'receiver': request.user.username})
+        company_form = ItemAutoSelectForm(
+            initial={'receiver': request.user.username})
     else:
         formset = Formset(request.POST)
-        company_form = ItemForm(request.POST)
+        company_form = ItemAutoSelectForm(request.POST)
         if formset.is_valid() and company_form.is_valid():
             instances = formset.save(commit=False)
             company = Company.objects.get(
