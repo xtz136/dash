@@ -8,6 +8,13 @@
       "type": "shell",
       "command": "fab publish",
       "problemMatcher": []
+    },
+    {
+      "taskName": "migrate",
+      "type": "shell",
+      "command":
+        "/bin/sh /Users/yxy/.virtualenvs/crm/bin/python ./manage.py makemigrations ; /Users/yxy/.virtualenvs/crm/bin/python ./manage.py migrate ",
+      "problemMatcher": []
     }
   ]
 }

@@ -1,0 +1,16 @@
+{
+  "apps": [
+    {
+      "name": "dash",
+      "cwd": "/data/apps/dash",
+      "script": ".venv/bin/gunicorn -w 10 dash.wsgi",
+      "watch": true,
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "env_production": {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}
