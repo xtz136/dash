@@ -133,6 +133,20 @@ class Company(models.Model):
         verbose_name="单位社保号", blank=True, max_length=255)
     ss_date = models.DateField(
         verbose_name="社保购买时间", blank=True, null=True)
+    ss_declared = models.BooleanField(
+        verbose_name="是否有社保申报",
+        default=False)
+
+    TAX_DISKS = (
+        ("百望", "百望"),
+        ("航天", "航天")
+    )
+    tax_disk = models.CharField(
+        max_length=100,
+        verbose_name="税控盘", choices=TAX_DISKS, blank=True)
+
+    tax_declared_begin = models.DateField(
+        verbose_name="税务申报开始时间", blank=True, null=True)
 
     # 个体户
     individual_bank = models.CharField(

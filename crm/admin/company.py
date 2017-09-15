@@ -64,14 +64,21 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
 
     fieldsets = (
         ('公司信息', {
-            'fields': ('title', 'alias', 'type', 'registered_capital',
-                       'industry', 'taxpayer_type', 'scale_size',
-                       'credit_rating',
+            'fields': ('title', 'alias',
+
+                       ('industry', 'type', 'scale_size'),
+                       ('credit_rating', 'taxpayer_type'),
+
+                       'status',
+                       'ic_status',
+                       'tax_disk',
+                       ('ss_declared', 'has_customer_files'),
+                       'registered_capital',
                        'address', 'op_address',
                        'uscc', 'business_license',
                        'website', 'salesman', 'bookkeeper',
                        'registered_at', 'expired_at',
-                       'status', 'ic_status', 'has_customer_files',
+                       'tax_declared_begin',
                        'contactor', 'contactor_phone', 'note')
         }),
 
