@@ -134,9 +134,9 @@ class Company(models.Model):
     ss_date = models.DateField(
         verbose_name="社保购买时间", blank=True, null=True)
     ss_declared = models.CharField(
-        verbose_name="是否有社保申报",
+        verbose_name="社保申报",
         choices=(
-            ("有", "有"),
+            ("社保", "社保"),
             ("无", "无"),
         ),
         max_length=10,
