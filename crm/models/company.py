@@ -147,6 +147,9 @@ class Company(models.Model):
 
     tax_declared_begin = models.DateField(
         verbose_name="税务申报开始时间", blank=True, null=True)
+    special_taxes = models.CharField(
+        verbose_name="特别税种", blank=True, max_length=255
+    )
 
     # 个体户
     individual_bank = models.CharField(

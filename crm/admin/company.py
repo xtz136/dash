@@ -60,6 +60,7 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
         'local_tax_office': 'local_tax',
         'bookkeeper': 'user',
         'salesman': 'user',
+        'special_taxes': 'special_taxes',
     })
 
     fieldsets = (
@@ -79,6 +80,7 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
                        'website', 'salesman', 'bookkeeper',
                        'registered_at', 'expired_at',
                        'tax_declared_begin',
+                       'special_taxes',
                        'contactor', 'contactor_phone', 'note')
         }),
 
