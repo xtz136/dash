@@ -29,11 +29,16 @@ def install_depends():
     run('{0} install -r ./requirements.txt'.format(PIP))
 
 
+def restart():
+    run('pm2 restart dash')
+
+
 def publish():
     local('git push yj')
     with cd(APP_ROOT):
         install_depends()
         migrate()
+        restart()
 
 
 def reload():
