@@ -128,6 +128,7 @@ STATIC_URL = '/static/'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 3600  # 1hour
 INTERNAL_IPS = '127.0.0.1'
+AJAX_SELECT_BOOTSTRAP = False  # 不使用默认的cdn地址
 from .local import *
 
 if DEBUG:

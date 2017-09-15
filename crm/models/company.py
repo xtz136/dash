@@ -133,9 +133,15 @@ class Company(models.Model):
         verbose_name="单位社保号", blank=True, max_length=255)
     ss_date = models.DateField(
         verbose_name="社保购买时间", blank=True, null=True)
-    ss_declared = models.BooleanField(
+    ss_declared = models.CharField(
         verbose_name="是否有社保申报",
-        default=False)
+        choices=(
+            ("有", "有"),
+            ("无", "无"),
+        ),
+        max_length=10,
+        blank=True,
+        default="无")
 
     TAX_DISKS = (
         ("百望", "百望"),
