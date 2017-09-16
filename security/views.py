@@ -18,6 +18,6 @@ def update_whitelist_view(request):
     ip = get_client_ip(request)
     token = request.GET.get("token", "")
     if token == settings.UPDATE_WHITELIST_TOKEN:
-        WhiteList.objects.create(ip=ip)
+        WhiteList.objects.get_or_create(ip=ip)
         return HttpResponse("ok")
     return HttpResponseForbidden("you are not welcome.")
