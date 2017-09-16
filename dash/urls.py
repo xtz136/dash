@@ -6,6 +6,7 @@ from django.conf import settings
 
 urlpatterns = [
     url(r'^crm/', include('crm.urls', namespace="crm")),
+    url(r'^security/', include('security.urls', namespace="security")),
     url(r'^admin/', admin.site.urls),
     url(r'^ajax_select/', include(ajax_select_urls)),
     url(r'^export_action/',
