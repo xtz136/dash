@@ -42,6 +42,9 @@ class UserLookup(LookupChannel):
     def format_item_display(self, item):
         return u"<span class='user'>%s</span>" % item.username
 
+    def get_result(self, obj):
+        return obj.username
+
 
 @register("special_taxes")
 class SpecialTaxesLookup(LookupChannel):
