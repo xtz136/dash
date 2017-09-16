@@ -99,7 +99,14 @@
         }
         .logo {
             position: relative;
+            float: left;
+            left: 0;
+            top: 0;
+        }
+        .sn {
+            position: relative;
             float: right;
+            margin-top: 32px;
             right: 0;
             top: 0;
         }
@@ -117,12 +124,14 @@
 
 <body>
     <div class="invoice-box">
-        <div class="logo">
+        <div>
            <img style="width: 96px; height: auto;" src="http://crm.yuejiewl.com/media/upload_path/logowds_ObMU4ZB.png" alt="">
+            <div class="sn">收据编号： YH{{ sn }}</div>
         </div>
+
         <div style="clear: both;"></div>
         <h2 class="heading">证件签收收据</h2>
-        <p>今收到来自 <strong>{{ company }} </strong>证件共 {{ total }} 件。</p>
+        <p><strong>悦海财税 </strong> 今收到来自 <strong>{{ company }} </strong>证件共 {{ total }} 件。</p>
         <table cellpadding="0" cellspacing="0">
             <tr class="heading">
                 <td>
@@ -159,9 +168,9 @@
                 </td>
             </tr>
         </table>
-    <p> 交接人:  </p>
-    <p> 签收人: {{ receiver }} </p>
-    <p> 签收日期: {{ created }} </p>
+    <p>交接人:  </p>
+    <p>签收人: {{ receiver }} </p>
+    <p>签收日期: {{ created }} </p>
 
     <input class="printbutton" type="button" onClick="window.print('invoice-box')" value="打印" />
     </div>

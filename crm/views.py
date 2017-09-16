@@ -218,7 +218,7 @@ def item_receipt_view(request):
         created = items[0].created.strftime("%Y年%m月%d日")
         receiver = items[0].receiver.username
     sn = int(hashlib.sha256(",".join(sorted(ids)).encode(
-        'utf-8')).hexdigest(), 16) % 10 ** 4
+        'utf-8')).hexdigest(), 16) % 10 ** 8
     total = sum([item.qty for item in items])
     context = {"items": items,
                "sn": sn, "total": total, "company": company,
