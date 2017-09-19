@@ -4,3 +4,4 @@ dash/local.py
 htmlcov
 .coverage
 .cache
+*.pyc

@@ -1,12 +1,18 @@
 from django.conf.urls import include, url
-from crm.views import (import_model_view,
-                       borrow_view,
-                       item_bulk_add_view,
-                       item_receipt_view)
+from django.contrib.auth import views as auth_views
+from . import views
 
 urlpatterns = [
-    url(r'^import/$', import_model_view, name='import-model-view'),
-    url(r'^borrow/$', borrow_view, name='item-borrow'),
-    url(r'^item/bulk_add/$', item_bulk_add_view, name='item-bulk-add'),
-    url(r'^item/receipt/$', item_receipt_view, name='item-receipt'),
+    url(r'^accounts/register/$',
+        views.UserCreateView.as_view(),
+        name='register'),
+    url(r'^accounts/login/$',
+        auth_views.LoginView.as_view(template_name='crm/login.html'),
+        name='login'),
+    url(r'^accounts/logout/$',
+        auth_views.LogoutView.as_view(template_name='crm/logout.html'),
+        name='logout'),
+    url(r'^dashboard/$', views.DashboardView.as_view(), name='dashboard'),
+    url(r'^library/$', views.LibraryView.as_view(), name='library'),
+    url(r'^customer/$', views.CustomerView.as_view(), name='customer'),
 ]

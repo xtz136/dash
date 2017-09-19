@@ -1,0 +1,35 @@
+{% extends "crm/base.html" %}
+{% block title %}注册{% endblock %}
+{% block body_class %} class="gray-bg"{% endblock %}
+
+{% block body %}
+
+<div class="middle-box text-center loginscreen animated fadeInDown">
+  <div>
+    <div>
+      <h1 class="logo-name">YH</h1>
+
+    </div>
+    <h3>悦海财税管理后台</h3>
+
+    <form class="m-t" role="form" action="" method="POST">
+      {% csrf_token %}
+      <div class="form-group{% if form.errors.username %} has-error{% endif %}">
+        <input type="text" name="username" class="form-control" placeholder="注册的用户名" required="">
+        <p class="text-danger">{{ form.errors.username }}</p>
+      </div>
+      <div class="form-group{% if form.errors.password1 %} has-error{% endif %}">
+        <input type="password" name="password1" class="form-control" placeholder="密码" required="">
+        <p class="text-danger">{{ form.errors.password1 }}</p>
+      </div>
+      <div class="form-group{% if form.errors.password2 %} has-error{% endif %}">
+        <input type="password" name="password2" class="form-control" placeholder="确认密码" required="">
+        <p class="text-danger">{{ form.errors.password2 }}</p>
+      </div>
+      <button type="submit" class="btn btn-primary block full-width m-b">注册</button>
+
+    </form>
+    <p class="m-t"> <small>yxy &copy; 2017</small> </p>
+  </div>
+</div>
+{% endblock %}
