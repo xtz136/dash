@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.contenttypes.models import ContentType
-
+from django.views.generic import TemplateView
 from django import forms
 from django.forms import Form, ModelForm, modelformset_factory
 
@@ -224,3 +224,14 @@ def item_receipt_view(request):
                "sn": sn, "total": total, "company": company,
                "created": created, "receiver": receiver}
     return render(request, "crm/item_receipt.html", context=context)
+
+
+class HomeView(TemplateView):
+    template_name = 'crm/home.html'
+
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+class DashboardView(LoginRequiredMixin, TemplateView):
+    template_name = 'crm/dashboard.html'

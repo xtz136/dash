@@ -1,0 +1,6 @@
+-r ./common.txt
+pytest
+pytest-django
+pytest-cov
+-e git+git://github.com/mverteuil/pytest-ipdb.git#egg=pytest-ipdbmixer==5.6.6
+mixer==5.6.6
