@@ -37,11 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'raven.contrib.django.raven_compat',
+
     'ajax_select',
     'export_action',
+    'django_tables2',
+    'django_filters',
+    'widget_tweaks',
+
     'core',
     'crm',
-    'security'
+    'security',
+    'api',
 ]
 
 ADMIN_VIEW_PERMISSION_MODELS = [

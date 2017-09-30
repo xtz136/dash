@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from jsonfield import JSONField
 
 
 import socket
@@ -40,12 +41,13 @@ class WhiteList(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    preference = JSONField(default={}, verbose_name='偏好设置', blank=True)
     is_manager = models.BooleanField(
         verbose_name='管理员状态', help_text="管理员登陆不受ip限制", default=False)
 
 
 def save_profile(sender, instance, created, **kwargs):
-    if created:
+    if not hasattr(instance, 'profile') or created:
         profile = Profile.objects.create(user=instance)
 
 
