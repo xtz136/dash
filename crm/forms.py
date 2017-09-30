@@ -37,3 +37,15 @@ class UserAutoSelectForm(forms.Form):
 class BorrowerAutoSelectForm(forms.Form):
     user = AutoCompleteField(
         'user', label='借用者', required=True)
+
+
+class SearchForm(forms.Form):
+    q = forms.CharField()
+
+
+class PreferenceForm(forms.Form):
+    company_list_fields = forms.MultipleChoiceField(
+        required=False,
+        choices=[(f.name, f.verbose_name.title())
+                 for f in Company._meta.fields if hasattr(f, 'verbose_name')]
+    )

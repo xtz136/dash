@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.contenttypes.models import ContentType
 from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django import forms
 from django.forms import Form, ModelForm, modelformset_factory
 
@@ -228,9 +229,6 @@ def item_receipt_view(request):
 
 class HomeView(TemplateView):
     template_name = 'crm/home.html'
-
-
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class DashboardView(LoginRequiredMixin, TemplateView):

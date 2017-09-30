@@ -23,18 +23,18 @@ class TestDashboardView:
         assert resp.status_code == 200, '管理员能访问'
 
 
-class TestCustomerView:
+class TestClientView:
     def test_anonymous(self):
-        req = RequestFactory().get('/customer/')
+        req = RequestFactory().get('/client/')
         req.user = AnonymousUser()
-        resp = views.CustomerView.as_view()(req)
+        resp = views.ClientView.as_view()(req)
         assert resp.status_code == 302, '匿名不能访问'
 
     def test_superuser(self):
-        req = RequestFactory().get('/dashboard/')
+        req = RequestFactory().get('/client/')
         user = mixer.blend('auth.User', is_superuser=True)
         req.user = user
-        resp = views.CustomerView.as_view()(req)
+        resp = views.ClientView.as_view()(req)
         assert resp.status_code == 200, '管理员能访问'
 
 

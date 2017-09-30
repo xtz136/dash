@@ -1,4 +1,4 @@
 from .dashboard import *
 from .library import *
-from .customer import *
+from .client import *
 from .auth import *
