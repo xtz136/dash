@@ -77,7 +77,7 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
                        'registered_at', 'expired_at',
                        'tax_declared_begin',
                        'special_taxes',
-                       'contactor', 'contactor_phone', 'note')
+                       'contactor', 'contactor_phone', 'tags', 'note')
         }),
 
         ('电子税局信息', {

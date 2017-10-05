@@ -1,0 +1,88 @@
+{% extends "crm/base.html" %}
+{% load static django_tables2 widget_tweaks crispy_forms_tags %}
+
+{% block extra_css %} 
+<link href="{% static 'css/plugins/datapicker/datepicker3.css' %}" rel="stylesheet">
+<link href="{% static 'css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css' %}" rel="stylesheet">
+{% endblock extra_css %}
+
+{% block title %} {{ object.title }} {% endblock title %} 
+
+
+{% block page_heading %}
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-sm-4">
+    <h2>{{ object.title }}</h2>
+    <ol class="breadcrumb">
+      <li>
+        <a href="/client/">客户列表</a>
+      </li>
+      <li class="active">
+        <strong>{{ object.title }}</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+  <div class="col-lg-9">
+      <div class="ibox">
+        <div class="ibox-content">
+          {% crispy form %}
+        </div>
+      </div>
+  </div>
+
+  <div class="col-lg-3">
+    <div class="wrapper wrapper-content project-manager">
+      <h5>客户资料</h5>
+      <ul class="list-unstyled project-files">
+        <li><a href=""><i class="fa fa-file"></i> 2017第三季度合同.docx</a></li>
+        <li><a href=""><i class="fa fa-file-picture-o"></i> 法人身份证原件.jpg</a></li>
+        {% for file in object.files %}
+          <li><a href=""><i class="fa fa-file"></i> Project_document.docx</a></li>
+          <li><a href=""><i class="fa fa-file-picture-o"></i> Logo_zender_company.jpg</a></li>
+          <li><a href=""><i class="fa fa-stack-exchange"></i> Email_from_Alex.mln</a></li>
+          <li><a href=""><i class="fa fa-file"></i> Contract_20_11_2014.docx</a></li>
+        {% endfor %}
+      </ul>
+
+      <div class="m-t-md">
+        <a href="#" class="btn btn-xs btn-primary">添加文件</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %} 
+
+{% block extra_js %}
+<!-- Data picker -->
+{{ search_form.media }}
+<script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.js' %}"></script>
+
+<!-- Tags Input -->
+<script src="{% static 'js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js' %}"></script>
+
+<script>
+
+$(document).ready(function(){
+  // date fields
+  ["registered_at", "expired_at", 
+   "custom_registered_at", "custom_expired_at",
+   "tax_declared_begin", "ss_date"].map((field) => {
+    $("#id_" + field).datepicker({
+      format: "yyyy/mm/dd",
+    });
+  });
+
+  $(".tagsinput").tagsinput({
+    tagClass: 'label label-primary'
+  });
+
+});  
+</script>
+{% endblock extra_js %}

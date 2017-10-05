@@ -1,0 +1,186 @@
+{% extends "crm/base.html" %}
+{% load static django_tables2 widget_tweaks %}
+
+{% block extra_css %}{% endblock extra_css %}
+
+{% block title %} {{ object.title }} {% endblock title %} 
+
+
+{% block page_heading %}
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-sm-4">
+    <h2>{{ object.title }}</h2>
+    <ol class="breadcrumb">
+      <li>
+        <a href="/client/">客户列表</a>
+      </li>
+      <li class="active">
+        <strong>{{ object.title }}</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+  <div class="col-lg-9">
+      <div class="ibox">
+          <div class="ibox-title">
+              <div class="m-b-md">
+                <a href="{% url 'crm:client-edit' object.pk %}" class="btn btn-white btn-xs pull-right">编辑</a>
+                <h5>{{ object.title }}</h5>
+              </div>
+          </div>
+        <div class="ibox-content">
+
+          <div class="row">
+            <div class="col-lg-12">
+
+              <dl class="dl-horizontal">
+                <dt>代理状态:</dt>
+                <dd><span class="label {% if object.status == '有效' %}label-primary {% else %}label-danger{% endif %}">{{ object.status }}</span></dd>
+              </dl>
+            </div>
+          </div>
+
+<div class="row">
+  <div class="form-horizontal">
+    {% for field in form %}
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+
+      <div class="col-sm-10">
+          <p class="form-control-static">{% if field.value %}{{ field.value }}{% else %}{% endif %}</p>
+      </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+    {% endfor %}
+</div>
+</div>
+
+
+          <div class="row m-t-sm">
+            <div class="col-lg-12">
+              <div class="panel blank-panel">
+                <div class="panel-heading">
+                  <div class="panel-options">
+                    <ul class="nav nav-tabs">
+                      <li class="active"><a href="#tab-1" data-toggle="tab">客户留言</a></li>
+                      <li class=""><a href="#tab-2" data-toggle="tab">最近活动</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="panel-body">
+
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="tab-1">
+                      <div class="feed-activity-list">
+                        <div class="feed-element">
+                          <a href="#" class="pull-left">
+                              <img alt="image" class="img-circle" src="img/a2.jpg">
+                            </a>
+                          <div class="media-body ">
+                            <small class="pull-right">2小时前</small>
+                            <strong>张某</strong> <br>
+                            <small class="text-muted">今天 下午 2:10</small>
+                            <div class="well">
+                                这里可以在公众号后台留言
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="tab-pane" id="tab-2">
+
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>状态</th>
+                            <th>内容</th>
+                            <th>开始时间</th>
+                            <th>结束时间</th>
+                            <th>备注</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <span class="label label-primary"><i class="fa fa-check"></i> 完成</span>
+                            </td>
+                            <td>
+                                7月结款
+                            </td>
+                            <td>
+                                2017-07-01
+                            </td>
+                            <td>
+                                2017-07-02
+                            </td>
+                            <td>
+                              <p class="small">
+                                  结款
+                              </p>
+                            </td>
+
+                        </tbody>
+                      </table>
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="col-lg-3">
+    <div class="wrapper wrapper-content project-manager">
+      <h4>客户简介</h4>
+      <img src="img/zender_logo.png" class="img-responsive">
+      <p class="small">
+        {{ object.title }}是一家.... {{ object.desc }}
+      </p>
+
+      <h5>标签</h5>
+      <ul class="tag-list" style="padding: 0">
+        {% for tag in object.tags.all %}
+        <li><a href=""><i class="fa fa-tag"></i> {{ tag }}</a></li>
+        {% endfor %}
+      </ul>
+      <div class="clearfix"></div>
+
+      <h5>客户资料</h5>
+      <ul class="list-unstyled project-files">
+        <li><a href=""><i class="fa fa-file"></i> 2017第三季度合同.docx</a></li>
+        <li><a href=""><i class="fa fa-file-picture-o"></i> 法人身份证原件.jpg</a></li>
+        {% for file in object.files %}
+          <li><a href=""><i class="fa fa-file"></i> Project_document.docx</a></li>
+          <li><a href=""><i class="fa fa-file-picture-o"></i> Logo_zender_company.jpg</a></li>
+          <li><a href=""><i class="fa fa-stack-exchange"></i> Email_from_Alex.mln</a></li>
+          <li><a href=""><i class="fa fa-file"></i> Contract_20_11_2014.docx</a></li>
+        {% endfor %}
+      </ul>
+
+      <div class="m-t-md">
+        <a href="#" class="btn btn-xs btn-primary">添加文件</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %} 
+
+{% block extra_js %}
+
+{{ search_form.media }}
+
+{% endblock extra_js %}

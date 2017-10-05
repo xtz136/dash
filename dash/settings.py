@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django_tables2',
     'django_filters',
     'widget_tweaks',
+    'taggit',
+    'crispy_forms',
 
     'core',
     'crm',
@@ -137,6 +139,7 @@ INTERNAL_IPS = '127.0.0.1'
 AJAX_SELECT_BOOTSTRAP = False  # 不使用默认的cdn地址
 UPDATE_WHITELIST_TOKEN = "abcdefg"
 LOGIN_REDIRECT_URL = '/dashboard/'
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 from .local import *
 

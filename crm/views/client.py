@@ -1,5 +1,6 @@
 import operator
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView, UpdateView
+from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from functools import reduce
@@ -59,3 +60,23 @@ class ClientView(SearchViewMixin, LoginRequiredMixin, TemplateView):
         context['pre_form'] = pre_form
         context['nav_item'] = 'client'
         return context
+
+
+class ClientDetailView(LoginRequiredMixin, DetailView):
+    model = models.Company
+    template_name = "crm/client_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(ClientDetailView, self).get_context_data(**kwargs)
+        context['form'] = forms.CompanyModelForm(
+            instance=context['object'], readonly=True)
+        return context
+
+
+class ClientEditView(LoginRequiredMixin, UpdateView):
+    model = models.Company
+    template_name = "crm/client_edit.html"
+    form_class = forms.CompanyModelForm
+
+    def get_success_url(self):
+        return reverse('crm:client-detail', kwargs={'pk': self.object.pk})

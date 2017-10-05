@@ -9,3 +9,5 @@ gunicorn==19.7.1
 Pillow==4.2.1
 django-widget-tweaks==1.4.1
 jsonfield==2.0.2
+django-taggit==0.22.1
+django-crispy-forms==1.6.1

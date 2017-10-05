@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.contrib.contenttypes.fields import GenericRelation
 from django.utils import timezone
+from taggit.managers import TaggableManager
 
 from jsonfield import JSONField
 
@@ -256,6 +257,7 @@ class Company(models.Model):
         verbose_name="股东信息",
         default=[],
         null=False,
+        editable=False,
         load_kwargs={'object_pairs_hook': OrderedDict}
     )
     contactor = models.CharField(
@@ -265,6 +267,7 @@ class Company(models.Model):
     attachments = GenericRelation(Attachment)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    tags = TaggableManager(blank=True)
 
     @property
     def has_expired(self):

@@ -5,10 +5,12 @@
 <link href="{% static 'css/plugins/dataTables/datatables.min.css' %}" rel="stylesheet">
 <link href="{% static 'css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css' %}" rel="stylesheet">
 <link href="{% static 'css/plugins/chosen/bootstrap-chosen.css' %}" rel="stylesheet">
+
+<link href="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet">
+
 {% endblock extra_css %}
 
 {% block title %} 客户管理 {% endblock title %} 
-{% block active_client %} class="active"{% endblock %} 
 
 {% block content %}
 <div class="row">
@@ -64,13 +66,17 @@
   </div>
 
 </div>
-{% endblock content %} {% block extra_js %}
+{% endblock content %} 
+
+{% block extra_js %}
 <script src="{% static 'js/plugins/dataTables/datatables.min.js' %}"></script>
 <!-- iCheck -->
 <script src="{% static 'js/plugins/iCheck/icheck.min.js' %}"></script>
 <!-- Chosen -->
 <script src="{% static 'js/plugins/chosen/chosen.jquery.js' %}"></script>
 
+<!-- JQuery-UI -->
+<script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 <script>
   $(document).ready(function() {
@@ -109,6 +115,7 @@
     $("#search_btn").click(event => {
       $("#search_form").submit();
     });
+
     
     $('.my-table').DataTable({
       language: {
@@ -148,6 +155,9 @@
 
     });
 
+
+
   });
 </script>
+{{ search_form.media }}
 {% endblock extra_js %}
