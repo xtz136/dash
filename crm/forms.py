@@ -2,26 +2,13 @@ from django.forms import ModelForm
 from django import forms
 
 from taggit.forms import TagField
-from ajax_select.fields import AutoCompleteField
+from ajax_select.fields import AutoCompleteField, AutoCompleteSelectField
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field, Fieldset, Row
 from crispy_forms.bootstrap import PrependedText
 
 
 from crm.models import Company
-
-
-class CompanyForm(ModelForm):
-    class Meta:
-        model = Company
-        fields = ("title,type,registered_capital,industry,"
-                  "taxpayer_type,scale_size,credit_rating,address,"
-                  "op_address,uscc,business_license,website,salesman,"
-                  "bookkeeper,registered_at,expired_at,status,ss_number,"
-                  "ss_date,taxpayer_bank,taxpayer_account,ss_bank,ss_account,"
-                  "individual_bank,individual_account,national_tax_office,"
-                  "national_tax_id,national_tax_staff,national_tax_phone,"
-                  "local_tax_office,local_tax_id,local_tax_sn,local_tax_staff,local_tax_phone").split(',')
 
 
 class ItemAutoSelectForm(forms.Form):
@@ -58,11 +45,16 @@ class PreferenceForm(forms.Form):
 
 
 class CompanyModelForm(forms.ModelForm):
-    # tags = TagField()
 
     class Meta:
         model = Company
         fields = '__all__'
+
+    local_tax_office = AutoCompleteSelectField(
+        'local_tax', label='地税局', show_help_text=False)
+
+    national_tax_office = AutoCompleteSelectField(
+        'national_tax', label='国税局', show_help_text=False)
 
     helper = FormHelper()
     helper.form_class = 'form-horizontal'
