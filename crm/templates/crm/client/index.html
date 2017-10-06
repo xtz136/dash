@@ -40,7 +40,9 @@
       <div class="ibox-title">
         <h5>客户列表</h5>
         <div class="ibox-tools">
-          <a href="#" class="btn btn-primary btn-xs">+新增客户</a>
+        {% if has_add_perm %}
+          <a href="{% url 'crm:client-create' %}" class="btn btn-primary btn-xs">+新增客户</a>
+        {% endif %}
         </div>
       </div>
       <div class="ibox-content">

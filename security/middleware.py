@@ -33,13 +33,7 @@ class RestrictIPMiddleware(object):
             profile = getattr(user, 'profile', None)
             if not profile or not profile.is_manager:
                 ip = get_ip(request)
-                is_banned = False
-                try:
-                    WhiteList.objects.get(ip=ip)
-                except WhiteList.DoesNotExist:
-                    is_banned = True
-
-                if is_banned:
+                if not WhiteList.objects.filter(ip=ip).exists():
                     logout(request)
                     return HttpResponseForbidden(
                         "您当前的IP地址： {} 不允许登陆".format(ip))

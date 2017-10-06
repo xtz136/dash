@@ -14,9 +14,13 @@ urlpatterns = [
         name='logout'),
     url(r'^dashboard/$', views.DashboardView.as_view(), name='dashboard'),
     url(r'^library/$', views.LibraryView.as_view(), name='library'),
-    url(r'^client/$', views.ClientView.as_view(), name='client'),
+
+    url(r'^client/$',
+        views.ClientView.as_view(), name='client'),
     url(r'^client/(?P<pk>\d+)/$',
         views.ClientDetailView.as_view(), name='client-detail'),
     url(r'^client/(?P<pk>\d+)/edit/$',
         views.ClientEditView.as_view(), name='client-edit'),
+    url(r'^client/create/$',
+        views.ClientCreateView.as_view(), name='client-create'),
 ]

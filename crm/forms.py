@@ -46,10 +46,10 @@ class PreferenceForm(forms.Form):
 
 class CompanyModelForm(forms.ModelForm):
     local_tax_office = AutoCompleteSelectField(
-        'local_tax', label='地税局', show_help_text=False)
+        'local_tax', label='地税局', show_help_text=False, required=False)
 
     national_tax_office = AutoCompleteSelectField(
-        'national_tax', label='国税局', show_help_text=False)
+        'national_tax', label='国税局', show_help_text=False, required=False)
 
     class Meta:
         model = Company
