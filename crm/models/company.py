@@ -204,7 +204,7 @@ class Company(models.Model):
         null=True)
 
     custom_expired_at = models.DateField(
-        verbose_name="有效期",
+        verbose_name="海关有效期至",
         null=True,
         blank=True)
 
