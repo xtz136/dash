@@ -50,8 +50,8 @@ class ClientView(SearchViewMixin, LoginRequiredMixin, TemplateView):
 
         context['search_form'] = forms.SearchForm(data=self.request.GET)
         extra_columns = [(i, Column()) for i in
-                         self.request.user.profile.preference.get('company_list_fields', [
-                             'id', 'title', 'status'])]
+                         self.request.user.profile.preference.get(
+                             'company_list_fields', ['status'])]
         context['table'] = tables.CompanyTable(
             objects, extra_columns=extra_columns)
         pre_form = forms.PreferenceForm(

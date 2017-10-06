@@ -49,20 +49,12 @@ class Company(models.Model):
                                  verbose_name="业务员",
                                  blank=True, null=True,
                                  related_name="customers")
-
-    salesman_username = models.CharField(
-        verbose_name='业务员',
-        max_length=200, blank=True, editable=False)
     # 管账人
     bookkeeper = models.ForeignKey(User,
                                    on_delete=models.SET_NULL,
                                    verbose_name="记账会计",
                                    blank=True, null=True,
                                    related_name="accounts")
-    bookkeeper_username = models.CharField(
-        verbose_name='记账员',
-        max_length=200, blank=True, editable=False)
-
     # unified social credit code
     uscc = models.CharField(verbose_name="社会统一信用代码号",
                             blank=True, max_length=255)
@@ -301,12 +293,6 @@ class Company(models.Model):
 
         if not self.ss_account:
             self.ss_account = self.taxpayer_account
-
-        if self.bookkeeper:
-            self.bookkeeper_username = self.bookkeeper.username
-
-        if self.salesman:
-            self.salesman_username = self.salesman.username
 
         if not self.legal_people:
             try:
