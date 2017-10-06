@@ -37,6 +37,10 @@
           <i class="fa fa-handshake-o"></i>
           <span class="nav-label">客户管理</span> 
         </a>
+        <ul class="nav nav-second-level collapse in" style="">
+          <li class="active"><a href="{% url 'crm:client' %}">查找</a></li>
+          <li><a href="{% url 'crm:client-create' %}">创建客户</a></li>
+        </ul>
       </li>
 
       <li{% if nav_item == 'library' %} class="active"{% endif %}>
