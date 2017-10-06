@@ -4,6 +4,7 @@ from django.db.models import Q
 from django.utils.safestring import mark_safe
 from django.utils import timezone
 from django.shortcuts import redirect
+from ajax_select import make_ajax_form
 
 from admin_view_permission.admin import AdminViewPermissionModelAdmin
 
@@ -34,9 +35,6 @@ class HasExpiredFilter(admin.SimpleListFilter):
         return queryset
 
 
-from ajax_select import make_ajax_form
-
-
 @admin.register(Company)
 class CompanyModelAdmin(AdminViewPermissionModelAdmin):
     list_display = ('title', 'industry',
@@ -44,7 +42,7 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
                     'taxpayer_type', 'view_expired_at',
                     # 'legal_people',
                     'status', 'show_contactor_info', 'show_shareholder_info')
-    list_filter = ('status', 'ic_status', HasExpiredFilter,
+    list_filter = ('status', 'ic_status', 'license_status',
                    'type', 'salesman', 'industry',
                    'has_custom_info', 'has_customer_files',
                    'taxpayer_type', 'scale_size')

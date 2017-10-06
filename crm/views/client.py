@@ -6,6 +6,7 @@ from django.db.models import Q
 from functools import reduce
 from django_tables2 import Column
 
+from .. import filters
 from .. import tables
 from .. import models
 from .. import forms
@@ -44,16 +45,20 @@ class ClientView(SearchViewMixin, LoginRequiredMixin, TemplateView):
         context = super(ClientView, self).get_context_data(**kwargs)
         objects = models.Company.objects.none()
         q = self.request.GET.get('q', '').strip()
+
+        queryset = models.Company.objects.none()
         if q:
-            objects = self.get_search_results(
+            queryset = self.get_search_results(
                 models.Company.objects.all(), q)
 
+        _filter = filters.CompanyFilter(self.request.GET, queryset=queryset)
+        context['filter'] = _filter
         context['search_form'] = forms.SearchForm(data=self.request.GET)
         extra_columns = [(i, Column()) for i in
                          self.request.user.profile.preference.get(
                              'company_list_fields', ['status'])]
-        context['table'] = tables.CompanyTable(
-            objects, extra_columns=extra_columns)
+        context['table'] = tables.CompanyTable(_filter.qs,
+                                               extra_columns=extra_columns)
         pre_form = forms.PreferenceForm(
             data=self.request.user.profile.preference)
 

@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from datetime import timedelta
 
 from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User
@@ -62,7 +63,7 @@ class Company(models.Model):
     registered_at = models.DateField(
         verbose_name="注册日期", blank=True, null=True)
     expired_at = models.DateField(
-        verbose_name="执照有效日期", blank=True, null=True)
+        verbose_name="执照有效日期至", blank=True, null=True)
 
     business_license = models.CharField(
         verbose_name="营业执照号", blank=True, max_length=255)
@@ -261,9 +262,20 @@ class Company(models.Model):
     updated = models.DateTimeField(auto_now=True)
     tags = TaggableManager(blank=True)
 
-    @property
-    def has_expired(self):
-        return self.expired_at and (self.expired_at <= timezone.now().date())
+    LICENSE_STATUS = (
+        ('有效', '有效'),
+        ('即将过期', '即将过期'),
+        ('已过期', '已过期'),
+        ('永久有效', '永久有效')
+    )
+
+    license_status = models.CharField(
+        max_length=50,
+        editable=False,
+        verbose_name='执照有效期',
+        blank=True,
+        choices=LICENSE_STATUS,
+        default='有效')
 
     def show_shareholder_info(self):
         t = ''.join(['<li>{role} {name} {phone}</li>'.format(**o)
@@ -277,6 +289,15 @@ class Company(models.Model):
 
     def __str__(self):
         return self.title
+
+    def check_expired(self):
+        if not self.expired_at:
+            self.license_status = '永久有效'
+        elif self.expired_at <= timezone.now().date():
+            self.license_status = '已过期'
+        elif self.expired_at <= timezone.now().date() + timedelta(days=30):
+            self.license_status = '即将过期'
+        return self.license_status
 
     def save(self, *args, **kwargs):
         self.title = self.title.strip()
@@ -300,7 +321,7 @@ class Company(models.Model):
                     role='legal').people.name
             except:
                 pass
-
+        self.check_expired()
         return super(Company, self).save(*args, **kwargs)
 
     class Meta:

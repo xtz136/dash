@@ -1,5 +1,5 @@
 {% extends "crm/base.html" %}
-{% load static django_tables2 widget_tweaks %}
+{% load static django_tables2 widget_tweaks crispy_forms_tags %}
 
 {% block extra_css %}
 <link href="{% static 'css/plugins/dataTables/datatables.min.css' %}" rel="stylesheet">
@@ -11,25 +11,40 @@
 {% block title %} 客户管理 {% endblock title %} 
 
 {% block content %}
-<div class="row">
-  <div class="col-lg-12">
-    <div class="advance ibox float-e-margins border-bottom">
-      <div class="ibox-title">
-        <h5>高级选项</h5>
-        <div class="ibox-tools">
-          <a class="collapse-link"> <i class="fa fa-chevron-down"></i> </a>
-        </div>
-      </div>
-      <div class="ibox-content" style="display: none;">
-        <form action="#" id="id_preference">
-          {% csrf_token %}
-          <div class="form-group">
-            <label class="font-normal">选择显示的列</label>
-            {% render_field pre_form.company_list_fields data-placeholder="选择显示的字段" class="form-control chosen-select" %} 
+<div class="ibox-content m-b-sm border-bottom">
+  <div class="row">
+    <form action="" method="get">
+
+      <div class="col-lg-12">
+        <div class="input-group">
+          {% render_field search_form.q placeholder="输入关键字进行搜索" class=" form-control input-lg" %}
+          <div class="input-group-btn">
+            <button class="btn btn-lg btn-primary" type="submit"> 搜索 </button>
           </div>
-        </form>
+        </div>
+        <div class="hr-line-dashed"></div>
       </div>
-      <div class="hr-line-dashed"></div>
+
+      <div class="col-lg-12">
+        <div class="form-inline">
+          {% crispy filter.form %}
+        </div>
+
+        <div class="hr-line-dashed"></div>
+      </div>
+    </form>
+
+  </div>
+  <!-- end row-->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <form action="#" id="id_preference">
+        {% csrf_token %}
+        <div class="form-group">
+          <label class="control-label">选择显示的列</label> {% render_field pre_form.company_list_fields data-placeholder="选择显示的字段" class="form-control chosen-select" %}
+        </div>
+      </form>
     </div>
   </div>
 </div>
@@ -37,28 +52,8 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="ibox">
-      <div class="ibox-title">
-        <h5>客户列表</h5>
-        <div class="ibox-tools">
-        {% if has_add_perm %}
-          <a href="{% url 'crm:client-create' %}" class="btn btn-primary btn-xs">+新增客户</a>
-        {% endif %}
-        </div>
-      </div>
       <div class="ibox-content">
-        <div class="m-b-lg">
 
-          <form id="search_form" method="GET">
-            <div class="input-group">
-              {% render_field search_form.q placeholder="输入关键字进行搜索" class=" form-control" %}
-
-                <span class="input-group-btn">
-                  <button type="submit" id="search_btn" class="btn btn-white"> 搜索</button>
-                  <button type="button" class="btn btn-white" id="btn-advance"> 高级选项 </button>
-                </span>
-            </div>
-
-        </div><!-- end m-b-lg -->
         {% render_table table %}
 
       </div>
