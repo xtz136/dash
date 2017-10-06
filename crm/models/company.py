@@ -272,7 +272,7 @@ class Company(models.Model):
     license_status = models.CharField(
         max_length=50,
         editable=False,
-        verbose_name='执照有效期',
+        verbose_name='执照状态',
         blank=True,
         choices=LICENSE_STATUS,
         default='有效')
