@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'taggit',
     'crispy_forms',
+    'extra_views',
 
     'core',
     'crm',

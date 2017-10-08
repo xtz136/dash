@@ -45,11 +45,20 @@
                 <dt>代理状态:</dt>
                 <dd><span class="label {% if object.status == '有效' %}label-primary {% else %}label-danger{% endif %}">{{ object.status }}</span></dd>
               </dl>
+
+
+              <dl class="dl-horizontal">
+                <dt>股东信息:</dt>
+                <dd>{% render_table shareholder_table %}</dd>
+              </dl>
+
             </div>
           </div>
 
     <div class="row">
+    <form action="" class="form-horizontal">
       {% crispy form %}
+    </form>
     </div>
           <div class="row m-t-sm">
             <div class="col-lg-12">
@@ -134,11 +143,6 @@
 
   <div class="col-lg-3">
     <div class="wrapper wrapper-content project-manager">
-      <h4>客户简介</h4>
-      <img src="img/zender_logo.png" class="img-responsive">
-      <p class="small">
-        {{ object.title }}是一家.... {{ object.desc }}
-      </p>
 
       <h5>标签</h5>
       <ul class="tag-list" style="padding: 0">
@@ -148,21 +152,18 @@
       </ul>
       <div class="clearfix"></div>
 
-      <h5>客户资料</h5>
+      <h5>附件</h5>
       <ul class="list-unstyled project-files">
-        <li><a href=""><i class="fa fa-file"></i> 2017第三季度合同.docx</a></li>
-        <li><a href=""><i class="fa fa-file-picture-o"></i> 法人身份证原件.jpg</a></li>
-        {% for file in object.files %}
-          <li><a href=""><i class="fa fa-file"></i> Project_document.docx</a></li>
-          <li><a href=""><i class="fa fa-file-picture-o"></i> Logo_zender_company.jpg</a></li>
-          <li><a href=""><i class="fa fa-stack-exchange"></i> Email_from_Alex.mln</a></li>
-          <li><a href=""><i class="fa fa-file"></i> Contract_20_11_2014.docx</a></li>
-        {% endfor %}
+      {% for a in object.attachments.all %}
+      <li>
+         <a href="{{ a.file.url }}"><i class="fa fa-file"></i> {{ a.name }} </a>
+      </li>
+      {% endfor %}
       </ul>
 
-      <div class="m-t-md">
+      <!-- <div class="m-t-md">
         <a href="#" class="btn btn-xs btn-primary">添加文件</a>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

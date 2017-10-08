@@ -9,10 +9,9 @@ from crm.models import ShareHolder
 
 @admin.register(ShareHolder)
 class ShareHolderModelAdmin(admin.ModelAdmin):
-    search_fields = ('company_title', 'people_name', 'info')
-    list_display = ('company_title', 'people_name',
-                    'phone', 'role', 'view_share', 'is_contactor')
-    raw_id_fields = ('people',)
+    search_fields = ('company_title',  'info')
+    list_display = ('company_title', 'phone', 'role',
+                    'view_share', 'is_contactor')
     list_filter = ('is_contactor', )
     form = make_ajax_form(ShareHolder, {
         'company': 'company',
@@ -25,7 +24,6 @@ class ShareHolderModelAdmin(admin.ModelAdmin):
 
 class ShareHolderInline(admin.TabularInline):
     model = ShareHolder
-    raw_id_fields = ('people', )
     extra = 1
     formfield_overrides = {
         models.TextField: {'widget': Textarea(attrs={'rows': 1, 'cols': 40})}

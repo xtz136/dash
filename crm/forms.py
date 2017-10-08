@@ -8,7 +8,8 @@ from crispy_forms.layout import Submit, Layout, Field, Fieldset, Row
 from crispy_forms.bootstrap import PrependedText
 
 
-from crm.models import Company
+from core.models import Attachment
+from crm.models import Company, ShareHolder
 
 
 class ItemAutoSelectForm(forms.Form):
@@ -63,6 +64,7 @@ class CompanyModelForm(forms.ModelForm):
         helper.form_class = 'form-horizontal'
         helper.form_method = 'POST'
         helper.label_class = 'col-lg-2'
+        helper.form_tag = False
         helper.field_class = 'col-lg-10'
         helper.layout = Layout(
 
@@ -137,5 +139,30 @@ class CompanyModelForm(forms.ModelForm):
         if readonly:
             for field in self.fields:
                 self.fields[field].disabled = True
-        else:
-            self.helper.add_input(Submit('submit', '提交'))
+
+
+class CompanyFormSet(forms.ModelForm):
+    local_tax_office = AutoCompleteSelectField(
+        'local_tax', label='地税局', show_help_text=False, required=False)
+
+    national_tax_office = AutoCompleteSelectField(
+        'national_tax', label='国税局', show_help_text=False, required=False)
+
+    class Meta:
+        model = Company
+        fields = '__all__'
+
+
+class ShareHolderModelForm(forms.ModelForm):
+
+    info = forms.CharField(required=False)
+
+    class Meta:
+        fields = '__all__'
+        model = ShareHolder
+
+
+class AttachmentModelForm(forms.ModelForm):
+    class Meta:
+        fields = '__all__'
+        model = Attachment

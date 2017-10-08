@@ -1,10 +1,16 @@
 import operator
+from functools import reduce
+
 from django.views.generic import TemplateView, DetailView, UpdateView, CreateView
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db.models import Q
-from functools import reduce
+from django.forms import inlineformset_factory, modelformset_factory, all_valid
+
 from django_tables2 import Column
+from crispy_forms.helper import FormHelper
+from extra_views import CreateWithInlinesView, UpdateWithInlinesView, InlineFormSet
+from extra_views.generic import GenericInlineFormSet
 
 from .. import filters
 from .. import tables
@@ -76,24 +82,55 @@ class ClientDetailView(LoginRequiredMixin, DetailView):
         context = super(ClientDetailView, self).get_context_data(**kwargs)
         context['form'] = forms.CompanyModelForm(
             instance=context['object'], readonly=True)
+        context['shareholder_table'] = tables.ShareHolderTable(
+            self.object.shareholder_set.all())
         context['has_change_perm'] = self.request.user.has_perm(
             'crm.change_company')
         return context
 
 
+formset_helper = FormHelper()
+formset_helper.form_tag = False
+formset_helper.template = 'bootstrap/table_inline_formset.html'
+
+
+class ShareHolderInline(InlineFormSet):
+    model = models.ShareHolder
+    form_class = forms.ShareHolderModelForm
+
+
+from core.models import Attachment
+
+
+class AttachmentModelForm(forms.ModelForm):
+    class Meta:
+        model = Attachment
+        exclude = ('creator', )
+
+
+class AttachmentInline(GenericInlineFormSet):
+    model = Attachment
+    form_class = AttachmentModelForm
+
+
 class ClientEditView(LoginRequiredMixin,
                      PermissionRequiredMixin,
-                     UpdateView):
+                     UpdateWithInlinesView):
     model = models.Company
     template_name = "crm/client/edit.html"
     form_class = forms.CompanyModelForm
-
     permission_required = 'crm.change_company'
     raise_exception = True
     permission_denied_message = '请联系管理员获取查看该页面的权限'
+    inlines = [ShareHolderInline]
 
     def get_success_url(self):
         return reverse('crm:client-detail', kwargs={'pk': self.object.pk})
+
+    def get_context_data(self, **kwargs):
+        context = super(ClientEditView, self).get_context_data(**kwargs)
+        context['helper'] = formset_helper
+        return context
 
 
 class ClientCreateView(LoginRequiredMixin,

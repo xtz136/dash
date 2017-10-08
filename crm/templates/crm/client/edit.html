@@ -1,5 +1,5 @@
 {% extends "crm/base.html" %}
-{% load static django_tables2 widget_tweaks crispy_forms_tags %}
+{% load static django_tables2 widget_tweaks crispy_forms_tags model_name %}
 
 {% block extra_css %} 
 <link href="{% static 'css/plugins/datapicker/datepicker3.css' %}" rel="stylesheet">
@@ -33,7 +33,24 @@
   <div class="col-lg-9">
       <div class="ibox">
         <div class="ibox-content">
+        <form action="" method="POST" class="form-horizontal">
           {% crispy form %}
+
+          {% for formset in inlines %}
+          <fieldset>
+          <legend>{% model_name formset.model %}</legend>
+            {% crispy formset helper %}
+          </fieldset>
+          {% endfor %}
+
+          <div class="form-group">
+            <div class="aab controls col-lg-2"></div>
+            <div class="controls col-lg-10">
+              <input type="submit" name="submit" value="提交" class="btn btn-primary pull-right" id="submit-id-submit"> 
+            </div>
+          </div>
+        
+        </form>
         </div>
       </div>
   </div>
@@ -58,6 +75,7 @@
     </div>
   </div>
 </div>
+
 {% endblock content %} 
 
 {% block extra_js %}
