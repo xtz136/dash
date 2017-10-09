@@ -1,3 +1,5 @@
+{% load model_name %}
+
 <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
           <ul class="nav metismenu" id="side-menu">
@@ -17,14 +19,14 @@
               </div>
             </li>
       
-            <li{% if nav_item == 'dashboard' %} class="active"{% endif %}>
+            <li{% controller_active request 'dashboard' %}>
               <a href="{% url 'crm:dashboard' %}">
                 <i class="fa fa-th-large"></i>
                 <span class="nav-label">概览</span>
               </a>
             </li>
       
-            <li{% if nav_item == 'workspace' %} class="active"{% endif %}>
+            <li{% controller_active request 'workspace' %}>
                 <a href="{% url 'crm:dashboard' %}">
                   <i class="fa fa-desktop"></i>
                   <span class="nav-label">我的工作台</span>
@@ -32,18 +34,22 @@
       
               </li>
       
-            <li{% if nav_item == 'client' %} class="active"{% endif %}>
-              <a href="{% url 'crm:client' %}">
+            <li{% controller_active request 'client' %}>
+              <a href="#">
                 <i class="fa fa-handshake-o"></i>
                 <span class="nav-label">客户管理</span> 
               </a>
-              <ul class="nav nav-second-level collapse in" style="">
-                <li class="active"><a href="{% url 'crm:client' %}">查找</a></li>
-                <li><a href="{% url 'crm:client-create' %}">创建客户</a></li>
+              <ul class="nav nav-second-level collapse in">
+                <li{% action_active request 'search' %}>
+                    <a href="{% url 'crm:client-search' %}">查找客户</a>
+                </li>
+                <li{% action_active request 'create' %}>
+                    <a href="{% url 'crm:client-create' %}">创建客户</a>
+                </li>
               </ul>
             </li>
       
-            <li{% if nav_item == 'library' %} class="active"{% endif %}>
+            <li{% controller_active request 'library' %}>
               <a href="{% url 'crm:library' %}">
                 <i class="fa fa-list-alt"></i> 
                 <span class="nav-label">资料管理</span> 

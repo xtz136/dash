@@ -26,18 +26,18 @@ class TestDashboardView:
         assert resp.status_code == 200, '管理员能访问'
 
 
-class TestClientView:
+class TestClientSearchView:
     def test_anonymous(self):
         req = RequestFactory().get('/client/')
         req.user = AnonymousUser()
-        resp = views.ClientView.as_view()(req)
+        resp = views.ClientSearchView.as_view()(req)
         assert resp.status_code == 302, '匿名不能访问'
 
     def test_superuser(self):
         req = RequestFactory().get('/client/')
         user = mixer.blend('auth.User', is_superuser=True)
         req.user = user
-        resp = views.ClientView.as_view()(req)
+        resp = views.ClientSearchView.as_view()(req)
         assert resp.status_code == 200, '管理员能访问'
 
 
@@ -146,12 +146,19 @@ class TestClientCreateView:
         assert resp.status_code == 200
         assert data['title'] in resp.rendered_content
 
-    def _test_authorize_user(self):
+    def test_authorize_user(self):
         user = mixer.blend('auth.User', is_active=True)
         perm = Permission.objects.get(codename='add_company')
         assert perm
         user.user_permissions.add(perm)
         assert user.has_perm('crm.add_company')
+
+        req = RequestFactory().get('/client/create/')
+        req.user = user
+        resp = views.ClientCreateView.as_view()(req)
+        assert resp.status_code == 200, "能正常访问创建页面"
+
+        return
 
         data = {'title': '我是公司抬头',
                 'type': '有限责任公司',

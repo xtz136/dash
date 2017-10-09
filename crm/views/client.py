@@ -43,13 +43,13 @@ class SearchViewMixin:
         return queryset
 
 
-class ClientView(SearchViewMixin, LoginRequiredMixin, TemplateView):
+class ClientSearchView(SearchViewMixin, LoginRequiredMixin, TemplateView):
     template_name = 'crm/client/index.html'
     search_fields = ('title', 'note', 'address',
                      'op_address', 'legal_people')
 
     def get_context_data(self, **kwargs):
-        context = super(ClientView, self).get_context_data(**kwargs)
+        context = super(ClientSearchView, self).get_context_data(**kwargs)
         objects = models.Company.objects.none()
         q = self.request.GET.get('q', '').strip()
 
