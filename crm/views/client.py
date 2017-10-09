@@ -16,6 +16,7 @@ from .. import filters
 from .. import tables
 from .. import models
 from .. import forms
+from core.models import Attachment
 
 
 def construct_search(field_name):
@@ -107,9 +108,6 @@ class ShareHolderInline(InlineFormSet):
         return formset
 
 
-from core.models import Attachment
-
-
 class AttachmentInline(GenericInlineFormSet):
     model = Attachment
     form_class = forms.AttachmentModelForm
@@ -134,10 +132,6 @@ class ClientEditView(LoginRequiredMixin,
 
     def get_success_url(self):
         return reverse('crm:client-detail', kwargs={'pk': self.object.pk})
-
-    def get_context_data(self, **kwargs):
-        context = super(ClientEditView, self).get_context_data(**kwargs)
-        return context
 
 
 class ClientCreateView(LoginRequiredMixin,
