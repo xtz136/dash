@@ -1,3 +1,4 @@
+import logging
 import operator
 from functools import reduce
 
@@ -17,6 +18,9 @@ from .. import tables
 from .. import models
 from .. import forms
 from core.models import Attachment
+
+
+logger = logging.getLogger(__name__)
 
 
 def construct_search(field_name):
@@ -131,6 +135,7 @@ class ClientEditView(LoginRequiredMixin,
     inlines = [ShareHolderInline, AttachmentInline]
 
     def get_success_url(self):
+        logger.info('编辑完成')
         return reverse('crm:client-detail', kwargs={'pk': self.object.pk})
 
 

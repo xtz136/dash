@@ -63,5 +63,4 @@ class SpecialTaxesLookup(LookupChannel):
         return [",".join(sorted(list(results)))]
 
     def get_result(self, obj):
-        print(obj)
         return obj

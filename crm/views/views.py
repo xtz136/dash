@@ -56,7 +56,6 @@ def const2str(consts, label):
 
 def handle_import_company(f):
     rows = map(CompanyRecord._make, csv.reader(f))
-    print(next(rows))
     for row in rows:
         data = row._asdict()
         data['salesman'] = get_or_create_user(data['salesman'])
