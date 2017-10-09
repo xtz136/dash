@@ -158,11 +158,12 @@ class ShareHolderModelForm(forms.ModelForm):
     info = forms.CharField(required=False)
 
     class Meta:
-        fields = '__all__'
+        fields = ('name', 'role', 'sfz', 'phone',
+                  'share', 'is_contactor', 'info')
         model = ShareHolder
 
 
 class AttachmentModelForm(forms.ModelForm):
     class Meta:
-        fields = '__all__'
+        fields = ('name', 'file_type', 'file')
         model = Attachment

@@ -30,16 +30,16 @@
 {% block content %}
 
 <div class="row">
-  <div class="col-lg-9">
+  <div class="col-lg-12">
       <div class="ibox">
         <div class="ibox-content">
-        <form action="" method="POST" class="form-horizontal">
+        <form action="" method="POST" class="form-horizontal" enctype="multipart/form-data">
           {% crispy form %}
 
           {% for formset in inlines %}
           <fieldset>
           <legend>{% model_name formset.model %}</legend>
-            {% crispy formset helper %}
+            {% crispy formset %}
           </fieldset>
           {% endfor %}
 
@@ -55,25 +55,6 @@
       </div>
   </div>
 
-  <div class="col-lg-3">
-    <div class="wrapper wrapper-content project-manager">
-      <h5>客户资料</h5>
-      <ul class="list-unstyled project-files">
-        <li><a href=""><i class="fa fa-file"></i> 2017第三季度合同.docx</a></li>
-        <li><a href=""><i class="fa fa-file-picture-o"></i> 法人身份证原件.jpg</a></li>
-        {% for file in object.files %}
-          <li><a href=""><i class="fa fa-file"></i> Project_document.docx</a></li>
-          <li><a href=""><i class="fa fa-file-picture-o"></i> Logo_zender_company.jpg</a></li>
-          <li><a href=""><i class="fa fa-stack-exchange"></i> Email_from_Alex.mln</a></li>
-          <li><a href=""><i class="fa fa-file"></i> Contract_20_11_2014.docx</a></li>
-        {% endfor %}
-      </ul>
-
-      <div class="m-t-md">
-        <a href="#" class="btn btn-xs btn-primary">添加文件</a>
-      </div>
-    </div>
-  </div>
 </div>
 
 {% endblock content %} 
@@ -81,6 +62,8 @@
 {% block extra_js %}
 <!-- Data picker -->
 <script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.js' %}"></script>
+
+<script src="{% static 'js/jquery.formset.js' %}"></script>
 
 <!-- Tags Input -->
 <script src="{% static 'js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js' %}"></script>
@@ -101,6 +84,18 @@ $(document).ready(function(){
 
   $(".tagsinput").tagsinput({
     tagClass: 'label label-primary'
+  });
+
+  $("#shareholder_set_table tbody tr").formset({
+    addText: "添加",
+    deleteText: "删除",
+    prefix: "shareholder_set",
+  });
+
+  $("#attachments_table tbody tr").formset({
+    addText: "添加",
+    deleteText: "删除",
+    prefix: "core-attachment-content_type-object_id",
   });
 
 });  

@@ -1,79 +1,17 @@
-{% extends "crm/base.html" %}
-{% load static django_tables2 widget_tweaks crispy_forms_tags %}
-
-{% block extra_css %} 
-<link href="{% static 'css/plugins/datapicker/datepicker3.css' %}" rel="stylesheet">
-<link href="{% static 'css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css' %}" rel="stylesheet">
-{% endblock extra_css %}
-
-{% block title %} 创建客户 {% endblock title %} 
+{% extends "crm/client/edit.html" %}
 
 {% block page_heading %}
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-sm-10">
-    <h2>创建客户</h2>
+    <h2>{{ object.title }}</h2>
     <ol class="breadcrumb">
       <li>
         <a href="{% url 'crm:client' %}">客户列表</a>
       </li>
       <li class="active">
-        <a href="#">
           <strong>创建客户</strong>
-        </a>
       </li>
     </ol>
   </div>
 </div>
 {% endblock %}
-
-
-{% block content %}
-
-<div class="row">
-  <div class="col-lg-9">
-      <div class="ibox">
-        <div class="ibox-content">
-          {% crispy form %}
-        </div>
-      </div>
-  </div>
-
-  <div class="col-lg-3">
-    <div class="wrapper wrapper-content project-manager">
-      <h5>客户资料</h5>
-      <div class="m-t-md">
-        <a href="#" class="btn btn-xs btn-primary">添加文件</a>
-      </div>
-    </div>
-  </div>
-</div>
-{% endblock content %} 
-
-{% block extra_js %}
-<!-- Data picker -->
-<script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.js' %}"></script>
-
-<!-- Tags Input -->
-<script src="{% static 'js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js' %}"></script>
-
-{{ form.media }}
-
-<script>
-
-$(document).ready(function(){
-  // date fields
-  ["registered_at", "expired_at", 
-   "custom_registered_at", "custom_expired_at",
-   "tax_declared_begin", "ss_date"].map((field) => {
-    $("#id_" + field).datepicker({
-      format: "yyyy/mm/dd",
-    });
-  });
-
-  $(".tagsinput").tagsinput({
-    tagClass: 'label label-primary'
-  });
-
-});  
-</script>
-{% endblock extra_js %}
