@@ -1,0 +1,17 @@
+{% extends "crm/base.html" %}
+{% block body_class %} class="gray-bg"{% endblock %}
+
+{% block body %}
+
+    <div class="middle-box text-center animated fadeInDown">
+        <h1>403</h1>
+        <h3 class="font-bold">拒绝访问</h3>
+
+        <div class="error-desc">
+            <p>您并没有权限访问该页面，联系管理员开放权限。</p>
+            <a href="/">返回首页</a>
+            <a href="{% url 'crm:login' %}">重新登陆</a>
+        </div>
+    </div>
+
+{% endblock %}
