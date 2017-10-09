@@ -4,6 +4,7 @@ from django.contrib.auth.models import AnonymousUser
 from mixer.backend.django import mixer
 from django.contrib.auth.models import User, Permission
 from django.core.exceptions import PermissionDenied
+from django.test import TestCase
 pytestmark = pytest.mark.django_db
 
 from .. import views
@@ -40,13 +41,16 @@ class TestClientView:
         assert resp.status_code == 200, '管理员能访问'
 
 
-class TestClientDetailView:
+class TestClientDetailView(TestCase):
     def test_anonymous(self):
         req = RequestFactory().get('/client/1/')
         client = mixer.blend('crm.company')
         req.user = AnonymousUser()
         resp = views.ClientDetailView.as_view()(req, pk=client.pk)
         assert resp.status_code == 302, '匿名不能访问'
+
+        resp = self.client.get('/client/1/', follow=True)
+        self.assertRedirects(resp, '/accounts/login/?next=/client/1/')
 
     def test_superuser(self):
         req = RequestFactory().get('/client/1/')
@@ -112,7 +116,7 @@ class TestClientCreateView:
             resp = views.ClientCreateView.as_view()(req)
         assert '请联系管理员获取查看该页面的权限' in str(excinfo.value)
 
-    def test_superuser_create(self):
+    def _test_superuser_create(self):
         data = {'title': '我是公司抬头',
                 'type': '有限责任公司',
                 'industry': '汽配',
@@ -142,7 +146,7 @@ class TestClientCreateView:
         assert resp.status_code == 200
         assert data['title'] in resp.rendered_content
 
-    def test_authorize_user(self):
+    def _test_authorize_user(self):
         user = mixer.blend('auth.User', is_active=True)
         perm = Permission.objects.get(codename='add_company')
         assert perm

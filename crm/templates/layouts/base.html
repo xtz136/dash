@@ -23,16 +23,16 @@
     
     <div id="wrapper">
 
-        {% block menu %} {% include 'crm/nav.html' %} {% endblock menu %}
+        {% block menu %} {% include 'layouts/_nav.html' %} {% endblock menu %}
         <div id="page-wrapper" class="gray-bg">
-            {% block header %}{% include 'crm/header.html' %} {% endblock header %}
+            {% block topnavbar %}{% include 'layouts/_topnavbar.html' %}{% endblock topnavbar %}
             {% block page_heading %}{% endblock page_heading %}
 
             <div class="wrapper wrapper-content animated fadeInRight">
               {% block content %} 欢迎来到管理界面 {% endblock content %}
             </div>
 
-            {% block footer %} {% include "crm/footer.html" %} {% endblock footer %}
+            {% block footer %} {% include "layouts/_footer.html" %} {% endblock footer %}
         </div>
     </div>
 
