@@ -1,13 +1,10 @@
 from django.db import models
 from django.db.models.signals import post_save
 
-from .people import People
 from .company import Company
 
 
 class ShareHolder(models.Model):
-    people = models.ForeignKey(
-        People, verbose_name="客户", blank=True, null=True)
     name = models.CharField(max_length=200, blank=True, verbose_name="姓名")
     sfz = models.CharField(max_length=255, blank=True, verbose_name="身份证")
     company = models.ForeignKey(Company, verbose_name="公司")
@@ -36,7 +33,6 @@ class ShareHolder(models.Model):
         super(ShareHolder, self).save(*args, **kwargs)
 
     class Meta:
-        unique_together = ('people', 'company')
         verbose_name = "股份持有人"
         verbose_name_plural = "股份持有人"
 
