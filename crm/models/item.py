@@ -47,7 +47,6 @@ class Item(models.Model):
         ('借出', '借出'),
         ('已归还', '已归还'),
         ('遗失', '遗失'),
-
     )
     status = models.CharField(verbose_name="状态",
                               default="寄存",

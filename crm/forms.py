@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from django import forms
+from django.utils.timezone import now
 
 from taggit.forms import TagField
 from ajax_select.fields import AutoCompleteField, AutoCompleteSelectField
@@ -9,7 +10,7 @@ from crispy_forms.bootstrap import PrependedText
 
 
 from core.models import Attachment
-from crm.models import Company, ShareHolder
+from crm.models import Company, ShareHolder, Item
 
 
 class ItemAutoSelectForm(forms.Form):
@@ -21,6 +22,12 @@ class ItemAutoSelectForm(forms.Form):
                                 required=True)
     receiver = AutoCompleteField(
         'user', label='签收人', required=True, show_help_text=False)
+    received_at = forms.DateField(initial=now, label='签收时间')
+
+    helper = FormHelper()
+    helper.form_tag = False
+    helper.label_class = 'col-lg-2'
+    helper.field_class = 'col-lg-10'
 
 
 class UserAutoSelectForm(forms.Form):

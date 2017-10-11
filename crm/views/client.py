@@ -17,6 +17,7 @@ from .. import filters
 from .. import tables
 from .. import models
 from .. import forms
+from .formsets import MyFormsetHelper
 from core.models import Attachment
 
 
@@ -75,7 +76,6 @@ class ClientSearchView(SearchViewMixin, LoginRequiredMixin, TemplateView):
 
         context['pre_form'] = pre_form
         context['has_add_perm'] = self.request.user.has_perm('crm.add_company')
-        context['nav_item'] = 'client'
         return context
 
 
@@ -92,13 +92,6 @@ class ClientDetailView(LoginRequiredMixin, DetailView):
         context['has_change_perm'] = self.request.user.has_perm(
             'crm.change_company')
         return context
-
-
-class MyFormsetHelper(FormHelper):
-    def __init__(self, *args, **kwargs):
-        super(MyFormsetHelper, self).__init__(*args, **kwargs)
-        self.form_tag = False
-        self.template = 'bootstrap/table_inline_formset.html'
 
 
 class ShareHolderInline(InlineFormSet):

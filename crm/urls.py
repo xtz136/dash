@@ -23,4 +23,15 @@ urlpatterns = [
         views.ClientDetailView.as_view(), name='client-detail'),
     url(r'^client/(?P<pk>\d+)/edit/$',
         views.ClientEditView.as_view(), name='client-edit'),
+
+    url(r'^library/receive/$',
+        views.ReceiveView.as_view(), name='library-receive'),
+    url(r'^library/borrow/$',
+        views.BorrowView.as_view(), name='library-borrow'),
+    url(r'^library/manage/$',
+        views.ManageView.as_view(), name='library-manage'),
+    url(r'^library/receipt/$',
+        views.ReceiptListView.as_view(), name='library-receipt-list'),
+    url(r'^library/receipt/(?P<pk>\d+)/$',
+        views.ReceiptDetailView.as_view(), name='library-receipt-detail'),
 ]
