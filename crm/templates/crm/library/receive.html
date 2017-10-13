@@ -24,22 +24,29 @@
 
 <div class="row">
   <div class="col-lg-12">
-      <div class="ibox">
-        <div class="ibox-content">
+    <div class="ibox">
+      <div class="ibox-content">
         <form action="" method="POST" class="form-horizontal">
           {% crispy form %}
-          {% crispy formset %}
           <div class="form-group">
-            <div class="aab controls col-lg-2"></div>
+            <label for="" class="control-label col-lg-2">签收物品</label>
+
             <div class="controls col-lg-10">
-              <input type="submit" name="submit" value="提交" class="btn btn-primary pull-right" id="submit-id-submit"> 
+              {% crispy formset %}
             </div>
+
           </div>
-        </form>
+      <div class="form-group">
+        <div class="aab controls col-lg-2"></div>
+        <div class="controls col-lg-10">
+          <input type="submit" name="submit" value="保存并生成收据" class="btn btn-primary pull-right" id="submit-id-submit">
         </div>
       </div>
-  </div>
+      </div>
 
+      </form>
+    </div>
+  </div>
 </div>
 
 {% endblock content %} 

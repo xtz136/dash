@@ -9,7 +9,7 @@ from django.db.models import Q
 from django.forms import inlineformset_factory, modelformset_factory, all_valid
 
 from django_tables2 import Column
-from crispy_forms.helper import FormHelper
+from crispy_forms.helper import FormHelper, Layout
 from extra_views import CreateWithInlinesView, UpdateWithInlinesView, InlineFormSet
 from extra_views.generic import GenericInlineFormSet
 
@@ -53,6 +53,20 @@ class ClientSearchView(SearchViewMixin, LoginRequiredMixin, TemplateView):
     search_fields = ('title', 'note', 'address',
                      'op_address', 'legal_people')
 
+    def get_filter(self, queryset):
+        _filter = filters.CompanyFilter(self.request.GET, queryset=queryset)
+        helper = FormHelper()
+        helper.form_class = 'form-inline'
+        helper.form_tag = False
+        helper.layout = Layout(
+            'status',
+            'ic_status',
+            'license_status',
+        )
+        _filter.form.helper = helper
+
+        return _filter
+
     def get_context_data(self, **kwargs):
         context = super(ClientSearchView, self).get_context_data(**kwargs)
         objects = models.Company.objects.none()
@@ -63,13 +77,12 @@ class ClientSearchView(SearchViewMixin, LoginRequiredMixin, TemplateView):
             queryset = self.get_search_results(
                 models.Company.objects.all(), q)
 
-        _filter = filters.CompanyFilter(self.request.GET, queryset=queryset)
-        context['filter'] = _filter
+        context['filter'] = self.get_filter(queryset)
         context['search_form'] = forms.SearchForm(data=self.request.GET)
         extra_columns = [(i, Column()) for i in
                          self.request.user.profile.preference.get(
                              'company_list_fields', ['status'])]
-        context['table'] = tables.CompanyTable(_filter.qs,
+        context['table'] = tables.CompanyTable(context['filter'].qs,
                                                extra_columns=extra_columns)
         pre_form = forms.PreferenceForm(
             data=self.request.user.profile.preference)

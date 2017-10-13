@@ -9,6 +9,22 @@
 {% endblock extra_css %}
 
 {% block title %} 客户管理 {% endblock title %} 
+{% block page_heading %}
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-sm-10">
+    <h2>{{ object.title }}</h2>
+    <ol class="breadcrumb">
+      <li>
+        <a href="#">客户管理</a>
+      </li>
+      <li class="active">
+          <strong>查找客户</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+{% endblock %}
+
 
 {% block content %}
 <div class="ibox-content m-b-sm border-bottom">
@@ -17,19 +33,19 @@
 
       <div class="col-lg-12">
         <div class="input-group">
-          {% render_field search_form.q placeholder="输入关键字进行搜索" class=" form-control input-lg" %}
+          {% render_field search_form.q placeholder="输入关键字进行搜索" class=" form-control" %}
           <div class="input-group-btn">
-            <button class="btn btn-lg btn-primary" type="submit"> 搜索 </button>
+            <button class="btn btn-primary" type="submit"> 搜索 </button>
           </div>
         </div>
         <div class="hr-line-dashed"></div>
       </div>
 
       <div class="col-lg-12">
+        <p style="">过滤选项</p>
         <div class="form-inline">
           {% crispy filter.form %}
         </div>
-
         <div class="hr-line-dashed"></div>
       </div>
     </form>
@@ -119,18 +135,13 @@
           extend: 'copy'
         },
         {
-          extend: 'csv',
-          title: '客户资料'
-        },
-        {
           extend: 'excel',
           title: '客户资料'
         },
         {
-          extend: 'pdf',
+          extend: 'csv',
           title: '客户资料'
         },
-
         {
           extend: 'print',
           customize: function(win) {

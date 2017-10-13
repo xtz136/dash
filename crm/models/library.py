@@ -1,3 +1,4 @@
+from random import randint
 import json
 from collections import OrderedDict
 from django.core import serializers
@@ -18,11 +19,13 @@ class Receipt(models.Model):
     )
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="操作员")
-    company = models.ForeignKey(Company, blank=True, null=True)
-    created = models.DateTimeField(verbose_name="日期", default=now)
+    company = models.ForeignKey(
+        Company, blank=True, null=True, verbose_name='客户')
+    created = models.DateTimeField(verbose_name="时间", default=now)
     type = models.CharField(
         verbose_name="类型", choices=TYPES, default="签收", max_length=50)
     items = models.TextField(verbose_name="物品列表", blank=True)
+    no = models.CharField(verbose_name="收据编号", max_length=200, blank=True)
 
     @classmethod
     def create_receipt(cls, **kwargs):
@@ -36,6 +39,15 @@ class Receipt(models.Model):
     @property
     def count(self):
         return sum(i.object.qty for i in self.get_items())
+
+    def save(self, *args, **kwargs):
+        if not self.no:
+            self.no = 'YH{0}{1}'.format(
+                self.created.strftime('%Y%m%d'), self._randno())
+        super(Receipt, self).save(*args, **kwargs)
+
+    def _randno(self):
+        return ''.join(map(str, [randint(0, 9) for i in range(4)]))
 
 
 class Item(models.Model):

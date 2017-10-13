@@ -1,9 +1,11 @@
 import logging
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.urls import reverse
+
+from django_tables2 import SingleTableView, SingleTableMixin
 from extra_views import ModelFormSetView
 from crispy_forms.helper import FormHelper
 
@@ -11,6 +13,7 @@ from .formsets import MyFormsetHelper
 
 from .. import models
 from .. import forms
+from .. import tables
 
 log = logging.getLogger(__name__)
 
@@ -92,13 +95,20 @@ class ManageView(LoginRequiredMixin, TemplateView):
     template_name = 'crm/library.html'
 
 
-class ReceiptListView(LoginRequiredMixin, TemplateView):
-    template_name = 'crm/library.html'
+class ReceiptListView(LoginRequiredMixin, SingleTableView):
+    model = models.Receipt
+    table_class = tables.ReceiptTable
+    template_name = 'crm/library/list.html'
+    allow_empty = True
+
+    def get_queryset(self):
+        return self.model.objects.all()
 
 
-class ReceiptListView(LoginRequiredMixin, TemplateView):
-    template_name = 'crm/library.html'
+class ReceiptDetailView(LoginRequiredMixin, SingleTableMixin, DetailView):
+    template_name = 'crm/library/receipt.html'
+    model = models.Receipt
+    table_class = tables.ReceiptItemTable
 
-
-class ReceiptDetailView(LoginRequiredMixin, TemplateView):
-    template_name = 'crm/library.html'
+    def get_table_data(self):
+        return [o.object for o in self.object.get_items()]

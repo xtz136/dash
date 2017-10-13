@@ -38,6 +38,7 @@
               <a href="#">
                 <i class="fa fa-handshake-o"></i>
                 <span class="nav-label">客户管理</span> 
+                <span class="fa arrow"></span>
               </a>
               <ul class="nav nav-second-level collapse">
                 <li{% action_active request 'search' %}>
@@ -53,6 +54,7 @@
               <a href="{% url 'crm:library' %}">
                 <i class="fa fa-list-alt"></i> 
                 <span class="nav-label">资料管理</span> 
+                <span class="fa arrow"></span>
               </a>
               <ul class="nav nav-second-level collapse">
                 <li{% action_active request 'receive' %}>
