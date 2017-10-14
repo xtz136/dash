@@ -61,21 +61,6 @@ class TestClientDetailView(TestCase):
         assert resp.status_code == 200, '管理员能访问'
 
 
-class TestLibraryView:
-    def test_anonymous(self):
-        req = RequestFactory().get('/customer/')
-        req.user = AnonymousUser()
-        resp = views.LibraryView.as_view()(req)
-        assert resp.status_code == 302, '匿名不能访问'
-
-    def test_superuser(self):
-        req = RequestFactory().get('/dashboard/')
-        user = mixer.blend('auth.User')
-        req.user = user
-        resp = views.LibraryView.as_view()(req)
-        assert resp.status_code == 200, '普通用户能访问'
-
-
 class TestRegisterView:
     def test_register(self):
         req = RequestFactory().get('/accounts/register/')

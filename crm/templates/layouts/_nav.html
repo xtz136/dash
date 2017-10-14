@@ -51,20 +51,20 @@
             </li>
       
             <li{% controller_active request 'library' %}>
-              <a href="{% url 'crm:library' %}">
+              <a href="#">
                 <i class="fa fa-list-alt"></i> 
                 <span class="nav-label">资料管理</span> 
                 <span class="fa arrow"></span>
               </a>
               <ul class="nav nav-second-level collapse">
-                <li{% action_active request 'receive' %}>
-                    <a href="{% url 'crm:library-receive' %}">签收</a>
+                <li{% action_active request 'items' %}>
+                    <a href="{% url 'library:item-list' %}">资料中心</a>
                 </li>
-                <li{% action_active request 'manage' %}>
-                    <a href="{% url 'crm:library-manage' %}">管理</a>
+                <li{% action_active request 'receive' %}>
+                    <a href="{% url 'library:item-receive' %}">签收</a>
                 </li>
                 <li{% action_active request 'receipt' %}>
-                    <a href="{% url 'crm:library-receipt-list' %}">收据</a>
+                    <a href="{% url 'library:receipt-list' %}">收据</a>
                 </li>
               </ul>
             </li>

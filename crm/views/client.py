@@ -1,6 +1,4 @@
 import logging
-import operator
-from functools import reduce
 
 from django.views.generic import TemplateView, DetailView, UpdateView, CreateView
 from django.urls import reverse
@@ -17,35 +15,12 @@ from .. import filters
 from .. import tables
 from .. import models
 from .. import forms
-from .formsets import MyFormsetHelper
+from ..formsets import MyTableInlineFormset
+from .mixins import SearchViewMixin
 from core.models import Attachment
 
 
 logger = logging.getLogger(__name__)
-
-
-def construct_search(field_name):
-    if field_name.startswith('^'):
-        return "%s__istartswith" % field_name[1:]
-    elif field_name.startswith('='):
-        return "%s__iexact" % field_name[1:]
-    elif field_name.startswith('@'):
-        return "%s__search" % field_name[1:]
-    else:
-        return "%s__icontains" % field_name
-
-
-class SearchViewMixin:
-    search_fields = None
-
-    def get_search_results(self, queryset, search_term):
-        if search_term and self.search_fields:
-            orm_lookups = map(construct_search, self.search_fields)
-            for bit in search_term.split():
-                or_queries = [Q(**{orm_lookup: bit})
-                              for orm_lookup in orm_lookups]
-                queryset = queryset.filter(reduce(operator.or_, or_queries))
-        return queryset
 
 
 class ClientSearchView(SearchViewMixin, LoginRequiredMixin, TemplateView):
@@ -67,6 +42,9 @@ class ClientSearchView(SearchViewMixin, LoginRequiredMixin, TemplateView):
 
         return _filter
 
+    def get_search_form(self):
+        return forms.AutoCompanyForm(data=self.request.GET)
+
     def get_context_data(self, **kwargs):
         context = super(ClientSearchView, self).get_context_data(**kwargs)
         objects = models.Company.objects.none()
@@ -78,7 +56,7 @@ class ClientSearchView(SearchViewMixin, LoginRequiredMixin, TemplateView):
                 models.Company.objects.all(), q)
 
         context['filter'] = self.get_filter(queryset)
-        context['search_form'] = forms.SearchForm(data=self.request.GET)
+        context['search_form'] = self.get_search_form()
         extra_columns = [(i, Column()) for i in
                          self.request.user.profile.preference.get(
                              'company_list_fields', ['status'])]
@@ -113,7 +91,7 @@ class ShareHolderInline(InlineFormSet):
 
     def construct_formset(self):
         formset = super(ShareHolderInline, self).construct_formset()
-        formset.helper = MyFormsetHelper()
+        formset.helper = MyTableInlineFormset()
         formset.helper.form_id = 'shareholder_set'
         return formset
 
@@ -124,7 +102,7 @@ class AttachmentInline(GenericInlineFormSet):
 
     def construct_formset(self):
         formset = super(AttachmentInline, self).construct_formset()
-        formset.helper = MyFormsetHelper()
+        formset.helper = MyTableInlineFormset()
         formset.helper.form_id = 'attachments'
         return formset
 

@@ -10,24 +10,7 @@ from crispy_forms.bootstrap import PrependedText
 
 
 from core.models import Attachment
-from crm.models import Company, ShareHolder, Item
-
-
-class ItemAutoSelectForm(forms.Form):
-    company = AutoCompleteField('company',
-                                label="公司",
-                                attrs={"size": 50},
-                                help_text='输入公司名查找',
-                                show_help_text=False,
-                                required=True)
-    receiver = AutoCompleteField(
-        'user', label='签收人', required=True, show_help_text=False)
-    received_at = forms.DateField(initial=now, label='签收时间')
-
-    helper = FormHelper()
-    helper.form_tag = False
-    helper.label_class = 'col-lg-2'
-    helper.field_class = 'col-lg-10'
+from crm.models import Company, ShareHolder
 
 
 class UserAutoSelectForm(forms.Form):
@@ -40,7 +23,8 @@ class BorrowerAutoSelectForm(forms.Form):
         'user', label='借用者', required=True)
 
 
-class SearchForm(forms.Form):
+class AutoCompanyForm(forms.Form):
+    """公司搜索表单"""
     q = AutoCompleteField('company', show_help_text=False)
 
 

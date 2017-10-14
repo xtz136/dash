@@ -7,13 +7,17 @@ from django.urls import reverse
 
 from django_tables2 import SingleTableView, SingleTableMixin
 from extra_views import ModelFormSetView
-from crispy_forms.helper import FormHelper
+from crispy_forms.helper import FormHelper, Layout
+from crispy_forms.layout import Submit
+from crispy_forms.bootstrap import FieldWithButtons
 
 from .formsets import MyFormsetHelper
+from .mixins import SearchViewMixin
 
 from .. import models
 from .. import forms
 from .. import tables
+from .. import filters
 
 log = logging.getLogger(__name__)
 
@@ -91,14 +95,56 @@ class BorrowView(LoginRequiredMixin, TemplateView):
     template_name = 'crm/library.html'
 
 
-class ManageView(LoginRequiredMixin, TemplateView):
-    template_name = 'crm/library.html'
+class ItemListView(LoginRequiredMixin,
+                   SearchViewMixin,
+                   SingleTableView):
+    """资料中心"""
+    template_name = 'crm/library/item_list.html'
+    model = models.Item
+    table_class = tables.ItemTable
+    search_fields = ('name', 'company_title', 'note')
+    table_pagination = {
+        'per_page': 20
+    }
+
+    def get_queryset(self):
+        return self.get_search_results(
+            self.model.objects.all(),
+            self.request.GET.get('q', '').strip())
+
+    def get_filter(self):
+        f = filters.ItemFilter(self.request.GET, self.get_queryset())
+        helper = FormHelper()
+        helper.field_class = "inline"
+        helper.form_tag = False
+        f.form.helper = helper
+        return f
+
+    def get_search_form(self):
+        f = forms.SearchForm(self.request.GET)
+        helper = FormHelper()
+        helper.layout = Layout(
+            FieldWithButtons('q', Submit('submit', '搜索', css_class='button')))
+        helper.form_show_labels = False
+        helper.form_tag = False
+        helper.disable_csrf = True
+        f.helper = helper
+        return f
+
+    def get_context_data(self, **kwargs):
+        context = super(ItemListView, self).get_context_data(**kwargs)
+        context['search_form'] = self.get_search_form()
+        context['filter'] = self.get_filter()
+        return context
+
+    def get_table_data(self):
+        return self.get_filter().qs
 
 
 class ReceiptListView(LoginRequiredMixin, SingleTableView):
     model = models.Receipt
     table_class = tables.ReceiptTable
-    template_name = 'crm/library/list.html'
+    template_name = 'crm/library/receipt_list.html'
     allow_empty = True
 
     def get_queryset(self):
