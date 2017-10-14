@@ -1,0 +1,79 @@
+{% extends "layouts/base.html" %}
+{% load static django_tables2 widget_tweaks crispy_forms_tags model_name %}
+
+{% block extra_css %} 
+<link href="{% static 'css/plugins/datapicker/datepicker3.css' %}" rel="stylesheet">
+{% endblock extra_css %}
+
+{% block title %} 签收 {% endblock title %} 
+
+{% block page_heading %}
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-sm-10">
+    <h2>签收</h2>
+    <ol class="breadcrumb">
+      <li class="active">
+      </li>
+    </ol>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="ibox">
+      <div class="ibox-content">
+        <form action="" method="POST" class="form-horizontal">
+          {% crispy form %}
+          <div class="form-group">
+            <label for="" class="control-label col-lg-2">签收物品</label>
+
+            <div class="controls col-lg-10">
+              {% crispy formset %}
+            </div>
+
+          </div>
+          <div class="form-group">
+            <div class="aab controls col-lg-2"></div>
+            <div class="controls col-lg-10">
+              <input type="submit" name="submit" value="保存并生成收据" class="btn btn-primary pull-right" id="submit-id-submit">
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} 
+
+{% block extra_js %}
+<!-- Data picker -->
+<script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.js' %}"></script>
+<script src="{% static 'js/jquery.formset.js' %}"></script>
+
+{{ form.media }}
+
+<script>
+
+$(document).ready(function(){
+  // date fields
+  ["received_at"].map((field) => {
+    $("#id_" + field).datepicker({
+      format: "yyyy/mm/dd",
+    });
+  });
+
+  $("#items_table tbody tr").formset({
+    addText: "添加",
+    deleteText: "删除",
+    prefix: "prefix"
+  });
+
+});  
+</script>
+{% endblock extra_js %}

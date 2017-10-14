@@ -1,0 +1,115 @@
+{% extends "layouts/base.html" %}
+{% load render_table from django_tables2 %}
+
+{% block title %} 收据详细 {% endblock title %} 
+
+{% block page_heading %}
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-8">
+    <h2>收据详细</h2>
+    <ol class="breadcrumb">
+      <li>
+        <a href="{% url 'library:receipt-list' %}">收据中心</a>
+      </li>
+      <li class="active">
+        <strong>收据详细</strong>
+      </li>
+    </ol>
+  </div>
+  <div class="col-lg-4">
+    <div class="title-action">
+      <a href="#" onClick="printContent('invoice-box')" class="btn btn-primary"><i class="fa fa-print"></i> 打印收据 </a>
+    </div>
+  </div>
+</div>
+
+{% endblock page_heading %}
+
+{% block content %}
+<div class="row">
+  <div class="col-lg-12">
+    <div class="wrapper wrapper-content animated fadeInRight">
+      <div class="ibox-content p-xl" id="invoice-box">
+        <!--
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h5>From:</h5>
+                                <address>
+                                    <strong>广州悦海财税</strong><br>
+
+                                    106 Jorg Avenu, 600/10<br>
+                                    Chicago, VT 32456<br>
+                                    <abbr title="Phone">Tel:</abbr> 020-6014590
+                                </address>
+                            </div>
+
+                            <div class="col-sm-6 text-right">
+                                <h4>收据 No.</h4>
+                                <h4 class="text-navy">{{ object.no }}</h4>
+                                <span>To:</span>
+                                <address>
+                                    <strong>{{ object.company }}</strong><br>
+                                    {{ object.address }}
+                                    <abbr title="电话">P:</abbr> (120) 9000-4321
+                                </address>
+                            </div>
+                        </div>
+                    -->
+
+        <div class="row">
+          <div class="col-lg-12">
+            {% if object.type == "签收" %}
+            <p>今 <strong>广州悦海财税</strong> 收到来自 <strong>{{object.company}}</strong>的相关资料共 {{ object.count }} 件。 </p>
+            {% else %}
+            <p>今 <strong>{{object.company}}</strong> 收到来自 <strong>广州悦海财税</strong> 的归还资料共 {{ object.count }} 件。 </p>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="table-responsive m-t">
+          {% render_table table %}
+        </div>
+        <!-- /table-responsive -->
+
+        <table class="table invoice-total">
+          <tbody>
+            <tr>
+              <td><strong>物品总数量 :</strong></td>
+              <td>{{ object.count }}</td>
+            </tr>
+            <tr>
+              <td><strong>交接人 :</strong></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><strong>签收人 :</strong></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><strong>日期 :</strong></td>
+              <td>{{ object.created|date:"Y-m-d" }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        {% if object.info %}
+        <div class="well m-t"><strong>备注:</strong> {{ object.info }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} 
+{% block extra_js %}
+<script>
+    function printContent(el) {
+        var restorePage = $('body').html();
+        var content = $("#" + el).clone();
+        $("body").empty().html(content);
+        window.print();
+        $("body").html(restorePage);
+    }
+</script>
+{% endblock extra_js %}
