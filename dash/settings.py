@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     'core',
     'crm',
+    'library',
     'security',
     'api',
 ]
