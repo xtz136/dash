@@ -18,11 +18,6 @@ class UserAutoSelectForm(forms.Form):
         'user', label='用户', required=True)
 
 
-class BorrowerAutoSelectForm(forms.Form):
-    user = AutoCompleteField(
-        'user', label='借用者', required=True)
-
-
 class AutoCompanyForm(forms.Form):
     """公司搜索表单"""
     q = AutoCompleteField('company', show_help_text=False)

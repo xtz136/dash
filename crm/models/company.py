@@ -175,6 +175,19 @@ class Company(models.Model):
         max_length=10,
         choices=CREDIT_RATINGS)
 
+    RATINGS = (
+        ('A', 'A'),
+        ('B', 'B'),
+        ('C', 'C'),
+        ('D', 'D'),
+    )
+    rating = models.CharField(
+        verbose_name='评级',
+        blank=True,
+        max_length=10,
+        choices=RATINGS
+    )
+
     TAXPAYER_TYPES = [('一般纳税人', '一般纳税人'), ('小规模纳税人', '小规模纳税人')]
     taxpayer_type = models.CharField(
         verbose_name="纳税人类型",

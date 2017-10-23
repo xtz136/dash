@@ -43,7 +43,9 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
                     # 'legal_people',
                     'status', 'show_contactor_info', 'show_shareholder_info')
     list_filter = ('status', 'ic_status', 'license_status',
-                   'type', 'salesman', 'industry',
+                   'type', 'salesman',
+                   'rating',
+                   'industry',
                    'has_custom_info', 'has_customer_files',
                    'taxpayer_type', 'scale_size')
     search_fields = ('title', 'note', 'address',
@@ -66,6 +68,7 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
             'fields': ('title', 'alias',
                        'industry', 'type', 'scale_size',
                        'credit_rating', 'taxpayer_type',
+                       'rating',
                        'status', 'ic_status', 'tax_disk',
                        'ss_declared', 'has_customer_files',
                        'registered_capital',
