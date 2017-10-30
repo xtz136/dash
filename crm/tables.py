@@ -13,12 +13,19 @@ class CompanyTable(tables.Table):
         attrs = {
             'class': 'table table-striped table-bordered table-hover my-table'
         }
+        default = ''
 
         model = Company
 
     def render_title(self, value, record):
         return format_html('<a href="/client/{id}/">{title}</a>'.format(
             id=record.id, title=value))
+
+    def render_uscc(self, value, record):
+        return "'" + value if value.isdigit() else value
+
+    def render_national_tax_id(self, value, record):
+        return "'" + value if value.isdigit() else value
 
 
 class ShareHolderTable(tables.Table):
