@@ -139,6 +139,7 @@ class ItemListView(LoginRequiredMixin,
         context = super(ItemListView, self).get_context_data(**kwargs)
         context['search_form'] = self.get_search_form()
         context['filter'] = self.get_filter()
+        context['borrow_form'] = forms.BorrowerAutoSelectForm()
         return context
 
     def get_table_data(self):

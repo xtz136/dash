@@ -139,4 +139,5 @@ class Log(models.Model):
     item = models.ForeignKey(Item)
     qty = models.PositiveIntegerField()
     action = models.CharField(blank=True, max_length=100)
+    info = models.CharField(verbose_name='备注', blank=True, max_length=255)
     created = models.DateTimeField(auto_now_add=True)

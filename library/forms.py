@@ -27,3 +27,16 @@ class SearchForm(forms.Form):
     q = forms.CharField(required=False,
                         widget=forms.TextInput(
                             attrs={'placeholder': '输入关键字搜索'}))
+
+
+class BorrowerAutoSelectForm(forms.Form):
+    borrower = AutoCompleteField('user',
+                                 label='借用者',
+                                 required=True,
+                                 show_help_text=False)
+
+    reason = forms.ChoiceField(label="事由", choices=(
+        ('公事', '公事'),
+    ))
+
+    helper = FormHelper()

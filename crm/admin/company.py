@@ -87,6 +87,7 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
 
         ('银行信息', {
             'fields': (
+                'has_czk',
                 ('ss_number', 'ss_date'),
                 ('taxpayer_bank', 'taxpayer_account'),
                 ('ss_bank', 'ss_account'),
@@ -112,12 +113,11 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
         }),
         ('海关信息', {
             'fields': (
-                'custom_entry_no',
-                'custom_org_code',
+                'has_custom_info',
                 'custom_register_no',
                 'custom_registered_at',
                 'custom_expired_at',
-                'premise',
+                'credit_rating',
             )
         }),
     )

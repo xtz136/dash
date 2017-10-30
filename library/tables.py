@@ -38,17 +38,20 @@ class ReceiptItemTable(tables.Table):
 
 
 class ItemTable(tables.Table):
-    id = tables.Column(verbose_name=format_html(
-        '<input type="checkbox"/ id="action-toggle">'))
+    id = tables.Column(
+        verbose_name=format_html('<input type="checkbox" id="action-toggle">'))
 
     class Meta:
         model = Item
         fields = ('id', 'company_title', 'name', 'type',
                   'qty', 'note', 'status', 'received_at')
-        attrs = {'class': 'table table-responsive'}
+        attrs = {'class': 'table table-hover no-margins table-responsive'}
 
     def render_id(self, value):
         return format_html('<input type="checkbox" value="{0}" class="action-select" />'.format(value))
 
     def has_footer(self):
+        return True
+
+    def footer_empty(self):
         return True

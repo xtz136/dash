@@ -168,12 +168,10 @@ class Company(models.Model):
         blank=True,
         max_length=255)
 
-    CREDIT_RATINGS = [('良好', '良好'), ('一般', '一般'), ('差', '差'), ('很差', '很差')]
     credit_rating = models.CharField(
-        verbose_name="信用评级",
-        default='良好',
-        max_length=10,
-        choices=CREDIT_RATINGS)
+        verbose_name="信用等级",
+        blank=True,
+        max_length=100)
 
     RATINGS = (
         ('A', 'A'),
@@ -196,18 +194,8 @@ class Company(models.Model):
         choices=TAXPAYER_TYPES)
 
     # 海关信息
-    custom_entry_no = models.CharField(
-        verbose_name='海关登记编号',
-        blank=True,
-        max_length=255)
-
     custom_register_no = models.CharField(
-        verbose_name='海关注册编码',
-        blank=True,
-        max_length=255)
-
-    custom_org_code = models.CharField(
-        verbose_name='海关组织机构代码',
+        verbose_name='海关注册代码',
         blank=True,
         max_length=255)
 
@@ -217,14 +205,26 @@ class Company(models.Model):
         null=True)
 
     custom_expired_at = models.DateField(
-        verbose_name="海关有效期至",
+        verbose_name="报关有效期",
         null=True,
         blank=True)
-
-    premise = models.CharField(
-        verbose_name="经营场地（英文)",
-        max_length=255,
-        blank=True)
+    has_czk = models.CharField(
+        verbose_name="有财智卡",
+        blank=True,
+        choices=(
+            ("有", "有"),
+            ("无", "无"),
+        ),
+        max_length=100,
+        default="无")
+    has_custom_info = models.CharField(
+        choices=(
+            ("有", "有"),
+            ("无", "无"),
+        ),
+        verbose_name="是否有海关信息",
+        max_length=100,
+        default="无")
 
     # 规模
     SCALE_SIZES = [('小型企业', '小型企业'), ('中型企业人)', '中型企业人)'), ('大型企业)', '大型企业)')]
@@ -247,10 +247,6 @@ class Company(models.Model):
     website = models.CharField(verbose_name="公司网站", blank=True, max_length=255)
     note = models.TextField(
         verbose_name="备注", blank=True, help_text='可添加公司的其它备注信息')
-
-    has_custom_info = models.BooleanField(verbose_name='是否填写海关信息',
-                                          editable=False,
-                                          default=False)
 
     legal_people = models.CharField(
         verbose_name='法人', blank=True, max_length=200)
@@ -313,11 +309,6 @@ class Company(models.Model):
 
     def save(self, *args, **kwargs):
         self.title = self.title.strip()
-        self.has_custom_info = any([
-            self.custom_entry_no, self.custom_expired_at,
-            self.custom_org_code, self.custom_register_no,
-            self.custom_registered_at])
-
         if not self.op_address:
             self.op_address = self.address
 
