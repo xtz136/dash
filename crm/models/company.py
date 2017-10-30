@@ -209,7 +209,7 @@ class Company(models.Model):
         null=True,
         blank=True)
     has_czk = models.CharField(
-        verbose_name="有财智卡",
+        verbose_name="财智卡",
         blank=True,
         choices=(
             ("有", "有"),

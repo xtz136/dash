@@ -1,11 +1,15 @@
 import logging
+from datetime import datetime
+from collections import namedtuple
 
-from django.views.generic import TemplateView, DetailView, UpdateView, CreateView
+from django.views.generic import TemplateView, DetailView, UpdateView, CreateView, FormView
+from django.http import HttpResponse
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db.models import Q
 from django.forms import inlineformset_factory, modelformset_factory, all_valid
 
+import xlrd
 from django_tables2 import Column
 from crispy_forms.helper import FormHelper, Layout
 from extra_views import CreateWithInlinesView, UpdateWithInlinesView, InlineFormSet
@@ -137,3 +141,58 @@ class ClientCreateView(LoginRequiredMixin,
 
     def get_success_url(self):
         return reverse('crm:client-detail', kwargs={'pk': self.object.pk})
+
+
+class BatchClientUpdateView(LoginRequiredMixin,
+                            PermissionRequiredMixin,
+                            FormView):
+    """批量更新客户信息，模板格式必须约定好"""
+    template_name = 'crm/client/batch.html'
+    form_class = forms.BatchClientUpdateForm
+    permission_required = 'crm.add_company'
+    raise_exception = True
+    permission_denied_message = '请联系管理员获取查看该页面的权限'
+
+    def parse_sheet(self, contents):
+        book = xlrd.open_workbook(file_contents=contents)
+        sheet = book.sheet_by_index(0)
+        names = sheet.row_values(0)
+
+        fields = [
+            f.name for name in names
+            for f in models.Company._meta.fields if f.verbose_name == name
+        ]
+
+        # 错误的模板
+        if len(fields) != len(names):
+            raise ValueError(fields, names)
+
+        ClientRecord = namedtuple('ClientRecord', fields)
+        for i in range(1, sheet.nrows):
+            row = self.__format(ClientRecord(*sheet.row_values(i))._asdict())
+            client = models.Company.objects.filter(
+                title=row['title']).update(**row)
+        return sheet.nrows - 1
+
+    def __format(self, row):
+        """将特殊的字段转换"""
+        for field, value in row.items():
+            m = '_format_' + field
+            if hasattr(self, m):
+                row[field] = getattr(self, m)(value)
+        return row
+
+    def _format_custom_expired_at(self, value):
+        return xlrd.xldate.xldate_as_datetime(value, 0) if value else None
+
+    def _format_registered_at(self, value):
+        if not value or not value.strip("—"):
+            return None
+        return datetime.strptime(value.strip(), "%Y年%m月%d日")
+
+    def _format_custom_registered_at(self, value):
+        return xlrd.xldate.xldate_as_datetime(value, 0) if value else None
+
+    def form_valid(self, form):
+        rows = self.parse_sheet(form.cleaned_data['file'].read())
+        return HttpResponse("{} record updated".format(rows))

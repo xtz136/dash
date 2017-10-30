@@ -14,6 +14,8 @@ urlpatterns = [
         name='logout'),
     url(r'^dashboard/$', views.DashboardView.as_view(), name='dashboard'),
 
+    url(r'^client/batch/$',
+        views.BatchClientUpdateView.as_view(), name='client-batch'),
     url(r'^client/search/$',
         views.ClientSearchView.as_view(), name='client-search'),
     url(r'^client/create/$',

@@ -153,3 +153,8 @@ class AttachmentModelForm(forms.ModelForm):
     class Meta:
         fields = ('name', 'file_type', 'file')
         model = Attachment
+
+
+class BatchClientUpdateForm(forms.Form):
+    """批量更新客户信息表单"""
+    file = forms.FileField()
