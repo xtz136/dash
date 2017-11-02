@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db.models import Q
 from django.forms import inlineformset_factory, modelformset_factory, all_valid
+from django.contrib.auth.models import User
 
 import xlrd
 from django_tables2 import Column
@@ -152,6 +153,13 @@ class BatchClientUpdateView(LoginRequiredMixin,
     permission_required = 'crm.add_company'
     raise_exception = True
     permission_denied_message = '请联系管理员获取查看该页面的权限'
+    field_types = {
+        'ss_date': 'date',
+        'registered_at': 'date',
+        'custom_expired_at': 'date',
+        'custom_registered_at': 'date',
+        'salesman': 'user',
+    }
 
     def parse_sheet(self, contents):
         book = xlrd.open_workbook(file_contents=contents)
@@ -184,6 +192,15 @@ class BatchClientUpdateView(LoginRequiredMixin,
 
     def _format_custom_expired_at(self, value):
         return xlrd.xldate.xldate_as_datetime(value, 0) if value else None
+
+    def _format_ss_date(self, value):
+        return xlrd.xldate.xldate_as_datetime(value, 0) if value else None
+
+    def _format_salesman(self, value):
+        return User.objects.get(username=value) if value else None
+
+    def _format_bookkeeper(self, value):
+        return User.objects.get(username=value) if value else None
 
     def _format_registered_at(self, value):
         if not value or not value.strip("—"):

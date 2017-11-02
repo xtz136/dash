@@ -268,7 +268,7 @@ class Company(models.Model):
     contactor = models.CharField(
         verbose_name='负责人', max_length=255, blank=True)
     contactor_phone = models.CharField(
-        verbose_name='负责人联系电话', max_length=255, blank=True)
+        verbose_name='负责人电话', max_length=255, blank=True)
     attachments = GenericRelation(Attachment)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
