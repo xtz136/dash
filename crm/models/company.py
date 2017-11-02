@@ -66,7 +66,7 @@ class Company(models.Model):
         verbose_name="执照有效日期至", blank=True, null=True)
 
     business_license = models.CharField(
-        verbose_name="营业执照号", blank=True, max_length=255)
+        verbose_name="营业执照注册号", blank=True, max_length=255)
 
     INDUSTRIES = [('汽配', '汽配'),
                   ('餐饮', '餐饮'),
@@ -78,7 +78,8 @@ class Company(models.Model):
                   ('房地产', '房地产'),
                   ('服务业', '服务业'),
                   ('贸易', '贸易'),
-                  ('娱乐', '娱乐')]
+                  ('娱乐', '娱乐'),
+                  ('其它', '其它')]
     industry = models.CharField(
         choices=INDUSTRIES, verbose_name="所属行业", default='汽配',
         max_length=50)
@@ -265,7 +266,7 @@ class Company(models.Model):
     contactor = models.CharField(
         verbose_name='负责人', max_length=255, blank=True)
     contactor_phone = models.CharField(
-        verbose_name='联系电话', max_length=255, blank=True)
+        verbose_name='负责人联系电话', max_length=255, blank=True)
     attachments = GenericRelation(Attachment)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

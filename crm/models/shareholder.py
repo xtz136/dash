@@ -14,7 +14,7 @@ class ShareHolder(models.Model):
                             choices=ROLES,
                             default="股东",
                             max_length=10)
-    share = models.FloatField(verbose_name="股份占比", default=.1)
+    share = models.FloatField(verbose_name="股份占比%", default=.1)
     is_contactor = models.BooleanField(default=False,
                                        verbose_name="主要联系人")
 

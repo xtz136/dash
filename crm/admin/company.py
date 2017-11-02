@@ -67,8 +67,7 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
         ('公司信息', {
             'fields': ('title', 'alias',
                        'industry', 'type', 'scale_size',
-                       'credit_rating', 'taxpayer_type',
-                       'rating',
+                       'taxpayer_type', 'rating',
                        'status', 'ic_status', 'tax_disk',
                        'ss_declared', 'has_customer_files',
                        'registered_capital',
@@ -77,8 +76,8 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
                        'website', 'salesman', 'bookkeeper',
                        'registered_at', 'expired_at',
                        'tax_declared_begin',
-                       'special_taxes',
-                       'contactor', 'contactor_phone', 'tags', 'note')
+                       'contactor', 'contactor_phone', 'tags',
+                       'special_taxes', 'note')
         }),
 
         ('电子税局信息', {
@@ -151,3 +150,10 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
     def make_ic_status_invalid(self, request, queryset):
         queryset.update(ic_status='经营异常')
     make_ic_status_invalid.short_description = "修改工商状态为异常"
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super(CompanyModelAdmin, self).get_form(
+            request, obj, **kwargs)
+        form.base_fields['special_taxes'].widget.attrs['style'] = 'width: 610px;'
+        form.base_fields['tags'].widget.attrs['style'] = 'width: 272px;'
+        return form
