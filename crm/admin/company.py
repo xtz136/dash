@@ -76,7 +76,9 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
                        'website', 'salesman', 'bookkeeper',
                        'registered_at', 'expired_at',
                        'tax_declared_begin',
-                       'contactor', 'contactor_phone', 'tags',
+                       'contactor', 'contactor_phone',
+                       'legal_people', 'legal_phone',
+                       'tags',
                        'special_taxes', 'note')
         }),
 

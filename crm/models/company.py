@@ -251,6 +251,8 @@ class Company(models.Model):
 
     legal_people = models.CharField(
         verbose_name='法人', blank=True, max_length=200)
+    legal_phone = models.CharField(
+        verbose_name='法人电话', blank=True, max_length=200)
 
     has_customer_files = models.BooleanField(
         verbose_name='是否有存放客户资料',
@@ -322,7 +324,7 @@ class Company(models.Model):
         if not self.legal_people:
             try:
                 self.legal_people = self.shareholder_set.get(
-                    role='legal').people.name
+                    role='法人').people.name
             except:
                 pass
         self.check_expired()
