@@ -158,6 +158,27 @@ class Company(models.Model):
     special_taxes = models.CharField(
         verbose_name="特别税种", blank=True, max_length=255
     )
+    const_tax = models.CharField(
+        verbose_name="定税", blank=True, max_length=255
+    )
+    declare_info = models.TextField(
+        verbose_name="申报区备注", blank=True,
+    )
+    income_tax = models.CharField(
+        verbose_name="所得税", blank=True, max_length=255
+    )
+    added_value_tax = models.CharField(
+        verbose_name="增值税", blank=True, max_length=255
+    )
+    batch = models.CharField(
+        verbose_name="批量",
+        default="",
+        blank=True,
+        choices=(
+            ("批量", "批量"),
+        ),
+        max_length=100,
+    )
 
     # 个体户
     individual_bank = models.CharField(

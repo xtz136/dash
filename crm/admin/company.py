@@ -65,11 +65,11 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
 
     fieldsets = (
         ('公司信息', {
-            'fields': ('title', 'alias',
+            'fields': ('title',
                        'industry', 'type', 'scale_size',
                        'taxpayer_type', 'rating',
                        'status', 'ic_status', 'tax_disk',
-                       'ss_declared', 'has_customer_files',
+                       'has_customer_files',
                        'registered_capital',
                        'address', 'op_address',
                        'uscc', 'business_license',
@@ -79,11 +79,22 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
                        'contactor', 'contactor_phone',
                        'legal_people', 'legal_phone',
                        'tags',
-                       'special_taxes', 'note')
+                       'note')
         }),
 
-        ('电子税局信息', {
-            'fields': ('tax_username', 'tax_password')
+        ('申报区', {
+            'fields': (
+                'alias',
+                'batch',
+                'ss_declared',
+                'tax_disk',
+                'tax_username',
+                'tax_password',
+                'added_value_tax',
+                'income_tax',
+                'const_tax',
+                'special_taxes',
+                'declare_info', )
         }),
 
         ('银行信息', {
