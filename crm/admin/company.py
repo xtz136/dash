@@ -156,6 +156,8 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
     def get_form(self, request, obj=None, **kwargs):
         form = super(CompanyModelAdmin, self).get_form(
             request, obj, **kwargs)
-        form.base_fields['special_taxes'].widget.attrs['style'] = 'width: 610px;'
-        form.base_fields['tags'].widget.attrs['style'] = 'width: 272px;'
+        if 'special_taxes' in form.base_fields:
+            form.base_fields['special_taxes'].widget.attrs['style'] = 'width: 610px;'
+        if 'tags' in form.base_fields:
+            form.base_fields['tags'].widget.attrs['style'] = 'width: 272px;'
         return form
