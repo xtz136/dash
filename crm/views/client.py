@@ -121,7 +121,7 @@ class ClientEditView(LoginRequiredMixin,
     permission_required = 'crm.change_company'
     raise_exception = True
     permission_denied_message = '请联系管理员获取查看该页面的权限'
-    inlines = [ShareHolderInline, AttachmentInline]
+    inlines = [ShareHolderInline]
 
     def get_success_url(self):
         logger.info('编辑完成')
@@ -138,7 +138,7 @@ class ClientCreateView(LoginRequiredMixin,
     permission_required = 'crm.add_company'
     raise_exception = True
     permission_denied_message = '请联系管理员获取查看该页面的权限'
-    inlines = [ShareHolderInline, AttachmentInline]
+    inlines = [ShareHolderInline]
 
     def get_success_url(self):
         return reverse('crm:client-detail', kwargs={'pk': self.object.pk})

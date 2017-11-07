@@ -27,99 +27,70 @@
 
 <div class="row">
   <div class="col-lg-9">
-  <div class="ibox">
-    <div class="ibox-title">
+    <div class="ibox">
+      <div class="ibox-title">
         <div class="m-b-md">
-        {% if has_change_perm %}
-          <a href="{% url 'crm:client-edit' object.pk %}" class="btn btn-white btn-xs pull-right">编辑</a>
-        {% endif %}
+          {% if has_change_perm %}
+          <a href="{% url 'crm:client-edit' object.pk %}" class="btn btn-white btn-xs pull-right">编辑</a> {% endif %}
           <h5>{{ object.title }}</h5>
         </div>
-    </div>
-    <div class="ibox-content">
+      </div>
+      <div class="ibox-content">
 
-          <div class="row">
-            <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-12">
 
-              <dl class="dl-horizontal">
-                <dt>代理状态:</dt>
-                <dd><span class="label {% if object.status == '有效' %}label-primary {% else %}label-danger{% endif %}">{{ object.status }}</span></dd>
-              </dl>
+            <dl class="dl-horizontal">
+              <dt>代理状态:</dt>
+              <dd><span class="label {% if object.status == '有效' %}label-primary {% else %}label-danger{% endif %}">{{ object.status }}</span></dd>
+            </dl>
 
 
-              <dl class="dl-horizontal">
-                <dt>股东信息:</dt>
-                <dd>{% render_table shareholder_table %}</dd>
-              </dl>
+            <dl class="dl-horizontal">
+              <dt>股东信息:</dt>
+              <dd>{% render_table shareholder_table %}</dd>
+            </dl>
 
-            </div>
-          </div>
-
-    <div class="row">
-    <form action="" class="form-horizontal">
-      {% crispy form %}
-    </form>
-    </div>
-          <div class="row m-t-sm">
-            <div class="col-lg-12">
-              <div class="panel blank-panel">
-                <div class="panel-heading">
-                  <div class="panel-options">
-                    <ul class="nav nav-tabs">
-                      <li class="active"><a href="#tab-1" data-toggle="tab">客户留言</a></li>
-                      <li class=""><a href="#tab-2" data-toggle="tab">最近活动</a></li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div class="panel-body">
-
-                  <div class="tab-content">
-                    <div class="tab-pane active" id="tab-1">
-                      <div class="feed-activity-list">
-                        <!-- <div class="feed-element">
-                          <a href="#" class="pull-left">
-                              <img alt="image" class="img-circle" src="img/a2.jpg">
-                            </a>
-                          <div class="media-body ">
-                            <small class="pull-right">2小时前</small>
-                            <strong>张某</strong> <br>
-                            <small class="text-muted">今天 下午 2:10</small>
-                            <div class="well">
-                                这里可以在公众号后台留言
-                            </div>
-                          </div>
-                        </div> -->
-
-                      </div>
-
-                    </div>
-                    <div class="tab-pane" id="tab-2">
-
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th>状态</th>
-                            <th>内容</th>
-                            <th>开始时间</th>
-                            <th>结束时间</th>
-                            <th>备注</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                      </table>
-
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
           </div>
         </div>
-      </div>
+
+        <div class="row">
+          <form action="" class="form-horizontal">
+
+
+            <div class="row mt-sm">
+
+              <div class="col-lg-12">
+                <div class="panel blank-panel">
+                  <div class="panel-heading">
+                    <div class="panel-options">
+                      <ul class="nav nav-tabs">
+
+                        {% for fieldset in form.helper.layout.fields %}
+                        <li class="{% if forloop.first %} active{% endif %}">
+                          <a href="#{{ fieldset.legend }}" data-toggle="tab">{{ fieldset.legend }}</a>
+                        </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                  <!-- end panel-heading -->
+                  <div class="panel-body">
+
+                    <div class="tab-content">
+                      {% crispy form %}
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div><!-- end row -->
+
+      </div><!-- end ibox-content -->
+    </div>
   </div>
 
   <div class="col-lg-3">
@@ -135,11 +106,11 @@
 
       <h5>附件</h5>
       <ul class="list-unstyled project-files">
-      {% for a in object.attachments.all %}
-      <li>
-         <a href="{{ a.file.url }}"><i class="fa fa-file"></i> {{ a.name }} </a>
-      </li>
-      {% endfor %}
+        {% for a in object.attachments.all %}
+        <li>
+          <a href="{{ a.file.url }}"><i class="fa fa-file"></i> {{ a.name }} </a>
+        </li>
+        {% endfor %}
       </ul>
 
       <!-- <div class="m-t-md">
@@ -153,4 +124,10 @@
 {% block extra_js %} 
 {{ search_form.media }}
 
+<script>
+$(document).ready(function(){
+  $(".tab-pane").first().addClass("active"); 
+
+});
+</script>
 {% endblock extra_js %}

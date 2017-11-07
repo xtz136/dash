@@ -52,19 +52,20 @@ class CompanyModelForm(forms.ModelForm):
         helper.label_class = 'col-lg-2'
         helper.form_tag = False
         helper.field_class = 'col-lg-10'
+        Fieldset.template = 'crm/fieldset.html'
         helper.layout = Layout(
 
             Fieldset('公司信息',
-                     'title', 'alias',
+                     'title',
                      'industry', 'type', 'scale_size',
-                     'credit_rating', 'taxpayer_type',
+                     'taxpayer_type', 'rating',
                      'status', 'ic_status',
-                     'tax_disk',
-                     'ss_declared', 'has_customer_files',
+                     'has_customer_files',
                      'registered_capital',
                      'address', 'op_address',
                      'uscc', 'business_license',
                      'website', 'salesman', 'bookkeeper',
+                     'legal_people', 'legal_phone',
                      PrependedText('registered_at',
                                    '<i class="fa fa-calendar"></i>'),
                      PrependedText('expired_at',
@@ -81,29 +82,44 @@ class CompanyModelForm(forms.ModelForm):
                                    css_class="tagsinput"),
                      'note'),
 
-            Fieldset('电子税局信息',
+            Fieldset('申报区',
+                     'alias',
                      PrependedText('tax_username',
                                    '<i class="fa fa-user"></i>'),
                      PrependedText('tax_password',
-                                   '<i class="fa fa-key"></i>')),
+                                   '<i class="fa fa-key"></i>'),
+
+                     'batch',
+                     'ss_declared',
+                     'tax_disk',
+                     'added_value_tax',
+                     'income_tax',
+                     'cut_tax',
+                     'invoice',
+                     'const_tax',
+                     'special_taxes',
+                     'declare_info'),
 
             Fieldset('银行信息',
+
+                     'has_czk',
                      'ss_number',
-                     PrependedText('ss_date',
-                                   '<i class="fa fa-calendar"></i>'),
                      'taxpayer_bank', 'taxpayer_account',
                      'ss_bank', 'ss_account',
-                     'individual_bank', 'individual_account'
+                     'individual_bank', 'individual_account',
+
+                     PrependedText('ss_date',
+                                   '<i class="fa fa-calendar"></i>'),
                      ),
 
-            Fieldset('国税',
+            Fieldset('国税信息',
                      'national_tax_office',
                      'national_tax_id',
                      PrependedText('national_tax_staff',
                                    '<i class="fa fa-user"></i>'),
                      PrependedText('national_tax_phone',
                                    '<i class="fa fa-phone"></i>')),
-            Fieldset('地税',
+            Fieldset('地税信息',
                      'local_tax_office',
                      'local_tax_id',
                      'local_tax_sn',
@@ -112,14 +128,15 @@ class CompanyModelForm(forms.ModelForm):
                      PrependedText('local_tax_phone',
                                    '<i class="fa fa-phone"></i>')),
             Fieldset('海关信息',
-                     'custom_entry_no',
-                     'custom_org_code',
+                     'has_custom_info',
                      'custom_register_no',
+                     'credit_rating',
+
                      PrependedText('custom_registered_at',
                                    '<i class="fa fa-calendar"></i>'),
                      PrependedText('custom_expired_at',
                                    '<i class="fa fa-calendar"></i>'),
-                     'premise'))
+                     ))
         self.helper = helper
 
         if readonly:

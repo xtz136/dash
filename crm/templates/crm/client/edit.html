@@ -29,30 +29,68 @@
 
 {% block content %}
 
+
+
 <div class="row">
   <div class="col-lg-12">
-      <div class="ibox">
-        <div class="ibox-content">
+    <div class="ibox">
+      <div class="ibox-content">
         <form action="" method="POST" class="form-horizontal" enctype="multipart/form-data">
-          {% crispy form %}
+          <div class="row mt-sm">
+            <div class="col-lg-12">
 
-          {% for formset in inlines %}
-          <fieldset>
-          <legend>{% model_name formset.model %}</legend>
-            {% crispy formset %}
-          </fieldset>
-          {% endfor %}
+              <div class="panel blank-panel">
+                <div class="panel-heading">
+                  <div class="panel-options">
+                    <ul class="nav nav-tabs">
 
-          <div class="form-group">
-            <div class="controls col-lg-2"></div>
-            <div class="controls col-lg-10">
-              <input type="submit" name="submit" value="提交" class="btn btn-primary pull-right" id="submit-id-submit"> 
+                      {% for fieldset in form.helper.layout.fields %}
+                      <li class="{% if forloop.first %} active{% endif %}">
+                        <a href="#{{ fieldset.legend }}" data-toggle="tab">{{ fieldset.legend }}</a>
+                      </li>
+                      {% endfor %}
+
+                      {% for formset in inlines %}
+                      <li class="">
+                        <a href="#{% model_name formset.model %}" data-toggle="tab">
+                          {% model_name formset.model %}
+                        </a>
+                      </li>
+                    {% endfor %}
+
+                    </ul>
+                  </div>
+                </div>
+                <!-- end panel-heading -->
+                <div class="panel-body">
+
+                  <div class="tab-content">
+                    {% crispy form %}
+
+                    {% for formset in inlines %}
+                    <div class="tab-pane" id="{% model_name formset.model %}">
+                      {% crispy formset %}
+                    </div>
+                    {% endfor %}
+
+                  </div>
+
+                </div>
+              </div>
             </div>
           </div>
-        
+
+          <div class="hr-line-dashed"></div>
+          <div class="form-group">
+              <div class="col-sm-4 col-sm-offset-2">
+                  <a class="btn btn-white" type="" href="{% url 'crm:client-detail' object.pk %}">取消编辑</a>
+                  <button class="btn btn-primary" type="submit">保存</button>
+              </div>
+          </div>
+
         </form>
-        </div>
       </div>
+    </div>
   </div>
 
 </div>
@@ -81,6 +119,8 @@ $(document).ready(function(){
       format: "yyyy/mm/dd",
     });
   });
+
+  $(".tab-pane").first().addClass("active"); 
 
   $(".tagsinput").tagsinput({
     tagClass: 'label label-primary'
