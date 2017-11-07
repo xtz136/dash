@@ -176,11 +176,26 @@ class BatchClientUpdateView(LoginRequiredMixin,
             raise ValueError(fields, names)
 
         ClientRecord = namedtuple('ClientRecord', fields)
+        n = 0
+
         for i in range(1, sheet.nrows):
             row = self.__format(ClientRecord(*sheet.row_values(i))._asdict())
-            client = models.Company.objects.filter(
-                title=row['title']).update(**row)
-        return sheet.nrows - 1
+
+            qs = models.Company.objects.filter(title=row['title'])
+
+            # try with starts
+            if not qs.exists():
+                qs = models.Company.objects.filter(
+                    title__startswith=row['title'])
+                logger.info(row['title'])
+
+            # only update match
+            if qs.count() == 1:
+                qs.update(**row)
+                n += 1
+            else:
+                logger.warn("{} not found".format(row['title']))
+        return (sheet.nrows - 1, n)
 
     def __format(self, row):
         """将特殊的字段转换"""
@@ -211,5 +226,5 @@ class BatchClientUpdateView(LoginRequiredMixin,
         return xlrd.xldate.xldate_as_datetime(value, 0) if value else None
 
     def form_valid(self, form):
-        rows = self.parse_sheet(form.cleaned_data['file'].read())
-        return HttpResponse("{} record updated".format(rows))
+        rows, parsed = self.parse_sheet(form.cleaned_data['file'].read())
+        return HttpResponse("{} rows, updated {} ".format(rows, parsed))
