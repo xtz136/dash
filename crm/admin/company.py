@@ -93,7 +93,7 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
                 'added_value_tax',
                 'income_tax',
                 'cut_tax',
-                'withold_invoice',
+                'withholding',
                 'const_tax',
                 'special_taxes',
                 'declare_info', )
