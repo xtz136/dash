@@ -147,9 +147,13 @@ class Company(models.Model):
 
     TAX_DISKS = (
         ("百望", "百望"),
-        ("航天", "航天")
+        ("百望*", "百望*"),
+        ("航天", "航天"),
+        ("航天*", "航天*"),
+        ("*", "*"),
     )
     tax_disk = models.CharField(
+        help_text="带*表示电子发票",
         max_length=100,
         verbose_name="税控盘", choices=TAX_DISKS, blank=True)
 
@@ -169,6 +173,15 @@ class Company(models.Model):
     )
     added_value_tax = models.CharField(
         verbose_name="增值税", blank=True, max_length=255
+    )
+    cut_tax = models.CharField(
+        verbose_name="减税", blank=True, max_length=255
+    )
+    cut_tax = models.CharField(
+        verbose_name="减税", blank=True, max_length=255
+    )
+    withhold_invoice = models.CharField(
+        verbose_name="代扣发票", blank=True, max_length=255
     )
     batch = models.CharField(
         verbose_name="批量",

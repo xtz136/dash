@@ -92,6 +92,8 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
                 'tax_password',
                 'added_value_tax',
                 'income_tax',
+                'cut_tax',
+                'withold_invoice',
                 'const_tax',
                 'special_taxes',
                 'declare_info', )
