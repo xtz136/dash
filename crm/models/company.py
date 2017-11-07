@@ -177,8 +177,8 @@ class Company(models.Model):
     cut_tax = models.CharField(
         verbose_name="减税", blank=True, max_length=255
     )
-    withholding = models.CharField(
-        verbose_name="代扣发票", blank=True, max_length=255
+    invoice = models.CharField(
+        verbose_name="代开发票", blank=True, max_length=255
     )
     batch = models.CharField(
         verbose_name="批量",

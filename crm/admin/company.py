@@ -68,7 +68,7 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
             'fields': ('title',
                        'industry', 'type', 'scale_size',
                        'taxpayer_type', 'rating',
-                       'status', 'ic_status', 'tax_disk',
+                       'status', 'ic_status',
                        'has_customer_files',
                        'registered_capital',
                        'address', 'op_address',
@@ -93,7 +93,7 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
                 'added_value_tax',
                 'income_tax',
                 'cut_tax',
-                'withholding',
+                'invoice',
                 'const_tax',
                 'special_taxes',
                 'declare_info', )
