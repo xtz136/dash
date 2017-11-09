@@ -68,18 +68,18 @@ class Company(models.Model):
     business_license = models.CharField(
         verbose_name="营业执照注册号", blank=True, max_length=255)
 
-    INDUSTRIES = [('汽配', '汽配'),
-                  ('餐饮', '餐饮'),
-                  ('服装', '服装'),
-                  ('批发业', '批发业'),
-                  ('建筑', '建筑'),
-                  ('商贸', '商贸'),
-                  ('广告', '广告'),
-                  ('房地产', '房地产'),
-                  ('服务业', '服务业'),
-                  ('贸易', '贸易'),
-                  ('娱乐', '娱乐'),
-                  ('其它', '其它')]
+    INDUSTRIES = [
+        ('餐饮', '餐饮'),
+        ('服务业', '服务业'),
+        ('广告', '广告'),
+        ('兼服务业', '兼服务业'),
+        ('建筑', '建筑'),
+        ('零售业', '零售业'),
+        ('贸易', '贸易'),
+        ('租赁业', '租赁业'),
+        ('制造业', '制造业'),
+        ('娱乐', '娱乐'),
+        ('其它', '其它')]
     industry = models.CharField(
         choices=INDUSTRIES, verbose_name="所属行业", default='汽配',
         max_length=50)
