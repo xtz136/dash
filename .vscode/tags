@@ -18,8 +18,11 @@
 0004_auto_20170723_0405.py	../crm/migrations/0004_auto_20170723_0405.py	1;"	kind:file	line:1
 0004_profile_preference.py	../security/migrations/0004_profile_preference.py	1;"	kind:file	line:1
 0005_auto_20170723_0434.py	../crm/migrations/0005_auto_20170723_0434.py	1;"	kind:file	line:1
+0005_profile_phone.py	../security/migrations/0005_profile_phone.py	1;"	kind:file	line:1
 0006_auto_20170723_1214.py	../crm/migrations/0006_auto_20170723_1214.py	1;"	kind:file	line:1
+0006_auto_20171121_1002.py	../security/migrations/0006_auto_20171121_1002.py	1;"	kind:file	line:1
 0007_auto_20170724_1452.py	../crm/migrations/0007_auto_20170724_1452.py	1;"	kind:file	line:1
+0007_profile_avatar.py	../security/migrations/0007_profile_avatar.py	1;"	kind:file	line:1
 0008_auto_20170725_0000.py	../crm/migrations/0008_auto_20170725_0000.py	1;"	kind:file	line:1
 0009_auto_20170725_0001.py	../crm/migrations/0009_auto_20170725_0001.py	1;"	kind:file	line:1
 0010_department.py	../crm/migrations/0010_department.py	1;"	kind:file	line:1
@@ -114,11 +117,15 @@
 0099_auto_20171107_1239.py	../crm/migrations/0099_auto_20171107_1239.py	1;"	kind:file	line:1
 0100_auto_20171107_1317.py	../crm/migrations/0100_auto_20171107_1317.py	1;"	kind:file	line:1
 0101_auto_20171107_1429.py	../crm/migrations/0101_auto_20171107_1429.py	1;"	kind:file	line:1
-ADMIN_VIEW_PERMISSION_MODELS	../dash/settings.py	/^ADMIN_VIEW_PERMISSION_MODELS = [$/;"	kind:variable	line:57
-AJAX_SELECT_BOOTSTRAP	../dash/settings.py	/^AJAX_SELECT_BOOTSTRAP = False  # 不使用默认的cdn地址$/;"	kind:variable	line:141
-ALLOWED_HOSTS	../dash/settings.py	/^ALLOWED_HOSTS = []$/;"	kind:variable	line:27
+0102_auto_20171110_0117.py	../crm/migrations/0102_auto_20171110_0117.py	1;"	kind:file	line:1
+ADMIN_VIEW_PERMISSION_MODELS	../dash/settings.py	/^ADMIN_VIEW_PERMISSION_MODELS = [$/;"	kind:variable	line:59
+AJAX_SELECT_BOOTSTRAP	../dash/settings.py	/^AJAX_SELECT_BOOTSTRAP = False  # 不使用默认的cdn地址$/;"	kind:variable	line:143
+ALLOWED_HOSTS	../dash/settings.py	/^ALLOWED_HOSTS = []$/;"	kind:variable	line:28
+APIException	../api/exceptions.py	/^from rest_framework.exceptions import APIException$/;"	kind:namespace	line:3
+APIView	../api/views/client.py	/^from rest_framework.views import APIView$/;"	kind:namespace	line:2
+APIView	../api/views/user.py	/^from rest_framework.views import APIView$/;"	kind:namespace	line:4
 APP_ROOT	../fabfile.py	/^APP_ROOT = "\/data\/apps\/dash"$/;"	kind:variable	line:12
-AUTH_PASSWORD_VALIDATORS	../dash/settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	kind:variable	line:101
+AUTH_PASSWORD_VALIDATORS	../dash/settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	kind:variable	line:103
 AdminSite	../crm/tests/test_admin.py	/^from django.contrib.admin.sites import AdminSite$/;"	kind:namespace	line:3
 AdminViewPermissionModelAdmin	../crm/admin/company.py	/^from admin_view_permission.admin import AdminViewPermissionModelAdmin$/;"	kind:namespace	line:9
 AnonymousUser	../crm/tests/test_views.py	/^from django.contrib.auth.models import AnonymousUser$/;"	kind:namespace	line:3
@@ -149,8 +156,9 @@ AutoCompleteField	../crm/forms.py	/^from ajax_select.fields import AutoCompleteF
 AutoCompleteField	../library/forms.py	/^from ajax_select.fields import AutoCompleteField, AutoCompleteSelectField$/;"	kind:namespace	line:4
 AutoCompleteSelectField	../crm/forms.py	/^from ajax_select.fields import AutoCompleteField, AutoCompleteSelectField$/;"	kind:namespace	line:6
 AutoCompleteSelectField	../library/forms.py	/^from ajax_select.fields import AutoCompleteField, AutoCompleteSelectField$/;"	kind:namespace	line:4
-BASE_DIR	../dash/settings.py	/^BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))$/;"	kind:variable	line:16
+BASE_DIR	../dash/settings.py	/^BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))$/;"	kind:variable	line:17
 BUREAUS	../crm/models/tax.py	/^    BUREAUS = ($/;"	kind:variable	line:43
+BasePermission	../api/permissions.py	/^from rest_framework.permissions import BasePermission$/;"	kind:namespace	line:1
 BaseUserAdmin	../security/admin.py	/^from django.contrib.auth.admin import UserAdmin as BaseUserAdmin$/;"	kind:namespace	line:2
 BatchClientUpdateForm	../crm/forms.py	/^class BatchClientUpdateForm(forms.Form):$/;"	kind:class	line:175
 BatchClientUpdateView	../crm/views/client.py	/^                            FormView):$/;"	kind:class	line:149
@@ -159,12 +167,13 @@ BorrowerAutoSelectForm	../crm/views/views.py	/^from .forms import ItemAutoSelect
 BorrowerAutoSelectForm	../library/forms.py	/^class BorrowerAutoSelectForm(forms.Form):$/;"	kind:class	line:32
 CITYES	../crm/models/tax.py	/^    CITYES = ($/;"	kind:variable	line:5
 CONTRACT_TYPES	../crm/models/contract.py	/^    CONTRACT_TYPES = ($/;"	kind:variable	line:18
-CRISPY_TEMPLATE_PACK	../dash/settings.py	/^CRISPY_TEMPLATE_PACK = 'bootstrap3'$/;"	kind:variable	line:144
+CRISPY_TEMPLATE_PACK	../dash/settings.py	/^CRISPY_TEMPLATE_PACK = 'bootstrap3'$/;"	kind:variable	line:146
 ClientCreateView	../crm/views/client.py	/^                       CreateWithInlinesView):$/;"	kind:class	line:133
 ClientDetailView	../crm/views/client.py	/^class ClientDetailView(LoginRequiredMixin, DetailView):$/;"	kind:class	line:78
 ClientEditView	../crm/views/client.py	/^                     UpdateWithInlinesView):$/;"	kind:class	line:117
 ClientSearchView	../crm/views/client.py	/^class ClientSearchView(SearchViewMixin, LoginRequiredMixin, TemplateView):$/;"	kind:class	line:31
 Column	../crm/views/client.py	/^from django_tables2 import Column$/;"	kind:namespace	line:14
+Company	../api/views/user.py	/^from crm.models import Company$/;"	kind:namespace	line:1
 Company	../crm/admin/company.py	/^from crm.models import Company, ShareHolder, Contract, TaxBureau$/;"	kind:namespace	line:11
 Company	../crm/filters.py	/^from .models import Company$/;"	kind:namespace	line:5
 Company	../crm/forms.py	/^from crm.models import Company, ShareHolder$/;"	kind:namespace	line:13
@@ -183,7 +192,9 @@ CompanyLookup	../crm/lookups.py	/^class CompanyLookup(LookupChannel):$/;"	kind:c
 CompanyModelAdmin	../crm/admin/company.py	/^class CompanyModelAdmin(AdminViewPermissionModelAdmin):$/;"	kind:class	line:39
 CompanyModelForm	../crm/forms.py	/^class CompanyModelForm(forms.ModelForm):$/;"	kind:class	line:34
 CompanyRecord	../crm/views/views.py	/^CompanyRecord = namedtuple('CompanyRecord', company_fields)$/;"	kind:variable	line:41
+CompanySerializer	../api/views/client.py	/^class CompanySerializer(serializers.ModelSerializer):$/;"	kind:class	line:12
 CompanyTable	../crm/tables.py	/^class CompanyTable(tables.Table):$/;"	kind:class	line:9
+CompanyViewSet	../api/views/client.py	/^class CompanyViewSet(SearchViewMixin, viewsets.ModelViewSet):$/;"	kind:class	line:27
 ContentType	../core/models.py	/^from django.contrib.contenttypes.models import ContentType$/;"	kind:namespace	line:4
 ContentType	../crm/views/views.py	/^from django.contrib.contenttypes.models import ContentType$/;"	kind:namespace	line:10
 ContentType	../library/admin.py	/^from django.contrib.contenttypes.models import ContentType$/;"	kind:namespace	line:4
@@ -198,10 +209,10 @@ CreateView	../crm/views/client.py	/^from django.views.generic import TemplateVie
 CreateWithInlinesView	../crm/views/client.py	/^from extra_views import CreateWithInlinesView, UpdateWithInlinesView, InlineFormSet$/;"	kind:namespace	line:16
 CrmConfig	../crm/apps.py	/^class CrmConfig(AppConfig):$/;"	kind:class	line:4
 DATABASES	../dash/local.py	/^DATABASES = {$/;"	kind:variable	line:1
-DATABASES	../dash/settings.py	/^DATABASES = {$/;"	kind:variable	line:93
+DATABASES	../dash/settings.py	/^DATABASES = {$/;"	kind:variable	line:95
 DATABASES	../dash/testing.py	/^DATABASES = {$/;"	kind:variable	line:3
-DEBUG	../dash/settings.py	/^DEBUG = True$/;"	kind:variable	line:25
-DEBUG_TOOLBAR_CONFIG	../dash/settings.py	/^    DEBUG_TOOLBAR_CONFIG = {$/;"	kind:variable	line:194
+DEBUG	../dash/settings.py	/^DEBUG = True$/;"	kind:variable	line:26
+DEBUG_TOOLBAR_CONFIG	../dash/settings.py	/^    DEBUG_TOOLBAR_CONFIG = {$/;"	kind:variable	line:247
 DISTRICTS	../crm/models/tax.py	/^    DISTRICTS = ($/;"	kind:variable	line:18
 DashboardView	../crm/views/dashboard.py	/^class DashboardView(LoginRequiredMixin, TemplateView):$/;"	kind:class	line:5
 DashboardView	../crm/views/views.py	/^class DashboardView(LoginRequiredMixin, TemplateView):$/;"	kind:class	line:233
@@ -215,6 +226,7 @@ FILE_TYPES	../core/models.py	/^    FILE_TYPES = ($/;"	kind:variable	line:17
 Field	../crm/forms.py	/^from crispy_forms.layout import Submit, Layout, Field, Fieldset, Row$/;"	kind:namespace	line:8
 FieldWithButtons	../crm/views/library.py	/^from crispy_forms.bootstrap import FieldWithButtons$/;"	kind:namespace	line:12
 FieldWithButtons	../library/views/item.py	/^from crispy_forms.bootstrap import FieldWithButtons$/;"	kind:namespace	line:12
+FieldsInfoView	../api/views/client.py	/^class FieldsInfoView(APIView):$/;"	kind:class	line:43
 Fieldset	../crm/forms.py	/^from crispy_forms.layout import Submit, Layout, Field, Fieldset, Row$/;"	kind:namespace	line:8
 Form	../crm/views/views.py	/^from django.forms import Form, ModelForm, modelformset_factory$/;"	kind:namespace	line:14
 FormHelper	../crm/forms.py	/^from crispy_forms.helper import FormHelper$/;"	kind:namespace	line:7
@@ -233,25 +245,29 @@ GenericRelation	../crm/models/people.py	/^from django.contrib.contenttypes.field
 GenericTabularInline	../crm/admin/common.py	/^from django.contrib.contenttypes.admin import GenericTabularInline$/;"	kind:namespace	line:1
 HasExpiredFilter	../crm/admin/company.py	/^class HasExpiredFilter(admin.SimpleListFilter):$/;"	kind:class	line:18
 HomeView	../crm/views/views.py	/^class HomeView(TemplateView):$/;"	kind:class	line:229
-HttpResponse	../api/views.py	/^from django.http import HttpResponse, HttpResponseForbidden$/;"	kind:namespace	line:1
+HttpResponse	../api/views/profile.py	/^from django.http import HttpResponse, HttpResponseForbidden$/;"	kind:namespace	line:1
 HttpResponse	../crm/actions.py	/^from django.http import HttpResponse$/;"	kind:namespace	line:2
 HttpResponse	../crm/views/client.py	/^from django.http import HttpResponse$/;"	kind:namespace	line:6
 HttpResponse	../security/views.py	/^from django.http import HttpResponse, HttpResponseForbidden$/;"	kind:namespace	line:1
 HttpResponseBadRequest	../crm/views/library.py	/^from django.http import HttpResponseRedirect, HttpResponseBadRequest$/;"	kind:namespace	line:5
 HttpResponseBadRequest	../library/views/item.py	/^from django.http import HttpResponseRedirect, HttpResponseBadRequest$/;"	kind:namespace	line:5
-HttpResponseForbidden	../api/views.py	/^from django.http import HttpResponse, HttpResponseForbidden$/;"	kind:namespace	line:1
+HttpResponseForbidden	../api/views/profile.py	/^from django.http import HttpResponse, HttpResponseForbidden$/;"	kind:namespace	line:1
 HttpResponseForbidden	../security/middleware.py	/^from django.http import HttpResponseForbidden$/;"	kind:namespace	line:3
 HttpResponseForbidden	../security/views.py	/^from django.http import HttpResponse, HttpResponseForbidden$/;"	kind:namespace	line:1
 HttpResponseRedirect	../crm/views/library.py	/^from django.http import HttpResponseRedirect, HttpResponseBadRequest$/;"	kind:namespace	line:5
 HttpResponseRedirect	../library/views/item.py	/^from django.http import HttpResponseRedirect, HttpResponseBadRequest$/;"	kind:namespace	line:5
 IC_STATUS	../crm/models/company.py	/^    IC_STATUS = [('正常', '正常'), ('经营异常', '经营异常')]$/;"	kind:variable	line:272
-INDUSTRIES	../crm/models/company.py	/^    INDUSTRIES = [('汽配', '汽配'),$/;"	kind:variable	line:71
-INSTALLED_APPS	../dash/settings.py	/^INSTALLED_APPS = [$/;"	kind:variable	line:31
-INTERNAL_IPS	../dash/settings.py	/^INTERNAL_IPS = '127.0.0.1'$/;"	kind:variable	line:140
+INDUSTRIES	../crm/models/company.py	/^    INDUSTRIES = [$/;"	kind:variable	line:71
+INSTALLED_APPS	../dash/settings.py	/^INSTALLED_APPS = [$/;"	kind:variable	line:32
+INTERNAL_IPS	../dash/settings.py	/^INTERNAL_IPS = '127.0.0.1'$/;"	kind:variable	line:142
 IPWARE_META_PRECEDENCE_ORDER	../security/middleware.py	/^IPWARE_META_PRECEDENCE_ORDER = ($/;"	kind:variable	line:5
 ImportFileForm	../crm/views/views.py	/^class ImportFileForm(forms.Form):$/;"	kind:class	line:20
 Industry	../crm/models/industry.py	/^class Industry(models.Model):$/;"	kind:class	line:4
 InlineFormSet	../crm/views/client.py	/^from extra_views import CreateWithInlinesView, UpdateWithInlinesView, InlineFormSet$/;"	kind:namespace	line:16
+IsAdminOrIsSelf	../api/permissions.py	/^class IsAdminOrIsSelf(BasePermission):$/;"	kind:class	line:3
+IsAuthenticated	../api/views/user.py	/^from rest_framework.permissions import IsAuthenticated$/;"	kind:namespace	line:8
+IsPostOrIsAuthenticated	../api/permissions.py	/^class IsPostOrIsAuthenticated(BasePermission):        $/;"	kind:class	line:8
+IsPostOrIsAuthenticated	../api/views/user.py	/^from ..permissions import IsPostOrIsAuthenticated$/;"	kind:namespace	line:9
 Item	../crm/views/views.py	/^from .models import Company, People, ShareHolder, Item, ItemBorrowingRecord$/;"	kind:namespace	line:17
 Item	../library/admin.py	/^from .models import Item, Receipt$/;"	kind:namespace	line:6
 Item	../library/filters.py	/^from .models import Item$/;"	kind:namespace	line:3
@@ -270,10 +286,11 @@ ItemTable	../library/tables.py	/^class ItemTable(tables.Table):$/;"	kind:class	l
 JSONField	../crm/models/company.py	/^from jsonfield import JSONField$/;"	kind:namespace	line:11
 JSONField	../library/models/item.py	/^from jsonfield import JSONField$/;"	kind:namespace	line:9
 JSONField	../security/models.py	/^from jsonfield import JSONField$/;"	kind:namespace	line:4
-LANGUAGE_CODE	../dash/settings.py	/^LANGUAGE_CODE = 'zh-hans'$/;"	kind:variable	line:120
+JWT_AUTH	../dash/settings.py	/^JWT_AUTH = {$/;"	kind:variable	line:206
+LANGUAGE_CODE	../dash/settings.py	/^LANGUAGE_CODE = 'zh-hans'$/;"	kind:variable	line:122
 LICENSE_STATUS	../crm/models/company.py	/^    LICENSE_STATUS = ($/;"	kind:variable	line:308
-LOGGING	../dash/settings.py	/^LOGGING = {$/;"	kind:variable	line:146
-LOGIN_REDIRECT_URL	../dash/settings.py	/^LOGIN_REDIRECT_URL = '\/dashboard\/'$/;"	kind:variable	line:143
+LOGGING	../dash/settings.py	/^LOGGING = {$/;"	kind:variable	line:148
+LOGIN_REDIRECT_URL	../dash/settings.py	/^LOGIN_REDIRECT_URL = '\/dashboard\/'$/;"	kind:variable	line:145
 Layout	../crm/forms.py	/^from crispy_forms.layout import Submit, Layout, Field, Fieldset, Row$/;"	kind:namespace	line:8
 Layout	../crm/views/client.py	/^from crispy_forms.helper import FormHelper, Layout$/;"	kind:namespace	line:15
 Layout	../crm/views/library.py	/^from crispy_forms.helper import FormHelper, Layout$/;"	kind:namespace	line:10
@@ -292,9 +309,11 @@ LoginRequiredMixin	../library/views/item.py	/^from django.contrib.auth.mixins im
 LoginView	../crm/views/auth.py	/^from django.contrib.auth.views import LoginView$/;"	kind:namespace	line:1
 LookupChannel	../crm/lookups.py	/^from ajax_select import register, LookupChannel$/;"	kind:namespace	line:1
 MANAGE	../fabfile.py	/^MANAGE = root("manage.py")$/;"	kind:variable	line:21
-MEDIA_ROOT	../dash/settings.py	/^MEDIA_ROOT = os.path.join(BASE_DIR, "media")$/;"	kind:variable	line:130
-MEDIA_URL	../dash/settings.py	/^MEDIA_URL = "\/media\/"$/;"	kind:variable	line:131
-MIDDLEWARE	../dash/settings.py	/^MIDDLEWARE = [$/;"	kind:variable	line:62
+MEDIA_ROOT	../dash/settings.py	/^MEDIA_ROOT = os.path.join(BASE_DIR, "media")$/;"	kind:variable	line:132
+MEDIA_URL	../dash/settings.py	/^MEDIA_URL = "\/media\/"$/;"	kind:variable	line:133
+MIDDLEWARE	../dash/settings.py	/^MIDDLEWARE = [$/;"	kind:variable	line:64
+Meta	../api/views/client.py	/^    class Meta:$/;"	kind:class	line:13
+Meta	../api/views/user.py	/^    class Meta:$/;"	kind:class	line:29
 Meta	../core/models.py	/^    class Meta:$/;"	kind:class	line:60
 Meta	../crm/filters.py	/^    class Meta:$/;"	kind:class	line:9
 Meta	../crm/forms.py	/^    class Meta:$/;"	kind:class	line:154
@@ -419,12 +438,16 @@ Migration	../crm/migrations/0098_auto_20171107_0232.py	/^class Migration(migrati
 Migration	../crm/migrations/0099_auto_20171107_1239.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
 Migration	../crm/migrations/0100_auto_20171107_1317.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
 Migration	../crm/migrations/0101_auto_20171107_1429.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	../crm/migrations/0102_auto_20171110_0117.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
 Migration	../library/migrations/0001_initial.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:11
 Migration	../library/migrations/0002_log_info.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
 Migration	../security/migrations/0001_initial.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
 Migration	../security/migrations/0002_auto_20170817_1545.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:10
 Migration	../security/migrations/0003_auto_20170817_1614.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:10
 Migration	../security/migrations/0004_profile_preference.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:9
+Migration	../security/migrations/0005_profile_phone.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	../security/migrations/0006_auto_20171121_1002.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	../security/migrations/0007_profile_avatar.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
 ModelForm	../crm/forms.py	/^from django.forms import ModelForm$/;"	kind:namespace	line:1
 ModelForm	../crm/views/views.py	/^from django.forms import Form, ModelForm, modelformset_factory$/;"	kind:namespace	line:14
 ModelFormSetView	../crm/views/library.py	/^from extra_views import ModelFormSetView$/;"	kind:namespace	line:9
@@ -433,10 +456,15 @@ MyFormsetHelper	../crm/views/library.py	/^from .formsets import MyFormsetHelper$
 MyTableInlineFormset	../crm/formsets.py	/^class MyTableInlineFormset(FormHelper):$/;"	kind:class	line:5
 MyTableInlineFormset	../crm/views/client.py	/^from ..formsets import MyTableInlineFormset$/;"	kind:namespace	line:23
 MyTableInlineFormset	../library/views/item.py	/^from crm.formsets import MyTableInlineFormset$/;"	kind:namespace	line:14
+OrderedDict	../api/pagination.py	/^from collections import OrderedDict$/;"	kind:namespace	line:1
 OrderedDict	../crm/models/company.py	/^from collections import OrderedDict$/;"	kind:namespace	line:1
 OrderedDict	../library/models/item.py	/^from collections import OrderedDict$/;"	kind:namespace	line:3
 PIP	../fabfile.py	/^PIP = root(".venv\/bin\/pip")$/;"	kind:variable	line:20
 PYTHON	../fabfile.py	/^PYTHON = root(".venv\/bin\/python")$/;"	kind:variable	line:19
+PageNumberPagination	../api/pagination.py	/^from rest_framework.pagination import PageNumberPagination$/;"	kind:namespace	line:3
+PageNumberPagination	../api/views/client.py	/^from rest_framework.pagination import PageNumberPagination$/;"	kind:namespace	line:4
+PageNumberPagination	../api/views/user.py	/^from rest_framework.pagination import PageNumberPagination$/;"	kind:namespace	line:6
+Pagination	../api/pagination.py	/^class Pagination(PageNumberPagination):$/;"	kind:class	line:6
 People	../crm/admin/people.py	/^from crm.models import People$/;"	kind:namespace	line:2
 People	../crm/models/people.py	/^class People(models.Model):$/;"	kind:class	line:11
 People	../crm/views/views.py	/^from .models import Company, People, ShareHolder, Item, ItemBorrowingRecord$/;"	kind:namespace	line:17
@@ -446,7 +474,7 @@ PermissionDenied	../crm/tests/test_views.py	/^from django.core.exceptions import
 PermissionRequiredMixin	../crm/views/client.py	/^from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin$/;"	kind:namespace	line:8
 PermissionRequiredMixin	../crm/views/library.py	/^from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin$/;"	kind:namespace	line:3
 PermissionRequiredMixin	../library/views/item.py	/^from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin$/;"	kind:namespace	line:3
-PreferenceForm	../api/views.py	/^from crm.forms import PreferenceForm$/;"	kind:namespace	line:5
+PreferenceForm	../api/views/profile.py	/^from crm.forms import PreferenceForm$/;"	kind:namespace	line:5
 PreferenceForm	../crm/forms.py	/^class PreferenceForm(forms.Form):$/;"	kind:class	line:26
 PrependedText	../crm/forms.py	/^from crispy_forms.bootstrap import PrependedText$/;"	kind:namespace	line:9
 Profile	../security/admin.py	/^from .models import WhiteList, Profile$/;"	kind:namespace	line:6
@@ -457,8 +485,9 @@ Q	../crm/views/client.py	/^from django.db.models import Q$/;"	kind:namespace	lin
 Q	../crm/views/mixins.py	/^from django.db.models import Q$/;"	kind:namespace	line:4
 QueryDict	../crm/filters.py	/^from django.http.request import QueryDict$/;"	kind:namespace	line:3
 RATINGS	../crm/models/company.py	/^    RATINGS = ($/;"	kind:variable	line:208
+REST_FRAMEWORK	../dash/settings.py	/^REST_FRAMEWORK = {$/;"	kind:variable	line:189
 ROLES	../crm/models/shareholder.py	/^    ROLES = [('法人', '法人'), ('股东', '股东'), ('员工', '员工')]$/;"	kind:variable	line:12
-ROOT_URLCONF	../dash/settings.py	/^ROOT_URLCONF = 'dash.urls'$/;"	kind:variable	line:74
+ROOT_URLCONF	../dash/settings.py	/^ROOT_URLCONF = 'dash.urls'$/;"	kind:variable	line:76
 Receipt	../library/admin.py	/^from .models import Item, Receipt$/;"	kind:namespace	line:6
 Receipt	../library/models/item.py	/^class Receipt(models.Model):$/;"	kind:class	line:14
 Receipt	../library/tables.py	/^from .models import Item, Receipt$/;"	kind:namespace	line:5
@@ -471,18 +500,22 @@ ReceiptModelAdmin	../library/admin.py	/^class ReceiptModelAdmin(admin.ModelAdmin
 ReceiptTable	../library/tables.py	/^class ReceiptTable(tables.Table):$/;"	kind:class	line:8
 ReceiveView	../crm/views/library.py	/^                  ModelFormSetView):$/;"	kind:class	line:27
 RequestFactory	../crm/tests/test_views.py	/^from django.test import RequestFactory$/;"	kind:namespace	line:2
+Response	../api/pagination.py	/^from rest_framework.response import Response$/;"	kind:namespace	line:2
+Response	../api/views/client.py	/^from rest_framework.response import Response$/;"	kind:namespace	line:1
+Response	../api/views/user.py	/^from rest_framework.response import Response$/;"	kind:namespace	line:3
 RestrictIPMiddleware	../security/middleware.py	/^class RestrictIPMiddleware(object):$/;"	kind:class	line:26
 Row	../crm/forms.py	/^from crispy_forms.layout import Submit, Layout, Field, Fieldset, Row$/;"	kind:namespace	line:8
 SCALE_SIZES	../crm/models/company.py	/^    SCALE_SIZES = [('小型企业', '小型企业'), ('中型企业人)', '中型企业人)'), ('大型企业)', '大型企业)')]$/;"	kind:variable	line:262
-SECRET_KEY	../dash/settings.py	/^SECRET_KEY = 'c#u!hg_vaqwg*s-bq3$ip$etq^r0+wq8sp&v6gonuc6ojh8^qy'$/;"	kind:variable	line:22
-SESSION_COOKIE_AGE	../dash/settings.py	/^SESSION_COOKIE_AGE = 3600  # 1hour$/;"	kind:variable	line:139
-SESSION_EXPIRE_AT_BROWSER_CLOSE	../dash/settings.py	/^SESSION_EXPIRE_AT_BROWSER_CLOSE = True$/;"	kind:variable	line:138
-STATIC_URL	../dash/settings.py	/^STATIC_URL = '\/static\/'$/;"	kind:variable	line:136
+SECRET_KEY	../dash/settings.py	/^SECRET_KEY = 'c#u!hg_vaqwg*s-bq3$ip$etq^r0+wq8sp&v6gonuc6ojh8^qy'$/;"	kind:variable	line:23
+SESSION_COOKIE_AGE	../dash/settings.py	/^SESSION_COOKIE_AGE = 3600  # 1hour$/;"	kind:variable	line:141
+SESSION_EXPIRE_AT_BROWSER_CLOSE	../dash/settings.py	/^SESSION_EXPIRE_AT_BROWSER_CLOSE = True$/;"	kind:variable	line:140
+STATIC_URL	../dash/settings.py	/^STATIC_URL = '\/static\/'$/;"	kind:variable	line:138
 STATUS	../crm/models/company.py	/^    STATUS = [('有效', '有效'), ('无效', '无效')]$/;"	kind:variable	line:266
 STATUS	../crm/models/contract.py	/^    STATUS = ($/;"	kind:variable	line:48
 STATUS	../library/models/item.py	/^    STATUS = ($/;"	kind:variable	line:87
 SUBSCRIPTION_TYPES	../crm/models/contract.py	/^    SUBSCRIPTION_TYPES = ($/;"	kind:variable	line:26
 SearchForm	../library/forms.py	/^class SearchForm(forms.Form):$/;"	kind:class	line:25
+SearchViewMixin	../api/views/client.py	/^from crm.views.mixins import SearchViewMixin$/;"	kind:namespace	line:8
 SearchViewMixin	../crm/views/client.py	/^from .mixins import SearchViewMixin$/;"	kind:namespace	line:24
 SearchViewMixin	../crm/views/library.py	/^from .mixins import SearchViewMixin$/;"	kind:namespace	line:15
 SearchViewMixin	../crm/views/mixins.py	/^class SearchViewMixin:$/;"	kind:class	line:18
@@ -510,8 +543,8 @@ Submit	../crm/views/library.py	/^from crispy_forms.layout import Submit$/;"	kind
 Submit	../library/views/item.py	/^from crispy_forms.layout import Submit$/;"	kind:namespace	line:11
 TAXPAYER_TYPES	../crm/models/company.py	/^    TAXPAYER_TYPES = [('一般纳税人', '一般纳税人'), ('小规模纳税人', '小规模纳税人')]$/;"	kind:variable	line:221
 TAX_DISKS	../crm/models/company.py	/^    TAX_DISKS = ($/;"	kind:variable	line:148
-TEMPLATES	../dash/settings.py	/^TEMPLATES = [$/;"	kind:variable	line:76
-TIME_ZONE	../dash/settings.py	/^TIME_ZONE = 'Asia\/Shanghai'$/;"	kind:variable	line:122
+TEMPLATES	../dash/settings.py	/^TEMPLATES = [$/;"	kind:variable	line:78
+TIME_ZONE	../dash/settings.py	/^TIME_ZONE = 'Asia\/Shanghai'$/;"	kind:variable	line:124
 TYPES	../crm/models/company.py	/^    TYPES = ($/;"	kind:variable	line:28
 TYPES	../library/models/item.py	/^    TYPES = ($/;"	kind:variable	line:16
 TYPES	../library/models/item.py	/^    TYPES = (("营业执照正本", "营业执照正本"),$/;"	kind:variable	line:54
@@ -543,12 +576,13 @@ TestDashboardView	../crm/tests/test_views.py	/^class TestDashboardView:$/;"	kind
 TestRegisterView	../crm/tests/test_views.py	/^class TestRegisterView:$/;"	kind:class	line:64
 TextIOWrapper	../crm/views/views.py	/^from io import TextIOWrapper$/;"	kind:namespace	line:3
 Textarea	../crm/admin/shareholder.py	/^from django.forms import Textarea$/;"	kind:namespace	line:3
-UPDATE_WHITELIST_TOKEN	../dash/settings.py	/^UPDATE_WHITELIST_TOKEN = "abcdefg"$/;"	kind:variable	line:142
-USE_I18N	../dash/settings.py	/^USE_I18N = True$/;"	kind:variable	line:124
-USE_L10N	../dash/settings.py	/^USE_L10N = True$/;"	kind:variable	line:126
-USE_TZ	../dash/settings.py	/^USE_TZ = True$/;"	kind:variable	line:128
+UPDATE_WHITELIST_TOKEN	../dash/settings.py	/^UPDATE_WHITELIST_TOKEN = "abcdefg"$/;"	kind:variable	line:144
+USE_I18N	../dash/settings.py	/^USE_I18N = True$/;"	kind:variable	line:126
+USE_L10N	../dash/settings.py	/^USE_L10N = True$/;"	kind:variable	line:128
+USE_TZ	../dash/settings.py	/^USE_TZ = True$/;"	kind:variable	line:130
 UpdateView	../crm/views/client.py	/^from django.views.generic import TemplateView, DetailView, UpdateView, CreateView, FormView$/;"	kind:namespace	line:5
 UpdateWithInlinesView	../crm/views/client.py	/^from extra_views import CreateWithInlinesView, UpdateWithInlinesView, InlineFormSet$/;"	kind:namespace	line:16
+User	../api/views/user.py	/^from django.contrib.auth.models import User$/;"	kind:namespace	line:2
 User	../core/models.py	/^from django.contrib.auth.models import User$/;"	kind:namespace	line:2
 User	../crm/lookups.py	/^from django.contrib.auth.models import User$/;"	kind:namespace	line:2
 User	../crm/models/company.py	/^from django.contrib.auth.models import User$/;"	kind:namespace	line:5
@@ -567,8 +601,10 @@ UserAutoSelectForm	../crm/forms.py	/^class UserAutoSelectForm(forms.Form):$/;"	k
 UserCreateView	../crm/views/auth.py	/^class UserCreateView(CreateView):$/;"	kind:class	line:7
 UserCreationForm	../crm/views/auth.py	/^from django.contrib.auth.forms import UserCreationForm$/;"	kind:namespace	line:2
 UserLookup	../crm/lookups.py	/^class UserLookup(LookupChannel):$/;"	kind:class	line:36
+UserSerializer	../api/views/user.py	/^class UserSerializer(serializers.ModelSerializer):$/;"	kind:class	line:14
+UserViewSet	../api/views/user.py	/^class UserViewSet(viewsets.ModelViewSet):$/;"	kind:class	line:36
 VENV_ROOT	../fabfile.py	/^VENV_ROOT = root(".venv")$/;"	kind:variable	line:18
-WSGI_APPLICATION	../dash/settings.py	/^WSGI_APPLICATION = 'dash.wsgi.application'$/;"	kind:variable	line:88
+WSGI_APPLICATION	../dash/settings.py	/^WSGI_APPLICATION = 'dash.wsgi.application'$/;"	kind:variable	line:90
 WhiteList	../security/admin.py	/^from .models import WhiteList, Profile$/;"	kind:namespace	line:6
 WhiteList	../security/middleware.py	/^from .models import WhiteList$/;"	kind:namespace	line:1
 WhiteList	../security/models.py	/^class WhiteList(models.Model):$/;"	kind:class	line:21
@@ -576,6 +612,7 @@ WhiteList	../security/views.py	/^from .models import WhiteList$/;"	kind:namespac
 WhiteListModelAdmin	../security/admin.py	/^class WhiteListModelAdmin(admin.ModelAdmin):$/;"	kind:class	line:10
 __call__	../security/middleware.py	/^    def __call__(self, request):$/;"	kind:member	line:30
 __format	../crm/views/client.py	/^    def __format(self, row):$/;"	kind:member	line:200
+__init__	../api/views/client.py	/^    def __init__(self, *args, **kwargs):$/;"	kind:member	line:17
 __init__	../crm/filters.py	/^    def __init__(self, data, *args, **kwargs):$/;"	kind:member	line:13
 __init__	../crm/forms.py	/^    def __init__(self, *args, **kwargs):$/;"	kind:member	line:45
 __init__	../crm/formsets.py	/^    def __init__(self, *args, **kwargs):$/;"	kind:member	line:6
@@ -583,6 +620,7 @@ __init__	../library/tables.py	/^    def __init__(self, *args, **kwargs):$/;"	kin
 __init__	../security/middleware.py	/^    def __init__(self, get_response):$/;"	kind:member	line:27
 __init__.py	../api/__init__.py	1;"	kind:file	line:1
 __init__.py	../api/migrations/__init__.py	1;"	kind:file	line:1
+__init__.py	../api/views/__init__.py	1;"	kind:file	line:1
 __init__.py	../core/__init__.py	1;"	kind:file	line:1
 __init__.py	../core/migrations/__init__.py	1;"	kind:file	line:1
 __init__.py	../crm/__init__.py	1;"	kind:file	line:1
@@ -651,6 +689,7 @@ all_valid	../crm/views/client.py	/^from django.forms import inlineformset_factor
 allow_empty	../crm/views/library.py	/^    allow_empty = True$/;"	kind:variable	line:148
 allow_empty	../library/views/item.py	/^    allow_empty = True$/;"	kind:variable	line:154
 amount	../crm/models/contract.py	/^    amount = models.DecimalField($/;"	kind:variable	line:39
+api_exception_handler	../api/exceptions.py	/^def api_exception_handler(exc, context):$/;"	kind:function	line:5
 application	../dash/wsgi.py	/^application = get_wsgi_application()$/;"	kind:variable	line:16
 apps.py	../api/apps.py	1;"	kind:file	line:1
 apps.py	../core/apps.py	1;"	kind:file	line:1
@@ -671,6 +710,8 @@ attrs	../library/tables.py	/^        attrs = {'class': 'table table-striped tabl
 auth.py	../crm/views/auth.py	1;"	kind:file	line:1
 auth_views	../crm/urls.py	/^from django.contrib.auth import views as auth_views$/;"	kind:namespace	line:2
 auth_views	../library/urls.py	/^from django.contrib.auth import views as auth_views$/;"	kind:namespace	line:2
+avatar	../api/views/user.py	/^    avatar = serializers.CharField($/;"	kind:variable	line:15
+avatar	../security/models.py	/^    avatar = models.CharField(verbose_name='头像', max_length=255, blank=True)$/;"	kind:variable	line:45
 backends.py	../security/backends.py	1;"	kind:file	line:1
 batch	../crm/models/company.py	/^    batch = models.CharField($/;"	kind:variable	line:183
 birthdate	../crm/models/people.py	/^    birthdate = models.DateField(verbose_name="生日", blank=True, null=True)$/;"	kind:variable	line:19
@@ -723,6 +764,7 @@ choices	../crm/views/views.py	/^        choices=($/;"	kind:variable	line:24
 choices	../library/models/item.py	/^                              choices=STATUS)$/;"	kind:variable	line:97
 choices	../library/models/item.py	/^                            choices=TYPES,$/;"	kind:variable	line:85
 city	../crm/models/tax.py	/^    city = models.CharField($/;"	kind:variable	line:10
+client.py	../api/views/client.py	1;"	kind:file	line:1
 client.py	../crm/views/client.py	1;"	kind:file	line:1
 common.py	../crm/admin/common.py	1;"	kind:file	line:1
 company	../crm/models/contract.py	/^    company = models.ForeignKey($/;"	kind:variable	line:13
@@ -753,6 +795,7 @@ contract.py	../crm/admin/contract.py	1;"	kind:file	line:1
 contract.py	../crm/models/contract.py	1;"	kind:file	line:1
 controller_active	../crm/templatetags/model_name.py	/^def controller_active(request, name):$/;"	kind:function	line:22
 count	../library/models/item.py	/^    def count(self):$/;"	kind:member	line:40
+create	../api/views/user.py	/^    def create(self, validated_data):$/;"	kind:member	line:20
 create_receipt	../library/models/item.py	/^    def create_receipt(cls, **kwargs):$/;"	kind:member	line:31
 created	../core/models.py	/^    created = models.DateTimeField(auto_now_add=True)$/;"	kind:variable	line:49
 created	../crm/models/company.py	/^    created = models.DateTimeField(auto_now_add=True)$/;"	kind:variable	line:304
@@ -762,6 +805,8 @@ created	../library/models/item.py	/^    created = models.DateTimeField(auto_now_
 created	../library/models/item.py	/^    created = models.DateTimeField(verbose_name="时间", default=now)$/;"	kind:variable	line:24
 creator	../core/models.py	/^    creator = models.ForeignKey(User, blank=True, null=True)$/;"	kind:variable	line:34
 credit_rating	../crm/models/company.py	/^    credit_rating = models.CharField($/;"	kind:variable	line:203
+crm_models	../api/views/client.py	/^from crm import models as crm_models$/;"	kind:namespace	line:9
+crm_models	../api/views/user.py	/^from crm import models as crm_models$/;"	kind:namespace	line:11
 csv	../crm/actions.py	/^import csv$/;"	kind:namespace	line:1
 csv	../crm/views/views.py	/^import csv$/;"	kind:namespace	line:1
 custom_expired_at	../crm/models/company.py	/^    custom_expired_at = models.DateField($/;"	kind:variable	line:239
@@ -771,6 +816,7 @@ cut_tax	../crm/models/company.py	/^    cut_tax = models.CharField($/;"	kind:vari
 dashboard.py	../crm/views/dashboard.py	1;"	kind:file	line:1
 date_hierarchy	../crm/admin/contract.py	/^    date_hierarchy = 'created'$/;"	kind:variable	line:13
 datetime	../crm/views/client.py	/^from datetime import datetime$/;"	kind:namespace	line:2
+datetime	../dash/settings.py	/^import datetime$/;"	kind:namespace	line:14
 db	../core/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
 db	../crm/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
 db	../crm/migrations/0009_auto_20170725_0001.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
@@ -795,7 +841,7 @@ db	../library/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	
 db	../security/migrations/0002_auto_20170817_1545.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
 db	../security/migrations/0003_auto_20170817_1614.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
 db_index	../core/models.py	/^        db_index=True,$/;"	kind:variable	line:30
-debug_toolbar	../dash/urls.py	/^    import debug_toolbar$/;"	kind:namespace	line:20
+debug_toolbar	../dash/urls.py	/^    import debug_toolbar$/;"	kind:namespace	line:21
 declare_info	../crm/models/company.py	/^    declare_info = models.TextField($/;"	kind:variable	line:168
 default	../core/models.py	/^        default='general')$/;"	kind:variable	line:40
 default	../crm/models/company.py	/^        default="",$/;"	kind:variable	line:185
@@ -940,12 +986,16 @@ dependencies	../crm/migrations/0098_auto_20171107_0232.py	/^    dependencies = [
 dependencies	../crm/migrations/0099_auto_20171107_1239.py	/^    dependencies = [$/;"	kind:variable	line:10
 dependencies	../crm/migrations/0100_auto_20171107_1317.py	/^    dependencies = [$/;"	kind:variable	line:10
 dependencies	../crm/migrations/0101_auto_20171107_1429.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	../crm/migrations/0102_auto_20171110_0117.py	/^    dependencies = [$/;"	kind:variable	line:10
 dependencies	../library/migrations/0001_initial.py	/^    dependencies = [$/;"	kind:variable	line:15
 dependencies	../library/migrations/0002_log_info.py	/^    dependencies = [$/;"	kind:variable	line:10
 dependencies	../security/migrations/0001_initial.py	/^    dependencies = [$/;"	kind:variable	line:12
 dependencies	../security/migrations/0002_auto_20170817_1545.py	/^    dependencies = [$/;"	kind:variable	line:12
 dependencies	../security/migrations/0003_auto_20170817_1614.py	/^    dependencies = [$/;"	kind:variable	line:12
 dependencies	../security/migrations/0004_profile_preference.py	/^    dependencies = [$/;"	kind:variable	line:11
+dependencies	../security/migrations/0005_profile_phone.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	../security/migrations/0006_auto_20171121_1002.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	../security/migrations/0007_profile_avatar.py	/^    dependencies = [$/;"	kind:variable	line:10
 district	../crm/models/tax.py	/^    district = models.CharField($/;"	kind:variable	line:37
 django	../core/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
 django	../crm/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
@@ -987,6 +1037,8 @@ editable	../crm/models/department.py	/^                                     edit
 employee.py	../crm/models/employee.py	1;"	kind:file	line:1
 empty_value_display	../crm/admin/contract.py	/^    empty_value_display = '-空的-'$/;"	kind:variable	line:14
 env	../fabfile.py	/^from fabric.api import run, env, cd, local$/;"	kind:namespace	line:2
+exception_handler	../api/exceptions.py	/^from rest_framework.views import exception_handler$/;"	kind:namespace	line:2
+exceptions.py	../api/exceptions.py	1;"	kind:file	line:1
 execute_from_command_line	../manage.py	/^        from django.core.management import execute_from_command_line$/;"	kind:namespace	line:8
 expired_at	../crm/models/company.py	/^    expired_at = models.DateField($/;"	kind:variable	line:65
 expired_at	../crm/models/contract.py	/^    expired_at = models.DateField(verbose_name="到期日期")$/;"	kind:variable	line:38
@@ -995,6 +1047,7 @@ export_as_csv_action	../crm/actions.py	/^def export_as_csv_action(description="�
 export_as_csv_action	../crm/admin/company.py	/^from crm.actions import export_as_csv_action$/;"	kind:namespace	line:12
 extra	../crm/admin/common.py	/^    extra = 2$/;"	kind:variable	line:7
 extra	../crm/admin/shareholder.py	/^    extra = 1$/;"	kind:variable	line:27
+extra_kwargs	../api/views/user.py	/^        extra_kwargs = {'password': {'write_only': True}}$/;"	kind:variable	line:32
 fabfile.py	../fabfile.py	1;"	kind:file	line:1
 field	../core/migrations/0002_auto_20170723_0434.py	/^            field=models.CharField(choices=[('general', '一般文件'), ('contract', '合同'), ('sfz', '身份证'), ('legal_man', '企业法人营业执照'), ('business_license', '营业执照副本')], default='general', max_length=20, verbose_name='文件类型'),$/;"	kind:variable	line:26
 field	../core/migrations/0003_auto_20170725_1202.py	/^            field=models.CharField(choices=[('general', '一般文件'), ('contract', '合同'), ('sfz', '身份证'), ('legal_man', '企业法人营业执照'), ('bank', '银行开户许可证'), ('credit', '机构信用代码证'), ('business_license', '营业执照副本')], default='general', max_length=20, verbose_name='文件类型'),$/;"	kind:variable	line:18
@@ -1184,10 +1237,15 @@ field	../crm/migrations/0099_auto_20171107_1239.py	/^            field=models.Ch
 field	../crm/migrations/0099_auto_20171107_1239.py	/^            field=models.CharField(blank=True, max_length=255, verbose_name='代扣发票'),$/;"	kind:variable	line:23
 field	../crm/migrations/0099_auto_20171107_1239.py	/^            field=models.CharField(blank=True, max_length=255, verbose_name='减税'),$/;"	kind:variable	line:18
 field	../crm/migrations/0101_auto_20171107_1429.py	/^            field=models.CharField(blank=True, max_length=255, verbose_name='代开发票'),$/;"	kind:variable	line:22
+field	../crm/migrations/0102_auto_20171110_0117.py	/^            field=models.CharField(choices=[('餐饮', '餐饮'), ('服务业', '服务业'), ('广告', '广告'), ('兼服务业', '兼服务业'), ('建筑', '建筑'), ('零售业', '零售业'), ('贸易', '贸易'), ('租赁业', '租赁业'), ('制造业', '制造业'), ('娱乐', '娱乐'), ('其它', '其它')], default='汽配', max_length=50, verbose_name='所属行业'),$/;"	kind:variable	line:18
 field	../library/migrations/0002_log_info.py	/^            field=models.CharField(blank=True, max_length=255, verbose_name='备注'),$/;"	kind:variable	line:18
 field	../security/migrations/0004_profile_preference.py	/^            field=jsonfield.fields.JSONField(blank=True, default={}, verbose_name='偏好设置'),$/;"	kind:variable	line:19
+field	../security/migrations/0005_profile_phone.py	/^            field=models.CharField(blank=True, max_length=100, verbose_name='手机'),$/;"	kind:variable	line:18
+field	../security/migrations/0007_profile_avatar.py	/^            field=models.CharField(blank=True, max_length=255, verbose_name='头像'),$/;"	kind:variable	line:18
 field_name	../crm/templatetags/model_name.py	/^def field_name(value, field):$/;"	kind:function	line:15
 field_types	../crm/views/client.py	/^    field_types = {$/;"	kind:variable	line:156
+fields	../api/views/client.py	/^        fields = '__all__'$/;"	kind:variable	line:15
+fields	../api/views/user.py	/^        fields = ('username', 'email', 'is_staff', 'id', 'avatar', 'notifyCount', 'password')$/;"	kind:variable	line:31
 fields	../core/migrations/0001_initial.py	/^            fields=[$/;"	kind:variable	line:22
 fields	../crm/filters.py	/^        fields = ('status', 'ic_status', 'license_status')$/;"	kind:variable	line:11
 fields	../crm/forms.py	/^        fields = '__all__'$/;"	kind:variable	line:156
@@ -1232,6 +1290,9 @@ file	../core/models.py	/^    file = models.FileField(upload_to='upload_path')$/;
 file	../crm/forms.py	/^    file = forms.FileField()$/;"	kind:variable	line:177
 file	../crm/views/views.py	/^    file = forms.FileField()$/;"	kind:variable	line:21
 file_type	../core/models.py	/^    file_type = models.CharField($/;"	kind:variable	line:36
+filter_backends	../api/views/client.py	/^    filter_backends = (filters.DjangoFilterBackend,)$/;"	kind:variable	line:30
+filter_fields	../api/views/client.py	/^    filter_fields = ('status', 'ic_status', 'license_status')$/;"	kind:variable	line:31
+filters	../api/views/client.py	/^from django_filters import rest_framework as filters$/;"	kind:namespace	line:5
 filters	../crm/views/client.py	/^from .. import filters$/;"	kind:namespace	line:19
 filters	../crm/views/library.py	/^from .. import filters$/;"	kind:namespace	line:20
 filters	../library/views/item.py	/^from .. import filters$/;"	kind:namespace	line:22
@@ -1268,6 +1329,7 @@ formset_valid	../library/views/item.py	/^    def formset_valid(self, form, forms
 formsets.py	../crm/formsets.py	1;"	kind:file	line:1
 full_title	../crm/models/tax.py	/^    full_title = models.CharField($/;"	kind:variable	line:63
 gender	../crm/models/people.py	/^    gender = models.CharField($/;"	kind:variable	line:16
+get	../api/views/client.py	/^    def get(self, request, format=None):$/;"	kind:member	line:45
 get_client_ip	../security/views.py	/^def get_client_ip(request):$/;"	kind:function	line:8
 get_context_data	../crm/views/client.py	/^    def get_context_data(self, **kwargs):$/;"	kind:member	line:53
 get_context_data	../crm/views/client.py	/^    def get_context_data(self, **kwargs):$/;"	kind:member	line:82
@@ -1288,11 +1350,13 @@ get_items	../library/models/item.py	/^    def get_items(self):$/;"	kind:member	l
 get_or_create_peopel	../crm/views/views.py	/^def get_or_create_peopel(people):$/;"	kind:function	line:113
 get_or_create_shareholder	../crm/views/views.py	/^def get_or_create_shareholder(**data):$/;"	kind:function	line:103
 get_or_create_user	../crm/views/views.py	/^def get_or_create_user(username):$/;"	kind:function	line:44
+get_paginated_response	../api/pagination.py	/^    def get_paginated_response(self, data):$/;"	kind:member	line:10
 get_query	../crm/lookups.py	/^    def get_query(self, q, queryset):$/;"	kind:member	line:53
 get_query	../crm/lookups.py	/^    def get_query(self, q, request):$/;"	kind:member	line:10
 get_query	../crm/lookups.py	/^    def get_query(self, q, request):$/;"	kind:member	line:21
 get_query	../crm/lookups.py	/^    def get_query(self, q, request):$/;"	kind:member	line:30
 get_query	../crm/lookups.py	/^    def get_query(self, q, request):$/;"	kind:member	line:39
+get_queryset	../api/views/client.py	/^    def get_queryset(self):$/;"	kind:member	line:35
 get_queryset	../crm/views/library.py	/^    def get_queryset(self):$/;"	kind:member	line:110
 get_queryset	../crm/views/library.py	/^    def get_queryset(self):$/;"	kind:member	line:150
 get_queryset	../crm/views/library.py	/^    def get_queryset(self):$/;"	kind:member	line:35
@@ -1318,6 +1382,7 @@ has_custom_info	../crm/models/company.py	/^    has_custom_info = models.CharFiel
 has_customer_files	../crm/models/company.py	/^    has_customer_files = models.BooleanField($/;"	kind:variable	line:288
 has_czk	../crm/models/company.py	/^    has_czk = models.CharField($/;"	kind:variable	line:243
 has_footer	../library/tables.py	/^    def has_footer(self):$/;"	kind:member	line:53
+has_permission	../api/permissions.py	/^    def has_permission(self, request, view):$/;"	kind:member	line:10
 hashlib	../crm/views/views.py	/^import hashlib$/;"	kind:namespace	line:2
 help_text	../core/models.py	/^        help_text='不填写默认为文件名',$/;"	kind:variable	line:29
 help_text	../crm/models/company.py	/^        help_text="不填，默认为公司注册地址",$/;"	kind:variable	line:44
@@ -1361,7 +1426,7 @@ install_depends	../fabfile.py	/^def install_depends():$/;"	kind:function	line:28
 invoice	../crm/models/company.py	/^    invoice = models.CharField($/;"	kind:variable	line:180
 ip	../security/models.py	/^    ip = models.GenericIPAddressField($/;"	kind:variable	line:22
 is_contactor	../crm/models/shareholder.py	/^    is_contactor = models.BooleanField(default=False,$/;"	kind:variable	line:18
-is_manager	../security/models.py	/^    is_manager = models.BooleanField($/;"	kind:variable	line:45
+is_manager	../security/models.py	/^    is_manager = models.BooleanField($/;"	kind:variable	line:47
 item	../library/models/item.py	/^    item = models.ForeignKey(Item)$/;"	kind:variable	line:139
 item.py	../library/models/item.py	1;"	kind:file	line:1
 item.py	../library/views/item.py	1;"	kind:file	line:1
@@ -1402,6 +1467,7 @@ list_filter	../crm/admin/contract.py	/^    list_filter = ('status', 'subscriptio
 list_filter	../crm/admin/shareholder.py	/^    list_filter = ('is_contactor', )$/;"	kind:variable	line:15
 list_filter	../crm/admin/tax_bureau.py	/^    list_filter = ('district', 'bureau')$/;"	kind:variable	line:10
 list_filter	../library/admin.py	/^    list_filter = ("status", )$/;"	kind:variable	line:15
+list_route	../api/views/user.py	/^from rest_framework.decorators import list_route$/;"	kind:namespace	line:7
 load_kwargs	../crm/models/company.py	/^        load_kwargs={'object_pairs_hook': OrderedDict}$/;"	kind:variable	line:297
 local	../fabfile.py	/^from fabric.api import run, env, cd, local$/;"	kind:namespace	line:2
 local.py	../dash/local.py	1;"	kind:file	line:1
@@ -1418,7 +1484,7 @@ logger	../crm/views/client.py	/^logger = logging.getLogger(__name__)$/;"	kind:va
 logging	../crm/views/client.py	/^import logging$/;"	kind:namespace	line:1
 logging	../crm/views/library.py	/^import logging$/;"	kind:namespace	line:1
 logging	../library/views/item.py	/^import logging$/;"	kind:namespace	line:1
-login_required	../api/views.py	/^from django.contrib.auth.decorators import login_required$/;"	kind:namespace	line:3
+login_required	../api/views/profile.py	/^from django.contrib.auth.decorators import login_required$/;"	kind:namespace	line:3
 logout	../security/middleware.py	/^from django.contrib.auth import logout$/;"	kind:namespace	line:2
 lookups	../crm/admin/company.py	/^    def lookups(self, request, model_admin):$/;"	kind:member	line:22
 lookups.py	../crm/lookups.py	1;"	kind:file	line:1
@@ -1433,6 +1499,7 @@ mark_safe	../crm/admin/company.py	/^from django.utils.safestring import mark_saf
 mark_safe	../crm/admin/tax_bureau.py	/^from django.utils.safestring import mark_safe$/;"	kind:namespace	line:2
 mark_safe	../crm/models/company.py	/^from django.utils.safestring import mark_safe$/;"	kind:namespace	line:4
 mark_safe	../crm/templatetags/model_name.py	/^from django.utils.safestring import mark_safe$/;"	kind:namespace	line:2
+max_length	../api/views/user.py	/^        max_length=200,$/;"	kind:variable	line:16
 max_length	../core/models.py	/^        max_length=20,$/;"	kind:variable	line:39
 max_length	../core/models.py	/^        max_length=255)$/;"	kind:variable	line:32
 max_length	../crm/models/company.py	/^        max_length=10,$/;"	kind:variable	line:144
@@ -1459,6 +1526,7 @@ max_length	../crm/models/tax.py	/^        max_length=50)$/;"	kind:variable	line:
 max_length	../crm/models/tax.py	/^        max_length=50)$/;"	kind:variable	line:51
 max_length	../library/models/item.py	/^                              max_length=50,$/;"	kind:variable	line:96
 max_length	../library/models/item.py	/^                            max_length=100)$/;"	kind:variable	line:86
+max_page_size	../api/pagination.py	/^    max_page_size = 100$/;"	kind:variable	line:8
 middleware.py	../security/middleware.py	1;"	kind:file	line:1
 migrate	../fabfile.py	/^def migrate():$/;"	kind:function	line:24
 migrations	../core/migrations/0001_initial.py	/^from django.db import migrations, models$/;"	kind:namespace	line:6
@@ -1565,16 +1633,23 @@ migrations	../crm/migrations/0098_auto_20171107_0232.py	/^from django.db import 
 migrations	../crm/migrations/0099_auto_20171107_1239.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
 migrations	../crm/migrations/0100_auto_20171107_1317.py	/^from django.db import migrations$/;"	kind:namespace	line:5
 migrations	../crm/migrations/0101_auto_20171107_1429.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../crm/migrations/0102_auto_20171110_0117.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
 migrations	../library/migrations/0001_initial.py	/^from django.db import migrations, models$/;"	kind:namespace	line:6
 migrations	../library/migrations/0002_log_info.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
 migrations	../security/migrations/0001_initial.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
 migrations	../security/migrations/0002_auto_20170817_1545.py	/^from django.db import migrations, models$/;"	kind:namespace	line:6
 migrations	../security/migrations/0003_auto_20170817_1614.py	/^from django.db import migrations, models$/;"	kind:namespace	line:6
 migrations	../security/migrations/0004_profile_preference.py	/^from django.db import migrations$/;"	kind:namespace	line:5
+migrations	../security/migrations/0005_profile_phone.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+migrations	../security/migrations/0006_auto_20171121_1002.py	/^from django.db import migrations$/;"	kind:namespace	line:5
+migrations	../security/migrations/0007_profile_avatar.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
 mixer	../crm/tests/test_admin.py	/^from mixer.backend.django import mixer$/;"	kind:namespace	line:2
 mixer	../crm/tests/test_models.py	/^from mixer.backend.django import mixer$/;"	kind:namespace	line:2
 mixer	../crm/tests/test_views.py	/^from mixer.backend.django import mixer$/;"	kind:namespace	line:4
 mixins.py	../crm/views/mixins.py	1;"	kind:file	line:1
+mobile	../security/models.py	/^    mobile = models.CharField(verbose_name='手机', max_length=100, blank=True)$/;"	kind:variable	line:44
+model	../api/views/client.py	/^        model = crm_models.Company$/;"	kind:variable	line:14
+model	../api/views/user.py	/^        model = User$/;"	kind:variable	line:30
 model	../crm/admin/common.py	/^    model = Attachment$/;"	kind:variable	line:6
 model	../crm/admin/contract.py	/^    model = Contract$/;"	kind:variable	line:8
 model	../crm/admin/shareholder.py	/^    model = ShareHolder$/;"	kind:variable	line:26
@@ -1834,10 +1909,14 @@ model_name	../crm/migrations/0099_auto_20171107_1239.py	/^            model_name
 model_name	../crm/migrations/0100_auto_20171107_1317.py	/^            model_name='company',$/;"	kind:variable	line:16
 model_name	../crm/migrations/0101_auto_20171107_1429.py	/^            model_name='company',$/;"	kind:variable	line:16
 model_name	../crm/migrations/0101_auto_20171107_1429.py	/^            model_name='company',$/;"	kind:variable	line:20
+model_name	../crm/migrations/0102_auto_20171110_0117.py	/^            model_name='company',$/;"	kind:variable	line:16
 model_name	../crm/templatetags/model_name.py	/^def model_name(value):$/;"	kind:function	line:8
 model_name	../library/migrations/0002_log_info.py	/^            model_name='log',$/;"	kind:variable	line:16
 model_name	../security/migrations/0003_auto_20170817_1614.py	/^            model_name='employee',$/;"	kind:variable	line:27
 model_name	../security/migrations/0004_profile_preference.py	/^            model_name='profile',$/;"	kind:variable	line:17
+model_name	../security/migrations/0005_profile_phone.py	/^            model_name='profile',$/;"	kind:variable	line:16
+model_name	../security/migrations/0006_auto_20171121_1002.py	/^            model_name='profile',$/;"	kind:variable	line:16
+model_name	../security/migrations/0007_profile_avatar.py	/^            model_name='profile',$/;"	kind:variable	line:16
 model_name.py	../crm/templatetags/model_name.py	1;"	kind:file	line:1
 modelformset_factory	../crm/views/client.py	/^from django.forms import inlineformset_factory, modelformset_factory, all_valid$/;"	kind:namespace	line:10
 modelformset_factory	../crm/views/views.py	/^from django.forms import Form, ModelForm, modelformset_factory$/;"	kind:namespace	line:14
@@ -1953,6 +2032,7 @@ models	../crm/migrations/0097_auto_20171107_0229.py	/^from django.db import migr
 models	../crm/migrations/0098_auto_20171107_0232.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
 models	../crm/migrations/0099_auto_20171107_1239.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
 models	../crm/migrations/0101_auto_20171107_1429.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../crm/migrations/0102_auto_20171110_0117.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
 models	../crm/models/company.py	/^from django.db import models$/;"	kind:namespace	line:6
 models	../crm/models/contract.py	/^from django.db import models$/;"	kind:namespace	line:2
 models	../crm/models/department.py	/^from django.db import models$/;"	kind:namespace	line:1
@@ -1974,6 +2054,8 @@ models	../security/migrations/0002_auto_20170817_1545.py	/^from django.db import
 models	../security/migrations/0002_auto_20170817_1545.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
 models	../security/migrations/0003_auto_20170817_1614.py	/^from django.db import migrations, models$/;"	kind:namespace	line:6
 models	../security/migrations/0003_auto_20170817_1614.py	/^import django.db.models.deletion$/;"	kind:namespace	line:7
+models	../security/migrations/0005_profile_phone.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
+models	../security/migrations/0007_profile_avatar.py	/^from django.db import migrations, models$/;"	kind:namespace	line:5
 models	../security/models.py	/^from django.db import models$/;"	kind:namespace	line:1
 models.py	../api/models.py	1;"	kind:file	line:1
 models.py	../core/models.py	1;"	kind:file	line:1
@@ -2231,6 +2313,7 @@ name	../crm/migrations/0099_auto_20171107_1239.py	/^            name='tax_disk',
 name	../crm/migrations/0099_auto_20171107_1239.py	/^            name='withhold_invoice',$/;"	kind:variable	line:22
 name	../crm/migrations/0101_auto_20171107_1429.py	/^            name='invoice',$/;"	kind:variable	line:21
 name	../crm/migrations/0101_auto_20171107_1429.py	/^            name='withholding',$/;"	kind:variable	line:17
+name	../crm/migrations/0102_auto_20171110_0117.py	/^            name='industry',$/;"	kind:variable	line:17
 name	../crm/models/employee.py	/^    name = models.CharField(max_length=100)$/;"	kind:variable	line:6
 name	../crm/models/industry.py	/^    name = models.CharField(verbose_name="行业名", max_length=200)$/;"	kind:variable	line:5
 name	../crm/models/people.py	/^    name = models.CharField(verbose_name="姓名",  max_length=255)$/;"	kind:variable	line:12
@@ -2252,6 +2335,8 @@ name	../security/migrations/0003_auto_20170817_1614.py	/^            name='Emplo
 name	../security/migrations/0003_auto_20170817_1614.py	/^            name='Profile',$/;"	kind:variable	line:19
 name	../security/migrations/0003_auto_20170817_1614.py	/^            name='user',$/;"	kind:variable	line:28
 name	../security/migrations/0004_profile_preference.py	/^            name='preference',$/;"	kind:variable	line:18
+name	../security/migrations/0005_profile_phone.py	/^            name='phone',$/;"	kind:variable	line:17
+name	../security/migrations/0007_profile_avatar.py	/^            name='avatar',$/;"	kind:variable	line:17
 namedtuple	../crm/views/client.py	/^from collections import namedtuple$/;"	kind:namespace	line:3
 namedtuple	../crm/views/views.py	/^from collections import namedtuple$/;"	kind:namespace	line:4
 national_tax_id	../crm/models/company.py	/^    national_tax_id = models.CharField($/;"	kind:variable	line:87
@@ -2264,10 +2349,12 @@ new_name	../crm/migrations/0061_auto_20170915_0257.py	/^            new_name='ta
 new_name	../crm/migrations/0061_auto_20170915_0257.py	/^            new_name='tax_username',$/;"	kind:variable	line:23
 new_name	../crm/migrations/0094_auto_20171102_2049.py	/^            new_name='legal_phone',$/;"	kind:variable	line:18
 new_name	../crm/migrations/0100_auto_20171107_1317.py	/^            new_name='withholding',$/;"	kind:variable	line:18
+new_name	../security/migrations/0006_auto_20171121_1002.py	/^            new_name='mobile',$/;"	kind:variable	line:18
 no	../library/models/item.py	/^    no = models.CharField(verbose_name="收据编号", max_length=200, blank=True)$/;"	kind:variable	line:28
 note	../crm/models/company.py	/^    note = models.TextField($/;"	kind:variable	line:280
 note	../crm/models/people.py	/^    note = models.TextField(verbose_name="备注", blank=True)$/;"	kind:variable	line:27
 note	../library/models/item.py	/^    note = models.CharField(verbose_name="备注", blank=True, max_length=255)$/;"	kind:variable	line:117
+notifyCount	../api/views/user.py	/^    notifyCount = serializers.IntegerField(default=12)$/;"	kind:variable	line:18
 now	../crm/forms.py	/^from django.utils.timezone import now$/;"	kind:namespace	line:3
 now	../library/forms.py	/^from django.utils.timezone import now$/;"	kind:namespace	line:2
 now	../library/models/item.py	/^from django.utils.timezone import now$/;"	kind:namespace	line:7
@@ -2277,11 +2364,13 @@ null	../crm/models/company.py	/^        null=True)$/;"	kind:variable	line:237
 null	../crm/models/company.py	/^        null=True,$/;"	kind:variable	line:241
 null	../library/models/item.py	/^        null=True,$/;"	kind:variable	line:108
 object_id	../core/models.py	/^    object_id = models.PositiveIntegerField(default=0)$/;"	kind:variable	line:43
+obtain_jwt_token	../api/urls.py	/^from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token$/;"	kind:namespace	line:4
 office	../crm/models/tax.py	/^    office = models.CharField($/;"	kind:variable	line:53
 old_name	../crm/migrations/0061_auto_20170915_0257.py	/^            old_name='tax_bureau_password',$/;"	kind:variable	line:17
 old_name	../crm/migrations/0061_auto_20170915_0257.py	/^            old_name='tax_bureau_username',$/;"	kind:variable	line:22
 old_name	../crm/migrations/0094_auto_20171102_2049.py	/^            old_name='legal_people_phone',$/;"	kind:variable	line:17
 old_name	../crm/migrations/0100_auto_20171107_1317.py	/^            old_name='withhold_invoice',$/;"	kind:variable	line:17
+old_name	../security/migrations/0006_auto_20171121_1002.py	/^            old_name='phone',$/;"	kind:variable	line:17
 on_delete	../crm/models/company.py	/^                                   on_delete=models.SET_NULL,$/;"	kind:variable	line:55
 on_delete	../crm/models/company.py	/^                                 on_delete=models.SET_NULL,$/;"	kind:variable	line:49
 on_delete	../crm/models/company.py	/^        on_delete=models.SET_NULL,$/;"	kind:variable	line:114
@@ -2391,12 +2480,16 @@ operations	../crm/migrations/0098_auto_20171107_0232.py	/^    operations = [$/;"
 operations	../crm/migrations/0099_auto_20171107_1239.py	/^    operations = [$/;"	kind:variable	line:14
 operations	../crm/migrations/0100_auto_20171107_1317.py	/^    operations = [$/;"	kind:variable	line:14
 operations	../crm/migrations/0101_auto_20171107_1429.py	/^    operations = [$/;"	kind:variable	line:14
+operations	../crm/migrations/0102_auto_20171110_0117.py	/^    operations = [$/;"	kind:variable	line:14
 operations	../library/migrations/0001_initial.py	/^    operations = [$/;"	kind:variable	line:20
 operations	../library/migrations/0002_log_info.py	/^    operations = [$/;"	kind:variable	line:14
 operations	../security/migrations/0001_initial.py	/^    operations = [$/;"	kind:variable	line:15
 operations	../security/migrations/0002_auto_20170817_1545.py	/^    operations = [$/;"	kind:variable	line:17
 operations	../security/migrations/0003_auto_20170817_1614.py	/^    operations = [$/;"	kind:variable	line:17
 operations	../security/migrations/0004_profile_preference.py	/^    operations = [$/;"	kind:variable	line:15
+operations	../security/migrations/0005_profile_phone.py	/^    operations = [$/;"	kind:variable	line:14
+operations	../security/migrations/0006_auto_20171121_1002.py	/^    operations = [$/;"	kind:variable	line:14
+operations	../security/migrations/0007_profile_avatar.py	/^    operations = [$/;"	kind:variable	line:14
 operator	../crm/views/mixins.py	/^import operator$/;"	kind:namespace	line:1
 options	../core/migrations/0002_auto_20170723_0434.py	/^            options={'verbose_name': '附件', 'verbose_name_plural': '附件'},$/;"	kind:variable	line:17
 options	../crm/migrations/0005_auto_20170723_0434.py	/^            options={'verbose_name': '公司', 'verbose_name_plural': '公司'},$/;"	kind:variable	line:17
@@ -2416,11 +2509,14 @@ os	../dash/settings.py	/^import os$/;"	kind:namespace	line:13
 os	../dash/wsgi.py	/^import os$/;"	kind:namespace	line:10
 os	../fabfile.py	/^import os$/;"	kind:namespace	line:1
 os	../manage.py	/^import os$/;"	kind:namespace	line:2
+page_size_query_param	../api/pagination.py	/^    page_size_query_param = 'pageSize'$/;"	kind:variable	line:7
+pagination.py	../api/pagination.py	1;"	kind:file	line:1
 parameter_name	../crm/admin/company.py	/^    parameter_name = 'has_expired'$/;"	kind:variable	line:20
 parent	../crm/models/department.py	/^    parent = models.ForeignKey($/;"	kind:variable	line:11
 parse_sheet	../crm/views/client.py	/^    def parse_sheet(self, contents):$/;"	kind:member	line:164
 people.py	../crm/admin/people.py	1;"	kind:file	line:1
 people.py	../crm/models/people.py	1;"	kind:file	line:1
+permission_classes	../api/views/user.py	/^    permission_classes = [IsPostOrIsAuthenticated]$/;"	kind:variable	line:39
 permission_denied_message	../crm/views/client.py	/^    permission_denied_message = '请联系管理员获取查看该页面的权限'$/;"	kind:variable	line:123
 permission_denied_message	../crm/views/client.py	/^    permission_denied_message = '请联系管理员获取查看该页面的权限'$/;"	kind:variable	line:140
 permission_denied_message	../crm/views/client.py	/^    permission_denied_message = '请联系管理员获取查看该页面的权限'$/;"	kind:variable	line:155
@@ -2431,6 +2527,7 @@ permission_required	../crm/views/client.py	/^    permission_required = 'crm.add_
 permission_required	../crm/views/client.py	/^    permission_required = 'crm.change_company'$/;"	kind:variable	line:121
 permission_required	../crm/views/library.py	/^    permission_required = 'crm.add_item'$/;"	kind:variable	line:31
 permission_required	../library/views/item.py	/^    permission_required = 'crm.add_item'$/;"	kind:variable	line:39
+permissions.py	../api/permissions.py	1;"	kind:file	line:1
 phone	../crm/models/employee.py	/^    phone = models.CharField(max_length=100)$/;"	kind:variable	line:7
 phone	../crm/models/people.py	/^    phone = models.CharField(verbose_name="电话", blank=True, max_length=100)$/;"	kind:variable	line:20
 phone	../crm/models/shareholder.py	/^    phone = models.CharField(verbose_name="电话",$/;"	kind:variable	line:21
@@ -2438,9 +2535,11 @@ post	../crm/views/library.py	/^    def post(self, *args, **kwargs):$/;"	kind:mem
 post	../library/views/item.py	/^    def post(self, *args, **kwargs):$/;"	kind:member	line:63
 post_save	../crm/models/shareholder.py	/^from django.db.models.signals import post_save$/;"	kind:namespace	line:2
 post_save	../security/models.py	/^from django.db.models.signals import post_save$/;"	kind:namespace	line:3
-preference	../security/models.py	/^    preference = JSONField(default={}, verbose_name='偏好设置', blank=True)$/;"	kind:variable	line:44
+preference	../security/models.py	/^    preference = JSONField(default={}, verbose_name='偏好设置', blank=True)$/;"	kind:variable	line:46
 preserve_default	../crm/migrations/0079_auto_20171011_2255.py	/^            preserve_default=False,$/;"	kind:variable	line:66
-profile_view	../api/views.py	/^def profile_view(request):$/;"	kind:function	line:9
+profile	../api/views/user.py	/^    def profile(self, request):$/;"	kind:member	line:42
+profile.py	../api/views/profile.py	1;"	kind:file	line:1
+profile_view	../api/views/profile.py	/^def profile_view(request):$/;"	kind:function	line:9
 publish	../fabfile.py	/^def publish():$/;"	kind:function	line:36
 pytest	../crm/tests/test_admin.py	/^import pytest$/;"	kind:namespace	line:1
 pytest	../crm/tests/test_forms.py	/^import pytest$/;"	kind:namespace	line:1
@@ -2455,6 +2554,8 @@ q	../library/forms.py	/^    q = forms.CharField(required=False,$/;"	kind:variabl
 qq	../crm/models/people.py	/^    qq = models.CharField(verbose_name="QQ", blank=True, max_length=100)$/;"	kind:variable	line:25
 qty	../library/models/item.py	/^    qty = models.PositiveIntegerField()$/;"	kind:variable	line:140
 qty	../library/models/item.py	/^    qty = models.PositiveIntegerField(default=1, verbose_name="数量")$/;"	kind:variable	line:82
+queryset	../api/views/client.py	/^    queryset = crm_models.Company.objects.all()$/;"	kind:variable	line:28
+queryset	../api/views/user.py	/^    queryset = User.objects.all()$/;"	kind:variable	line:37
 queryset	../crm/admin/company.py	/^    def queryset(self, request, queryset):$/;"	kind:member	line:28
 raise_exception	../crm/views/client.py	/^    raise_exception = True$/;"	kind:variable	line:122
 raise_exception	../crm/views/client.py	/^    raise_exception = True$/;"	kind:variable	line:139
@@ -2464,6 +2565,7 @@ raise_exception	../library/views/item.py	/^    raise_exception = True$/;"	kind:v
 randint	../library/models/item.py	/^from random import randint$/;"	kind:namespace	line:1
 rating	../crm/models/company.py	/^    rating = models.CharField($/;"	kind:variable	line:214
 raw_id_fields	../library/admin.py	/^    raw_id_fields = ("company", )$/;"	kind:variable	line:16
+read_only_fields	../api/views/user.py	/^        read_only_fields = ('notifyCount', )$/;"	kind:variable	line:33
 reason	../library/forms.py	/^    reason = forms.ChoiceField(label="事由", choices=($/;"	kind:variable	line:38
 receivables	../crm/models/contract.py	/^    receivables = models.DecimalField($/;"	kind:variable	line:41
 received	../crm/models/contract.py	/^    received = models.DecimalField($/;"	kind:variable	line:43
@@ -2474,7 +2576,9 @@ receiver	../library/models/item.py	/^    receiver = models.ForeignKey($/;"	kind:
 redirect	../crm/admin/company.py	/^from django.shortcuts import redirect$/;"	kind:namespace	line:6
 redirect	../crm/views/views.py	/^from django.shortcuts import render, redirect$/;"	kind:namespace	line:6
 redirect	../library/admin.py	/^from django.shortcuts import redirect$/;"	kind:namespace	line:2
+reduce	../api/exceptions.py	/^from functools import reduce$/;"	kind:namespace	line:1
 reduce	../crm/views/mixins.py	/^from functools import reduce$/;"	kind:namespace	line:2
+refresh_jwt_token	../api/urls.py	/^from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token$/;"	kind:namespace	line:4
 register	../crm/lookups.py	/^from ajax_select import register, LookupChannel$/;"	kind:namespace	line:1
 register	../crm/templatetags/model_name.py	/^register = template.Library()$/;"	kind:variable	line:4
 registered_at	../crm/models/company.py	/^    registered_at = models.DateField($/;"	kind:variable	line:63
@@ -2486,7 +2590,7 @@ related_name	../crm/models/company.py	/^        related_name='national_taxes',$/
 related_name	../library/models/item.py	/^        related_name="receiver")$/;"	kind:variable	line:103
 related_name	../library/models/item.py	/^        related_name='borrower')$/;"	kind:variable	line:109
 reload	../fabfile.py	/^def reload():$/;"	kind:function	line:44
-render	../api/views.py	/^from django.shortcuts import render$/;"	kind:namespace	line:2
+render	../api/views/profile.py	/^from django.shortcuts import render$/;"	kind:namespace	line:2
 render	../core/views.py	/^from django.shortcuts import render$/;"	kind:namespace	line:1
 render	../crm/views/views.py	/^from django.shortcuts import render, redirect$/;"	kind:namespace	line:6
 render	../security/views.py	/^from django.shortcuts import render$/;"	kind:namespace	line:3
@@ -2515,6 +2619,9 @@ reverse	../library/tables.py	/^from django.urls import reverse$/;"	kind:namespac
 reverse	../library/views/item.py	/^from django.urls import reverse$/;"	kind:namespace	line:6
 role	../crm/models/shareholder.py	/^    role = models.CharField(verbose_name="职位",$/;"	kind:variable	line:13
 root	../fabfile.py	/^def root(x): return os.path.join(APP_ROOT, x)$/;"	kind:function	line:15
+router	../api/urls.py	/^router = routers.DefaultRouter()$/;"	kind:variable	line:7
+routers	../api/urls.py	/^from rest_framework import routers$/;"	kind:namespace	line:2
+routers	../api/views/user.py	/^from rest_framework import routers, serializers, viewsets$/;"	kind:namespace	line:5
 run	../fabfile.py	/^from fabric.api import run, env, cd, local$/;"	kind:namespace	line:2
 salesman	../crm/models/company.py	/^    salesman = models.ForeignKey(User,$/;"	kind:variable	line:48
 salesman	../crm/models/contract.py	/^    salesman = models.ForeignKey($/;"	kind:variable	line:15
@@ -2528,8 +2635,9 @@ save	../crm/models/tax.py	/^    def save(self, *args, **kwargs):$/;"	kind:member
 save	../library/models/item.py	/^    def save(self, *args, **kwargs):$/;"	kind:member	line:124
 save	../library/models/item.py	/^    def save(self, *args, **kwargs):$/;"	kind:member	line:43
 save	../security/models.py	/^    def save(self, *args, **kwargs):$/;"	kind:member	line:29
-save_profile	../security/models.py	/^def save_profile(sender, instance, created, **kwargs):$/;"	kind:function	line:49
+save_profile	../security/models.py	/^def save_profile(sender, instance, created, **kwargs):$/;"	kind:function	line:51
 scale_size	../crm/models/company.py	/^    scale_size = models.CharField($/;"	kind:variable	line:263
+search_fields	../api/views/client.py	/^    search_fields = ('title', 'note', 'address',$/;"	kind:variable	line:32
 search_fields	../core/admin.py	/^    search_fields = ('name',)$/;"	kind:variable	line:11
 search_fields	../crm/admin/company.py	/^    search_fields = ('title', 'note', 'address',$/;"	kind:variable	line:51
 search_fields	../crm/admin/contract.py	/^    search_fields = ('company_title', 'salesmane_name')$/;"	kind:variable	line:23
@@ -2542,6 +2650,10 @@ search_fields	../crm/views/mixins.py	/^    search_fields = None$/;"	kind:variabl
 search_fields	../library/admin.py	/^    search_fields = ("item", "company_title", "note")$/;"	kind:variable	line:14
 search_fields	../library/views/item.py	/^    search_fields = ('name', 'company_title', 'note')$/;"	kind:variable	line:109
 search_fields	../security/admin.py	/^    search_fields = ('ip', 'domain')$/;"	kind:variable	line:12
+serializer_class	../api/views/client.py	/^    serializer_class = CompanySerializer$/;"	kind:variable	line:29
+serializer_class	../api/views/user.py	/^    serializer_class = UserSerializer$/;"	kind:variable	line:38
+serializers	../api/views/client.py	/^from rest_framework import serializers, viewsets$/;"	kind:namespace	line:3
+serializers	../api/views/user.py	/^from rest_framework import routers, serializers, viewsets$/;"	kind:namespace	line:5
 serializers	../library/models/item.py	/^from django.core import serializers$/;"	kind:namespace	line:4
 settings	../core/migrations/0001_initial.py	/^from django.conf import settings$/;"	kind:namespace	line:5
 settings	../crm/migrations/0001_initial.py	/^from django.conf import settings$/;"	kind:namespace	line:5
@@ -2786,12 +2898,16 @@ unicode_literals	../crm/migrations/0098_auto_20171107_0232.py	/^from __future__ 
 unicode_literals	../crm/migrations/0099_auto_20171107_1239.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
 unicode_literals	../crm/migrations/0100_auto_20171107_1317.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
 unicode_literals	../crm/migrations/0101_auto_20171107_1429.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../crm/migrations/0102_auto_20171110_0117.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
 unicode_literals	../library/migrations/0001_initial.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
 unicode_literals	../library/migrations/0002_log_info.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
 unicode_literals	../security/migrations/0001_initial.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
 unicode_literals	../security/migrations/0002_auto_20170817_1545.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
 unicode_literals	../security/migrations/0003_auto_20170817_1614.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
 unicode_literals	../security/migrations/0004_profile_preference.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../security/migrations/0005_profile_phone.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../security/migrations/0006_auto_20171121_1002.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
+unicode_literals	../security/migrations/0007_profile_avatar.py	/^from __future__ import unicode_literals$/;"	kind:namespace	line:3
 unique_together	../crm/migrations/0001_initial.py	/^            unique_together=set([('people', 'company')]),$/;"	kind:variable	line:110
 unique_together	../crm/migrations/0078_auto_20171009_1458.py	/^            unique_together=set([]),$/;"	kind:variable	line:17
 update_shareholder_info	../crm/models/shareholder.py	/^def update_shareholder_info(sender, instance, created, raw, **kwargs):$/;"	kind:function	line:40
@@ -2807,7 +2923,7 @@ url	../crm/urls.py	/^from django.conf.urls import include, url$/;"	kind:namespac
 url	../dash/urls.py	/^from django.conf.urls import url, include$/;"	kind:namespace	line:2
 url	../library/urls.py	/^from django.conf.urls import include, url$/;"	kind:namespace	line:1
 url	../security/urls.py	/^from django.conf.urls import url$/;"	kind:namespace	line:1
-urlpatterns	../api/urls.py	/^urlpatterns = [$/;"	kind:variable	line:4
+urlpatterns	../api/urls.py	/^urlpatterns = [$/;"	kind:variable	line:12
 urlpatterns	../crm/urls.py	/^urlpatterns = [$/;"	kind:variable	line:5
 urlpatterns	../dash/urls.py	/^urlpatterns = [$/;"	kind:variable	line:7
 urlpatterns	../library/urls.py	/^urlpatterns = [$/;"	kind:variable	line:5
@@ -2823,6 +2939,7 @@ user	../crm/models/employee.py	/^    user = models.OneToOneField(User, blank=Tru
 user	../library/models/item.py	/^    user = models.ForeignKey(settings.AUTH_USER_MODEL)$/;"	kind:variable	line:138
 user	../library/models/item.py	/^    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="操作员")$/;"	kind:variable	line:21
 user	../security/models.py	/^    user = models.OneToOneField(User, on_delete=models.CASCADE)$/;"	kind:variable	line:43
+user.py	../api/views/user.py	1;"	kind:file	line:1
 utils	../crm/migrations/0001_initial.py	/^import django.utils.timezone$/;"	kind:namespace	line:8
 utils	../crm/migrations/0079_auto_20171011_2255.py	/^import django.utils.timezone$/;"	kind:namespace	line:8
 utils	../crm/migrations/0082_auto_20171012_0009.py	/^import django.utils.timezone$/;"	kind:namespace	line:6
@@ -2891,14 +3008,15 @@ view_arrearage	../crm/admin/contract.py	/^    def view_arrearage(self, obj):$/;"
 view_expired_at	../crm/admin/company.py	/^    def view_expired_at(self, obj):$/;"	kind:member	line:143
 view_map	../crm/admin/tax_bureau.py	/^    def view_map(self, obj):$/;"	kind:member	line:13
 view_share	../crm/admin/shareholder.py	/^    def view_share(self, obj):$/;"	kind:member	line:20
-views	../api/urls.py	/^from . import views$/;"	kind:namespace	line:2
+views	../api/urls.py	/^from . import views$/;"	kind:namespace	line:3
 views	../crm/tests/test_views.py	/^from .. import views$/;"	kind:namespace	line:10
 views	../crm/urls.py	/^from . import views$/;"	kind:namespace	line:3
 views	../library/urls.py	/^from . import views$/;"	kind:namespace	line:3
-views.py	../api/views.py	1;"	kind:file	line:1
 views.py	../core/views.py	1;"	kind:file	line:1
 views.py	../crm/views/views.py	1;"	kind:file	line:1
 views.py	../security/views.py	1;"	kind:file	line:1
+viewsets	../api/views/client.py	/^from rest_framework import serializers, viewsets$/;"	kind:namespace	line:3
+viewsets	../api/views/user.py	/^from rest_framework import routers, serializers, viewsets$/;"	kind:namespace	line:5
 website	../crm/models/company.py	/^    website = models.CharField(verbose_name="公司网站", blank=True, max_length=255)$/;"	kind:variable	line:279
 wechat	../crm/models/people.py	/^    wechat = models.CharField(verbose_name="微信", blank=True, max_length=100)$/;"	kind:variable	line:23
 weibo	../crm/models/people.py	/^    weibo = models.CharField(verbose_name="微博", blank=True, max_length=100)$/;"	kind:variable	line:24

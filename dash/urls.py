@@ -11,6 +11,7 @@ urlpatterns = [
         include("export_action.urls", namespace="export_action")),
 
     url(r'^api/', include('api.urls', namespace='api')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^security/', include('security.urls', namespace="security")),
     url(r'^library/', include('library.urls', namespace="library")),
     url(r'^', include('crm.urls', namespace="crm")),

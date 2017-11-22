@@ -13,14 +13,15 @@ class TestCompany:
     def test_model_form(self):
         data = {'title': '我是公司抬头',
                 'type': '有限责任公司',
-                'industry': '汽配',
+                'industry': '娱乐',
                 'taxpayer_type': '小规模纳税人',
                 'scale_size': '小型企业',
                 'status': '有效',
                 'credit_rating': '良好',
                 'ic_status': '正常',
+                'has_custom_info': '无',
                 'registered_capital': 1}
         model_form = forms.CompanyModelForm(data=data)
-        assert model_form.is_valid()
+        assert model_form.is_valid(), model_form.errors
         obj = model_form.save()
         assert obj.title == data['title']

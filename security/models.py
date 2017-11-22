@@ -41,6 +41,8 @@ class WhiteList(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    mobile = models.CharField(verbose_name='手机', max_length=100, blank=True)
+    avatar = models.CharField(verbose_name='头像', max_length=255, blank=True)
     preference = JSONField(default={}, verbose_name='偏好设置', blank=True)
     is_manager = models.BooleanField(
         verbose_name='管理员状态', help_text="管理员登陆不受ip限制", default=False)

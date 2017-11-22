@@ -9,6 +9,7 @@ name = "pypi"
 "pytest-django" = "*"
 "pytest-cov" = "*"
 pytest = "*"
+coverage = "*"
 
 [packages]
 
@@ -27,8 +28,12 @@ pillow = "==4.2.1"
 "django-debug-toolbar" = "==1.8"
 xlrd = "==1.1.0"
 "django-ajax-selects" = {git = "https://github.com/yxy/django-ajax-selects.git"}
-"export_action" = {git = "https://github.com/yxy/django-export-action"}
+"export-action" = {git = "https://github.com/yxy/django-export-action"}
 "django-admin-view-permission" = {git = "https://github.com/yxy/django-admin-view-permission.git", editable = true}
+djangorestframework = "*"
+"djangorestframework-jwt" = "*"
+pytest = "*"
+mixer = "*"
 
 
 [requires]
