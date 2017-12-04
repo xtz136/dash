@@ -294,7 +294,6 @@ class Company(models.Model):
         default=[],
         null=False,
         editable=False,
-        load_kwargs={'object_pairs_hook': OrderedDict}
     )
     contactor = models.CharField(
         verbose_name='负责人', max_length=255, blank=True)

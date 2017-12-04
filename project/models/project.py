@@ -1,15 +1,15 @@
 from django.db import models
+from django.db.models.signals import post_save, post_delete
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.utils.timezone import now
 from django.dispatch import receiver
 
-
+from actstream import action
 from jsonfield import JSONField
 from django_fsm import FSMField, transition
 
 from taggit.managers import TaggableManager
-from project import signals
 
 from core.models import TaggedItem
 from crm.models import Company as Client
@@ -84,29 +84,26 @@ class Project(models.Model):
         # 1. 创建活动事件
         # 2. 更新项目最近的活跃时间
         self.update_last_activity_date()
-        signals.project_added.send(
-            sender=self.__class__, project=self, user=self.owner)
 
     @transition(field=state, source='active', target='completed')
     def complete(self, user):
         self.completed_at = now()
         self.completed_by = user
         self.update_last_activity_date()
-        # dispatch_event('project.complete', who=self.owner)
+        action.send(self.owner, target=self, verb='完结了')
 
     @transition(field=state, source='*', target='deleted')
     def do_delete(self, user):
         self.deleted = True
         self.deleted_by = user
         self.deleted_at = now()
+        action.send(self.owner, target=self, verb='删除了')
 
-        # dispatch_event('project.delete', who=user)
 
-
-@receiver(signals.project_added, sender=Project)
-def project_added(sender, project, user, **kwargs):
-    from .activity import Activity
-    Activity.objects.create(who=user, project=project,  kind='project.added', content={
-        'id': project.id,
-        'title': project.title
-    })
+@receiver(post_save, sender=Project)
+def update_project(sender, instance, created, **kwargs):
+    if created:
+        action.send(instance.owner, target=instance, verb='新建')
+    else:
+        action.send(instance.owner,
+                    target=instance, verb='更新了')

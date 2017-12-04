@@ -2,13 +2,11 @@ Django==1.11.3
 mysqlclient==1.3.10
 raven==6.1.0
 -e git+https://github.com/fgmacedo/django-export-action.git#egg=django-export-action
-jsonfield==2.0.2
 -e git+https://github.com/yxy/django-admin-view-permission.git#egg=django-admin-view-permission
 -e git+https://github.com/yxy/django-ajax-selects.git#egg=django-ajax-selects
 gunicorn==19.7.1
 Pillow==4.2.1
 django-widget-tweaks==1.4.1
-jsonfield==2.0.2
 django-taggit==0.22.1
 django-crispy-forms==1.6.1
 django-tables2==1.10.0
@@ -17,3 +15,5 @@ django-extra-views==0.9.0
 xlrd==1.1.0
 djangorestframework==3.7.3
 djangorestframework-jwt==1.11.0
+django-jsonfield==1.0.1
+django-jsonfield-compat==0.4.4

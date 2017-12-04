@@ -27,11 +27,6 @@ class ShareLinkModelAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(Activity)
-class ActivityModelAdmin(admin.ModelAdmin):
-    list_display = ('who', 'kind', 'created', 'project')
-
-
 @admin.register(Group)
 class GroupModelAdmin(admin.ModelAdmin):
     list_display = ('name', 'project')

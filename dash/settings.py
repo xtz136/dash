@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'raven.contrib.django.raven_compat',
     'rest_framework',
 
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     'taggit',
     'crispy_forms',
     'extra_views',
+    'actstream',
 
     'core',
     'crm',
@@ -237,6 +239,11 @@ JWT_AUTH = {
 
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
     'JWT_AUTH_COOKIE': None,
+}
+SITE_ID = 1
+
+ACTSTREAM_SETTINGS = {
+    'USE_JSONFIELD': True,
 }
 
 from .local import *
