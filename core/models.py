@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import now
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
@@ -10,6 +11,12 @@ from taggit.models import TagBase, GenericTaggedItemBase
 
 class Tag(TagBase):
     colour = models.CharField(max_length=255, blank=True)
+    last_used = models.DateTimeField(default=now)
+
+    def post_use(self):
+        """最近一次使用标签"""
+        self.last_used = now()
+        self.save()
 
     def to_json(self):
         return {
