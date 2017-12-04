@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'raven.contrib.django.raven_compat',
     'rest_framework',
 
+    'mptt',
     'ajax_select',
     'export_action',
     'django_tables2',
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
     'crm',
     'library',
     'security',
+    'project',
     'api',
 ]
 

@@ -39,7 +39,7 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = [IsPostOrIsAuthenticated]
 
-    @list_route(methods=['get'])
+    @list_route(methods=['get'], url_name='profile')
     def profile(self, request):
         instance = request.user
         serializer = self.get_serializer(instance)

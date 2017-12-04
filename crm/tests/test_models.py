@@ -5,6 +5,7 @@ pytestmark = pytest.mark.django_db
 
 class TestCompany:
     def test_init(self):
+
         obj = mixer.blend('crm.Company')
         assert obj.pk == 1, 'Should save an instance'
 

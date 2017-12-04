@@ -9,7 +9,10 @@ from crm.views.mixins import SearchViewMixin
 from crm import models as crm_models
 
 
-class CompanySerializer(serializers.HyperlinkedModelSerializer):
+class CompanySerializer(serializers.ModelSerializer):
+    salesman = serializers.StringRelatedField()
+    bookkeeper = serializers.StringRelatedField()
+
     class Meta:
         model = crm_models.Company
         lookup_field = 'id'

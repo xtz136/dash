@@ -7,12 +7,13 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 router = routers.DefaultRouter()
 router.register(r'clients', views.CompanyViewSet)
 router.register(r'users', views.UserViewSet)
+router.register(r'projects', views.ProjectViewSet)
 
 
 urlpatterns = [
     url(r'^profile/$', views.profile_view, name='profile'),
-    url(r'^login/account/$', obtain_jwt_token),
-    url(r'^token/refresh/$', refresh_jwt_token),
-    url('^fields_info/$', views.FieldsInfoView.as_view()),
+    url(r'^login/account/$', obtain_jwt_token, name='obtain_token'),
+    url(r'^token/refresh/$', refresh_jwt_token, name='refresh_token'),
+    url('^fields_info/$', views.FieldsInfoView.as_view(), name=''),
     url('^', include(router.urls)),
 ]

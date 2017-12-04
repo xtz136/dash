@@ -1,4 +1,3 @@
-
 import pytest
 from mixer.backend.django import mixer
 from rest_framework.test import force_authenticate
@@ -20,4 +19,6 @@ class TestClient:
         response = views.FieldsInfoView.as_view()(request)
         assert response.status_code == 401, "没有权限访问"
 
-        # force_authenticate(request, user=user)
+        force_authenticate(request, user=user)
+        response = views.FieldsInfoView.as_view()(request)
+        assert response.status_code == 200, "有权限访问"
