@@ -149,3 +149,42 @@ class TestFile(TestCase):
         assert doc.file_type == 'text/plain'
         assert doc.ext == '.ext'
         assert doc.file.file.read() == content
+
+
+class TestGroup(TestCase):
+    def test_create(self):
+        name = '组1'
+        p = ProjectFactory.create()
+        obj = Group.objects.create(name=name, project=p)
+        assert obj.name == name
+
+        # unique test
+        with self.assertRaisesMessage(IntegrityError, ''):
+            obj = Group.objects.create(name=name, project=p)
+
+    def test_members(self):
+        name = '组2'
+        p = ProjectFactory.create()
+        n = 10
+        obj = Group.objects.create(name=name, project=p)
+        assert obj.name == name
+        users = mixer.cycle(10).blend('auth.User')
+        for user in users:
+            m = Member.objects.create(project=p, user=user)
+            obj.members.add(m)
+        assert obj.members.all().count() == n
+
+
+class TestMember(TestCase):
+    def test_create(self):
+        p = ProjectFactory.create()
+        n = 10
+        users = mixer.cycle(n).blend('auth.User')
+
+        for user in users:
+            Member.objects.create(user=user, project=p)
+        assert Member.objects.filter(project=p).count() == n
+        assert p.member_set.all().count() == n
+
+        for user in users:
+            assert user.member_set.all().count() == 1
