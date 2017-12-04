@@ -9,6 +9,8 @@ from project.factory import *
 from django.test import TestCase
 from django.db import IntegrityError
 from project.models import *
+from django_fsm import TransitionNotAllowed
+from django.contrib.auth.models import User
 
 pytestmark = pytest.mark.django_db
 
@@ -43,6 +45,19 @@ class TestProject(TestCase):
         assert p.state == 'new'
         p.active()
         assert p.state == 'active'
+
+    def test_active(self):
+        user = mixer.blend('auth.User')
+        p = ProjectFactory.create()
+        assert p.state == 'new'
+        with self.assertRaisesMessage(TransitionNotAllowed, "Can't switch from state 'new' using method 'complete'"):
+            p.complete(user)
+        assert p.state == 'new'
+        p.active()
+        assert p.state == 'active'
+        p.complete(user)
+        assert p.state == 'completed'
+        assert p.completed_by is user
 
     def test_create(self):
         user = mixer.blend('auth.User', is_superuser=True)

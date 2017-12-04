@@ -39,19 +39,25 @@ class File(models.Model):
     name = models.CharField(max_length=255,
                             verbose_name="文件名", blank=True)
     file = models.FileField(upload_to=get_upload_path)
+    description = models.TextField(blank=True)
     folder = models.ForeignKey(
         Folder, verbose_name='文件夹', null=True, blank=True)
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL, verbose_name='创建人', blank=True, null=True)
     status = models.CharField(max_length=50, default='normal', choices=(
-        ('normal', '可见'),
-        ('hidden', '隐藏'),
+        ('active', '可见'),
         ('delete', '删除'),
     ))
     file_type = models.CharField(max_length=200, editable=False, blank=True)
     ext = models.CharField(max_length=200, editable=False, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    # 锁定
+    locked = models.BooleanField(default=False)
+    locked_at = models.DateTimeField(blank=True, null=True)
+    locked_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, blank=True, null=True, related_name='locked_by')
 
     # 文档所属项目
     project = models.ForeignKey(Project, null=True, blank=True)
