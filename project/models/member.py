@@ -13,6 +13,10 @@ class Member(models.Model):
         ('follower', '关注者'),
         ('member', '成员'),
     ))
+    inviter = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name='inviter', null=True, blank=True)
+    invite_reason = models.CharField(blank=True, max_length=200)
     permissions = models.CharField(blank=True, max_length=255)
 
 
