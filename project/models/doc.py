@@ -8,9 +8,30 @@ from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
 
 from mptt.models import MPTTModel, TreeForeignKey
+from jsonfield import JSONField
 
 from .project import Project
 from crm.models import Company as Client
+
+
+class BasePrivacyModel(models.Model):
+    privacy_on = models.BooleanField(default=False)
+    privacies = JSONField(default=list())
+
+    def can_access(self, member):
+        if self.privacy_on:
+            for pk in self.privacies:
+                if str(pk) == str(member.pk):
+                    return True
+            return False
+        return True
+
+    def set_privacies(self, ids):
+        self.privacies = list(set(ids))
+        self.save()
+
+    class Meta:
+        abstract = True
 
 
 class Folder(MPTTModel):
@@ -34,7 +55,7 @@ def get_upload_path(instance, filename):
         filename)
 
 
-class File(models.Model):
+class File(BasePrivacyModel):
     """文档模型"""
     name = models.CharField(max_length=255,
                             verbose_name="文件名", blank=True)
