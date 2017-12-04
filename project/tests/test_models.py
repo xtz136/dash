@@ -1,9 +1,10 @@
+from datetime import datetime
 import pytest
 from django.core.files.uploadedfile import SimpleUploadedFile
 from mixer.backend.django import mixer
 from mixer.factory import GenFactory
 
-import factory
+from project.factory import *
 
 from django.test import TestCase
 from django.db import IntegrityError
@@ -26,6 +27,23 @@ class TestCategory(TestCase):
 
 
 class TestProject(TestCase):
+    def test_delete(self):
+        user = mixer.blend('auth.User')
+        p = ProjectFactory.create()
+        assert p.deleted_by is None
+        assert p.deleted_at is None
+        assert p.state == 'new'
+        p.do_delete(user)
+        assert p.state == 'deleted'
+        assert p.deleted_by == user
+        assert isinstance(p.deleted_at, type(now()))
+
+    def test_active(self):
+        p = ProjectFactory.create()
+        assert p.state == 'new'
+        p.active()
+        assert p.state == 'active'
+
     def test_create(self):
         user = mixer.blend('auth.User', is_superuser=True)
         title = '测试项目抬头1'
@@ -71,29 +89,6 @@ class TestProject(TestCase):
         assert p.tags.all().count() == n
         assert Project.objects.filter(
             tags__name__in=[i.name for i in tags]).distinct().count() == 1
-
-
-class UserFactory(factory.django.DjangoModelFactory):
-    class Meta:
-        model = 'auth.User'
-        django_get_or_create = ('username',)
-    username = 'john'
-    is_active = True
-
-
-class ProjectFactory(factory.django.DjangoModelFactory):
-    class Meta:
-        model = 'project.Project'
-    title = factory.Sequence(lambda n: 'title%d' % n)
-    owner = factory.SubFactory(UserFactory)
-
-
-class FolderFactory(factory.django.DjangoModelFactory):
-    class Meta:
-        model = 'project.Folder'
-
-    name = factory.Sequence(lambda n: 'folder%d' % n)
-    project = factory.SubFactory(ProjectFactory)
 
 
 class TestFolder(TestCase):
