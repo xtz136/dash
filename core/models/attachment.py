@@ -8,36 +8,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.timezone import now
 from django.conf import settings
 
-from wechatpy.oauth import WeChatOAuth
-from taggit.managers import TaggableManager
-from taggit.models import TagBase, GenericTaggedItemBase
-
-
-class Tag(TagBase):
-    colour = models.CharField(max_length=255, blank=True)
-    last_used = models.DateTimeField(default=now)
-
-    def post_use(self):
-        """最近一次使用标签"""
-        self.last_used = now()
-        self.save()
-
-    def to_json(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'colour': self.colour
-        }
-
-    class Meta:
-        verbose_name = _("Tag")
-        verbose_name_plural = _("Tags")
-
-
-class TaggedItem(GenericTaggedItemBase):
-    tag = models.ForeignKey(Tag,
-                            related_name="%(app_label)s_%(class)s_items")
-
 
 def upload_path(instance, filename):
     return 'uploads/{file_type}/{date}/{filename}'.format(
@@ -95,33 +65,3 @@ class Attachment(models.Model):
     class Meta:
         verbose_name = "附件"
         verbose_name_plural = "附件"
-
-
-class AccessToken(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
-    openid = models.CharField(max_length=255, unique=True)
-    access_token = models.CharField(max_length=255, blank=True)
-    refresh_token = models.CharField(max_length=255)
-    expires_in = models.IntegerField(default=0)
-    scope = models.CharField(max_length=200, default='snsapi_userinfo')
-    created = models.DateTimeField(auto_now_add=True)
-    last_updated_at = models.DateTimeField(auto_now_add=True)
-
-    def has_expired(self):
-        return now() - self.last_updated_at >= timedelta(seconds=self.expires_in)
-
-    def refresh(self):
-        client = WeChatOAuth(settings.WX_APPID,
-                             settings.WX_APPSECRET,
-                             settings.WX_REDIRECT_URI,
-                             scope=self.scope)
-        token = client.refresh_token(self.refresh_token)
-        self.refresh_token = token['refresh_token']
-        self.access_token = token['access_token']
-        self.expires_in = token['expires_in']
-        self.scope = token['scope']
-        self.save()
-
-    @staticmethod
-    def save_token(cls, access_token):
-        pass

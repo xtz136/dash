@@ -39,6 +39,9 @@ mixer = "*"
 "django-activity-stream" = "*"
 "django-jsonfield" = "*"
 "django-jsonfield-compat" = "*"
+wechatpy = "*"
+cryptography = "*"
+"python-weixin" = "*"
 
 
 [requires]

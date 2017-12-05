@@ -245,6 +245,9 @@ SITE_ID = 1
 ACTSTREAM_SETTINGS = {
     'USE_JSONFIELD': True,
 }
+WX_APPID = "wx281a91e325cfb67f"
+WX_APPSECRET = b"f0327ea2669606b9c97b7347eb19ec27"
+WX_REDIRECT_URI = b"http://crm.gzyhcs.com/api/wechat/auth/"
 
 from .local import *
 
