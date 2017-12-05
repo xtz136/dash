@@ -11,7 +11,7 @@ def profile_view(request):
         form = PreferenceForm(data=request.POST)
         form.is_valid()
         profile = request.user.profile
-        profile.preference.update(**dict(form.cleaned_data))
+        profile.prefs.update(**dict(form.cleaned_data))
         profile.save()
         return HttpResponse('ok')
     return HttpResponseForbidden('fail')

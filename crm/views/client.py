@@ -63,12 +63,12 @@ class ClientSearchView(SearchViewMixin, LoginRequiredMixin, TemplateView):
         context['filter'] = self.get_filter(queryset)
         context['search_form'] = self.get_search_form()
         extra_columns = [(i, Column()) for i in
-                         self.request.user.profile.preference.get(
+                         self.request.user.profile.prefs.get(
                              'company_list_fields', ['status'])]
         context['table'] = tables.CompanyTable(context['filter'].qs,
                                                extra_columns=extra_columns)
         pre_form = forms.PreferenceForm(
-            data=self.request.user.profile.preference)
+            data=self.request.user.profile.prefs)
 
         context['pre_form'] = pre_form
         context['has_add_perm'] = self.request.user.has_perm('crm.add_company')

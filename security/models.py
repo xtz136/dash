@@ -52,11 +52,3 @@ class ProfileOld(models.Model):
     country = models.CharField('国家', max_length=50, default='中国')
     province = models.CharField('省', max_length=100, default='')
     city = models.CharField('城市', max_length=100, default='')
-
-
-def save_profile(sender, instance, created, **kwargs):
-    if not hasattr(instance, 'profile') or created:
-        profile = Profile.objects.create(user=instance)
-
-
-post_save.connect(save_profile, sender=User)

@@ -1,6 +1,10 @@
 from django.db import models
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 from django.conf import settings
 from django.contrib.auth import get_user_model
+
+from jsonfield import JSONField
 
 User = get_user_model()
 
@@ -22,12 +26,15 @@ class Profile(models.Model):
     country = models.CharField('国家', max_length=50, default='中国')
     province = models.CharField('省', max_length=100, default='')
     city = models.CharField('城市', max_length=100, default='')
-    prefs = JSONField(default={}, verbose_name='偏好设置', blank=True)
+    prefs = JSONField(default=dict(), verbose_name='偏好设置', blank=True)
 
 
+def create_profile(user):
+    if not hasattr(user, 'profile'):
+        Profile.objects.create(user=user)
+    return user.profile
+
+
+@receiver(post_save, sender=User)
 def save_profile(sender, instance, created, **kwargs):
-    if not hasattr(instance, 'profile') or created:
-        profile = Profile.objects.create(user=instance)
-
-
-post_save.connect(save_profile, sender=User)
+    create_profile(instance)
