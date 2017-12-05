@@ -15,7 +15,7 @@ class AccessToken(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
     openid = models.CharField(max_length=255, unique=True)
     access_token = models.CharField(max_length=255, blank=True)
-    refresh_token = models.CharField(max_length=255)
+    refresh_token = models.CharField(max_length=255, blank=True)
     expires_in = models.IntegerField(default=0)
     scope = models.CharField(max_length=200, default='snsapi_userinfo')
     created = models.DateTimeField(auto_now_add=True)
@@ -36,6 +36,9 @@ class AccessToken(models.Model):
         self.scope = token['scope']
         self.save()
 
-    @staticmethod
-    def save_token(cls, access_token):
-        pass
+    def update_token(self, access_token):
+        fields = ['access_token', 'refresh_token', 'expires_in', 'scope']
+        for field in fields:
+            setattr(self, field, access_token.get(field, ''))
+        self.last_updated_at = now()
+        self.save()
