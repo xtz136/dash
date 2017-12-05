@@ -39,13 +39,19 @@ class WhiteList(models.Model):
         verbose_name_plural = "访问白名单"
 
 
-class Profile(models.Model):
+class ProfileOld(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     mobile = models.CharField(verbose_name='手机', max_length=100, blank=True)
-    avatar = models.CharField(verbose_name='头像', max_length=255, blank=True)
+    avatar = models.CharField(
+        verbose_name='头像', max_length=255, blank=True)
     preference = JSONField(default={}, verbose_name='偏好设置', blank=True)
     is_manager = models.BooleanField(
         verbose_name='管理员状态', help_text="管理员登陆不受ip限制", default=False)
+    nickname = models.CharField(max_length=200, blank=True)
+    sex = models.SmallIntegerField(default=1, choices=((1, '男性'), (2, '女性'),))
+    country = models.CharField('国家', max_length=50, default='中国')
+    province = models.CharField('省', max_length=100, default='')
+    city = models.CharField('城市', max_length=100, default='')
 
 
 def save_profile(sender, instance, created, **kwargs):
