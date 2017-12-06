@@ -1,4 +1,6 @@
 from django.contrib import admin
+from solo.admin import SingletonModelAdmin
+
 
 from .models import *
 
@@ -26,3 +28,6 @@ class TagModelAdmin(admin.ModelAdmin):
 @admin.register(AccessToken)
 class AccessTokenModelAdmin(admin.ModelAdmin):
     list_display = ('openid', 'user', 'created')
+
+
+admin.site.register(SiteConf, SingletonModelAdmin)
