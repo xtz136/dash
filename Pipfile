@@ -43,6 +43,7 @@ wechatpy = "*"
 cryptography = "*"
 "python-weixin" = "*"
 "django-solo" = "*"
+"django-notifications-hq" = "*"
 
 
 [requires]

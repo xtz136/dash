@@ -9,6 +9,8 @@ urlpatterns = [
     url(r'^ajax_select/', include(ajax_select_urls)),
     url(r'^export_action/',
         include("export_action.urls", namespace="export_action")),
+    url('^inbox/notifications/',
+        include('notifications.urls', namespace='notifications')),
 
     url(r'^api/', include('api.urls', namespace='api')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),

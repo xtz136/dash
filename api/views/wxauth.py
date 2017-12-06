@@ -69,6 +69,7 @@ def authorize(request):
             token = issue_token(user)
             response = HttpResponse(tpl % token)
             response.set_cookie('token', token)
+            response.set_header('token', token)
             return response
         except IntegrityError:
             return HttpResponse('用户已经绑定了微信账号', status=400)

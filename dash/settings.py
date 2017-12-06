@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'raven.contrib.django.raven_compat',
     'rest_framework',
+    'notifications',
     'solo',
 
     'mptt',
