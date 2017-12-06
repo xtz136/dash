@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from project.models import Member, Group, Category
+from project.models import Member, Group, Category, Project
 from .user import UserSerializer
 from .tag import TagSerializer
 
@@ -32,7 +32,10 @@ class ProjectSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
     deleted_by = UserSerializer()
     completed_by = UserSerializer()
-    tags = TagSerializer()
+    tags = serializers.SerializerMethodField()
+
+    def get_tags(self, obj):
+        return [TagSerializer(t).data for t in obj.tags.all()]
 
     class Meta:
         model = Project

@@ -1,5 +1,6 @@
 import pytest
 import json
+import unittest
 from unittest.mock import patch
 from django.urls import reverse
 from django.test import TestCase
@@ -9,7 +10,9 @@ from django.contrib.auth import get_user_model
 from rest_framework.test import APIRequestFactory, force_authenticate, APIClient
 from mixer.backend.django import mixer
 
+from project.factory import ProjectFactory
 from core.models import AccessToken, Profile, Tag
+from project.models import *
 from api import views
 from api.views import issue_token
 
@@ -87,4 +90,64 @@ class TagTestCase(TestCase):
 
 
 class UserTestCase(TestCase):
-    pass
+    def test_list(self):
+        pass
+
+    def test_create(self):
+        pass
+
+    def test_retrive(self):
+        pass
+
+    def test_update(self):
+        pass
+
+
+class BaseTestViewSet:
+    api_endpoint = None
+    count = 10
+
+    @classmethod
+    def setUpClass(cls):
+        if cls is BaseTestViewSet:
+            raise unittest.SkipTest("Skip BaseTest tests, it's a base class")
+        super(BaseTestViewSet, cls).setUpClass()
+
+    def setUp(self):
+        super(BaseTestViewSet, self).setUp()
+        self.user = mixer.blend('auth.User')
+        token = issue_token(self.user)
+        self.client = APIClient()
+        self.client.credentials(
+            HTTP_AUTHORIZATION='Bearer ' + token['token'])
+        self.a_client = APIClient()
+
+    def create_fixtures(self):
+        raise NotImplemented
+
+    def test_list(self):
+        import pdb
+        pdb.set_trace()
+        resp = self.a_client.get(self.api_endpoint)
+        assert resp.status_code == 401
+
+        resp = self.client.get(self.api_endpoint)
+        resp.render()
+        data = json.loads(resp.content)
+        assert resp.status_code == 200
+        assert data['count'] == 0
+
+        objs = self.create_fixtures()
+
+        resp = self.client.get(self.api_endpoint)
+        resp.render()
+        data = json.loads(resp.content)
+        assert resp.status_code == 200
+        assert data['count'] == self.count
+
+
+class ProjectTestCase(BaseTestViewSet):
+    api_endpoint = '/api/projects/'
+
+    def create_fixtures(self):
+        return ProjectFactory.create_batch(self.count)
