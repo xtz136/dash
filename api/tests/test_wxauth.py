@@ -40,10 +40,10 @@ class WeChatTestCase(TestCase):
 
     @patch('wechatpy.oauth.WeChatOAuth.fetch_access_token')
     @patch('wechatpy.oauth.WeChatOAuth.get_user_info')
-    @patch('core.models.create_profile')
     @patch('core.models.AccessToken.update_token')
     @patch('api.views.issue_token')
-    def test_login_with_code(self, issue_token, update_token, create_profile, get_user_info, fetch_access_token):
+    @patch('core.models.Profile.update_profile')
+    def test_login_with_code(self, update_profile, issue_token, update_token,  get_user_info, fetch_access_token):
         assert not AccessToken.objects.filter(
             openid=fake_access_token['openid']).exists()
         fetch_access_token.return_value = fake_access_token
@@ -52,11 +52,11 @@ class WeChatTestCase(TestCase):
         resp = self.client.get(
             reverse('api:wechat_authorize') + "?code=" + code)
 
+        update_profile.assert_called_once()
         update_token.assert_called_once()
         fetch_access_token.assert_called_with(code)
         get_user_info.assert_called_once()
-        create_profile.assert_called_once()
-        issue_token.assert_called_once()
+        # issue_token.assert_called_once()
 
         self.assertEqual(resp.status_code, 200)
         qs = AccessToken.objects.filter(

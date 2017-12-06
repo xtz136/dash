@@ -36,9 +36,13 @@ class AccessToken(models.Model):
         self.scope = token['scope']
         self.save()
 
-    def update_token(self, access_token):
-        fields = ['access_token', 'refresh_token', 'expires_in', 'scope']
+    def update_token(self,
+                     access_token,
+                     fields=['access_token', 'refresh_token',
+                             'expires_in', 'scope']
+                     ):
         for field in fields:
-            setattr(self, field, access_token.get(field, ''))
+            if field in access_token:
+                setattr(self, field, access_token[field])
         self.last_updated_at = now()
         self.save()

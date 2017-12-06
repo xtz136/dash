@@ -57,7 +57,7 @@ def authorize(request):
                 user = User.objects.get(pk=state)
             else:
                 user, _ = User.objects.get_or_create(
-                    username=access_token['openid'])
+                    username='wx_' + access_token['openid'])
 
             # may raise IntegrityError 微信用户已经绑定了关系
             at, _ = AccessToken.objects.get_or_create(
@@ -65,10 +65,7 @@ def authorize(request):
             at.update_token(access_token)
 
             # update profile
-            profile = create_profile(user)
-            for field in ['nickname', 'sex', 'country', 'city', 'province', 'headimgurl']:
-                setattr(profile, field, user_info.get(field, ''))
-            profile.save()
+            user.profile.update_profile(user_info)
             token = issue_token(user)
             response = HttpResponse(tpl % token)
             response.set_cookie('token', token)
