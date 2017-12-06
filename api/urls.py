@@ -12,9 +12,9 @@ router.register(r'projects', views.ProjectViewSet)
 
 urlpatterns = [
     url(r'^profile/$', views.profile_view, name='profile'),
+    url(r'^login/wechat/$', views.authorize, name='login_wechat'),
     url(r'^login/account/$', obtain_jwt_token, name='obtain_token'),
     url(r'^token/refresh/$', refresh_jwt_token, name='refresh_token'),
-    url(r'^wechat/auth/$', views.authorize, name='wechat_authorize'),
     url('^fields_info/$', views.FieldsInfoView.as_view(), name=''),
     url('^', include(router.urls)),
 ]

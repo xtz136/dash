@@ -33,7 +33,7 @@ fake_user_info = {"openid": " OPENID",
 class WeChatTestCase(TestCase):
     def test_login_without_code(self):
         # without code should return 302
-        resp = self.client.get(reverse('api:wechat_authorize'))
+        resp = self.client.get(reverse('api:login_wechat'))
         assert resp.url.startswith(
             'https://open.weixin.qq.com/connect/oauth2/authorize?appid')
         assert resp.status_code == 302
@@ -50,7 +50,7 @@ class WeChatTestCase(TestCase):
         get_user_info.return_value = fake_user_info
         code = 'fakecode'
         resp = self.client.get(
-            reverse('api:wechat_authorize') + "?code=" + code)
+            reverse('api:login_wechat') + "?code=" + code)
 
         update_profile.assert_called_once()
         update_token.assert_called_once()
