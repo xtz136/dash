@@ -13,11 +13,11 @@ coverage = "*"
 
 [packages]
 
-Django = "==1.11.3"
+django = "==1.11.3"
 mysqlclient = "==1.3.10"
 raven = "==6.1.0"
 gunicorn = "==19.7.1"
-Pillow = "==4.2.1"
+pillow = "==4.2.1"
 "django-widget-tweaks" = "==1.4.1"
 "django-taggit" = "==0.22.1"
 "django-crispy-forms" = "==1.6.1"
@@ -34,7 +34,7 @@ djangorestframework = "*"
 pytest = "*"
 mixer = "*"
 "django-mptt" = "*"
-"factory_boy" = "*"
+"factory-boy" = "*"
 "django-fsm" = "*"
 "django-activity-stream" = "*"
 "django-jsonfield" = "*"
@@ -42,6 +42,7 @@ mixer = "*"
 wechatpy = "*"
 cryptography = "*"
 "python-weixin" = "*"
+"django-solo" = "*"
 
 
 [requires]

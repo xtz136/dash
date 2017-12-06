@@ -17,3 +17,4 @@ djangorestframework==3.7.3
 djangorestframework-jwt==1.11.0
 django-jsonfield==1.0.1
 django-jsonfield-compat==0.4.4
+django-solo==1.1.2

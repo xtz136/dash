@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "657338624a18f19700d858d563711886543de144cba2d8d5502d38c112460d2d"
+            "sha256": "f96c6fb45d385ddb4f50fef3bf561a05e0d272523d592e19575512f73d8049af"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -206,6 +206,12 @@
             ],
             "version": "==0.8.7"
         },
+        "django-solo": {
+            "hashes": [
+                "sha256:cfaef35d2d77fdc2f6c5a5fd9cbbd8cb7adfb46ee3a8d3af2f7ac73da1b5ce2b"
+            ],
+            "version": "==1.1.2"
+        },
         "django-tables2": {
             "hashes": [
                 "sha256:51607a1dada9ad10cf09aaadc7208960c6922ab720dd8b5d0c0d1b2222f00a66"
@@ -247,7 +253,7 @@
                 "sha256:8ad8c4783bf61ded74527bffb48ed9b54166685e4230386a9ed9b1279e2df5b1",
                 "sha256:2d81cbbe0e73112bdfe6ef8576f2238f2ba27dd0d55752a776c41d38b7da2850"
             ],
-            "markers": "python_version < '3.4'",
+            "markers": "python_version < '3'",
             "version": "==1.1.6"
         },
         "export-action": {
@@ -408,10 +414,10 @@
         },
         "pytest": {
             "hashes": [
-                "sha256:72186b294cc88322a4427225fdb9240c95e3f01cc53c1ea4f4f79ffe39ff1955",
-                "sha256:6db1c070aa412c30647b6aeb13c55670f900cf00fbafa003cdde560c3f4a8d76"
+                "sha256:ae4a2d0bae1098bbe938ecd6c20a526d5d47a94dc42ad7331c9ad06d0efe4962",
+                "sha256:cf8436dc59d8695346fcd3ab296de46425ecab00d64096cebe79fb51ecb2eb93"
             ],
-            "version": "==3.3.0"
+            "version": "==3.3.1"
         },
         "python-dateutil": {
             "hashes": [
@@ -613,10 +619,10 @@
         },
         "pytest": {
             "hashes": [
-                "sha256:72186b294cc88322a4427225fdb9240c95e3f01cc53c1ea4f4f79ffe39ff1955",
-                "sha256:6db1c070aa412c30647b6aeb13c55670f900cf00fbafa003cdde560c3f4a8d76"
+                "sha256:ae4a2d0bae1098bbe938ecd6c20a526d5d47a94dc42ad7331c9ad06d0efe4962",
+                "sha256:cf8436dc59d8695346fcd3ab296de46425ecab00d64096cebe79fb51ecb2eb93"
             ],
-            "version": "==3.3.0"
+            "version": "==3.3.1"
         },
         "pytest-cov": {
             "hashes": [
