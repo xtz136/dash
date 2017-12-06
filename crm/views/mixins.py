@@ -20,7 +20,7 @@ class SearchViewMixin:
 
     def get_search_results(self, queryset, search_term):
         if search_term and self.search_fields:
-            orm_lookups = map(construct_search, self.search_fields)
+            orm_lookups = [construct_search(i) for i in self.search_fields]
             for bit in search_term.split():
                 or_queries = [Q(**{orm_lookup: bit})
                               for orm_lookup in orm_lookups]
