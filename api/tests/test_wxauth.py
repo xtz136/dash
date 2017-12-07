@@ -31,8 +31,14 @@ fake_user_info = {"openid": " OPENID",
 
 
 class WeChatTestCase(TestCase):
+    def test_enable(self):
+        mixer.blend('core.SiteConf', enable_wx=False)
+        resp = self.client.get(reverse('api:login_wechat'))
+        assert resp.status_code == 403
+
     def test_login_without_code(self):
         # without code should return 302
+        conf = mixer.blend('core.SiteConf', enable_wechat=True)
         resp = self.client.get(reverse('api:login_wechat'))
         assert resp.url.startswith(
             'https://open.weixin.qq.com/connect/oauth2/authorize?appid')
@@ -44,6 +50,7 @@ class WeChatTestCase(TestCase):
     @patch('api.views.issue_token')
     @patch('core.models.Profile.update_profile')
     def test_login_with_code(self, update_profile, issue_token, update_token,  get_user_info, fetch_access_token):
+        conf = mixer.blend('core.SiteConf', enable_wechat=True)
         assert not AccessToken.objects.filter(
             openid=fake_access_token['openid']).exists()
         fetch_access_token.return_value = fake_access_token

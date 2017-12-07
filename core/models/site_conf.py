@@ -16,5 +16,12 @@ class SiteConf(SingletonModel):
     site_log = models.ImageField(blank=True, upload_to='uploads/%Y/%m/%d/')
     site_favicon = models.ImageField(blank=True, upload_to='uploads/%Y/%m/%d/')
 
+    # 集成
+    # 微信相关
+    enable_wechat = models.BooleanField(default=False)
+    wx_appid = models.CharField(blank=True, max_length=255)
+    wx_appsecret = models.CharField(blank=True, max_length=255)
+    wx_redirect_uri = models.CharField(blank=True, max_length=255)
+
     class Meta:
         verbose_name = "站点设置"

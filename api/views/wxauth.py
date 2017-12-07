@@ -1,6 +1,6 @@
 import time
 from django.conf import settings
-from django.http.response import JsonResponse, HttpResponse
+from django.http.response import JsonResponse, HttpResponse, HttpResponseForbidden
 from django.shortcuts import redirect
 from django.contrib.auth import get_user_model
 from django.db import IntegrityError
@@ -8,7 +8,7 @@ from django.db import IntegrityError
 from wechatpy.oauth import WeChatOAuth
 from rest_framework_jwt.settings import api_settings
 
-from core.models import AccessToken, create_profile
+from core.models import AccessToken, create_profile, SiteConf
 
 User = get_user_model()
 
@@ -38,10 +38,14 @@ def authorize(request):
     code = request.GET.get('code', '')
     # use state to track user id
     state = request.GET.get('state', '')
+    config = SiteConf.get_solo()
 
-    client = WeChatOAuth(settings.WX_APPID,
-                         settings.WX_APPSECRET,
-                         settings.WX_REDIRECT_URI,
+    if not config.enable_wechat:
+        return HttpResponseForbidden('没有开启微信登录')
+
+    client = WeChatOAuth(config.wx_appid,
+                         config.wx_appsecret,
+                         config.wx_redirect_uri,
                          scope='snsapi_userinfo',
                          state=state)
 
