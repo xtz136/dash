@@ -5,7 +5,7 @@ class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = 'auth.User'
         django_get_or_create = ('username',)
-    username = 'john'
+    username = factory.Sequence(lambda n: 'user%d' % n)
     is_active = True
 
 
