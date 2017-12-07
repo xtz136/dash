@@ -28,6 +28,7 @@ class Profile(models.Model):
     province = models.CharField('省', max_length=100, default='')
     city = models.CharField('城市', max_length=100, default='')
     prefs = JSONField(default=dict(), verbose_name='偏好设置', blank=True)
+    is_manager = models.BooleanField(default=False)
 
     def update_profile(self,
                        user_info,

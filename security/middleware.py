@@ -2,6 +2,8 @@ from .models import WhiteList
 from django.contrib.auth import logout
 from django.http import HttpResponseForbidden
 
+from core.models import create_profile
+
 IPWARE_META_PRECEDENCE_ORDER = (
     'HTTP_X_FORWARDED_FOR', 'X_FORWARDED_FOR',  # client, proxy1, proxy2
     'HTTP_CLIENT_IP',
@@ -30,6 +32,7 @@ class RestrictIPMiddleware(object):
     def __call__(self, request):
         user = getattr(request, 'user', None)
         if user and user.is_authenticated and not user.is_superuser:
+            create_profile(user)
             profile = getattr(user, 'profile', None)
             if not profile or not profile.is_manager:
                 ip = get_ip(request)
