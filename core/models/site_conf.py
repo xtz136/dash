@@ -4,7 +4,7 @@ from solo.models import SingletonModel
 
 class SiteConf(SingletonModel):
     site_name = models.CharField(max_length=255, default='Site Name')
-    site_address = models.BooleanField(default=False)
+    site_address = models.CharField(blank=True, max_length=255)
     custom_css = models.CharField(blank=True, max_length=100)
 
     allow_custom_css = models.BooleanField(default=False)
