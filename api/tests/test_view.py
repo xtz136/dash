@@ -14,6 +14,7 @@ from core.models import AccessToken, Profile, Tag
 from project.factory import *
 from project.models import *
 from api import views
+from api.serializers import *
 from api.views import issue_token
 
 pytestmark = pytest.mark.django_db
@@ -112,44 +113,52 @@ class BaseTestViewSet:
     def create_fixtures(self):
         raise NotImplemented
 
-    def testList(self):
-        a_client = self.get_client(True)
-        client = self.get_client()
-
+    def testAnonymousList(self):
+        client = self.get_client(auth=False)
         resp = client.get(self.api_endpoint)
         assert resp.status_code == 401
 
-        resp = a_client.get(self.api_endpoint)
+    def testAnonymousCreate(self):
+        client = self.get_client(auth=False)
+        resp = client.post(self.api_endpoint, {}, format='json')
+        assert resp.status_code == 401
+
+    def testAnonymousRetrive(self):
+        client = self.get_client(auth=False)
+        obj = self.factory.create()
+        resp = client.get(self.api_endpoint + '%d/' % obj.pk)
+        assert resp.status_code == 401
+
+    def testAnonymousUpdate(self):
+        client = self.get_client(auth=False)
+        obj = self.factory.create()
+        resp = client.post(self.api_endpoint + '%d/' %
+                           obj.pk, {}, format='json')
+        assert resp.status_code == 401
+
+    def testList(self):
+        client = self.get_client(True)
+        resp = client.get(self.api_endpoint)
         resp.render()
         data = json.loads(resp.content)
         assert resp.status_code == 200
         assert data['count'] == 0
 
         objs = self.factory.create_batch(self.count)
-
-        resp = a_client.get(self.api_endpoint)
+        resp = client.get(self.api_endpoint)
         resp.render()
         data = json.loads(resp.content)
         assert resp.status_code == 200
         assert data['count'] == self.count
 
     def testRetrive(self):
-        a_client = self.get_client(True)
-        client = self.get_client()
+        client = self.get_client(True)
         obj = self.factory.create()
         resp = client.get(self.api_endpoint + '%s/' % obj.pk)
-        assert resp.status_code == 401
-
-        resp = a_client.get(self.api_endpoint + '%s/' % obj.pk)
         resp.render()
         data = resp.json()
         assert resp.status_code == 200
-        assert data['title'] == obj.title
         assert data['id'] == obj.id
-        self.assertEqual(data['title'], obj.title, 'should equal')
-
-    def testUpdate(self):
-        pass
 
 
 class ProjectTestCase(TestCase, BaseTestViewSet):
@@ -161,25 +170,21 @@ class ProjectTestCase(TestCase, BaseTestViewSet):
         return ProjectFactory.create_batch(self.count)
 
     def test_create(self):
-        client = self.get_client()
-        a_client = self.get_client(True)
+        client = self.get_client(True)
 
         payload = {'title': 'abc'}
 
-        resp = client.post(self.api_endpoint, payload)
-        self.assertEqual(resp.status_code, 401)
-
-        resp = a_client.post(self.api_endpoint, payload, format='json')
+        resp = client.post(self.api_endpoint, payload, format='json')
         resp.render()
         data = json.loads(resp.content)
-        assert resp.status_code == 201
+        assert resp.status_code == 201, data
         assert data['title'] == payload['title']
         assert data['owner']['id'] == self.user.id
         assert Project.objects.get(title=payload['title'])
         assert Project.objects.filter(title=payload['title']).count() == 1
 
         # same title will raise error
-        resp = a_client.post(self.api_endpoint, payload, format='json')
+        resp = client.post(self.api_endpoint, payload, format='json')
         resp.render()
         assert resp.status_code == 400
         data = json.loads(resp.content)
@@ -187,12 +192,31 @@ class ProjectTestCase(TestCase, BaseTestViewSet):
         assert data['errors']['title']
         assert Project.objects.filter(title=payload['title']).count() == 1
 
+        users = mixer.cycle(100).blend('auth.User')
         # with category
+        tags = TagFactory.create_batch(10)
+        cat = CategoryFactory.create()
+        payload = {'title': 'jwqeofijq', 'category': cat.id,
+                   'tags': [t.id for t in tags], 'members': [u.id for u in users]}
+        resp = client.post(self.api_endpoint, payload, format='json')
+        resp.render()
+        data = json.loads(resp.content)
+        assert resp.status_code == 201, data
+        assert data['category']['id'] == cat.id, data
+        assert data['category']['title'] == cat.title, data
+        assert len(data['tags']) == len(tags)
+        assert len(data['members']) == 100
+        assert Project.objects.filter(title=payload['title']).count() == 1
 
 
 class UserTestCase(BaseTestViewSet):
     api_endpoint = '/api/users/'
     factory = UserFactory
+
+
+class CategoryTestCase(BaseTestViewSet):
+    api_endpoint = '/api/category/'
+    factory = CategoryFactory
 
 
 class TagTestCase(BaseTestViewSet):

@@ -16,11 +16,19 @@ class UserFactory(factory.django.DjangoModelFactory):
     is_active = True
 
 
+class CategoryFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = 'project.Category'
+        django_get_or_create = ('title',)
+    title = factory.Sequence(lambda n: 'Title%d' % n)
+
+
 class ProjectFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = 'project.Project'
     title = factory.Sequence(lambda n: 'title%d' % n)
     owner = factory.SubFactory(UserFactory)
+    category = factory.SubFactory(CategoryFactory)
 
 
 class FolderFactory(factory.django.DjangoModelFactory):

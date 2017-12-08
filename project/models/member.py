@@ -6,7 +6,7 @@ from .project import Project
 
 
 class Member(models.Model):
-    project = models.ForeignKey(Project)
+    project = models.ForeignKey(Project, related_name='members')
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     role = models.CharField(default='member', max_length=50, choices=(
         ('owner', '创建人'),
@@ -18,6 +18,9 @@ class Member(models.Model):
         related_name='inviter', null=True, blank=True)
     invite_reason = models.CharField(blank=True, max_length=200)
     permissions = models.CharField(blank=True, max_length=255)
+
+    class Meta:
+        unique_together = ('project', 'user')
 
 
 class Group(models.Model):

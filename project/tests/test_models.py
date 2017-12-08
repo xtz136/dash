@@ -184,7 +184,7 @@ class TestMember(TestCase):
         for user in users:
             Member.objects.create(user=user, project=p)
         assert Member.objects.filter(project=p).count() == n
-        assert p.member_set.all().count() == n
+        assert p.members.all().count() == n
 
         for user in users:
             assert user.member_set.all().count() == 1
