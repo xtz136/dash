@@ -109,7 +109,7 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
         ('国税', {
             # 'classes': ('collapse',),
             'fields': (
-                'national_tax_office_new',
+                'national_tax_office',
                 'national_tax_id',
                 # 'national_tax_sn',
                 'national_tax_staff',
@@ -117,7 +117,7 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
         }),
         ('地税', {
             'fields': (
-                'local_tax_office_new',
+                'local_tax_office',
                 'local_tax_id',
                 'local_tax_sn',
                 'local_tax_staff',

@@ -91,7 +91,8 @@ class Company(models.Model):
     national_tax_staff = models.CharField(
         verbose_name="国税专管员", blank=True, max_length=255)
 
-    national_tax_office_new = models.CharField(blank=True, max_length=255)
+    national_tax_office = models.CharField(
+        verbose_name='国税局', blank=True, max_length=255)
 
     national_tax_phone = models.CharField(
         verbose_name="国税电话", blank=True, max_length=255)
@@ -103,7 +104,8 @@ class Company(models.Model):
     local_tax_staff = models.CharField(
         verbose_name="地税专管员", blank=True, max_length=255)
 
-    local_tax_office_new = models.CharField(blank=True, max_length=255)
+    local_tax_office = models.CharField(
+        verbose_name='地税局', blank=True, max_length=255)
     local_tax_phone = models.CharField(
         verbose_name="地税电话", blank=True, max_length=255)
 
