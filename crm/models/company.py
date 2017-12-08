@@ -91,14 +91,6 @@ class Company(models.Model):
     national_tax_staff = models.CharField(
         verbose_name="国税专管员", blank=True, max_length=255)
 
-    national_tax_office = models.ForeignKey(
-        TaxBureau,
-        on_delete=models.SET_NULL,
-        related_name='national_taxes',
-        verbose_name="国税所属分局",
-        limit_choices_to={'bureau': 'national'},
-        blank=True,
-        null=True)
     national_tax_office_new = models.CharField(blank=True, max_length=255)
 
     national_tax_phone = models.CharField(
@@ -112,13 +104,6 @@ class Company(models.Model):
         verbose_name="地税专管员", blank=True, max_length=255)
 
     local_tax_office_new = models.CharField(blank=True, max_length=255)
-    local_tax_office = models.ForeignKey(
-        TaxBureau,
-        on_delete=models.SET_NULL,
-        related_name='local_taxes',
-        limit_choices_to={'bureau': 'local'},
-        verbose_name="地税所属分局",
-        blank=True, null=True)
     local_tax_phone = models.CharField(
         verbose_name="地税电话", blank=True, max_length=255)
 

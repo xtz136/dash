@@ -56,8 +56,6 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
         AttachmentInline
     ]
     form = make_ajax_form(Company, {
-        'national_tax_office': 'national_tax',
-        'local_tax_office': 'local_tax',
         'bookkeeper': 'user',
         'salesman': 'user',
         'special_taxes': 'special_taxes',
@@ -111,7 +109,7 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
         ('国税', {
             # 'classes': ('collapse',),
             'fields': (
-                'national_tax_office',
+                'national_tax_office_new',
                 'national_tax_id',
                 # 'national_tax_sn',
                 'national_tax_staff',
