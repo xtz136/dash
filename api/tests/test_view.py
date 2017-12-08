@@ -10,8 +10,8 @@ from django.contrib.auth import get_user_model
 from rest_framework.test import APIRequestFactory, force_authenticate, APIClient
 from mixer.backend.django import mixer
 
-from project.factory import ProjectFactory
 from core.models import AccessToken, Profile, Tag
+from project.factory import *
 from project.models import *
 from api import views
 from api.views import issue_token
@@ -89,65 +89,114 @@ class TagTestCase(TestCase):
         assert Tag.objects.get(pk=data['id'])
 
 
-class UserTestCase(TestCase):
-    def test_list(self):
-        pass
-
-    def test_create(self):
-        pass
-
-    def test_retrive(self):
-        pass
-
-    def test_update(self):
-        pass
-
-
 class BaseTestViewSet:
     api_endpoint = None
     count = 10
+    factory = None
 
-    @classmethod
-    def setUpClass(cls):
-        if cls is BaseTestViewSet:
-            raise unittest.SkipTest("Skip BaseTest tests, it's a base class")
-        super(BaseTestViewSet, cls).setUpClass()
+    def get_client(self, auth=False):
+        if auth:
+            return self.get_auth_client()
+        return APIClient()
 
-    def setUp(self):
-        super(BaseTestViewSet, self).setUp()
-        self.user = mixer.blend('auth.User')
-        token = issue_token(self.user)
-        self.client = APIClient()
-        self.client.credentials(
+    def get_auth_client(self):
+        user = mixer.blend('auth.User')
+        self.user = user
+        token = issue_token(user)
+        self.token = token
+        client = APIClient()
+        client.credentials(
             HTTP_AUTHORIZATION='Bearer ' + token['token'])
-        self.a_client = APIClient()
+        return client
 
     def create_fixtures(self):
         raise NotImplemented
 
-    def test_list(self):
-        import pdb
-        pdb.set_trace()
-        resp = self.a_client.get(self.api_endpoint)
+    def testList(self):
+        a_client = self.get_client(True)
+        client = self.get_client()
+
+        resp = client.get(self.api_endpoint)
         assert resp.status_code == 401
 
-        resp = self.client.get(self.api_endpoint)
+        resp = a_client.get(self.api_endpoint)
         resp.render()
         data = json.loads(resp.content)
         assert resp.status_code == 200
         assert data['count'] == 0
 
-        objs = self.create_fixtures()
+        objs = self.factory.create_batch(self.count)
 
-        resp = self.client.get(self.api_endpoint)
+        resp = a_client.get(self.api_endpoint)
         resp.render()
         data = json.loads(resp.content)
         assert resp.status_code == 200
         assert data['count'] == self.count
 
+    def testRetrive(self):
+        a_client = self.get_client(True)
+        client = self.get_client()
+        obj = self.factory.create()
+        resp = client.get(self.api_endpoint + '%s/' % obj.pk)
+        assert resp.status_code == 401
 
-class ProjectTestCase(BaseTestViewSet):
+        resp = a_client.get(self.api_endpoint + '%s/' % obj.pk)
+        resp.render()
+        data = resp.json()
+        assert resp.status_code == 200
+        assert data['title'] == obj.title
+        assert data['id'] == obj.id
+        self.assertEqual(data['title'], obj.title, 'should equal')
+
+    def testUpdate(self):
+        pass
+
+
+class ProjectTestCase(TestCase, BaseTestViewSet):
+
     api_endpoint = '/api/projects/'
+    factory = ProjectFactory
 
     def create_fixtures(self):
         return ProjectFactory.create_batch(self.count)
+
+    def test_create(self):
+        client = self.get_client()
+        a_client = self.get_client(True)
+
+        payload = {'title': 'abc'}
+
+        resp = client.post(self.api_endpoint, payload)
+        self.assertEqual(resp.status_code, 401)
+
+        resp = a_client.post(self.api_endpoint, payload, format='json')
+        resp.render()
+        data = json.loads(resp.content)
+        assert resp.status_code == 201
+        assert data['title'] == payload['title']
+        assert data['owner']['id'] == self.user.id
+        assert Project.objects.get(title=payload['title'])
+        assert Project.objects.filter(title=payload['title']).count() == 1
+
+        # same title will raise error
+        resp = a_client.post(self.api_endpoint, payload, format='json')
+        resp.render()
+        assert resp.status_code == 400
+        data = json.loads(resp.content)
+        assert data['code'] == 400
+        assert data['errors']['title']
+        assert Project.objects.filter(title=payload['title']).count() == 1
+
+        # with category
+
+
+class UserTestCase(BaseTestViewSet):
+    api_endpoint = '/api/users/'
+    factory = UserFactory
+
+
+class TagTestCase(BaseTestViewSet):
+    api_endpoint = '/api/tags/'
+
+    def create_fixtures(self):
+        return TagFactory.create_batch(self.count)

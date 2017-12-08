@@ -1,6 +1,13 @@
 import factory
 
 
+class TagFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = 'core.Tag'
+        django_get_or_create = ('name',)
+    name = factory.Sequence(lambda n: 'tag%d' % n)
+
+
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = 'auth.User'
