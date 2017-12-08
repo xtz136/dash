@@ -209,16 +209,6 @@ class ProjectTestCase(TestCase, BaseTestViewSet):
         assert Project.objects.filter(title=payload['title']).count() == 1
 
 
-class UserTestCase(BaseTestViewSet):
-    api_endpoint = '/api/users/'
-    factory = UserFactory
-
-    def testAnonymousCreate(self):
-        client = self.get_client(auth=False)
-        resp = client.post(self.api_endpoint, {}, format='json')
-        assert resp.status_code == 400
-
-
 class CategoryTestCase(TestCase, BaseTestViewSet):
     api_endpoint = '/api/categories/'
     factory = CategoryFactory
@@ -232,3 +222,42 @@ class TagTestCase(TestCase, BaseTestViewSet):
 class CompanyTestCase(TestCase, BaseTestViewSet):
     api_endpoint = '/api/company/'
     factory = CompanyFactory
+
+    def test_create(self):
+        client = self.get_client(True)
+        payload = {'title': 'aaa'}
+        resp = client.post(self.api_endpoint, payload, format='json')
+        resp.render()
+        data = json.loads(resp.content)
+        assert resp.status_code == 201, data
+        assert data['title'] == payload['title']
+
+        # same request
+
+        payload = {'title': 'aaa'}
+        resp = client.post(self.api_endpoint, payload, format='json')
+        resp.render()
+        data = json.loads(resp.content)
+        assert resp.status_code == 400, data
+
+
+class LoginTestCase(TestCase):
+
+    def test_login(self):
+        user = mixer.blend('auth.User')
+        pwd = 'abcd'
+        user.set_password(pwd)
+        user.save()
+
+        client = APIClient()
+        payload = {'username': user.username, 'password': pwd}
+        resp = client.post('/api/login/account/', payload, format='json')
+        resp.render()
+        data = json.loads(resp.content)
+        assert resp.status_code == 200, resp.content
+        assert data['token'], data
+
+        client.credentials()
+        client.credentials(HTTP_AUTHORIZATION='Bearer ' + data['token'])
+        resp = client.get('/api/company/')
+        assert resp.status_code == 200
