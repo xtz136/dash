@@ -213,14 +213,22 @@ class UserTestCase(BaseTestViewSet):
     api_endpoint = '/api/users/'
     factory = UserFactory
 
+    def testAnonymousCreate(self):
+        client = self.get_client(auth=False)
+        resp = client.post(self.api_endpoint, {}, format='json')
+        assert resp.status_code == 400
 
-class CategoryTestCase(BaseTestViewSet):
-    api_endpoint = '/api/category/'
+
+class CategoryTestCase(TestCase, BaseTestViewSet):
+    api_endpoint = '/api/categories/'
     factory = CategoryFactory
 
 
-class TagTestCase(BaseTestViewSet):
+class TagTestCase(TestCase, BaseTestViewSet):
     api_endpoint = '/api/tags/'
+    factory = TagFactory
 
-    def create_fixtures(self):
-        return TagFactory.create_batch(self.count)
+
+class CompanyTestCase(TestCase, BaseTestViewSet):
+    api_endpoint = '/api/company/'
+    factory = CompanyFactory

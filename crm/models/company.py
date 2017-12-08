@@ -37,7 +37,10 @@ class Company(models.Model):
                             default='有限责任公司', max_length=20)
     registered_capital = models.DecimalField(
         help_text="单位 (万元)",
-        verbose_name="注册资金", max_digits=19, decimal_places=2)
+        default=1,
+        verbose_name="注册资金",
+        max_digits=19,
+        decimal_places=2)
     address = models.CharField(verbose_name="地址", blank=True, max_length=255)
     op_address = models.CharField(
         verbose_name="实际经营地址",
