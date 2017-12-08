@@ -8,6 +8,9 @@ User = get_user_model()
 
 
 class CompanySerializer(serializers.ModelSerializer):
+    saleman = UserSerializer(required=False)
+    bookkeeper = UserSerializer(required=False)
+
     class Meta:
         model = Company
         fields = '__all__'
