@@ -7,9 +7,10 @@ from django.db import migrations, models
 
 def forwards(apps, schema_editor):
     Company = apps.get_model('crm', 'Company')
+
     for obj in Company.objects.all():
-        obj.national_tax_office_new = str(obj.national_tax_office)
-        obj.local_tax_office_new = str(obj.local_tax_office)
+        obj.national_tax_office_new = obj.national_tax_office.full_title if obj.national_tax_office else ''
+        obj.local_tax_office_new = obj.local_tax_office.full_title if obj.local_tax_office else ''
         obj.save()
 
 
