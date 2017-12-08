@@ -1,11 +1,12 @@
 from rest_framework.permissions import BasePermission
 
+
 class IsAdminOrIsSelf(BasePermission):
-    pass
-    # def has_permission(self, request, view):
+    def has_object_permission(self, request, view, obj):
+        return self.request.user == obj
 
 
-class IsPostOrIsAuthenticated(BasePermission):        
+class IsPostOrIsAuthenticated(BasePermission):
 
     def has_permission(self, request, view):
         # allow all POST requests

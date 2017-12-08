@@ -1,8 +1,10 @@
-
+import json
 import pytest
+from django.test import TestCase
 from mixer.backend.django import mixer
 from rest_framework.test import force_authenticate, APITestCase
 from rest_framework.test import APIRequestFactory
+from django.contrib.auth import get_user_model
 
 from rest_framework.test import APIClient
 from rest_framework_jwt.serializers import jwt_payload_handler,  jwt_encode_handler
@@ -12,22 +14,48 @@ from django.test.client import encode_multipart, RequestFactory
 from api import views
 
 pytestmark = pytest.mark.django_db
+User = get_user_model()
 
 
-class TestClient(APITestCase):
-    def test_access_profile(self):
-        factory = APIRequestFactory()
-        # Make an authenticated request to the view...
-        response = self.client.get(reverse('api:user-profile'))
-        assert response.status_code == 401, "没有权限访问"
+class UserTestCase(TestCase):
+    def test_create(self):
+        client = APIClient()
+        pwd = 'abcd'
+        payload = {'username': 'myname', 'password': pwd}
+        resp = client.post('/api/users/', payload, format='json')
+        resp.render()
+        data = json.loads(resp.content)
+        assert resp.status_code == 201, resp.content
+        assert data['username'] == payload['username'], data
+        u = User.objects.get(username=payload['username'])
+        assert u.check_password(pwd)
 
-    def test_auth_user_access(self):
+    def test_update(self):
+        pass
+
+
+class LoginTestCase(TestCase):
+
+    def test_login(self):
         user = mixer.blend('auth.User')
-        token = jwt_encode_handler(jwt_payload_handler(user))
+        pwd = 'abcd'
+        user.set_password(pwd)
+        user.save()
 
-        self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + token)
+        client = APIClient()
+        payload = {'username': user.username, 'password': pwd}
+        resp = client.post('/api/login/account/', payload, format='json')
+        resp.render()
+        data = json.loads(resp.content)
+        assert resp.status_code == 200, resp.content
+        assert data['token'], data
 
-        # force_authenticate(request, token=token)
-        response = self.client.get(reverse('api:user-profile'))
-        assert response.status_code == 200, "有权限访问"
-        assert response.data['username'] == user.username
+        # profile
+        client.credentials()
+        client.credentials(HTTP_AUTHORIZATION='Bearer ' + data['token'])
+        resp = client.get('/api/profile/')
+        assert resp.status_code == 200
+        data = json.loads(resp.content)
+        assert resp.status_code == 200, resp.content
+        assert data['username'] == payload['username']
+        assert data['id']

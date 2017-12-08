@@ -239,25 +239,3 @@ class CompanyTestCase(TestCase, BaseTestViewSet):
         resp.render()
         data = json.loads(resp.content)
         assert resp.status_code == 400, data
-
-
-class LoginTestCase(TestCase):
-
-    def test_login(self):
-        user = mixer.blend('auth.User')
-        pwd = 'abcd'
-        user.set_password(pwd)
-        user.save()
-
-        client = APIClient()
-        payload = {'username': user.username, 'password': pwd}
-        resp = client.post('/api/login/account/', payload, format='json')
-        resp.render()
-        data = json.loads(resp.content)
-        assert resp.status_code == 200, resp.content
-        assert data['token'], data
-
-        client.credentials()
-        client.credentials(HTTP_AUTHORIZATION='Bearer ' + data['token'])
-        resp = client.get('/api/company/')
-        assert resp.status_code == 200
