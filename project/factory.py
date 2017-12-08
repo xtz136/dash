@@ -1,6 +1,13 @@
 import factory
 
 
+class CompanyFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = 'crm.Company'
+        django_get_or_create = ('title', )
+    title = factory.Sequence(lambda n: 'Title %d' % n)
+
+
 class TagFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = 'core.Tag'
