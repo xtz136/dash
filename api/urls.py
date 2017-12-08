@@ -5,11 +5,11 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-router.register(r'clients', views.CompanyViewSet)
-router.register(r'users', views.UserViewSet)
-router.register(r'projects', views.ProjectViewSet)
-router.register(r'categories', views.CategoryViewSet)
-router.register(r'tags', views.TagViewSet)
+router.register('users', views.UserViewSet)
+router.register('projects', views.ProjectViewSet)
+router.register('categories', views.CategoryViewSet)
+router.register('tags', views.TagViewSet)
+router.register('company', views.CompanyViewSet)
 
 
 urlpatterns = [
