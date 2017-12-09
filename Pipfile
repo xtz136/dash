@@ -44,6 +44,7 @@ cryptography = "*"
 "python-weixin" = "*"
 "django-solo" = "*"
 "django-notifications-hq" = "*"
+jsonfield = "*"
 
 
 [requires]

@@ -36,5 +36,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
             users = User.objects.filter(id__in=members)
             for user in users:
                 Member.objects.get_or_create(project=obj, user=user)
+
+        obj.active()
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)

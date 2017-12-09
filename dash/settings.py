@@ -247,6 +247,7 @@ SITE_ID = 1
 ACTSTREAM_SETTINGS = {
     'USE_JSONFIELD': True,
 }
+NOTIFICATIONS_USE_JSONFIELD = True
 
 from .local import *
 

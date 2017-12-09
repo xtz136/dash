@@ -77,28 +77,24 @@ class Project(models.Model):
 
     @transition(field=state, source='*', target='archived')
     def archive(self, user):
-        # dispatch_event('project.archived', who=user)
-        self.update_last_activity_date()
+        action.send(user, target=instance, verb='存档')
 
     @transition(field=state, source='new', target='active')
     def active(self):
-        # 1. 创建活动事件
-        # 2. 更新项目最近的活跃时间
-        self.update_last_activity_date()
+        action.send(self.owner, target=self, verb='激活')
 
     @transition(field=state, source='active', target='completed')
     def complete(self, user):
         self.completed_at = now()
         self.completed_by = user
-        self.update_last_activity_date()
-        action.send(self.owner, target=self, verb='完结了')
+        action.send(self.owner, target=self, verb='完结')
 
     @transition(field=state, source='*', target='deleted')
     def do_delete(self, user):
         self.deleted = True
         self.deleted_by = user
         self.deleted_at = now()
-        action.send(self.owner, target=self, verb='删除了')
+        action.send(self.owner, target=self, verb='删除')
 
 
 @receiver(post_save, sender=Project)
@@ -106,5 +102,5 @@ def update_project(sender, instance, created, **kwargs):
     if created:
         action.send(instance.owner, target=instance, verb='新建')
     else:
-        action.send(instance.owner,
-                    target=instance, verb='更新了')
+        action.send(instance.owner, target=instance, verb='更新')
+    instance.update_last_activity_date()
