@@ -24,9 +24,9 @@ class Profile(models.Model):
     nickname = models.CharField(max_length=200, blank=True)
     display_name = models.CharField(max_length=255, blank=True)
     sex = models.SmallIntegerField(default=1, choices=((1, '男性'), (2, '女性'),))
-    country = models.CharField('国家', max_length=50, default='中国')
-    province = models.CharField('省', max_length=100, default='')
-    city = models.CharField('城市', max_length=100, default='')
+    country = models.CharField('国家', max_length=50, default='中国', blank=True)
+    province = models.CharField('省', max_length=100, blank=True)
+    city = models.CharField('城市', max_length=100, blank=True)
     prefs = JSONField(default=dict(), verbose_name='偏好设置', blank=True)
     is_manager = models.BooleanField(default=False)
 
