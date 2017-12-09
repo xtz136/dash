@@ -174,6 +174,10 @@ class ProjectTestCase(TestCase, BaseTestViewSet):
 
         payload = {'title': 'abc'}
 
+        resp = client.post(self.api_endpoint, {}, format='json')
+        assert resp.status_code == 400, resp.content
+        resp.render()
+
         resp = client.post(self.api_endpoint, payload, format='json')
         resp.render()
         data = json.loads(resp.content)
@@ -222,6 +226,13 @@ class TagTestCase(TestCase, BaseTestViewSet):
 class CompanyTestCase(TestCase, BaseTestViewSet):
     api_endpoint = '/api/company/'
     factory = CompanyFactory
+
+    def test_fields_info(self):
+        client = self.get_client(True)
+        resp = client.get('/api/fields_info/?')
+        resp.render()
+        data = json.loads(resp.content)
+        assert resp.status_code == 200, data
 
     def test_create(self):
         client = self.get_client(True)

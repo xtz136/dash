@@ -15,6 +15,14 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     profile = ProfileSerializer(required=False)
+    display_name = serializers.SerializerMethodField()
+
+    def get_display_name(self, obj):
+        if obj.profile.display_name:
+            return obj.profile.display_name
+        if obj.profile.nickname:
+            return obj.profile.nickname
+        return obj.username
 
     class Meta:
         model = User

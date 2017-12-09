@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from crm.models import Company
+from crm import models as crm_models
 from api.serializers import CompanySerializer
 from api.mixins import SearchAPIViewMixin
 

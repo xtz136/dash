@@ -22,7 +22,7 @@ class Profile(models.Model):
         verbose_name='头像', blank=True, upload_to=get_upload_to)
     headimgurl = models.CharField(max_length=255, blank=True)
     nickname = models.CharField(max_length=200, blank=True)
-    name = models.CharField(max_length=255, blank=True)
+    display_name = models.CharField(max_length=255, blank=True)
     sex = models.SmallIntegerField(default=1, choices=((1, '男性'), (2, '女性'),))
     country = models.CharField('国家', max_length=50, default='中国')
     province = models.CharField('省', max_length=100, default='')
