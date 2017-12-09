@@ -8,14 +8,14 @@ from rest_framework.response import Response
 from crm.models import Company
 from crm import models as crm_models
 from api.serializers import CompanySerializer
-from api.mixins import SearchAPIViewMixin
+
+from api.filters import SearchFilter
 
 
-class CompanyViewSet(SearchAPIViewMixin, viewsets.ModelViewSet):
+class CompanyViewSet(viewsets.ModelViewSet):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
-    filter_backends = (filters.DjangoFilterBackend,)
-
+    filter_backends = (SearchFilter, filters.DjangoFilterBackend,)
     filter_fields = ('status', 'ic_status', 'license_status')
     search_fields = ('title', 'note', 'address',
                      'op_address', 'legal_people')

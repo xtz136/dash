@@ -10,7 +10,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ('mobile', 'avatar', 'headimgurl', 'nickname',
-                  'name', 'sex', 'country', 'province', 'city', 'prefs')
+                  'display_name', 'sex', 'country', 'province', 'city', 'prefs')
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -26,7 +26,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'password', 'email', 'profile')
+        fields = ('id', 'username', 'password',
+                  'email', 'profile', 'display_name')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, data):

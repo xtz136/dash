@@ -95,6 +95,10 @@ class BaseTestViewSet:
     count = 10
     factory = None
 
+    def json(self, resp):
+        resp.render()
+        return json.loads(resp.content)
+
     def get_client(self, auth=False):
         if auth:
             return self.get_auth_client()
@@ -233,6 +237,16 @@ class CompanyTestCase(TestCase, BaseTestViewSet):
         resp.render()
         data = json.loads(resp.content)
         assert resp.status_code == 200, data
+
+    def test_search(self):
+        obj = CompanyFactory.create()
+        client = self.get_client(True)
+        resp = client.get('/api/company/?q=%s' % obj.title)
+        data = self.json(resp)
+        assert resp.status_code == 200
+        assert data['count'] >= 1
+        for d in data['results']:
+            assert obj.title in d['title'], d
 
     def test_create(self):
         client = self.get_client(True)
