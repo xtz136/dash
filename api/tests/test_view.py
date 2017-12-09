@@ -114,9 +114,6 @@ class BaseTestViewSet:
             HTTP_AUTHORIZATION='Bearer ' + token['token'])
         return client
 
-    def create_fixtures(self):
-        raise NotImplemented
-
     def testAnonymousList(self):
         client = self.get_client(auth=False)
         resp = client.get(self.api_endpoint)
@@ -170,8 +167,15 @@ class ProjectTestCase(TestCase, BaseTestViewSet):
     api_endpoint = '/api/projects/'
     factory = ProjectFactory
 
-    def create_fixtures(self):
-        return ProjectFactory.create_batch(self.count)
+    def test_search(self):
+        obj = ProjectFactory.create()
+        client = self.get_client(True)
+        resp = client.get('/api/projects/?q=%s' % obj.title)
+        data = self.json(resp)
+        assert resp.status_code == 200
+        assert data['count'] >= 1
+        for d in data['results']:
+            assert obj.title in d['title'], d
 
     def test_create(self):
         client = self.get_client(True)

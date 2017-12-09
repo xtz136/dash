@@ -7,14 +7,14 @@ from rest_framework.response import Response
 from project.models import Project, Category, Member
 from core.models import Tag
 from api.serializers import ProjectSerializer
-from api.mixins import SearchAPIViewMixin
+from api.filters import SearchFilter
 
 
-class ProjectViewSet(SearchAPIViewMixin, viewsets.ModelViewSet):
+class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('title', 'owner')
+    filter_backends = (SearchFilter, filters.DjangoFilterBackend,)
+    filter_fields = ('owner', )
     search_fields = ('title', 'description')
 
     def create(self, request):
