@@ -70,30 +70,35 @@ class Project(models.Model):
     class Meta:
         verbose_name = '项目'
         verbose_name_plural = '项目'
+        ordering = ('-created', )
 
     def update_last_activity_date(self):
         self.last_activity_date = now()
         self.save()
 
-    @transition(field=state, source='*', target='archived')
+    @transition(field=state, source='*', target='archive')
     def archive(self, user):
-        action.send(user, target=instance, verb='存档')
+        self.update_last_activity_date()
+        action.send(user, target=self, verb='存档')
 
     @transition(field=state, source='new', target='active')
     def active(self):
+        self.update_last_activity_date()
         action.send(self.owner, target=self, verb='激活')
 
-    @transition(field=state, source='active', target='completed')
+    @transition(field=state, source='active', target='complete')
     def complete(self, user):
         self.completed_at = now()
         self.completed_by = user
+        self.update_last_activity_date()
         action.send(self.owner, target=self, verb='完结')
 
-    @transition(field=state, source='*', target='deleted')
+    @transition(field=state, source='*', target='delete')
     def do_delete(self, user):
         self.deleted = True
         self.deleted_by = user
         self.deleted_at = now()
+        self.update_last_activity_date()
         action.send(self.owner, target=self, verb='删除')
 
 
@@ -103,4 +108,3 @@ def update_project(sender, instance, created, **kwargs):
         action.send(instance.owner, target=instance, verb='新建')
     else:
         action.send(instance.owner, target=instance, verb='更新')
-    instance.update_last_activity_date()

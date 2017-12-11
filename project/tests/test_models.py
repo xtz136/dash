@@ -36,7 +36,7 @@ class TestProject(TestCase):
         assert p.deleted_at is None
         assert p.state == 'new'
         p.do_delete(user)
-        assert p.state == 'deleted'
+        assert p.state == 'delete'
         assert p.deleted_by == user
         assert isinstance(p.deleted_at, type(now()))
 
@@ -56,7 +56,7 @@ class TestProject(TestCase):
         p.active()
         assert p.state == 'active'
         p.complete(user)
-        assert p.state == 'completed'
+        assert p.state == 'complete'
         assert p.completed_by is user
 
     def test_create(self):
@@ -188,3 +188,18 @@ class TestMember(TestCase):
 
         for user in users:
             assert user.member_set.all().count() == 1
+
+        assert p.state == 'new'
+        p.active()
+        assert p.state == 'active'
+
+        p.complete(user)
+        assert p.state == 'complete'
+        assert p.completed_by == user
+
+        p.archive(user)
+        assert p.state == 'archive'
+
+        p.do_delete(user)
+        assert p.state == 'delete'
+        assert p.deleted_by == user

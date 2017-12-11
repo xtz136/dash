@@ -3,10 +3,11 @@ from django.contrib.auth.models import User
 
 from rest_framework import routers, serializers, viewsets, status
 from rest_framework.response import Response
+from rest_framework.decorators import detail_route
 
-from project.models import Project, Category, Member
+from project.models import Project, Category, Member, File
 from core.models import Tag
-from api.serializers import ProjectSerializer
+from api.serializers import ProjectSerializer, FileSerializer
 from api.filters import SearchFilter
 
 
@@ -40,3 +41,15 @@ class ProjectViewSet(viewsets.ModelViewSet):
         obj.active()
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    @detail_route()
+    def files(self, request, pk=None):
+        # TODO: check have permissions
+        project = self.get_object()
+        queryset = File.objects.filter(project=project)
+        serializer = FileSerializer(queryset, many=True)
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            return self.get_paginated_response(serializer.data)
+        return Response(serializer.data)

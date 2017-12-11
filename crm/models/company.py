@@ -139,6 +139,7 @@ class Company(models.Model):
         default="无")
 
     TAX_DISKS = (
+        ("无", "无"),
         ("百望", "百望"),
         ("百望*", "百望*"),
         ("航天", "航天"),
@@ -148,6 +149,7 @@ class Company(models.Model):
     tax_disk = models.CharField(
         help_text="带*表示电子发票",
         max_length=100,
+        default="无",
         verbose_name="税控盘", choices=TAX_DISKS, blank=True)
 
     tax_declared_begin = models.DateField(

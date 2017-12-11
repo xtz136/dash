@@ -195,6 +195,8 @@ class ProjectTestCase(TestCase, BaseTestViewSet):
         assert Project.objects.get(title=payload['title'])
         assert Project.objects.filter(title=payload['title']).count() == 1
 
+        project_id = data['id']
+
         # same title will raise error
         resp = client.post(self.api_endpoint, payload, format='json')
         resp.render()
@@ -219,6 +221,9 @@ class ProjectTestCase(TestCase, BaseTestViewSet):
         assert len(data['tags']) == len(tags)
         assert len(data['members']) == 100
         assert Project.objects.filter(title=payload['title']).count() == 1
+
+        resp = client.get('/api/projects/{id}/files/'.format(id=project_id))
+        assert resp.status_code == 200
 
 
 class CategoryTestCase(TestCase, BaseTestViewSet):

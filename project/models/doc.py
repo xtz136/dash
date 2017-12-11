@@ -16,7 +16,7 @@ from crm.models import Company as Client
 
 class BasePrivacyModel(models.Model):
     privacy_on = models.BooleanField(default=False)
-    privacies = JSONField(default=list())
+    privacies = JSONField(default=list(), blank=True)
 
     def can_access(self, member):
         if self.privacy_on:

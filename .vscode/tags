@@ -308,7 +308,7 @@ DATABASES	../dash/local.py	/^DATABASES = {$/;"	kind:variable	line:1
 DATABASES	../dash/settings.py	/^DATABASES = {$/;"	kind:variable	line:101
 DATABASES	../dash/testing.py	/^DATABASES = {$/;"	kind:variable	line:3
 DEBUG	../dash/settings.py	/^DEBUG = True$/;"	kind:variable	line:26
-DEBUG_TOOLBAR_CONFIG	../dash/settings.py	/^    DEBUG_TOOLBAR_CONFIG = {$/;"	kind:variable	line:258
+DEBUG_TOOLBAR_CONFIG	../dash/settings.py	/^    DEBUG_TOOLBAR_CONFIG = {$/;"	kind:variable	line:259
 DISTRICTS	../crm/models/tax.py	/^    DISTRICTS = ($/;"	kind:variable	line:18
 DashboardView	../crm/views/dashboard.py	/^class DashboardView(LoginRequiredMixin, TemplateView):$/;"	kind:class	line:5
 DashboardView	../crm/views/views.py	/^class DashboardView(LoginRequiredMixin, TemplateView):$/;"	kind:class	line:233
@@ -674,6 +674,7 @@ MyFormsetHelper	../crm/views/library.py	/^from .formsets import MyFormsetHelper$
 MyTableInlineFormset	../crm/formsets.py	/^class MyTableInlineFormset(FormHelper):$/;"	kind:class	line:5
 MyTableInlineFormset	../crm/views/client.py	/^from ..formsets import MyTableInlineFormset$/;"	kind:namespace	line:23
 MyTableInlineFormset	../library/views/item.py	/^from crm.formsets import MyTableInlineFormset$/;"	kind:namespace	line:14
+NOTIFICATIONS_USE_JSONFIELD	../dash/settings.py	/^NOTIFICATIONS_USE_JSONFIELD = True$/;"	kind:variable	line:250
 OrderedDict	../api/pagination.py	/^from collections import OrderedDict$/;"	kind:namespace	line:1
 OrderedDict	../crm/models/company.py	/^from collections import OrderedDict$/;"	kind:namespace	line:1
 OrderedDict	../library/models/item.py	/^from collections import OrderedDict$/;"	kind:namespace	line:3
@@ -988,7 +989,7 @@ actions	../crm/admin/company.py	/^    actions = ['make_invalid', 'make_ic_status
 actions.py	../crm/actions.py	1;"	kind:file	line:1
 actions_on_bottom	../crm/admin/contract.py	/^    actions_on_bottom = True$/;"	kind:variable	line:16
 actions_on_top	../crm/admin/contract.py	/^    actions_on_top = False$/;"	kind:variable	line:15
-active	../project/models/project.py	/^    def active(self):$/;"	kind:member	line:84
+active	../project/models/project.py	/^    def active(self):$/;"	kind:member	line:83
 added_value_tax	../crm/models/company.py	/^    added_value_tax = models.CharField($/;"	kind:variable	line:167
 address	../crm/models/company.py	/^    address = models.CharField(verbose_name="地址", blank=True, max_length=255)$/;"	kind:variable	line:44
 address	../crm/models/tax.py	/^    address = models.CharField($/;"	kind:variable	line:58
@@ -1147,7 +1148,7 @@ company_title	../crm/models/contract.py	/^    company_title = models.CharField($
 company_title	../crm/models/department.py	/^    company_title = models.CharField(verbose_name='公司抬头',$/;"	kind:variable	line:13
 company_title	../crm/models/shareholder.py	/^    company_title = models.CharField($/;"	kind:variable	line:24
 company_title	../library/models/item.py	/^    company_title = models.CharField($/;"	kind:variable	line:78
-complete	../project/models/project.py	/^    def complete(self, user):$/;"	kind:member	line:90
+complete	../project/models/project.py	/^    def complete(self, user):$/;"	kind:member	line:87
 completed_at	../project/models/project.py	/^    completed_at = models.DateTimeField(blank=True, null=True)$/;"	kind:variable	line:48
 completed_by	../api/serializers/category.py	/^    completed_by = UserSerializer(required=False)$/;"	kind:variable	line:45
 completed_by	../api/serializers/project.py	/^    completed_by = UserSerializer(required=False)$/;"	kind:variable	line:38
@@ -1553,7 +1554,7 @@ django_get_or_create	../project/factory.py	/^        django_get_or_create = ('na
 django_get_or_create	../project/factory.py	/^        django_get_or_create = ('title', )$/;"	kind:variable	line:7
 django_get_or_create	../project/factory.py	/^        django_get_or_create = ('title',)$/;"	kind:variable	line:29
 django_get_or_create	../project/factory.py	/^        django_get_or_create = ('username',)$/;"	kind:variable	line:21
-do_delete	../project/models/project.py	/^    def do_delete(self, user):$/;"	kind:member	line:97
+do_delete	../project/models/project.py	/^    def do_delete(self, user):$/;"	kind:member	line:93
 doc	../project/migrations/0001_initial.py	/^import project.models.doc$/;"	kind:namespace	line:9
 doc.py	../project/models/doc.py	1;"	kind:file	line:1
 domain	../security/models.py	/^    domain = models.CharField(verbose_name="域名", blank=True, max_length=255)$/;"	kind:variable	line:24
@@ -4365,7 +4366,7 @@ unique_together	../project/models/member.py	/^        unique_together = ('projec
 unittest	../api/tests/test_view.py	/^import unittest$/;"	kind:namespace	line:3
 update_last_activity_date	../project/models/project.py	/^    def update_last_activity_date(self):$/;"	kind:member	line:74
 update_profile	../core/models/profile.py	/^    def update_profile(self,$/;"	kind:member	line:33
-update_project	../project/models/project.py	/^def update_project(sender, instance, created, **kwargs):$/;"	kind:function	line:105
+update_project	../project/models/project.py	/^def update_project(sender, instance, created, **kwargs):$/;"	kind:function	line:101
 update_shareholder_info	../crm/models/shareholder.py	/^def update_shareholder_info(sender, instance, created, raw, **kwargs):$/;"	kind:function	line:40
 update_token	../core/models/access_token.py	/^    def update_token(self,$/;"	kind:member	line:39
 update_whitelist_view	../security/urls.py	/^from .views import update_whitelist_view$/;"	kind:namespace	line:3
