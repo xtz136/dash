@@ -24,3 +24,4 @@ django-activity-stream==0.6.4
 wechatpy==1.5.5
 cryptography==2.1.4
 django-fsm==2.6.0
+factory-boy==2.9.2
