@@ -44,3 +44,8 @@ class FolderFactory(factory.django.DjangoModelFactory):
 
     name = factory.Sequence(lambda n: 'folder%d' % n)
     project = factory.SubFactory(ProjectFactory)
+
+
+class FileFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = 'project.File'

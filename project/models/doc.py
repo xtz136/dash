@@ -69,7 +69,6 @@ class File(BasePrivacyModel):
         ('active', '可见'),
         ('delete', '删除'),
     ))
-    file_type = models.CharField(max_length=200, editable=False, blank=True)
     ext = models.CharField(max_length=200, editable=False, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -89,7 +88,6 @@ class File(BasePrivacyModel):
     content_type = models.ForeignKey(ContentType, null=True, blank=True)
 
     def save(self, *args, **kwargs):
-        self.file_type = self.file.file.content_type
         self.ext = os.path.splitext(self.file.file.name)[1]
         if not self.name:
             self.name = self.file.file.name

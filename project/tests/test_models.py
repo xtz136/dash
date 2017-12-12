@@ -136,7 +136,6 @@ class TestFile(TestCase):
         doc = File.objects.create(
             project=p, folder=folder, file=SimpleUploadedFile(fn, content))
         assert doc.name == fn
-        assert doc.file_type == 'text/plain'
         assert doc.ext == '.ext'
         assert doc.file.file.read() == content
 
@@ -146,7 +145,6 @@ class TestFile(TestCase):
             name=nw,
             project=p, folder=folder, file=SimpleUploadedFile(fn, content))
         assert doc.name == nw
-        assert doc.file_type == 'text/plain'
         assert doc.ext == '.ext'
         assert doc.file.file.read() == content
 

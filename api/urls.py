@@ -13,6 +13,9 @@ router.register('company', views.CompanyViewSet)
 
 
 urlpatterns = [
+
+    url(r'^upload/(?P<filename>.+)$',
+        views.FileUploadView.as_view(), name='upload'),
     url(r'^profile/$', views.profile_view, name='profile'),
     url(r'^login/wechat/$', views.authorize, name='login_wechat'),
     url(r'^login/account/$', obtain_jwt_token, name='obtain_token'),

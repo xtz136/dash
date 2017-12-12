@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.test import TestCase
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 from rest_framework.test import APIRequestFactory, force_authenticate, APIClient
 from mixer.backend.django import mixer
@@ -166,6 +167,22 @@ class ProjectTestCase(TestCase, BaseTestViewSet):
 
     api_endpoint = '/api/projects/'
     factory = ProjectFactory
+
+    def test_create_file(self):
+        obj = ProjectFactory.create()
+        client = self.get_client(True)
+        video = SimpleUploadedFile(
+            "file.mp4", b"file_content", content_type="video/mp4")
+        payload = {
+            'file': video
+        }
+        resp = client.post('/api/projects/%s/add-file/' % obj.id, payload)
+        data = self.json(resp)
+        assert resp.status_code == 201
+        assert data['id'], data
+        assert data['file'], data
+
+        assert File.objects.get(pk=data['id'])
 
     def test_search(self):
         obj = ProjectFactory.create()
