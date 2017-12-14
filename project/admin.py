@@ -2,9 +2,15 @@ from django.contrib import admin
 from .models import *
 
 
+class MemberInline(admin.TabularInline):
+    model = Member
+
+
 @admin.register(Project)
 class ProjectModelAdmin(admin.ModelAdmin):
-    pass
+    inlines = [
+        MemberInline
+    ]
 
 
 @admin.register(File)

@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import now
 
 
 class Version(models.Model):
@@ -12,5 +13,5 @@ class Version(models.Model):
 
     def save(self, **kwargs):
         if not self.version:
-            self.version = self.created.strftime('v%Y%m%d')
+            self.version = now().strftime('v%Y%m%d')
         super(Version, self).save(**kwargs)

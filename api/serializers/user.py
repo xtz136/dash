@@ -15,9 +15,15 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     profile = ProfileSerializer(required=False)
-    display_name = serializers.SerializerMethodField()
+    name = serializers.SerializerMethodField()
+    avatar = serializers.SerializerMethodField()
 
-    def get_display_name(self, obj):
+    def get_avatar(self, obj):
+        if obj.profile.avatar:
+            return obj.profile.avatar.url
+        return obj.profile.headimgurl
+
+    def get_name(self, obj):
         if obj.profile.display_name:
             return obj.profile.display_name
         if obj.profile.nickname:
@@ -26,8 +32,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'password',
-                  'email', 'profile', 'display_name')
+        fields = ('id', 'avatar', 'username', 'password',
+                  'email', 'profile', 'name')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, data):

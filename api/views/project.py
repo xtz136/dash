@@ -40,10 +40,10 @@ class ProjectViewSet(viewsets.ModelViewSet):
         return obj
 
     def get_relations(self, request, pk_field, model):
-        pks = request.data.pop(pk_field, None)
+        pks = request.data.pop(pk_field, [])
         objs = model.objects.none()
-        if pks is not None:
-            objs = model.objects.filter(pk__in=pks)
+        pks = [pk for pk in pks if isinstance(pk, int) or pk.isdigit()]
+        objs = model.objects.filter(pk__in=pks)
         return objs
 
     def create(self, request):
