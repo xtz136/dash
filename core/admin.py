@@ -8,6 +8,12 @@ from .models import *
 admin.site.site_header = '悦海财税'
 
 
+@admin.register(Version)
+class VersionModelAdmin(admin.ModelAdmin):
+    search_fields = ('content',)
+    list_display = ('version', 'created')
+
+
 @admin.register(Attachment)
 class AttachmentModelAdmin(admin.ModelAdmin):
     search_fields = ('name',)
