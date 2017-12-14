@@ -16,9 +16,7 @@ def api_exception_handler(exc, context):
                 message = exc.detail
             elif isinstance(exc.detail, dict):
                 message = '\n'.join(
-                    reduce(lambda acc, x: acc + x,
-                           exc.detail.values(),
-                           []))
+                    reduce(lambda acc, x: acc + x, exc.detail.values(), []))
         data = {
             'code': response.status_code,
             'message': message,

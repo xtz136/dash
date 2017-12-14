@@ -29,6 +29,18 @@ class TestCategory(TestCase):
 
 
 class TestProject(TestCase):
+    def test_add_tag(self):
+        tags = mixer.cycle(10).blend('core.Tag')
+        p = ProjectFactory.create()
+        p.add_tags(tags)
+        assert len(p.tags.all()) == 10
+
+    def test_add_members(self):
+        users = mixer.cycle(10).blend('auth.User')
+        p = ProjectFactory.create()
+        p.add_members(users)
+        assert p.members.count() == 10
+
     def test_delete(self):
         user = mixer.blend('auth.User')
         p = ProjectFactory.create()

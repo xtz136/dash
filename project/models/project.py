@@ -101,6 +101,22 @@ class Project(models.Model):
         self.update_last_activity_date()
         action.send(self.owner, target=self, verb='删除')
 
+    def add_member(self, user):
+        from .member import Member
+        member, _ = Member.objects.get_or_create(project=self, user=user)
+        self.members.add(member)
+
+    def add_tag(self, tag):
+        self.tags.add(tag)
+
+    def add_tags(self, tags):
+        for tag in tags:
+            self.add_tag(tag)
+
+    def add_members(self, users):
+        for user in users:
+            self.add_member(user)
+
 
 @receiver(post_save, sender=Project)
 def update_project(sender, instance, created, **kwargs):

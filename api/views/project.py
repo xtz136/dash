@@ -2,6 +2,7 @@ from mimetypes import guess_type
 from django_filters import rest_framework as filters
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.contrib.auth import get_user_model
 
 from rest_framework.parsers import JSONParser, FileUploadParser, FormParser, MultiPartParser
 from rest_framework import routers, serializers, viewsets, status, views
@@ -10,9 +11,13 @@ from rest_framework.decorators import detail_route
 
 from project.models import Project, Category, Member, File, Folder
 from project.factory import FileFactory
+from crm.models import Company
 from core.models import Tag
 from api.serializers import ProjectSerializer, FileSerializer
 from api.filters import SearchFilter
+
+
+User = get_user_model()
 
 
 class ProjectViewSet(viewsets.ModelViewSet):
@@ -23,29 +28,42 @@ class ProjectViewSet(viewsets.ModelViewSet):
     search_fields = ('title', 'description')
     parser_classes = (MultiPartParser, FormParser, JSONParser)
 
+    def get_relation(self, request, pk_field, model, model_field='pk'):
+        pk = request.data.pop(pk_field, None)
+        obj = None
+        if pk is not None:
+            lookup = {model_field: pk}
+            try:
+                obj = model.objects.get(**lookup)
+            except model.DoesNotExist:
+                pass
+        return obj
+
+    def get_relations(self, request, pk_field, model):
+        pks = request.data.pop(pk_field, None)
+        objs = model.objects.none()
+        if pks is not None:
+            objs = model.objects.filter(pk__in=pks)
+        return objs
+
     def create(self, request):
-        cat_id = request.data.pop('category', None)
-        tags = request.data.pop('tags', None)
-        members = request.data.pop('members', None)
+        company = self.get_relation(
+            request, 'company', Company, model_field='title')
+        category = self.get_relation(request, 'category', Category)
+        users = self.get_relations(request, 'members', User)
+        tags = self.get_relations(request, 'tags', Tag)
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         obj = serializer.save()
-        if cat_id:
-            obj.category = Category.objects.get(pk=cat_id)
-            obj.save()
-        if tags:
-            tags = Tag.objects.filter(id__in=tags)
-            for t in tags:
-                obj.tags.add(t)
-        # TODO: member also has role
-        if members:
-            users = User.objects.filter(id__in=members)
-            for user in users:
-                Member.objects.get_or_create(project=obj, user=user)
-
+        obj.company = company
+        obj.category = category
+        obj.add_members(users)
+        obj.add_tags(tags)
         obj.active()
         headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        return Response(serializer.data,
+                        status=status.HTTP_201_CREATED,
+                        headers=headers)
 
     @detail_route()
     def files(self, request, pk=None):
@@ -64,7 +82,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
                   parser_classes=((MultiPartParser,)))
     def add_file(self, request, pk=None):
         project = self.get_object()
-        return Response(s.data, status=201, headers=headers)
+        return Response({'ok': 'ok'}, status=201)
 
 
 class FileUploadView(views.APIView):

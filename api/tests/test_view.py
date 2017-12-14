@@ -163,26 +163,45 @@ class BaseTestViewSet:
         assert data['id'] == obj.id
 
 
-class ProjectTestCase(TestCase, BaseTestViewSet):
+class UploadTestCase(TestCase):
+    def get_auth_client(self):
+        user = mixer.blend('auth.User')
+        self.user = user
+        token = issue_token(user)
+        self.token = token
+        client = APIClient()
+        client.credentials(
+            HTTP_AUTHORIZATION='Bearer ' + token['token'])
+        return client
 
-    api_endpoint = '/api/projects/'
-    factory = ProjectFactory
+    def json(self, resp):
+        resp.render()
+        return json.loads(resp.content)
 
     def test_create_file(self):
-        obj = ProjectFactory.create()
-        client = self.get_client(True)
+        client = self.get_auth_client()
         video = SimpleUploadedFile(
             "file.mp4", b"file_content", content_type="video/mp4")
         payload = {
             'file': video
         }
-        resp = client.post('/api/projects/%s/add-file/' % obj.id, payload)
+        resp = client.put('/api/upload/%s' % "file.mp4", payload)
         data = self.json(resp)
         assert resp.status_code == 201
-        assert data['id'], data
-        assert data['file'], data
+        assert data['files'], data
+        keys = ["name", "type", "size", "url",
+                "thumbnailUrl", "deleteUrl", "deleteType", ]
+        for f in data['files']:
+            for key in keys:
+                assert key in f, f
 
-        assert File.objects.get(pk=data['id'])
+        assert File.objects.all().count() == 1
+
+
+class ProjectTestCase(TestCase, BaseTestViewSet):
+
+    api_endpoint = '/api/projects/'
+    factory = ProjectFactory
 
     def test_search(self):
         obj = ProjectFactory.create()
@@ -227,8 +246,10 @@ class ProjectTestCase(TestCase, BaseTestViewSet):
         # with category
         tags = TagFactory.create_batch(10)
         cat = CategoryFactory.create()
-        payload = {'title': 'jwqeofijq', 'category': cat.id,
-                   'tags': [t.id for t in tags], 'members': [u.id for u in users]}
+        payload = {'title': 'this-is-the-title',
+                   'category': cat.id,
+                   'tags': [t.id for t in tags],
+                   'members': [u.id for u in users]}
         resp = client.post(self.api_endpoint, payload, format='json')
         resp.render()
         data = json.loads(resp.content)

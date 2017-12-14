@@ -4,6 +4,7 @@ from rest_framework import serializers
 from project.models import Member, Group, Category, Project
 from .user import UserSerializer
 from .tag import TagSerializer
+from .company import CompanySerializer
 
 User = get_user_model()
 
@@ -38,6 +39,7 @@ class ProjectSerializer(serializers.ModelSerializer):
     completed_by = UserSerializer(required=False)
     tags = serializers.SerializerMethodField()
     members = serializers.SerializerMethodField()
+    company = CompanySerializer(required=False)
 
     def get_members(self, obj):
         return [MemberSerializer(t).data for t in obj.members.all()]

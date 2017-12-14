@@ -10,12 +10,15 @@ from rest_framework.decorators import list_route
 from ..permissions import IsPostOrIsAuthenticated, IsAdminOrIsSelf
 
 from api.serializers import UserSerializer
+from api.filters import SearchFilter
 
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsPostOrIsAuthenticated, IsAdminOrIsSelf]
+    filter_backends = (SearchFilter, )
+    search_fields = ('username',)
 
 
 @api_view(['GET'])
