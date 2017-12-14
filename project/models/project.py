@@ -50,7 +50,7 @@ class Project(models.Model):
         settings.AUTH_USER_MODEL, blank=True, null=True,
         related_name='completed_by')
 
-    start_date = models.DateTimeField(blank=True, null=True)
+    start_date = models.DateTimeField(blank=True, null=True, default=now)
     end_date = models.DateTimeField(blank=True, null=True)
 
     # features
