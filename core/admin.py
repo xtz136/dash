@@ -8,6 +8,11 @@ from .models import *
 admin.site.site_header = '悦海财税'
 
 
+@admin.register(Follower)
+class FollowerModelAdmin(admin.ModelAdmin):
+    list_display = ('user', 'content_object')
+
+
 @admin.register(Version)
 class VersionModelAdmin(admin.ModelAdmin):
     search_fields = ('content',)

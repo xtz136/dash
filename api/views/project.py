@@ -1,4 +1,5 @@
 from mimetypes import guess_type
+import logging
 from django_filters import rest_framework as filters
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -8,16 +9,32 @@ from rest_framework.parsers import JSONParser, FileUploadParser, FormParser, Mul
 from rest_framework import routers, serializers, viewsets, status, views
 from rest_framework.response import Response
 from rest_framework.decorators import detail_route
+from mptt.templatetags.mptt_tags import cache_tree_children
+from notifications.signals import notify
 
 from project.models import Project, Category, Member, File, Folder
 from project.factory import FileFactory
 from crm.models import Company
-from core.models import Tag
+from core.models import Tag, Follower
 from api.serializers import ProjectSerializer, FileSerializer
 from api.filters import SearchFilter
 
 
 User = get_user_model()
+
+logger = logging.getLogger(__file__)
+
+
+def recursive_node_to_dict(node):
+    result = {
+        'label': node.name,
+        'value': str(node.id),
+        'key': node.id
+    }
+    children = [recursive_node_to_dict(c) for c in node.get_children()]
+    if children:
+        result['children'] = children
+    return result
 
 
 class ProjectViewSet(viewsets.ModelViewSet):
@@ -78,11 +95,49 @@ class ProjectViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     @detail_route(methods=['post'],
-                  url_path='add-file',
-                  parser_classes=((MultiPartParser,)))
-    def add_file(self, request, pk=None):
+                  url_path='add-files')
+    def add_files(self, request, pk=None):
+        logger.debug('project add files')
         project = self.get_object()
-        return Response({'ok': 'ok'}, status=201)
+        files = request.data.pop('files', [])
+        folder = request.data.pop('folder', None)
+        if folder:
+            try:
+                folder = Folder.objects.get(id=folder)
+            except Folder.DoesNotExist:
+                folder = None
+        description = request.data.pop('description', '')
+        subscribers = request.data.pop('subscribers', [])
+        files = File.objects.filter(id__in=files)
+        files.update(project=project, folder=folder,
+                     description=description)
+
+        for f in files:
+            for user in User.objects.filter(id__in=subscribers):
+                logger.debug('user {0} follow file {1}'.format(user, f))
+                if not f.followers.filter(user=user).exists():
+                    f.followers.create(user=user)
+                # Follower.objects.get_or_create(user=user, content_object=f)
+                # send notifications
+                notify.send(request.user, recipient=user,
+                            verb='创建文件',
+                            action_object=f,
+                            description='用户{user}上传了文件{file}'.format(
+                                user=request.user, file=f),
+                            level='info')
+
+        s = FileSerializer(files, many=True)
+        return Response(s.data)
+
+    @detail_route()
+    def folders(self, request, pk=None):
+        project = self.get_object()
+        folders = project.folder_set.all()
+        root_nodes = cache_tree_children(folders)
+        data = [
+            recursive_node_to_dict(node) for node in root_nodes
+        ]
+        return Response(data)
 
 
 class FileUploadView(views.APIView):
@@ -91,6 +146,7 @@ class FileUploadView(views.APIView):
     def to_result(self, f):
 
         return {"name": f.name,
+                "id": f.id,
                 "type": guess_type(f.file.path)[0],
                 "size": f.file.size,
                 "url": f.file.url,

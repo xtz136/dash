@@ -6,12 +6,14 @@ from django.utils.timezone import now
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
+from django.contrib.contenttypes.fields import GenericRelation
 
 from mptt.models import MPTTModel, TreeForeignKey
 from jsonfield import JSONField
 
 from .project import Project
 from crm.models import Company as Client
+from core.models import Follower
 
 
 class BasePrivacyModel(models.Model):
@@ -81,6 +83,7 @@ class File(BasePrivacyModel):
 
     # 文档所属项目
     project = models.ForeignKey(Project, null=True, blank=True)
+    followers = GenericRelation(Follower)
 
     # 关联的泛型模型, 可以是评论附件，任务附件
     object_id = models.PositiveIntegerField(default=0)

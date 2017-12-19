@@ -5,7 +5,7 @@
   "[c]": {
     "editor.quickSuggestions": false
   },
-  "window.zoomLevel": 0,
+  "window.zoomLevel": 1,
   "editor.tabCompletion": true,
   "vim.disableAnnoyingNeovimMessage": true,
   "editor.formatOnSave": true,
