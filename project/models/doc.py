@@ -74,6 +74,7 @@ class File(BasePrivacyModel):
     ext = models.CharField(max_length=200, editable=False, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    size = models.BigIntegerField(default=0)
 
     # 锁定
     locked = models.BooleanField(default=False)
@@ -92,6 +93,7 @@ class File(BasePrivacyModel):
 
     def save(self, *args, **kwargs):
         self.ext = os.path.splitext(self.file.file.name)[1]
+        self.size = self.file.file.size
         if not self.name:
             self.name = self.file.file.name
         return super(File, self).save(*args, **kwargs)

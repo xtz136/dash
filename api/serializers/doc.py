@@ -18,6 +18,7 @@ class FolderSerializer(serializers.ModelSerializer):
 
 
 class FileSerializer(serializers.ModelSerializer):
+    creator = UserSerializer()
 
     class Meta:
         model = File

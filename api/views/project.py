@@ -99,21 +99,21 @@ class ProjectViewSet(viewsets.ModelViewSet):
     def add_files(self, request, pk=None):
         logger.debug('project add files')
         project = self.get_object()
-        files = request.data.pop('files', [])
-        folder = request.data.pop('folder', None)
+        files = request.data.get('files', [])
+        folder = request.data.get('folder', None)
         if folder:
             try:
                 folder = Folder.objects.get(id=folder)
             except Folder.DoesNotExist:
                 folder = None
-        description = request.data.pop('description', '')
-        subscribers = request.data.pop('subscribers', [])
+        description = request.data.get('description', '')
+        followers = request.data.get('followers', [])
         files = File.objects.filter(id__in=files)
         files.update(project=project, folder=folder,
                      description=description)
 
         for f in files:
-            for user in User.objects.filter(id__in=subscribers):
+            for user in User.objects.filter(id__in=followers):
                 logger.debug('user {0} follow file {1}'.format(user, f))
                 if not f.followers.filter(user=user).exists():
                     f.followers.create(user=user)
@@ -156,6 +156,6 @@ class FileUploadView(views.APIView):
 
     def put(self, request, filename, format=None):
         file_obj = request.data['file']
-        f = FileFactory.create(file=file_obj)
+        f = FileFactory.create(file=file_obj, creator=request.user)
         data = {'files': [self.to_result(f)]}
         return Response(data, status=201)
