@@ -5,3 +5,4 @@ from .profile import *
 from .site_conf import *
 from .member_application import *
 from .version import *
+from .follower import *
