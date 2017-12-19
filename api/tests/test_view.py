@@ -203,6 +203,25 @@ class ProjectTestCase(TestCase, BaseTestViewSet):
     api_endpoint = '/api/projects/'
     factory = ProjectFactory
 
+    def test_add_files(self):
+        client = self.get_client(True)
+        project = ProjectFactory.create()
+        files = [SimpleUploadedFile("file{0}.mp4".format(i),
+                                    b"file_content",
+                                    content_type="video/mp4")
+                 for i in range(100)]
+        users = mixer.cycle(5).blend('auth.User')
+        uploaded = []
+        for f in files:
+            data = self.json(client.put('/api/upload/%s' %
+                                        f.name, {'file': f}))
+            uploaded.extend([d['id'] for d in data['files']])
+        payload = {'files': uploaded,
+                   'followers': [u.id for u in users]}
+        resp = client.post('/api/projects/%s/add-files/' % project.id, payload)
+        self.assertEqual(resp.status_code, 200, 'should 200')
+        data = self.json(resp)
+
     def test_search(self):
         obj = ProjectFactory.create()
         client = self.get_client(True)
