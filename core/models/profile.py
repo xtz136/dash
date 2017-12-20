@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 
 from jsonfield import JSONField
+from crm.models import Company
 
 User = get_user_model()
 
@@ -29,6 +30,7 @@ class Profile(models.Model):
     city = models.CharField('城市', max_length=100, blank=True)
     prefs = JSONField(default=dict(), verbose_name='偏好设置', blank=True)
     is_manager = models.BooleanField(default=False)
+    company = models.ForeignKey(Company, blank=True, null=True)
 
     def update_profile(self,
                        user_info,
