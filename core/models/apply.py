@@ -8,10 +8,10 @@ from django_fsm import FSMField, transition
 
 class Application(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    name = models.CharField(max_length=200)
-    company_title = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, blank=True)
+    title = models.CharField('company title', max_length=200, blank=True)
     info = models.TextField(blank=True)
-    phone = models.CharField('phone', max_length=50)
+    phone = models.CharField('phone', max_length=50, blank=True)
     company = models.ForeignKey(Company, blank=True, null=True)
     state = FSMField(default='new')
 

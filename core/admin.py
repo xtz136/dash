@@ -8,6 +8,12 @@ from .models import *
 admin.site.site_header = '悦海财税'
 
 
+@admin.register(Application)
+class ApplyModelAdmin(admin.ModelAdmin):
+    list_display = ('user', 'title', 'state')
+    raw_id_fields = ('company', )
+
+
 @admin.register(Follower)
 class FollowerModelAdmin(admin.ModelAdmin):
     list_display = ('user', 'content_object')

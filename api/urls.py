@@ -10,6 +10,7 @@ router.register('users', views.UserViewSet)
 router.register('categories', views.CategoryViewSet)
 router.register('tags', views.TagViewSet)
 router.register('company', views.CompanyViewSet)
+router.register('apply', views.ApplyViewSet)
 project_router = router.register('projects', views.ProjectViewSet, base_name='project'
                                  )
 project_router.register('folders',
