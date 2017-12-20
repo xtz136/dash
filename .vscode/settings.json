@@ -9,7 +9,7 @@
   "editor.tabCompletion": true,
   "vim.disableAnnoyingNeovimMessage": true,
   "editor.formatOnSave": true,
-  "python.pythonPath": "/Users/yxy/.virtualenvs/crm/bin/python",
+  "python.pythonPath": "/Users/yxy/.local/share/virtualenvs/dash-1Aup7SaT/bin/python3",
   "html.format.enable": false,
   "python.linting.pep8Path": "/Users/yxy/.virtualenvs/crm/bin/pep8",
   "python.linting.pep8Enabled": true,

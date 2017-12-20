@@ -222,6 +222,43 @@ class ProjectTestCase(TestCase, BaseTestViewSet):
         self.assertEqual(resp.status_code, 200, 'should 200')
         data = self.json(resp)
 
+    def test_create_folder(self):
+        obj = ProjectFactory.create()
+        client = self.get_client(True)
+        url = '/api/projects/%s/folders/' % obj.id
+        # create
+        payload = {'name': '文件夹1'}
+        resp = client.post(url, payload, format='json')
+        self.assertEqual(resp.status_code, 201, 'should be 201')
+        data = self.json(resp)
+        assert data['id']
+        assert data['name'] == payload['name'], data
+
+        assert Folder.objects.get(
+            project=obj, name=payload['name']).id == data['id']
+
+        # create parent
+
+        payload = {'name': '文件夹2', 'parent': data['id']}
+        resp = client.post(url, payload, format='json')
+        self.assertEqual(resp.status_code, 201, 'should be 201')
+        data = self.json(resp)
+        assert data['id']
+        assert data['parent']
+        assert data['name'] == payload['name'], data
+
+        folder = Folder.objects.get(
+            project=obj, name=payload['name'])
+        assert folder.id == data['id']
+        assert folder.parent.id == data['parent']
+
+        # list
+        resp = client.get(url)
+        self.assertEqual(resp.status_code, 200, 'should be 200')
+        data = self.json(resp)
+        assert isinstance(data, list)
+        # [{'label': 'xxx', 'id': 'xxx', 'key': 'key', 'children': [{}]}]
+
     def test_search(self):
         obj = ProjectFactory.create()
         client = self.get_client(True)

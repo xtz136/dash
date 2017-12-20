@@ -45,6 +45,7 @@ cryptography = "*"
 "django-solo" = "*"
 "django-notifications-hq" = "*"
 jsonfield = "*"
+"drf-extensions" = "*"
 
 
 [requires]

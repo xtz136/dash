@@ -9,8 +9,9 @@ from rest_framework.parsers import JSONParser, FileUploadParser, FormParser, Mul
 from rest_framework import routers, serializers, viewsets, status, views
 from rest_framework.response import Response
 from rest_framework.decorators import detail_route
-from mptt.templatetags.mptt_tags import cache_tree_children
 from notifications.signals import notify
+from rest_framework_extensions.mixins import NestedViewSetMixin
+
 
 from project.models import Project, Category, Member, File, Folder
 from project.factory import FileFactory
@@ -23,18 +24,6 @@ from api.filters import SearchFilter
 User = get_user_model()
 
 logger = logging.getLogger(__file__)
-
-
-def recursive_node_to_dict(node):
-    result = {
-        'label': node.name,
-        'value': str(node.id),
-        'key': node.id
-    }
-    children = [recursive_node_to_dict(c) for c in node.get_children()]
-    if children:
-        result['children'] = children
-    return result
 
 
 class ProjectViewSet(viewsets.ModelViewSet):
@@ -128,16 +117,6 @@ class ProjectViewSet(viewsets.ModelViewSet):
 
         s = FileSerializer(files, many=True)
         return Response(s.data)
-
-    @detail_route()
-    def folders(self, request, pk=None):
-        project = self.get_object()
-        folders = project.folder_set.all()
-        root_nodes = cache_tree_children(folders)
-        data = [
-            recursive_node_to_dict(node) for node in root_nodes
-        ]
-        return Response(data)
 
 
 class FileUploadView(views.APIView):
