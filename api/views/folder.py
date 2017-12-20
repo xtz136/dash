@@ -40,5 +40,7 @@ class FolderViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         return Response(data)
 
     def get_serializer(self, *args, **kwargs):
-        kwargs['data'] = dict(kwargs['data'], **self.get_parents_query_dict())
+        if 'data' in kwargs:
+            kwargs['data'] = dict(
+                kwargs['data'], **self.get_parents_query_dict())
         return super(FolderViewSet, self).get_serializer(*args, **kwargs)
