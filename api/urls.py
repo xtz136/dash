@@ -10,11 +10,16 @@ router.register('users', views.UserViewSet)
 router.register('categories', views.CategoryViewSet)
 router.register('tags', views.TagViewSet)
 router.register('company', views.CompanyViewSet)
-router.register('projects', views.ProjectViewSet, base_name='project'
-                ) .register('folders',
-                            views.FolderViewSet,
-                            base_name='projects-folder',
-                            parents_query_lookups=['project'])
+project_router = router.register('projects', views.ProjectViewSet, base_name='project'
+                                 )
+project_router.register('folders',
+                        views.FolderViewSet,
+                        base_name='projects-folder',
+                        parents_query_lookups=['project'])
+project_router.register('files',
+                        views.FileViewSet,
+                        base_name='projects-file',
+                        parents_query_lookups=['project'])
 
 urlpatterns = [
 

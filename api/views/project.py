@@ -71,18 +71,6 @@ class ProjectViewSet(viewsets.ModelViewSet):
                         status=status.HTTP_201_CREATED,
                         headers=headers)
 
-    @detail_route()
-    def files(self, request, pk=None):
-        # TODO: check have permissions
-        project = self.get_object()
-        queryset = File.objects.filter(project=project)
-        serializer = FileSerializer(queryset, many=True)
-
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            return self.get_paginated_response(serializer.data)
-        return Response(serializer.data)
-
     @detail_route(methods=['post'],
                   url_path='add-files')
     def add_files(self, request, pk=None):

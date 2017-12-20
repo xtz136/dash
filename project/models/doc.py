@@ -101,6 +101,7 @@ class File(BasePrivacyModel):
     class Meta:
         verbose_name = '文档'
         verbose_name_plural = '文档'
+        ordering = ('-created',)
 
 
 class ShareLink(models.Model):

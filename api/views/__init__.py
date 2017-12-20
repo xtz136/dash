@@ -6,3 +6,4 @@ from .wxauth import *
 from .tag import *
 from .category import *
 from .folder import *
+from .file import *
