@@ -29,7 +29,7 @@ tpl = '''<html><body>
 <script>
   window.localStorage.setItem('token', '%(token)s');
   setTimeout(function () {
-    window.location = "/dashboard";
+    window.location = "%(next_url)s";
   }, 2000);
 </script></body></html>'''
 
@@ -71,7 +71,8 @@ def authorize(request):
             # update profile
             user.profile.update_profile(user_info)
             token = issue_token(user)
-            response = HttpResponse(tpl % token)
+            next_url = config.wx_next_url or '/dashboard'
+            response = HttpResponse(tpl % dict(token, next_url=next_url))
             response.set_cookie('token', token)
             return response
         except IntegrityError:

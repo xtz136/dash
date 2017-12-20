@@ -22,6 +22,7 @@ class SiteConf(SingletonModel):
     wx_appid = models.CharField(blank=True, max_length=255)
     wx_appsecret = models.CharField(blank=True, max_length=255)
     wx_redirect_uri = models.CharField(blank=True, max_length=255)
+    wx_next_url = models.CharField(blank=True, max_length=255)
 
     class Meta:
         verbose_name = "站点设置"
