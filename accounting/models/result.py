@@ -1,9 +1,11 @@
 from django.db import models
 from django.conf import settings
 from django.utils.timezone import now
+from django.contrib.contenttypes.fields import GenericRelation
 
 from jsonfield.fields import JSONField
 
+from core.models import Attachment
 from crm.models import Company
 
 
@@ -16,6 +18,7 @@ class Result(models.Model):
     date = models.DateField(default=now, verbose_name='日期')
     data = JSONField(default='{}', blank=True)
 
+    attachments = GenericRelation(Attachment)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

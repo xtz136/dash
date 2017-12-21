@@ -3,9 +3,11 @@ from rest_framework import routers
 from . import views
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 from rest_framework_extensions.routers import ExtendedSimpleRouter
+from accounting.api import ResultViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = ExtendedSimpleRouter()
+router.register('results', ResultViewSet)
 router.register('users', views.UserViewSet)
 router.register('categories', views.CategoryViewSet)
 router.register('tags', views.TagViewSet)
