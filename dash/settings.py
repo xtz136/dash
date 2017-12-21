@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'library',
     'security',
     'project',
+    'accounting',
     'api',
 ]
 

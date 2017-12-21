@@ -1,11 +1,17 @@
 from django.contrib import admin
 from solo.admin import SingletonModelAdmin
+from django.contrib.contenttypes.admin import GenericTabularInline
 
 
 from .models import *
 
 
 admin.site.site_header = '悦海财税'
+
+
+class AttachmentInline(GenericTabularInline):
+    model = Attachment
+    extra = 2
 
 
 @admin.register(Application)
