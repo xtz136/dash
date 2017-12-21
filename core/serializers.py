@@ -5,4 +5,4 @@ from .models import Attachment
 class AttachmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Attachment
-        fields = ('id', 'name',  'file')
+        fields = ('id', 'name', 'file', 'size')

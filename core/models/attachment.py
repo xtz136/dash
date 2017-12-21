@@ -44,6 +44,7 @@ class Attachment(models.Model):
         max_length=20,
         default='general')
     file = models.FileField(upload_to='upload_path')
+    size = models.BigIntegerField(default=0)
 
     object_id = models.PositiveIntegerField(default=0)
     content_object = GenericForeignKey('content_type', 'object_id')
@@ -60,6 +61,7 @@ class Attachment(models.Model):
     def save(self, *args, **kwargs):
         if not self.name:
             self.name = self.file.name
+        self.size = self.file.file.size
         super(Attachment, self).save(*args, **kwargs)
 
     class Meta:
