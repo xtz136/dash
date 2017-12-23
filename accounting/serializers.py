@@ -1,11 +1,11 @@
 from rest_framework import serializers
 
-from .models import Result
+from .models import Report
 from core.serializers import AttachmentSerializer
 from api.serializers import CompanySerializer
 
 
-class ResultSerializer(serializers.ModelSerializer):
+class ReportSerializer(serializers.ModelSerializer):
     company = CompanySerializer()
     data = serializers.SerializerMethodField()
     attachments = AttachmentSerializer(many=True)
@@ -15,4 +15,4 @@ class ResultSerializer(serializers.ModelSerializer):
 
     class Meta:
         fields = '__all__'
-        model = Result
+        model = Report

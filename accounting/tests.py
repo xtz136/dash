@@ -12,13 +12,13 @@ from .models import *
 from .serializers import *
 
 
-class TestResult(TestCase):
+class TestReport(TestCase):
 
     def test_create(self):
         company = mixer.blend('crm.Company')
         user = mixer.blend('auth.User')
         date = now().date()
-        result = Result.objects.create(
+        result = Report.objects.create(
             company=company, bookkeeper=user, date=date, data={})
         assert result.date == date
         assert isinstance(result.data, dict)
@@ -32,12 +32,12 @@ class TestResult(TestCase):
         files = [
             SimpleUploadedFile(
                 "file%s.mp4" % i, b"file_content", content_type="video/mp4") for i in range(100)]
-        result = Result.objects.create(
+        result = Report.objects.create(
             company=company, bookkeeper=user, date=date, data={})
         for f in files:
             a = Attachment(content_object=result, file=f)
             a.save()
-        s = ResultSerializer(result)
+        s = ReportSerializer(result)
         assert s.data
         assert s.data['id']
         assert isinstance(s.data['data'], dict), type(s.data['data'])

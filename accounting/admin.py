@@ -5,8 +5,8 @@ from core.models import Attachment
 from core.admin import AttachmentInline
 
 
-@admin.register(Result)
-class ResultModelAdmin(admin.ModelAdmin):
+@admin.register(Report)
+class ReportModelAdmin(admin.ModelAdmin):
     list_display = ('company', 'bookkeeper', 'date')
     list_filter = ('bookkeeper', )
     raw_id_fields = ('company', )

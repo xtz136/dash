@@ -1,1 +1,1 @@
-from .result import *
+from .report import *

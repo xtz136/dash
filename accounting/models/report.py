@@ -9,7 +9,7 @@ from core.models import Attachment
 from crm.models import Company
 
 
-class Result(models.Model):
+class Report(models.Model):
     """记账结果"""
 
     company = models.ForeignKey(Company, verbose_name='公司')
@@ -27,3 +27,6 @@ class Result(models.Model):
         ordering = ('-date', 'company')
         verbose_name = '查账'
         verbose_name_plural = '查账'
+
+    def save(self, *args, **kwargs):
+        return super(Report, self).save(*args, **kwargs)
