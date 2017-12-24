@@ -1,8 +1,14 @@
 """dash URL Configuration """
 from django.conf.urls import url, include
 from django.contrib import admin
-from ajax_select import urls as ajax_select_urls
 from django.conf import settings
+from django.shortcuts import render
+from ajax_select import urls as ajax_select_urls
+
+
+def index_view(request):
+    return render(request, 'client.html')
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -18,7 +24,7 @@ urlpatterns = [
     url(r'^library/', include('library.urls', namespace="library")),
     url('^activity/', include('actstream.urls')),
 
-    url(r'^', include('crm.urls', namespace="crm")),
+    url(r'^', index_view),
 ]
 
 if settings.DEBUG:
