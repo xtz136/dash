@@ -14,6 +14,8 @@ class Application(models.Model):
     phone = models.CharField('phone', max_length=50, blank=True)
     company = models.ForeignKey(Company, blank=True, null=True)
     state = FSMField(default='new')
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     @transition(field=state, source='new', target='approved')
     def approve(self):
@@ -26,3 +28,8 @@ class Application(models.Model):
     def deny(self):
         pass
         # send notify
+
+    class Meta:
+        ordering = ('-updated', )
+        verbose_name = '客户认证申请'
+        verbose_name_plural = '客户认证申请'

@@ -18,6 +18,13 @@ class AttachmentInline(GenericTabularInline):
 class ApplyModelAdmin(admin.ModelAdmin):
     list_display = ('user', 'title', 'state')
     raw_id_fields = ('company', )
+    actions = ['approve']
+
+    def approve(self, request, queryset):
+        for obj in queryset.filter(state='new'):
+            obj.approve()
+            obj.save()
+    approve.short_description = '通过审核'
 
 
 @admin.register(Follower)
