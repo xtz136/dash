@@ -14,7 +14,7 @@
     <ul>
         {% for att in obj.attachments.all %}
         <li>
-            <a download href={{ att.file }}>{{ att.name }}</a>
+            <a download href={{ MEDIA_URL }}{{ att.file }}>{{ att.name }}</a>
         </li>
         {% endfor %}
     </ul>
