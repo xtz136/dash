@@ -6,22 +6,18 @@
 
 {% block content %}
 
-render form
+<h3>{{ company }}</h3>
 
-render results
+{% for obj in object_list %}
 
-
-{% for obj in objects %}
-
-    <div>date: {{ obj.date }}</div>
+    <div>报表创建日期: {{ obj.date }}</div>
     <ul>
-        {% for att in obj.attachments %}
+        {% for att in obj.attachments.all %}
         <li>
             <a download href={{ att.file }}>{{ att.name }}</a>
         </li>
         {% endfor %}
     </ul>
-    
 {% endfor %}
     
 {% endblock content %}
