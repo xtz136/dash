@@ -10,9 +10,14 @@ from django.conf import settings
 
 
 def upload_path(instance, filename):
+    if instance.object_id:
+        return 'uploads/{path}/{filename}'.format(
+            path=str(instance.content_object),
+            filename=filename)
+
     return 'uploads/{file_type}/{date}/{filename}'.format(
         file_type=instance.file_type,
-        date=instance.created.strftime('%Y-%m-%d'),
+        date=now().strftime('%Y-%m-%d'),
         filename=filename)
 
 
@@ -43,7 +48,7 @@ class Attachment(models.Model):
         verbose_name='文件类型',
         max_length=20,
         default='general')
-    file = models.FileField(upload_to='upload_path')
+    file = models.FileField(upload_to=upload_path)
     size = models.BigIntegerField(default=0)
 
     object_id = models.PositiveIntegerField(default=0)

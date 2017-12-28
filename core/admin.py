@@ -48,6 +48,7 @@ class AttachmentModelAdmin(admin.ModelAdmin):
 @admin.register(Profile)
 class ProfileModelAdmin(admin.ModelAdmin):
     list_display = ('user', 'nickname')
+    raw_id_fields = ('company', )
 
 
 @admin.register(Tag)

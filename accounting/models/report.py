@@ -28,5 +28,10 @@ class Report(models.Model):
         verbose_name = '查账'
         verbose_name_plural = '查账'
 
+    def __str__(self):
+        return 'Report_{0}_{1}'.format(
+            self.company.title,
+            self.date.strftime('%Y%m'))
+
     def save(self, *args, **kwargs):
         return super(Report, self).save(*args, **kwargs)
