@@ -49,11 +49,12 @@
 {% for att in obj.attachments.all %}
 <a class="weui-cell weui-cell_access" href="{{ MEDIA_URL }}{{ att.file }}">
     <div class="weui-cell__hd">
-        <i class="fa fa-file-o" style="font-size:18px;margin-right:5px;display:block" aria-hidden="true"></i>
+        <i class="fa fa-file-o" style="font-size:18px;margin-right:4px;display:block" aria-hidden="true"></i>
     </div>
     <div class="weui-cell__bd">
-        <p>{{ att.name }}</p>
+        <p style="font-size: .8em;">{{ att.name }}</p>
     </div>
+    <div style="font-size: .8em;" class="weui-cell__ft">下载</div>
 </a>
 {% endfor %}
 

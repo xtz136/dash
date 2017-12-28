@@ -9,7 +9,7 @@ register = template.Library()
 MENUS = [
     {'icon': 'area-chart', 'label': '查报表',
         'link': reverse('wechat:report-list')},
-    {'icon': 'user-circle', 'label': '我的', 'link': reverse('wechat:index')},
+    {'icon': 'user-circle', 'label': '我的', 'link': reverse('wechat:user')},
 ]
 
 

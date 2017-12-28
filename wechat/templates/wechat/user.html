@@ -1,0 +1,46 @@
+{% extends 'wechat/navbar.html' %}
+
+{% block header %}
+<style>
+    .page__hd {
+        padding: 20px;
+        height: 200px;
+    }
+
+    .page__title {
+        font-weight: 400;
+        font-size: 1.3em;
+    }
+
+    .company__title {
+        font-size: .8em;
+        color: #999;
+    }
+
+</style>
+    
+{% endblock header %}
+
+{% block title %} 我的 {% endblock title %}
+
+{% block panel %}
+
+<div class="weui-cells">
+        <a class="weui-cell weui-cell_access" href="#">
+            <div class="weui-cell__hd">
+                <img src="{{ user.profile.headimgurl }}" alt="{{ user.profile.name }}" style="width:72px;margin-right:8px;display:block">
+            </div>
+            <div class="weui-cell__bd">
+                <p>{{ user.profile.name }}</p>
+                <p class="company__title">公司：{{ user.profile.name }}</p>
+            </div>
+            <div class="weui-cell__ft">说明文字</div>
+        </a>
+    </div>
+
+<div class="page__bd">
+    {{ user.name }}
+</div>
+    
+{% endblock %}
+    

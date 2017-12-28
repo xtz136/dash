@@ -20,6 +20,11 @@ urlpatterns = [
                        login_url='wechat:login'),
         name='report-list'),
 
+    url('^user/$',
+        login_required(views.UserView.as_view(),
+                       login_url='wechat:user'),
+        name='user'),
+
     url('^$',
         login_required(views.index, login_url='wechat:login'),
         name='index'),
