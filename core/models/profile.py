@@ -41,6 +41,18 @@ class Profile(models.Model):
                 setattr(self, field, user_info[field])
         self.save()
 
+    def set_name(self, name):
+        self.display_name = name
+        self.save()
+
+    @property
+    def name(self):
+        if self.display_name:
+            return self.display_name
+        if self.nickname:
+            return self.nickname
+        return self.user.username
+
 
 def create_profile(user):
     if not hasattr(user, 'profile'):

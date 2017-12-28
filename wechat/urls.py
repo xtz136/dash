@@ -4,7 +4,23 @@ from . import views
 
 urlpatterns = [
     url('^login/$', views.authorize, name='login'),
-    url('^reports/$', login_required(views.ReportListView.as_view(),
-                                     login_url='wechat:login'), name='report-list'),
-    url('^$', login_required(views.index, login_url='wechat:login'), name='index'),
+
+    url('^apply/success$',
+        login_required(views.apply_success_view,
+                       login_url='wechat:login'),
+        name='apply-success'),
+
+    url('^apply/$',
+        login_required(views.ApplyCreateView.as_view(),
+                       login_url='wechat:login'),
+        name='apply-create'),
+
+    url('^reports/$',
+        login_required(views.ReportListView.as_view(),
+                       login_url='wechat:login'),
+        name='report-list'),
+
+    url('^$',
+        login_required(views.index, login_url='wechat:login'),
+        name='index'),
 ]

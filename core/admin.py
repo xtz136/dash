@@ -14,7 +14,7 @@ class AttachmentInline(GenericTabularInline):
     extra = 2
 
 
-@admin.register(Application)
+@admin.register(Apply)
 class ApplyModelAdmin(admin.ModelAdmin):
     list_display = ('user', 'title', 'state')
     raw_id_fields = ('company', )

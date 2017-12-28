@@ -1,0 +1,41 @@
+{% extends 'wechat/base.html' %}
+{% load render_form %}
+
+{% block title %} 客户认证 {% endblock title %}
+    
+
+{% block content %}
+<div class="page__hd">
+    <p class="page__desc">填写相关资料,申请成为认证客户。</p>
+</div>
+
+<div class="page__bd">
+<form method="POST" action="">
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+        <div class="weui-cells__title">填写认证资料</div>
+        <div class="weui-cells weui-cells_form">
+
+            {% render_input form.name  %}
+            {% render_input form.title  %}
+            {% render_input form.phone "tel" %}
+
+            {% render_text form.info %}
+
+            <label for="weuiAgree" class="weui-agree">
+                <input checked id="aggreed" type="checkbox" class="weui-agree__checkbox" />
+                <span class="weui-agree__text">
+                    阅读并同意<a href="#">《相关条款》</a>
+                </span>
+            </label>
+
+        <div class="weui-btn-area">
+            <button type="submit" class="weui-btn weui-btn_primary">确定</button>
+        </div>
+    </div>
+</form>
+</div>
+    
+{% endblock content %}

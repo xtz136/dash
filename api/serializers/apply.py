@@ -2,7 +2,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from core.models import Application
+from core.models import Apply
 from .user import UserSerializer
 
 
@@ -11,5 +11,5 @@ class ApplySerializer(serializers.ModelSerializer):
         required=False, default=serializers.CurrentUserDefault())
 
     class Meta:
-        model = Application
+        model = Apply
         fields = '__all__'
