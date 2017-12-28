@@ -6,10 +6,6 @@ from django.shortcuts import render
 from ajax_select import urls as ajax_select_urls
 
 
-def index_view(request):
-    return render(request, 'client.html')
-
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^ajax_select/', include(ajax_select_urls)),
@@ -24,8 +20,6 @@ urlpatterns = [
     url(r'^security/', include('security.urls', namespace="security")),
     url(r'^library/', include('library.urls', namespace="library")),
     url('^activity/', include('actstream.urls')),
-
-    url(r'^', index_view),
 ]
 
 if settings.DEBUG:

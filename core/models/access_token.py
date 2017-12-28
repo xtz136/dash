@@ -12,7 +12,8 @@ from wechatpy.oauth import WeChatOAuth
 
 
 class AccessToken(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL, blank=True, null=True)
     openid = models.CharField(max_length=255, unique=True)
     access_token = models.CharField(max_length=255, blank=True)
     refresh_token = models.CharField(max_length=255, blank=True)

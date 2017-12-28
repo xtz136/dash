@@ -9,22 +9,10 @@ from django.contrib.auth import authenticate, login
 
 from api.serializers import UserSerializer
 from wechatpy.oauth import WeChatOAuth
-from rest_framework_jwt.settings import api_settings
 
 from core.models import AccessToken, create_profile, SiteConf
 
 User = get_user_model()
-
-jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
-jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
-
-
-def issue_token(user):
-    payload = jwt_payload_handler(user)
-    return {
-        'token': jwt_encode_handler(payload),
-        'user': user
-    }
 
 
 def authorize(request):
@@ -45,26 +33,25 @@ def authorize(request):
     # auth flow
     if code:
         try:
-            # may raise
             access_token = client.fetch_access_token(code)
             user_info = client.get_user_info()
-            user, _ = User.objects.get_or_create(
-                username='wx_' + access_token['openid'])
-
-            # may raise IntegrityError 微信用户已经绑定了关系
+            # get or create access_token
             at, _ = AccessToken.objects.get_or_create(
-                user=user, openid=access_token['openid'])
+                openid=access_token['openid'])
+            if not at.user:
+                at.user = User.objects.create(
+                    username='wx_' + access_token['openid'],
+                    is_active=True)
+
             at.update_token(access_token)
+            user = at.user
 
             # update profile
             user.profile.update_profile(user_info)
-            token = issue_token(user)
-            # login user
             login(request, user)
-
-            # request.session.set_expiry(3600 * 24 * 7)  # 7days
+            request.session.set_expiry(3600 * 24 * 7)  # 7days
             return redirect('wechat:index')
         except Exception as e:
-            return HttpResponseForbidden('出错 {0}'.format(str(e)))
+            return HttpResponseForbidden('发生错误 {0}'.format(str(e)))
 
     return redirect(client.authorize_url)

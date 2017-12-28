@@ -153,6 +153,7 @@ AJAX_SELECT_BOOTSTRAP = False  # 不使用默认的cdn地址
 UPDATE_WHITELIST_TOKEN = "abcdefg"
 LOGIN_REDIRECT_URL = '/dashboard/'
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+APPEND_SLASH = True
 
 LOGGING = {
     'version': 1,
