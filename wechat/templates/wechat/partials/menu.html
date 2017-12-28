@@ -1,0 +1,8 @@
+<div class="weui-tabbar">
+{% for menu in menus %}
+    <a href="{{ menu.link }}" class="weui-tabbar__item{% if menu.active %} weui-bar__item_on{% endif %}">
+        <i class="fa fa-{{ menu.icon }} weui-tabbar__icon" aria-hidden="true"></i>
+        <p class="weui-tabbar__label">{{ menu.label }}</p>
+    </a>
+{% endfor %}
+</div>
