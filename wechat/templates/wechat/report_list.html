@@ -25,13 +25,23 @@
     </h1>
 </div>
 
+<div class="weui-cells weui-cells_form">
+
 <div class="weui-cell">
-    <div class="weui-cell__hd"><label for="" class="weui-label">报表日期</label></div>
+
+    <div class="weui-cell__hd">
+        <label for="id_month" class="weui-label">选择报表月份</label>
+    </div>
     <div class="weui-cell__bd">
-        <input class="weui-input" type="date" value=""/>
+        <input id="id_month" value={{ month }} name="month" class="weui-input" type="month" value=""/>
+    </div>
+    <div class="weui-cell__ft">
+        <button class="weui-vcode-btn" onclick="onMonthSelected();">
+            查找
+        </button>
     </div>
 </div>
-
+</div>
 {% for obj in object_list %}
 <div class="weui-cells__title">{{ obj.date }} </div>
 <div class="weui-cells">
@@ -46,8 +56,24 @@
     </div>
 </a>
 {% endfor %}
+
+{% empty %}
+<div class="weui-cell">
+    当月没有报表。
+</div>
 </div>
 {% endfor %}
+
+
+<script>
+    function onMonthSelected() {
+        var month = document.getElementById('id_month');
+        if (month.value) {
+            window.location.href = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + 'month=' + month.value;
+        };
+    }
+
+</script>
     
 {% endblock content %}
     
