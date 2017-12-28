@@ -5,9 +5,6 @@
     
 
 {% block content %}
-<div class="page__hd">
-    <p class="page__desc">填写相关资料,申请成为认证客户。</p>
-</div>
 
 <div class="page__bd">
 <form method="POST" action="">
@@ -22,7 +19,11 @@
             {% render_input form.title  %}
             {% render_input form.phone "tel" %}
 
+        </div>
+
+        <div class="weui-cells weui-cells_form">
             {% render_text form.info %}
+        </div>
 
             <label for="weuiAgree" class="weui-agree">
                 <input checked id="aggreed" type="checkbox" class="weui-agree__checkbox" />
@@ -34,7 +35,6 @@
         <div class="weui-btn-area">
             <button type="submit" class="weui-btn weui-btn_primary">确定</button>
         </div>
-    </div>
 </form>
 </div>
     
