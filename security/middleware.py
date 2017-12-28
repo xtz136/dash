@@ -31,6 +31,8 @@ class RestrictIPMiddleware(object):
 
     def __call__(self, request):
         user = getattr(request, 'user', None)
+        if (request.path.startswith('/wechat/')):
+            return self.get_response(request)
         if user and user.is_authenticated and not user.is_superuser:
             create_profile(user)
             profile = getattr(user, 'profile', None)

@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'project',
     'accounting',
     'api',
+    'wechat',
 ]
 
 ADMIN_VIEW_PERMISSION_MODELS = [

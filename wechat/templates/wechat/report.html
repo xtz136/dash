@@ -1,0 +1,28 @@
+{% extends 'wechat/base.html' %}
+
+
+{% block title %} 查账 {% endblock title %}
+    
+
+{% block content %}
+
+render form
+
+render results
+
+
+{% for obj in objects %}
+
+    <div>date: {{ obj.date }}</div>
+    <ul>
+        {% for att in obj.attachments %}
+        <li>
+            <a download href={{ att.file }}>{{ att.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    
+{% endfor %}
+    
+{% endblock content %}
+    
