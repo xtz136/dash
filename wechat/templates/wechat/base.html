@@ -22,30 +22,28 @@
         }
 
     </style>
+    
+    {% block header %} {% endblock header %}
+        
  </head>
 <body>
     <div class="container">
-            <div class="weui-tab">
-                    <div class="weui-tab__panel">
-                        <div>
-                            <img class="avatar" src="{{ user.profile.headimgurl }}" alt="{{ user.profile.nickname }}">
-                        </div>
-
-                        <div>欢迎你：{{ user.profile.nickname }}</div>
-                        {% block content %}
-                        {% endblock %}
-                    </div>
-                    <div class="weui-tabbar">
-                        <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
-                            <i class="fa fa-area-chart weui-tabbar__icon" aria-hidden="true"></i>
-                            <p class="weui-tabbar__label">查报表</p>
-                        </a>
-                        <a href="javascript:;" class="weui-tabbar__item">
-                            <i class="fa fa-user-circle weui-tabbar__icon" aria-hidden="true"></i>
-                            <p class="weui-tabbar__label">我的</p>
-                        </a>
-                    </div>
-                </div>
+        <div class="weui-tab">
+            <div class="weui-tab__panel">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="weui-tabbar">
+                <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
+                    <i class="fa fa-area-chart weui-tabbar__icon" aria-hidden="true"></i>
+                    <p class="weui-tabbar__label">查报表</p>
+                </a>
+                <a href="javascript:;" class="weui-tabbar__item">
+                    <i class="fa fa-user-circle weui-tabbar__icon" aria-hidden="true"></i>
+                    <p class="weui-tabbar__label">我的</p>
+                </a>
+            </div>
+        </div>
     </div>
     
 </body>
