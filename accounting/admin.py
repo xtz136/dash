@@ -7,8 +7,8 @@ from core.admin import AttachmentInline
 
 @admin.register(Report)
 class ReportModelAdmin(admin.ModelAdmin):
-    list_display = ('company', 'bookkeeper', 'date')
-    list_filter = ('bookkeeper', )
+    list_display = ('company', 'bookkeeper', 'date', 'has_notified')
+    list_filter = ('bookkeeper', 'has_notified')
     raw_id_fields = ('company', )
     search_fields = ('company__title', )
     date_hierarchy = 'date'

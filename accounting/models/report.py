@@ -22,6 +22,7 @@ class Report(models.Model):
         settings.AUTH_USER_MODEL, verbose_name='记账员')
     date = models.DateField(default=now, verbose_name='日期')
     data = JSONField(default='{}', blank=True)
+    has_notified = models.BooleanField('是否通知过了', default=False, editable=False)
 
     attachments = GenericRelation(Attachment)
     created = models.DateTimeField(auto_now_add=True)
@@ -46,6 +47,10 @@ class Report(models.Model):
         return [p.user for p in self.company.profile_set.all()]
 
     def send_message(self):
+        if not self.has_notified:
+            self.has_notified = True
+            self.save()
+
         month = self.date.strftime('%Y-%m')
         url = '{0}{1}?month={2}'.format(SiteConf.get_site_url(),
                                         reverse('wechat:report-list'),
