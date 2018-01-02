@@ -1,13 +1,17 @@
+import logging
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 from django.utils.timezone import now
 from django.contrib.contenttypes.fields import GenericRelation
 
 from jsonfield.fields import JSONField
 
-from core.models import Attachment
+from core.models import Attachment, SiteConf
 from crm.models import Company
-from core.models import SiteConf
+from wechat.utils import send_report_message
+
+logger = logging.getLogger(__file__)
 
 
 class Report(models.Model):
@@ -38,12 +42,26 @@ class Report(models.Model):
         return super(Report, self).save(*args, **kwargs)
 
     def get_subscribers(self):
-        return
+        # TODO : too complex query
+        return [p.user for p in self.company.profile_set.all()]
 
-    def notify(self):
-        wechat = SiteConf.get_wechat_client()
-        for subscriber in self.get_subscribers():
+    def send_message(self):
+        month = self.date.strftime('%Y-%m')
+        url = '{0}{1}?month={2}'.format(SiteConf.get_site_url(),
+                                        reverse('wechat:report-list'),
+                                        month)
+
+        data = {
+            'first': {'color': '#173177', 'value': '你好，贵公司记账报税服务已经完成。'.format(month)},
+            'keyword1': {'color': '#173177', 'value': self.company.title},
+            'keyword2': {'color': '#173177', 'value': month},
+            'keyword3': {'color': '#173177', 'value': month},
+            'remark': {'color': '#173177', 'value': '点击消息可以马上查看报表了。'},
+        }
+
+        for user in self.get_subscribers():
             try:
-                wechat.message.send_text()
-            except:
-                pass
+                openid = user.access_token.openid
+                send_report_message(openid, data, url)
+            except Exception as e:
+                logger.error(e)

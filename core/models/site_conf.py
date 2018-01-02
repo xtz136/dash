@@ -32,3 +32,8 @@ class SiteConf(SingletonModel):
 
     class Meta:
         verbose_name = "站点设置"
+
+    @classmethod
+    def get_site_url(cls):
+        conf = cls.get_solo()
+        return 'http://{0}'.format(conf.site_address)

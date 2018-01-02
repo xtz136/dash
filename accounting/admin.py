@@ -20,6 +20,6 @@ class ReportModelAdmin(admin.ModelAdmin):
 
     def notify(self, request, queryset):
         for obj in queryset:
-            obj.notify()
+            obj.send_message()
 
     notify.short_description = '微信通知'
