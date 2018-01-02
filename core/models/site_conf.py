@@ -24,5 +24,8 @@ class SiteConf(SingletonModel):
     wx_redirect_uri = models.CharField(blank=True, max_length=255)
     wx_next_url = models.CharField(blank=True, max_length=255)
 
+    # 微信通知模板
+    wx_report_tpl = models.TextField('微信报表通知模板', blank=True)
+
     class Meta:
         verbose_name = "站点设置"
