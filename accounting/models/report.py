@@ -7,6 +7,7 @@ from jsonfield.fields import JSONField
 
 from core.models import Attachment
 from crm.models import Company
+from core.models import SiteConf
 
 
 class Report(models.Model):
@@ -25,8 +26,8 @@ class Report(models.Model):
     class Meta:
         unique_together = ('company', 'date')
         ordering = ('-date', 'company')
-        verbose_name = '查账'
-        verbose_name_plural = '查账'
+        verbose_name = '查报表'
+        verbose_name_plural = '查报表'
 
     def __str__(self):
         return 'Report_{0}_{1}'.format(
@@ -35,3 +36,14 @@ class Report(models.Model):
 
     def save(self, *args, **kwargs):
         return super(Report, self).save(*args, **kwargs)
+
+    def get_subscribers(self):
+        return
+
+    def notify(self):
+        wechat = SiteConf.get_wechat_client()
+        for subscriber in self.get_subscribers():
+            try:
+                wechat.message.send_text()
+            except:
+                pass

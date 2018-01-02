@@ -1,3 +1,4 @@
+import logging
 from django.db import models
 from django.conf import settings
 
@@ -5,6 +6,10 @@ from crm.models import Company
 
 from django_fsm import FSMField, transition
 from core.validators import validate_phone
+from core.models import SiteConf
+from wechat.utils import send_verify_message
+
+logger = logging.getLogger(__file__)
 
 
 class Apply(models.Model):
@@ -23,7 +28,21 @@ class Apply(models.Model):
         self.user.profile.company = self.company
         self.user.is_active = True
         self.user.save()
-        # send notify
+
+        data = {
+            'first': {'color': '#173177', 'value': '你的账户已经认证成功！'},
+            'keyword1': {'color': '#173177', 'value': self.name},
+            'keyword2': {'color': '#173177', 'value': self.phone},
+            'keyword3': {'color': '#173177', 'value': self.company.title},
+            'keyword4': {'color': '#173177', 'value': self.updated.strftime('%Y-%m-%d')},
+            'remark': {'color': '#173177', 'value': '点击消息可以马上查看报表了。'},
+        }
+        url = 'http://{0}{1}'.format(SiteConf.get_solo().site_address,
+                                     reverse('wechat:report-list'))
+        try:
+            send_verify_message(self.user.access_token.openid, data, url)
+        except Exception as e:
+            logger.error(e)
 
     @transition(field=state, source='new', target='denied')
     def deny(self):

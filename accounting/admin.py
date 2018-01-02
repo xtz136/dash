@@ -15,3 +15,11 @@ class ReportModelAdmin(admin.ModelAdmin):
     inlines = [
         AttachmentInline
     ]
+
+    actions = ('notify', )
+
+    def notify(self, request, queryset):
+        for obj in queryset:
+            obj.notify()
+
+    notify.short_description = '微信通知'
