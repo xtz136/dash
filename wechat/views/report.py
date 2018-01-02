@@ -22,5 +22,6 @@ class ReportListView(ListView):
     def get_context_data(self):
         data = super(ReportListView, self).get_context_data()
         data['company'] = self.request.user.profile.company
-        data['month'] = self.request.GET.get('month')
+        data['month'] = self.request.GET.get(
+            'month', timezone.now().strftime('%Y-%m'))
         return data
