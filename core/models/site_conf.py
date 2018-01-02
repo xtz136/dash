@@ -25,7 +25,8 @@ class SiteConf(SingletonModel):
     wx_next_url = models.CharField(blank=True, max_length=255)
 
     # 微信通知模板
-    wx_tpl_report = models.TextField('微信报表通知模板ID', blank=True, max_length=200)
+    wx_tpl_report = models.CharField(
+        '微信报表通知模板ID', blank=True, max_length=200)
     wx_tpl_verify = models.CharField(
         '微信绑定通知模板ID', blank=True, max_length=200)
 

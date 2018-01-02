@@ -59,21 +59,3 @@ class TagModelAdmin(admin.ModelAdmin):
 @admin.register(AccessToken)
 class AccessTokenModelAdmin(admin.ModelAdmin):
     list_display = ('openid', 'user', 'created')
-
-
-@admin.register(MemberApplication)
-class MemberApplicationModelAdmin(admin.ModelAdmin):
-    list_display = ('applicant', 'company_title', 'state', 'created')
-    list_filter = ('state',)
-    actions = ('approved', 'denied')
-
-    def approved(self, request, queryset):
-        for obj in queryset:
-            obj.approved()
-
-    def denied(self, request, queryset):
-        for obj in queryset:
-            obj.denied()
-
-
-admin.site.register(SiteConf, SingletonModelAdmin)

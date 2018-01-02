@@ -1,6 +1,7 @@
 import logging
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 
 from crm.models import Company
 
@@ -46,8 +47,20 @@ class Apply(models.Model):
 
     @transition(field=state, source='new', target='denied')
     def deny(self):
-        pass
-        # send notify
+        data = {
+            'first': {'color': '#173177', 'value': '你的账户已经认证成功！'},
+            'keyword1': {'color': '#173177', 'value': self.name},
+            'keyword2': {'color': '#173177', 'value': self.phone},
+            'keyword3': {'color': '#173177', 'value': self.company.title},
+            'keyword4': {'color': '#173177', 'value': self.updated.strftime('%Y-%m-%d')},
+            'remark': {'color': '#173177', 'value': '点击消息可以马上查看报表了。'},
+        }
+        url = 'http://{0}{1}'.format(SiteConf.get_solo().site_address,
+                                     reverse('wechat:report-list'))
+        try:
+            send_verify_message(self.user.access_token.openid, data, url)
+        except Exception as e:
+            logger.error(e)
 
     def save(self, *args, **kwargs):
         instance = super(Apply, self).save(*args, **kwargs)
