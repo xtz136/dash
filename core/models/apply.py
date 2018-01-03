@@ -26,7 +26,7 @@ class Apply(models.Model):
 
     @transition(field=state, source='new', target='approved')
     def approve(self):
-        self.user.profile.verify(company)
+        self.user.profile.verify(self.company)
         self.user.is_active = True
         self.user.save()
 
