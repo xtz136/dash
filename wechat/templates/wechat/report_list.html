@@ -42,6 +42,12 @@
     </div>
 </div>
 </div>
+
+
+{% if not user.profile.is_verified  %}
+<p style="margin-top: 8px; padding: 8px;">您当前不是认证客户，不能查看报表。 <a href="{% url 'wechat:apply-create' %}">请点击链接去填写认证资料。</a></p>
+{% endif %}
+
 {% for obj in object_list %}
 <div class="weui-cells__title">{{ obj.date }} </div>
 <div class="weui-cells">

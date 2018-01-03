@@ -16,8 +16,9 @@ class AttachmentInline(GenericTabularInline):
 
 @admin.register(Apply)
 class ApplyModelAdmin(admin.ModelAdmin):
-    list_display = ('user', 'title', 'state')
+    list_display = ('user', 'title', 'name', 'phone', 'state')
     raw_id_fields = ('company', )
+    list_filter = ('state', )
     actions = ['approve']
 
     def approve(self, request, queryset):

@@ -31,6 +31,7 @@ class Profile(models.Model):
     prefs = JSONField(default=dict(), verbose_name='偏好设置', blank=True)
     is_manager = models.BooleanField(default=False)
     company = models.ForeignKey(Company, blank=True, null=True)
+    is_verified = models.BooleanField(default=False)
 
     def update_profile(self,
                        user_info,
@@ -43,6 +44,12 @@ class Profile(models.Model):
 
     def set_name(self, name):
         self.display_name = name
+        self.save()
+
+    def verify(self, company):
+        """认证客户"""
+        self.company = company
+        self.is_verified = True
         self.save()
 
     @property
