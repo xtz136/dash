@@ -252,6 +252,7 @@ ACTSTREAM_SETTINGS = {
     'USE_JSONFIELD': True,
 }
 NOTIFICATIONS_USE_JSONFIELD = True
+SIGN_TOKEN = 'this-is-token'
 
 from .local import *
 

@@ -3,6 +3,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.shortcuts import render
+from django.views.generic import CreateView
 from ajax_select import urls as ajax_select_urls
 
 

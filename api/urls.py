@@ -32,6 +32,8 @@ urlpatterns = [
     url(r'^login/wechat/$', views.authorize, name='login_wechat'),
     url(r'^login/account/$', obtain_jwt_token, name='obtain_token'),
     url(r'^token/refresh/$', refresh_jwt_token, name='refresh_token'),
+    url(r'^whitelist/update/$',
+        views.update_white_list_request, name='update_whitelist'),
     url('^fields_info/$', views.FieldsInfoView.as_view(), name=''),
     url('^', include(router.urls)),
 ]
