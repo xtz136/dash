@@ -258,7 +258,7 @@ class Company(models.Model):
     scale_size = models.CharField(
         verbose_name="规模", default='小型企业', max_length=10, choices=SCALE_SIZES)
 
-    STATUS = [('有效', '有效'), ('无效', '无效'), ('歇业', '歇业')]
+    STATUS = [('有效', '有效'), ('无效', '无效'), ('歇业', '歇业'), ('筹备', '筹备')]
     status = models.CharField(
         help_text="无效状态，不再为客户提供服务",
         verbose_name="代理状态", default='有效',
