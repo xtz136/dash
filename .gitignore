@@ -2,6 +2,8 @@ db.sqlite3
 media
 dash/local.py
 htmlcov
+node_modules
+bower_components
 .coverage
 .cache
 *.pyc

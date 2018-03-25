@@ -19,6 +19,7 @@ urlpatterns = [
     url('^activity/', include('actstream.urls')),
 
     url(r'^', include('crm.urls', namespace="crm")),
+    url(r'^borrow/', include('borrow.urls')),
 ]
 
 if settings.DEBUG:

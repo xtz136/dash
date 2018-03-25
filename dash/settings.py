@@ -25,7 +25,7 @@ SECRET_KEY = 'c#u!hg_vaqwg*s-bq3$ip$etq^r0+wq8sp&v6gonuc6ojh8^qy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.56.101']
 
 # Application definition
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'raven.contrib.django.raven_compat',
     'rest_framework',
     'notifications',
+    'djangobower',
     'solo',
 
     'mptt',
@@ -60,6 +61,8 @@ INSTALLED_APPS = [
     'security',
     'project',
     'api',
+    
+    'borrow',
 ]
 
 ADMIN_VIEW_PERMISSION_MODELS = [
@@ -188,6 +191,10 @@ LOGGING = {
         'crm': {
             'level': 'DEBUG',
             'handlers': ['console']
+        },
+        'borrow': {
+            'level': 'DEBUG',
+            'handlers': ['console']
         }
     },
 }
@@ -249,13 +256,27 @@ ACTSTREAM_SETTINGS = {
 }
 NOTIFICATIONS_USE_JSONFIELD = True
 
-from .local import *
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
+)
 
-if DEBUG:
-    INSTALLED_APPS += ('debug_toolbar',)
-    MIDDLEWARE += [
-        'debug_toolbar.middleware.DebugToolbarMiddleware',
-    ]
-    DEBUG_TOOLBAR_CONFIG = {
-        'JQUERY_URL': '//cdn.bootcss.com/jquery/2.2.4/jquery.min.js'
-    }
+BOWER_COMPONENTS_ROOT = BASE_DIR
+BOWER_PATH = os.path.join(BASE_DIR, 'node_modules', '.bin', 'bower')
+
+BOWER_INSTALLED_APPS = (
+    'vue',
+    'vuex'
+)
+
+# from .local import *
+#
+# if DEBUG:
+#     INSTALLED_APPS += ('debug_toolbar',)
+#     MIDDLEWARE += [
+#         'debug_toolbar.middleware.DebugToolbarMiddleware',
+#     ]
+#     DEBUG_TOOLBAR_CONFIG = {
+#         'JQUERY_URL': '//cdn.bootcss.com/jquery/2.2.4/jquery.min.js'
+#     }

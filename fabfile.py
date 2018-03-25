@@ -12,13 +12,16 @@ def host_type():
 APP_ROOT = "/data/apps/dash"
 
 
-def root(x): return os.path.join(APP_ROOT, x)
+def root(x):
+    return os.path.join(APP_ROOT, x)
 
 
 VENV_ROOT = root(".venv")
+NENV_ROOT = root(".nenv")
 PYTHON = root(".venv/bin/python")
 PIP = root(".venv/bin/pip")
 MANAGE = root("manage.py")
+NODE = root('.nenv/bin/node')
 
 
 def migrate():
@@ -27,6 +30,12 @@ def migrate():
 
 def install_depends():
     run('{0} install -r ./requirements/prod.txt'.format(PIP))
+    run('{0} install -r ./requirements_node/prod.txt'.format(NODE))
+    # 安装最新版node
+    run('{} {}'.format(NODE, NENV_ROOT))
+    # 下载前端依赖
+    run('{} bower install'.format(MANAGE))
+    run('{} bower collectstatic'.format(MANAGE))
 
 
 def restart():
