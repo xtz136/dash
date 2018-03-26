@@ -2,8 +2,8 @@ import json
 import logging
 
 from django.views.generic import View
-from django.shortcuts import render
 from django.http import JsonResponse
+from django.core.paginator import Paginator
 
 log = logging.getLogger('BaseApi')
 
@@ -12,13 +12,6 @@ class ApiView(View):
 
     """方便输出json数据
     """
-
-    template_name = 'index.html'
-
-    def get(self, request):
-        """ 输出某个功能的html页面
-        """
-        return render(request, self.template_name)
 
     def post(self, request):
         """ 某个功能的接口分发方法，接口只能通过post方式调用
@@ -62,3 +55,37 @@ class ApiView(View):
             JSON({msg: msg, code: code, status: False})
         """
         return JsonResponse({'msg': msg, 'code': code, 'status': False})
+
+
+class Pagination:
+
+    """分页"""
+
+    _page_size = 10
+    _search_fields = []
+    _default_order = ''
+
+    def pagination(self, request, object_list):
+        page_num = request.POST.get('page', 1)
+        try:
+            page_num = int(page_num)
+        except Exception:
+            page_num = 1
+
+        order_by = request.POST.get('order_by', self._default_order)
+        if order_by:
+            object_list = object_list.order_by(order_by)
+
+        page_size = request.POST.get('page_size', self._page_size)
+
+        p = Paginator(object_list, page_size)
+        page = p.page(page_num)
+
+        return {
+            'count': p.count,
+            'page_count': p.num_pages,
+            'datas': list(page.object_list),
+            'page': page.number,
+            'has_prev': page.has_previous(),
+            'has_next': page.has_next()
+        }
