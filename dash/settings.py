@@ -262,13 +262,13 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "appfront/dist/static"),
 ]
 
-# from .local import *
-#
-# if DEBUG:
-#     INSTALLED_APPS += ('debug_toolbar',)
-#     MIDDLEWARE += [
-#         'debug_toolbar.middleware.DebugToolbarMiddleware',
-#     ]
-#     DEBUG_TOOLBAR_CONFIG = {
-#         'JQUERY_URL': '//cdn.bootcss.com/jquery/2.2.4/jquery.min.js'
-#     }
+from .local import *
+
+if DEBUG:
+    INSTALLED_APPS += ('debug_toolbar',)
+    MIDDLEWARE += [
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    ]
+    DEBUG_TOOLBAR_CONFIG = {
+        'JQUERY_URL': '//cdn.bootcss.com/jquery/2.2.4/jquery.min.js'
+    }
