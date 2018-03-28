@@ -25,7 +25,7 @@ SECRET_KEY = 'c#u!hg_vaqwg*s-bq3$ip$etq^r0+wq8sp&v6gonuc6ojh8^qy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.56.101']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'raven.contrib.django.raven_compat',
     'rest_framework',
     'notifications',
-    'djangobower',
     'solo',
 
     'mptt',
@@ -61,7 +60,7 @@ INSTALLED_APPS = [
     'security',
     'project',
     'api',
-    
+
     'borrow',
 ]
 
@@ -87,7 +86,10 @@ ROOT_URLCONF = 'dash.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'appfront', 'dist')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -256,19 +258,9 @@ ACTSTREAM_SETTINGS = {
 }
 NOTIFICATIONS_USE_JSONFIELD = True
 
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'djangobower.finders.BowerFinder',
-)
-
-BOWER_COMPONENTS_ROOT = BASE_DIR
-BOWER_PATH = os.path.join(BASE_DIR, 'node_modules', '.bin', 'bower')
-
-BOWER_INSTALLED_APPS = (
-    'vue',
-    'vuex'
-)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "appfront/dist/static"),
+]
 
 # from .local import *
 #

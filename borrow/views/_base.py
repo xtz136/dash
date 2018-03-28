@@ -1,11 +1,25 @@
 import json
 import logging
 
+from django.db.models import Model
+from django.forms.models import model_to_dict
+from django.http import HttpResponse
 from django.views.generic import View
-from django.http import JsonResponse
+from django.db.models.query import QuerySet
 from django.core.paginator import Paginator
+from django.core.serializers.json import DjangoJSONEncoder
 
 log = logging.getLogger('BaseApi')
+
+
+class ModelEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Model):
+            return model_to_dict(obj)
+        elif isinstance(obj, QuerySet):
+            return list(obj)
+        else:
+            return DjangoJSONEncoder.default(self, obj)
 
 
 class ApiView(View):
@@ -44,7 +58,8 @@ class ApiView(View):
         Return:
             JSON({msg: msg, code: code, status: True})
         """
-        return JsonResponse({'msg': msg, 'code': code, 'status': True})
+        result = json.dumps({'msg': msg, 'code': code, 'status': True}, cls=ModelEncoder)
+        return HttpResponse(result, content_type="application/json")
 
     def failed(self, msg, code=-1):
         """ 接口执行失败
@@ -54,7 +69,8 @@ class ApiView(View):
         Return:
             JSON({msg: msg, code: code, status: False})
         """
-        return JsonResponse({'msg': msg, 'code': code, 'status': False})
+        result = json.dumps({'msg': msg, 'code': code, 'status': False}, cls=ModelEncoder)
+        return HttpResponse(result, content_type="application/json")
 
 
 class Pagination:
@@ -84,7 +100,7 @@ class Pagination:
         return {
             'count': p.count,
             'page_count': p.num_pages,
-            'datas': list(page.object_list),
+            'datas': page.object_list,
             'page': page.number,
             'has_prev': page.has_previous(),
             'has_next': page.has_next()

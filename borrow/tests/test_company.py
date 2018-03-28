@@ -2,6 +2,7 @@ import json
 import pytest
 
 from django.test import RequestFactory
+from django.urls import reverse
 from mixer.backend.django import mixer
 
 from ..views import company
@@ -12,7 +13,7 @@ pytestmark = pytest.mark.django_db
 class TestCompanyApiView(object):
 
     def test_api_list(self):
-        req = RequestFactory().post('/borrow/api/company', {'type': 'api_list'})
+        req = RequestFactory().post(reverse('api.company'), {'type': 'api_list'})
         user = mixer.blend('auth.User')
         req.user = user
         resp = company.CompanyApiView.as_view()(req)
