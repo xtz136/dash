@@ -1,5 +1,6 @@
 from django.contrib import admin
 from solo.admin import SingletonModelAdmin
+from django.contrib.contenttypes.admin import GenericTabularInline
 
 
 from .models import *
@@ -8,10 +9,23 @@ from .models import *
 admin.site.site_header = '悦海财税'
 
 
-@admin.register(Application)
+class AttachmentInline(GenericTabularInline):
+    model = Attachment
+    extra = 2
+
+
+@admin.register(Apply)
 class ApplyModelAdmin(admin.ModelAdmin):
-    list_display = ('user', 'title', 'state')
+    list_display = ('user', 'title', 'name', 'phone', 'state')
     raw_id_fields = ('company', )
+    list_filter = ('state', )
+    actions = ['approve']
+
+    def approve(self, request, queryset):
+        for obj in queryset.filter(state='new'):
+            obj.approve()
+            obj.save()
+    approve.short_description = '通过审核'
 
 
 @admin.register(Follower)
@@ -35,6 +49,7 @@ class AttachmentModelAdmin(admin.ModelAdmin):
 @admin.register(Profile)
 class ProfileModelAdmin(admin.ModelAdmin):
     list_display = ('user', 'nickname')
+    raw_id_fields = ('company', )
 
 
 @admin.register(Tag)
@@ -45,21 +60,6 @@ class TagModelAdmin(admin.ModelAdmin):
 @admin.register(AccessToken)
 class AccessTokenModelAdmin(admin.ModelAdmin):
     list_display = ('openid', 'user', 'created')
-
-
-@admin.register(MemberApplication)
-class MemberApplicationModelAdmin(admin.ModelAdmin):
-    list_display = ('applicant', 'company_title', 'state', 'created')
-    list_filter = ('state',)
-    actions = ('approved', 'denied')
-
-    def approved(self, request, queryset):
-        for obj in queryset:
-            obj.approved()
-
-    def denied(self, request, queryset):
-        for obj in queryset:
-            obj.denied()
 
 
 admin.site.register(SiteConf, SingletonModelAdmin)

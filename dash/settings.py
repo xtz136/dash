@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'library',
     'security',
     'project',
+    'accounting',
     'api',
 
     'borrow',
@@ -96,6 +97,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.media',
                 'django.contrib.messages.context_processors.messages', ], }, }, ]
 
 WSGI_APPLICATION = 'dash.wsgi.application'
@@ -155,6 +157,7 @@ AJAX_SELECT_BOOTSTRAP = False  # 不使用默认的cdn地址
 UPDATE_WHITELIST_TOKEN = "abcdefg"
 LOGIN_REDIRECT_URL = '/dashboard/'
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+APPEND_SLASH = True
 
 LOGGING = {
     'version': 1,
@@ -257,6 +260,7 @@ ACTSTREAM_SETTINGS = {
     'USE_JSONFIELD': True,
 }
 NOTIFICATIONS_USE_JSONFIELD = True
+SIGN_TOKEN = 'this-is-token'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "appfront/dist/static"),

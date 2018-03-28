@@ -12,7 +12,9 @@ from wechatpy.oauth import WeChatOAuth
 
 
 class AccessToken(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL, blank=True, null=True,
+        related_name='access_token')
     openid = models.CharField(max_length=255, unique=True)
     access_token = models.CharField(max_length=255, blank=True)
     refresh_token = models.CharField(max_length=255, blank=True)
@@ -46,3 +48,6 @@ class AccessToken(models.Model):
                 setattr(self, field, access_token[field])
         self.last_updated_at = now()
         self.save()
+
+    def __str__(self):
+        return 'AccessToken <{0}>'.format(self.user)

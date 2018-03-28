@@ -3,9 +3,11 @@ from rest_framework import routers
 from . import views
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 from rest_framework_extensions.routers import ExtendedSimpleRouter
+from accounting.api import ReportViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = ExtendedSimpleRouter()
+router.register('reports', ReportViewSet)
 router.register('users', views.UserViewSet)
 router.register('categories', views.CategoryViewSet)
 router.register('tags', views.TagViewSet)
@@ -30,6 +32,8 @@ urlpatterns = [
     url(r'^login/wechat/$', views.authorize, name='login_wechat'),
     url(r'^login/account/$', obtain_jwt_token, name='obtain_token'),
     url(r'^token/refresh/$', refresh_jwt_token, name='refresh_token'),
+    url(r'^whitelist/update/$',
+        views.update_white_list_request, name='update_whitelist'),
     url('^fields_info/$', views.FieldsInfoView.as_view(), name=''),
     url('^', include(router.urls)),
 ]

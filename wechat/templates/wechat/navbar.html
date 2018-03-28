@@ -1,0 +1,11 @@
+{% extends 'wechat/base.html' %}
+{% load menu %}
+
+{% block content %}
+<div class="weui-tab">
+    <div class="weui-tab__panel">
+        {% block panel %}{% endblock %}
+    </div>
+</div>
+{% render_menu %}
+{% endblock content %}

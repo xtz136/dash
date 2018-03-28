@@ -1,8 +1,11 @@
 """dash URL Configuration """
 from django.conf.urls import url, include
 from django.contrib import admin
-from ajax_select import urls as ajax_select_urls
 from django.conf import settings
+from django.shortcuts import render
+from django.views.generic import CreateView
+from ajax_select import urls as ajax_select_urls
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -13,6 +16,7 @@ urlpatterns = [
         include('notifications.urls', namespace='notifications')),
 
     url(r'^api/', include('api.urls', namespace='api')),
+    url(r'^wechat/', include('wechat.urls', namespace='wechat')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^security/', include('security.urls', namespace="security")),
     url(r'^library/', include('library.urls', namespace="library")),
