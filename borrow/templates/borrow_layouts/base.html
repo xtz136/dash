@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    {% block header %}{% endblock header %}
+
+    <title>{% block title %}{% endblock title %}</title>
+
+    {% block css %}{% endblock css %}
+
+    <script src="{% static 'vue/dist/vue.js' %}"></script>
+    <script src="{% static 'vuex/dist/vuex.min.js' %}"></script>
+
+    {% block pre_javascript %}{% endblock pre_javascript %}
+  </head>
+  <body>
+    {% block body %}{% endblock body %}
+    {% block csrf %}{% csrf_token %}{% endblock csrf %}
+    {% block javascript %}{% endblock javascript %}
+  </body>
+</html>
