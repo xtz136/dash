@@ -97,6 +97,38 @@ class Company(models.Model):
     national_tax_office = models.CharField(
         verbose_name='国税局', blank=True, max_length=255)
 
+    BASE_TYPE = [('有', '有'), ('无', '无')]
+
+    national_tax_type = models.CharField(
+        verbose_name='国税税种',
+        blank=True,
+        max_length=100,
+        choices=BASE_TYPE)
+
+    individual_tax = models.CharField(
+        verbose_name='个税',
+        blank=True,
+        max_length=100,
+        choices=BASE_TYPE)
+
+    stamp_duty = models.CharField(
+        verbose_name='印花税',
+        blank=True,
+        max_length=100,
+        choices=BASE_TYPE)
+
+    culture_expenses = models.CharField(
+        verbose_name='文化事业费',
+        blank=True,
+        max_length=100,
+        choices=BASE_TYPE)
+
+    sale_tax = models.CharField(
+        verbose_name='消费税',
+        blank=True,
+        max_length=100,
+        choices=BASE_TYPE)
+
     national_tax_phone = models.CharField(
         verbose_name="国税电话", blank=True, max_length=255)
 
@@ -141,10 +173,7 @@ class Company(models.Model):
     TAX_DISKS = (
         ("无", "无"),
         ("百望", "百望"),
-        ("百望*", "百望*"),
         ("航天", "航天"),
-        ("航天*", "航天*"),
-        ("*", "*"),
     )
     tax_disk = models.CharField(
         help_text="带*表示电子发票",

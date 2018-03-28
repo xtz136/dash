@@ -61,7 +61,12 @@ INSTALLED_APPS = [
     'project',
     'accounting',
     'api',
+<<<<<<< HEAD
     'wechat',
+=======
+
+    'borrow',
+>>>>>>> 6c4dadf5af3db4df9f636d9e67838a7d9912009e
 ]
 
 ADMIN_VIEW_PERMISSION_MODELS = [
@@ -86,7 +91,10 @@ ROOT_URLCONF = 'dash.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'appfront', 'dist')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -192,6 +200,10 @@ LOGGING = {
         'crm': {
             'level': 'DEBUG',
             'handlers': ['console']
+        },
+        'borrow': {
+            'level': 'DEBUG',
+            'handlers': ['console']
         }
     },
 }
@@ -254,13 +266,17 @@ ACTSTREAM_SETTINGS = {
 NOTIFICATIONS_USE_JSONFIELD = True
 SIGN_TOKEN = 'this-is-token'
 
-from .local import *
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "appfront/dist/static"),
+]
 
-if DEBUG:
-    INSTALLED_APPS += ('debug_toolbar',)
-    MIDDLEWARE += [
-        'debug_toolbar.middleware.DebugToolbarMiddleware',
-    ]
-    DEBUG_TOOLBAR_CONFIG = {
-        'JQUERY_URL': '//cdn.bootcss.com/jquery/2.2.4/jquery.min.js'
-    }
+# from .local import *
+#
+# if DEBUG:
+#     INSTALLED_APPS += ('debug_toolbar',)
+#     MIDDLEWARE += [
+#         'debug_toolbar.middleware.DebugToolbarMiddleware',
+#     ]
+#     DEBUG_TOOLBAR_CONFIG = {
+#         'JQUERY_URL': '//cdn.bootcss.com/jquery/2.2.4/jquery.min.js'
+#     }

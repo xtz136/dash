@@ -12,7 +12,8 @@ def host_type():
 APP_ROOT = "/data/apps/dash"
 
 
-def root(x): return os.path.join(APP_ROOT, x)
+def root(x):
+    return os.path.join(APP_ROOT, x)
 
 
 VENV_ROOT = root(".venv")

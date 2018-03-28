@@ -21,6 +21,12 @@ urlpatterns = [
     url(r'^security/', include('security.urls', namespace="security")),
     url(r'^library/', include('library.urls', namespace="library")),
     url('^activity/', include('actstream.urls')),
+<<<<<<< HEAD
+=======
+
+    url(r'^', include('crm.urls', namespace="crm")),
+    url(r'^borrow/', include('borrow.urls')),
+>>>>>>> 6c4dadf5af3db4df9f636d9e67838a7d9912009e
 ]
 
 if settings.DEBUG:
