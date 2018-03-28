@@ -61,12 +61,8 @@ INSTALLED_APPS = [
     'project',
     'accounting',
     'api',
-<<<<<<< HEAD
-    'wechat',
-=======
 
     'borrow',
->>>>>>> 6c4dadf5af3db4df9f636d9e67838a7d9912009e
 ]
 
 ADMIN_VIEW_PERMISSION_MODELS = [
