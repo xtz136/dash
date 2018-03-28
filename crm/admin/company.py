@@ -91,6 +91,7 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
                 'stamp_duty',
                 'culture_expenses',
                 'sale_tax',
+                'electronic_invoicing',
                 'tax_username',
                 'tax_password',
                 'added_value_tax',

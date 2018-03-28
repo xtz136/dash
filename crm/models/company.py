@@ -129,6 +129,12 @@ class Company(models.Model):
         max_length=100,
         choices=BASE_TYPE)
 
+    electronic_invoicing = models.CharField(
+        verbose_name='电子发票',
+        blank=True,
+        max_length=100,
+        choices=BASE_TYPE)
+
     national_tax_phone = models.CharField(
         verbose_name="国税电话", blank=True, max_length=255)
 
@@ -176,7 +182,6 @@ class Company(models.Model):
         ("航天", "航天"),
     )
     tax_disk = models.CharField(
-        help_text="带*表示电子发票",
         max_length=100,
         default="无",
         verbose_name="税控盘", choices=TAX_DISKS, blank=True)
