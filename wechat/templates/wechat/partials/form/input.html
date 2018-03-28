@@ -1,0 +1,12 @@
+<div class="weui-cell{% if field.errors %} weui-cell_warn{% endif %}">
+    <div class="weui-cell__hd">
+        <label for="{{ field.id_for_label }}" class="weui-label">{{ field.label }}</label>
+    </div>
+    <div class="weui-cell__bd">
+        <input type={{ type }} id="{{ field.id_for_label }}" name="{{ field.name }}" class="weui-input" value={{ field.value|default_if_none:'' }}>
+    </div>
+
+    {% if field.errors %}
+    <div class="weui-cell_ft"><i class="weui-icon-warn"></i></div>
+    {% endif %}
+</div>

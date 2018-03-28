@@ -1,10 +1,12 @@
 import time
 from django.conf import settings
+from django.http import JsonResponse
 from django.http.response import JsonResponse, HttpResponse, HttpResponseForbidden
 from django.shortcuts import redirect
 from django.contrib.auth import get_user_model
 from django.db import IntegrityError
 
+from api.serializers import UserSerializer
 from wechatpy.oauth import WeChatOAuth
 from rest_framework_jwt.settings import api_settings
 
@@ -22,16 +24,6 @@ def issue_token(user):
         'token': jwt_encode_handler(payload),
         'user': user
     }
-
-
-tpl = '''<html><body>
-<h3>登录成功</h3>
-<script>
-  window.localStorage.setItem('token', '%(token)s');
-  setTimeout(function () {
-    window.location = "/dashboard";
-  }, 2000);
-</script></body></html>'''
 
 
 def authorize(request):
@@ -55,13 +47,8 @@ def authorize(request):
             # may raise
             access_token = client.fetch_access_token(code)
             user_info = client.get_user_info()
-
-            # 用state来关联用户
-            if state and state.isdigit():
-                user = User.objects.get(pk=state)
-            else:
-                user, _ = User.objects.get_or_create(
-                    username='wx_' + access_token['openid'])
+            user, _ = User.objects.get_or_create(
+                username='wx_' + access_token['openid'])
 
             # may raise IntegrityError 微信用户已经绑定了关系
             at, _ = AccessToken.objects.get_or_create(
@@ -71,12 +58,10 @@ def authorize(request):
             # update profile
             user.profile.update_profile(user_info)
             token = issue_token(user)
-            response = HttpResponse(tpl % token)
-            response.set_cookie('token', token)
-            return response
-        except IntegrityError:
-            return HttpResponse('用户已经绑定了微信账号', status=400)
+            return JsonResponse({'token': token['token'],
+                                 'user': UserSerializer(user).data})
         except Exception as e:
-            return HttpResponse('failed {0}'.format(e), status=500)
+            return JsonResponse({'status': 'failed',
+                                 'message': str(e)}, status=400)
 
-    return redirect(client.authorize_url)
+    return JsonResponse({'url': client.authorize_url})

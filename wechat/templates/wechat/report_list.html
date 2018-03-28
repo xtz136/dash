@@ -1,0 +1,86 @@
+{% extends 'wechat/navbar.html' %}
+
+{% block header %}
+<style>
+    .page__hd {
+        padding: 20px;
+    }
+
+    .page__title {
+        font-weight: 400;
+        font-size: 1.3em;
+    }
+
+</style>
+    
+{% endblock header %}
+
+{% block title %} 查报表 {% endblock title %}
+
+{% block panel %}
+
+<div class="page__hd">
+    <h1 class="page__title" height="21px">
+        {{ company}}
+    </h1>
+</div>
+
+<div class="weui-cells weui-cells_form">
+
+<div class="weui-cell">
+
+    <div class="weui-cell__hd">
+        <label for="id_month" class="weui-label">选择报表月份</label>
+    </div>
+    <div class="weui-cell__bd">
+        <input id="id_month" value={{ month }} name="month" class="weui-input" type="month" value=""/>
+    </div>
+    <div class="weui-cell__ft">
+        <button class="weui-vcode-btn" onclick="onMonthSelected();">
+            查找
+        </button>
+    </div>
+</div>
+</div>
+
+
+{% if not user.profile.is_verified  %}
+<p style="margin-top: 8px; padding: 8px;">您当前不是认证客户，不能查看报表。 <a href="{% url 'wechat:apply-create' %}">请点击链接去填写认证资料。</a></p>
+{% endif %}
+
+{% for obj in object_list %}
+<div class="weui-cells__title">{{ obj.date }} </div>
+<div class="weui-cells">
+
+{% for att in obj.attachments.all %}
+<a class="weui-cell weui-cell_access" href="{{ MEDIA_URL }}{{ att.file }}">
+    <div class="weui-cell__hd">
+        <i class="fa fa-file-o" style="font-size:18px;margin-right:4px;display:block" aria-hidden="true"></i>
+    </div>
+    <div class="weui-cell__bd">
+        <p style="font-size: .8em;">{{ att.name }}</p>
+    </div>
+    <div style="font-size: .8em;" class="weui-cell__ft">下载</div>
+</a>
+{% endfor %}
+
+{% empty %}
+<div class="weui-cell">
+    当月没有报表。
+</div>
+</div>
+{% endfor %}
+
+
+<script>
+    function onMonthSelected() {
+        var month = document.getElementById('id_month');
+        if (month.value) {
+            window.location.href = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + 'month=' + month.value;
+        };
+    }
+
+</script>
+    
+{% endblock %}
+    

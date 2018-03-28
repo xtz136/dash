@@ -22,6 +22,18 @@ class SiteConf(SingletonModel):
     wx_appid = models.CharField(blank=True, max_length=255)
     wx_appsecret = models.CharField(blank=True, max_length=255)
     wx_redirect_uri = models.CharField(blank=True, max_length=255)
+    wx_next_url = models.CharField(blank=True, max_length=255)
+
+    # 微信通知模板
+    wx_tpl_report = models.CharField(
+        '微信报表通知模板ID', blank=True, max_length=200)
+    wx_tpl_verify = models.CharField(
+        '微信绑定通知模板ID', blank=True, max_length=200)
 
     class Meta:
         verbose_name = "站点设置"
+
+    @classmethod
+    def get_site_url(cls):
+        conf = cls.get_solo()
+        return 'http://{0}'.format(conf.site_address)
