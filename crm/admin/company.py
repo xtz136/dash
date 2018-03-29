@@ -92,6 +92,8 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
                 'culture_expenses',
                 'sale_tax',
                 'electronic_invoicing',
+                'quota_month',
+                'quota_quarter',
                 'tax_username',
                 'tax_password',
                 'added_value_tax',

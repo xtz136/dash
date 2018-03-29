@@ -8,6 +8,7 @@ from django.views.generic import View
 from django.db.models.query import QuerySet
 from django.core.paginator import Paginator
 from django.core.serializers.json import DjangoJSONEncoder
+from django.contrib.auth.models import User
 
 log = logging.getLogger('borrow.baseapi')
 
@@ -20,6 +21,8 @@ class ModelEncoder(DjangoJSONEncoder):
             return list(obj.values())
         elif isinstance(obj, date):
             return str(obj)
+        elif isinstance(obj, User):
+            return User.get_full_name()
         else:
             super(ModelEncoder, self).default(obj)
 

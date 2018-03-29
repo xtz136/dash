@@ -65,7 +65,7 @@ const date2str = function(date) {
 }
 
 export default {
-  props: ['companyId'],
+  props: ['companyId', 'fff'],
   data() {
     return {
       formItem: {
@@ -126,6 +126,7 @@ export default {
       })
       this.spinShow = true
       console.log('addEntityList', entityList)
+      console.log('fff', this.fff)
       this.$store.dispatch('addEntityList', {entityList})
         .then(() => {
           this.spinShow = false
