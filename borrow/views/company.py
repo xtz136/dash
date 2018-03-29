@@ -8,6 +8,17 @@ class CompanyApiView(ApiView, Pagination):
 
     _search_fields = ('title')
     _default_order = '-id'
+    _list_fields = (
+        'id',
+        'title',
+        'industry',
+        'salesman',
+        'bookkeeper',
+        'taxpayer_type',
+        'license_status',
+        'status',
+        'contactor',
+        'contactor_phone')
 
     def api_list(self, request, args):
         search = Company.objects

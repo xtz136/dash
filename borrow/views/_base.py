@@ -1,25 +1,27 @@
 import json
 import logging
 
+from datetime import date
 from django.db.models import Model
-from django.forms.models import model_to_dict
 from django.http import HttpResponse
 from django.views.generic import View
 from django.db.models.query import QuerySet
 from django.core.paginator import Paginator
 from django.core.serializers.json import DjangoJSONEncoder
 
-log = logging.getLogger('BaseApi')
+log = logging.getLogger('borrow.baseapi')
 
 
-class ModelEncoder(json.JSONEncoder):
+class ModelEncoder(DjangoJSONEncoder):
     def default(self, obj):
         if isinstance(obj, Model):
-            return model_to_dict(obj)
+            return str(obj)
         elif isinstance(obj, QuerySet):
-            return list(obj)
+            return list(obj.values())
+        elif isinstance(obj, date):
+            return str(obj)
         else:
-            return DjangoJSONEncoder.default(self, obj)
+            super(ModelEncoder, self).default(obj)
 
 
 class ApiView(View):
@@ -41,13 +43,17 @@ class ApiView(View):
             return self.failed('api not found.')
 
         log.info(
-            'call api. name => {}, method => {}'.format(type(self).__name__, api_type))
+            'call api. name => {}, method => {}'.format(
+                type(self).__name__, api_type)
+        )
 
         try:
             return method(request, json.loads(api_data))
         except Exception:
             log.exception(
-                'api error. method => {}, data => {}'.format(api_type, api_data))
+                'api error. method => {}, data => {}'.format(
+                    api_type, api_data)
+            )
             return self.failed('api error.')
 
     def success(self, msg, code=0):
@@ -58,7 +64,8 @@ class ApiView(View):
         Return:
             JSON({msg: msg, code: code, status: True})
         """
-        result = json.dumps({'msg': msg, 'code': code, 'status': True}, cls=ModelEncoder)
+        result = json.dumps(
+            {'msg': msg, 'code': code, 'status': True}, cls=ModelEncoder)
         return HttpResponse(result, content_type="application/json")
 
     def failed(self, msg, code=-1):
@@ -69,7 +76,8 @@ class ApiView(View):
         Return:
             JSON({msg: msg, code: code, status: False})
         """
-        result = json.dumps({'msg': msg, 'code': code, 'status': False}, cls=ModelEncoder)
+        result = json.dumps(
+            {'msg': msg, 'code': code, 'status': False}, cls=ModelEncoder)
         return HttpResponse(result, content_type="application/json")
 
 
@@ -80,6 +88,28 @@ class Pagination:
     _page_size = 10
     _search_fields = []
     _default_order = ''
+    _list_fields = []
+
+    def decode(self, object_list):
+        if not self._list_fields:
+            return object_list
+
+        results = []
+
+        for item in object_list:
+            result = {}
+            for key in self._list_fields:
+                if isinstance(key, tuple):
+                    if getattr(item, key[0]):
+                        result[key[0]] = getattr(getattr(item, key[0]), key[1])
+                    else:
+                        result[key[0]] = getattr(item, key[0])
+                else:
+                    result[key] = getattr(item, key)
+
+            results.append(result)
+
+        return results
 
     def pagination(self, request, object_list):
         page_num = request.POST.get('page', 1)
@@ -100,7 +130,7 @@ class Pagination:
         return {
             'count': p.count,
             'page_count': p.num_pages,
-            'datas': page.object_list,
+            'datas': self.decode(page.object_list),
             'page': page.number,
             'has_prev': page.has_previous(),
             'has_next': page.has_next()

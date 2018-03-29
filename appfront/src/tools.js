@@ -1,7 +1,7 @@
 const toReqHeader = function (data, extra = {}) {
   let params = new URLSearchParams()
   for (let key of Object.keys(data)) {
-    params.append(key, data[key])
+    params.append(key, data[key] instanceof Object ? JSON.stringify(data[key]) : data[key])
   }
   extra['Accept'] = 'application/json'
   extra['Content-Type'] = 'application/x-www-form-urlencoded; charset=utf-8'
