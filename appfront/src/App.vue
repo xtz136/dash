@@ -54,18 +54,18 @@ html, body {
                 <Menu mode="horizontal" theme="dark" active-name="1">
                     <div class="layout-logo"></div>
                     <div class="layout-nav">
-                        <MenuItem name="1"> <Icon type="ios-navigate"></Icon> <router-link to="/list-company">借阅</router-link> </MenuItem>
+                        <MenuItem name="1"> <Icon type="ios-navigate"></Icon> <router-link to="/company">资料借用</router-link> </MenuItem>
                         <MenuItem name="2"> <Icon type="ios-keypad"></Icon> <a target="_blank" :href="$store.state.config.adminUrl">管理后台</a> </MenuItem>
                     </div>
                 </Menu>
             </Header>
             <Content class="content">
                 <Breadcrumb class="breadcrumb">
-                    <BreadcrumbItem>借阅</BreadcrumbItem>
+                    <BreadcrumbItem v-for="bc in bcs" :key="bc.id">{{ bc.title }}</BreadcrumbItem>
                 </Breadcrumb>
                 <Card>
                     <div style="min-height: 200px;">
-                        <router-view></router-view>
+                    <router-view></router-view>
                     </div>
                 </Card>
             </Content>
@@ -76,5 +76,10 @@ html, body {
 
 <script>
 export default {
+  computed: {
+    bcs () {
+      return this.$store.getters.breadcrumb
+    }
+  }
 }
 </script>

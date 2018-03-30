@@ -8,6 +8,7 @@ export default {
   data () {
     return {
       columns: [
+        {type: 'index', align: 'center'},
         {title: '标题', key: 'title'},
         {title: '所属行业', key: 'industry'},
         {title: '业务员', key: 'saleman'},
@@ -22,11 +23,25 @@ export default {
           align: 'center',
           render: (h, params) => {
             return h('div', [
-              h('Button', {props: {type: 'primary', size: 'small'}}, '资料管理')
+              h('Button', {
+                props: {type: 'primary', size: 'small'},
+                style: {marginRight: '5px'},
+                on: {
+                  click: () => {
+                    this.toListEntity(params.row.id)
+                  }
+                }
+              }, '资料管理')
             ])
           }
         }
       ]
+    }
+  },
+  methods: {
+    toListEntity (companyId) {
+      console.log('companyId', companyId, 'type', typeof companyId)
+      this.$router.push({name: 'ListEntity', params: {companyId}})
     }
   },
   computed: {
@@ -39,3 +54,6 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+</style>

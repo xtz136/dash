@@ -129,11 +129,18 @@ class Company(models.Model):
         max_length=100,
         choices=BASE_TYPE)
 
+    ELECTRONIC_INVOICING = BASE_TYPE + [('手撕发票', '手撕发票')]
     electronic_invoicing = models.CharField(
         verbose_name='电子发票',
         blank=True,
         max_length=100,
-        choices=BASE_TYPE)
+        choices=ELECTRONIC_INVOICING)
+
+    quota_month = models.CharField(
+        verbose_name="定额(月)", blank=True, max_length=255)
+
+    quota_quarter = models.CharField(
+        verbose_name="定额(季)", blank=True, max_length=255)
 
     national_tax_phone = models.CharField(
         verbose_name="国税电话", blank=True, max_length=255)
