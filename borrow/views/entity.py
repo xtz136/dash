@@ -6,11 +6,11 @@ class EntityApiView(ApiView, Pagination):
 
     """有关实体清单的接口"""
 
-    _search_fields = ('name')
+    _search_fields = ()
     _default_order = '-id'
     _list_fields = ('id', 'name')
 
-    def api_list(self, request, args):
-        search = Entity.objects
-        result = self.pagination(request, search)
+    def api_filter(self, request, args):
+        search = Entity.objects.all()
+        result = self.decode(search)
         return self.success(result)

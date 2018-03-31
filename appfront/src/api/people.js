@@ -1,5 +1,5 @@
 import BaseApi from './base.js'
-import {createFakePageData} from '../tools.js'
+import {createFakeData, fitData} from '../tools.js'
 
 const datas = [
   {id: 1, first_name: '雇员1', last_name: ''},
@@ -9,23 +9,22 @@ const datas = [
 ]
 
 class PeopleApi extends BaseApi {
-  fakeApiData (data) {
-    switch (data.type) {
+  fakeApiData (args) {
+    switch (args.type) {
       case 'api_filter':
-        return createFakePageData(datas.filter(x => x.first_name.includes(data.data.name)))
+        return createFakeData(datas.filter(x => x.first_name.includes(args.name)))
       default:
         return {status: false, code: -100, msg: ''}
     }
   }
 
   genCustomField (data) {
-    return Object.assign({name: `${data.first_name} ${data.last_name}`}, data)
+    return Object.assign({name: `${data.last_name}${data.first_name}`}, data)
   }
 
-  filter (data) {
-    return this.fetch({type: 'api_filter', data})
-      .then(x => x.msg)
-      .then(x => Object({datas: x.datas.map(this.genCustomField)}, x))
+  filter (args) {
+    return this.fetch({type: 'api_filter', ...args})
+      .then(fitData.bind(null, 'msg', this.genCustomField))
   }
 }
 

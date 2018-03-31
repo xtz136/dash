@@ -1,11 +1,11 @@
 import BaseApi from './base.js'
-import {createFakePageData} from '../tools.js'
+import {createFakeData} from '../tools.js'
 
 class EntityApi extends BaseApi {
-  fakeApiData (data) {
-    switch (data.type) {
-      case 'api_list':
-        return createFakePageData([
+  fakeApiData (args) {
+    switch (args.type) {
+      case 'api_filter':
+        return createFakeData([
           {id: 1, name: '身份证'},
           {id: 2, name: '护照'},
           {id: 3, name: '证明'}
@@ -15,9 +15,8 @@ class EntityApi extends BaseApi {
     }
   }
 
-  list () {
-    return this.fetch({type: 'api_list'})
-      .then(x => x.msg)
+  filter () {
+    return this.fetch({type: 'api_filter'})
   }
 }
 

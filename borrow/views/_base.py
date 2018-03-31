@@ -93,6 +93,13 @@ class Pagination:
     _default_order = ''
     _list_fields = []
 
+    def get_filter_query(self, args):
+        safe_search_fields = {}
+        for field, replaceField in self._search_fields:
+            if args.get(field):
+                safe_search_fields[replaceField] = args[field]
+        return safe_search_fields
+
     def decode(self, object_list):
         if not self._list_fields:
             return object_list
@@ -101,31 +108,37 @@ class Pagination:
 
         for item in object_list:
             result = {}
-            for key in self._list_fields:
-                if isinstance(key, tuple):
-                    if getattr(item, key[0]):
-                        result[key[0]] = getattr(getattr(item, key[0]), key[1])
-                    else:
-                        result[key[0]] = getattr(item, key[0])
-                else:
-                    result[key] = getattr(item, key)
+            for skey in self._list_fields:
+                dkey = skey
+                if isinstance(skey, tuple):
+                    skey, dkey = skey
+
+                sattr = None
+                if '#' in skey:
+                    skey, sattr = skey.split('#', 1)
+
+                source = getattr(item, skey)
+                if sattr is not None:
+                    source = getattr(source, sattr)
+
+                result[dkey] = source
 
             results.append(result)
 
         return results
 
-    def pagination(self, request, object_list):
-        page_num = request.POST.get('page', 1)
+    def pagination(self, args, object_list):
+        page_num = args.get('page', 1)
         try:
             page_num = int(page_num)
         except Exception:
             page_num = 1
 
-        order_by = request.POST.get('order_by', self._default_order)
+        order_by = args.get('order_by', self._default_order)
         if order_by:
             object_list = object_list.order_by(order_by)
 
-        page_size = request.POST.get('page_size', self._page_size)
+        page_size = args.get('page_size', self._page_size)
 
         p = Paginator(object_list, page_size)
         page = p.page(page_num)

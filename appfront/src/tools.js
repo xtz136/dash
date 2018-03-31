@@ -16,7 +16,7 @@ const toReqHeader = function (data, extra = {}) {
 /**
  * 自定义fetch函数，支持csrf
  */
-const myfetch = function (url, data = {}, options = {}) {
+const myfetch = function (url, {type, ...data}, options = {}) {
   let defaultOpt = {
     method: 'POST',
     cache: 'no-cache',
@@ -25,7 +25,7 @@ const myfetch = function (url, data = {}, options = {}) {
   let headers = {}
   let tokenInput = document.querySelector('input[name=csrfmiddlewaretoken]')
 
-  options = toReqHeader(data, options)
+  options = toReqHeader({type, data}, options)
 
   if (tokenInput) {
     headers['X-CSRFToken'] = tokenInput.value
@@ -41,19 +41,67 @@ const myfetch = function (url, data = {}, options = {}) {
 /**
  * 方便构造测试数据
  */
-const createFakePageData = function (datas) {
+const createFakePageData = function (datas, count) {
   return {
     status: true,
     code: 0,
     msg: {
-      count: 1,
+      count: count || datas.length,
       page_count: 1,
       page: 1,
       has_prev: false,
       has_next: false,
-      datas: datas
+      datas: copy(datas)
     }
   }
 }
 
-export {myfetch, createFakePageData}
+/**
+ * 方便构造测试数据
+ */
+const createFakeData = function (datas) {
+  return {
+    status: true,
+    code: 0,
+    msg: copy(datas)
+  }
+}
+
+/**
+ * 方便修改接口的返回的列表
+ */
+const fitData = function(path, cb, data) {
+  const paths = path.split('.')
+  const [last] = paths.slice(-1)
+  const maybe = paths.slice(0, -1).reduce((a, b) => a ? a[b] : null, data)
+  if (maybe) {
+    maybe[last] = maybe[last].map(cb)
+  }
+  return data
+}
+
+/**
+ * 复制 object 类型
+ */
+const copy = function(source) {
+  if (typeof source === 'object') {
+    if (source.length) {
+      return source.map(copy)
+    } else {
+      return {...source}
+    }
+  }
+
+  return source
+}
+
+/**
+ * 将日期格式转为后端可以识别的格式
+ */
+const date2str = function(date) {
+  return date
+    ? `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+    : date
+}
+
+export {myfetch, createFakePageData, createFakeData, fitData, date2str}
