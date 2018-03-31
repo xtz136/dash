@@ -54,8 +54,8 @@ class ApiView(View):
             return method(request, json.loads(api_data))
         except Exception:
             log.exception(
-                'api error. method => {}, data => {}'.format(
-                    api_type, api_data)
+                'api error. api => {}, method => {}, data => {}'.format(
+                    str(self.__class__), api_type, api_data)
             )
             return self.failed('api error.')
 
