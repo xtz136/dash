@@ -1,9 +1,8 @@
 """dash URL Configuration """
 from django.conf.urls import url, include
+from django.views.generic.base import RedirectView
 from django.contrib import admin
 from django.conf import settings
-from django.shortcuts import render
-from django.views.generic import CreateView
 from ajax_select import urls as ajax_select_urls
 
 
@@ -22,8 +21,10 @@ urlpatterns = [
     url(r'^library/', include('library.urls', namespace="library")),
     url('^activity/', include('actstream.urls')),
 
-    url(r'^', include('crm.urls', namespace="crm")),
     url(r'^borrow/', include('borrow.urls')),
+    url(r'^index/', RedirectView.as_view(url='/borrow/')),
+
+    url(r'^', include('crm.urls', namespace="crm")),
 ]
 
 if settings.DEBUG:
