@@ -2,6 +2,14 @@
 html, body {
     height: 100%;
 }
+
+.gap-top {
+  margin-top: 1em;
+}
+
+.gap-buttom {
+  margin-buttom: 1em;
+}
 </style>
 
 <style scoped>
@@ -16,13 +24,12 @@ html, body {
     height: 100%;
 }
 .layout-logo{
-    width: 100px;
-    height: 30px;
+    width: 60px;
+    height: 60px;
     background: #5b6270;
     border-radius: 3px;
     float: left;
     position: relative;
-    top: 15px;
     left: 20px;
 }
 .layout-nav{
@@ -52,7 +59,7 @@ html, body {
         <Layout>
             <Header>
                 <Menu mode="horizontal" theme="dark" active-name="1">
-                    <div class="layout-logo"></div>
+                    <img class="layout-logo" :src="$store.state.config.logoImg" />
                     <div class="layout-nav">
                         <MenuItem name="1"> <Icon type="ios-navigate"></Icon> <router-link to="/company">资料借用</router-link> </MenuItem>
                         <MenuItem name="2"> <Icon type="ios-keypad"></Icon> <a target="_blank" :href="$store.state.config.adminUrl">管理后台</a> </MenuItem>
@@ -69,7 +76,7 @@ html, body {
                     </div>
                 </Card>
             </Content>
-            <Footer class="layout-footer-center">2017-2018 &copy; nobody</Footer>
+            <Footer class="layout-footer-center">2018 &copy; {{ $store.state.config.companyName }}</Footer>
         </Layout>
     </div>
 </template>

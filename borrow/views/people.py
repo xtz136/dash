@@ -16,5 +16,5 @@ class PeopleApiView(ApiView, Pagination):
             first_name__contains=args['name']) | Q(
             last_name__contains=args['name'])
         search = User.objects.filter(cond)
-        result = self.pagination(request, search)
+        result = self.decode(search)
         return self.success(result)

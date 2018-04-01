@@ -1,38 +1,54 @@
 import BaseApi from './base.js'
-import {createFakePageData} from '../tools.js'
+import {createFakePageData, createFakeData} from '../tools.js'
+
+const orderId = 'YH201804010010'
 
 const datas = [
-  {id: 1, entity: '证明', amount: 1, signer: 'admin', sign_date: '2018-03-08', borrower: '雇员1', borrow_date: '2018-03-11', revert_borrow_date: '2018-04-11', revert_date: '2018-04-23', status: '寄存', descript: 'test', company_id: '1'},
-  {id: 2, entity: '护照', amount: 2, signer: '雇员2', sign_date: '2018-03-08', borrower: '雇员1', borrow_date: '2018-03-11', revert_borrow_date: '2018-04-11', revert_date: '2018-04-23', status: '归还', descript: 'test', company_id: '2'}
+  {id: 1, entity: '证明', amount: 1, signer: 'admin', sign_date: '2018-03-08', borrower: '雇员1', borrow_date: '2018-03-11', revert_borrow_date: '2018-04-11', revert_date: '2018-04-23', status: '寄存', descript: 'test', entity_id: 3, signer_id: 1, borrower_id: 2, company_id: 1},
+  {id: 2, entity: '护照', amount: 2, signer: '雇员2', sign_date: '2018-03-08', borrower: '雇员1', borrow_date: '2018-03-11', revert_borrow_date: '2018-04-11', revert_date: '2018-04-23', status: '归还', descript: 'test', entity_id: 2, signer_id: 3, borrower_id: 2, company_id: 1, order_id: orderId},
+  {id: 3, entity: '护照', amount: 2, signer: '雇员2', sign_date: '2018-03-08', borrower: '雇员1', borrow_date: '2018-03-11', revert_borrow_date: '2018-04-11', revert_date: '2018-04-23', status: '归还', descript: 'test', entity_id: 2, signer_id: 3, borrower_id: 2, company_id: 2, order_id: orderId}
 ]
 
 class EntityListApi extends BaseApi {
-  fakeApiData (data) {
-    switch (data.type) {
-      case 'api_list':
-        return createFakePageData(datas)
+  fakeApiData (args) {
+    switch (args.type) {
       case 'api_filter':
-        return createFakePageData(datas.filter(x => x.company_id === data.data.companyId))
-      case 'api_add':
-        return createFakePageData(true)
+        return createFakePageData(datas.filter(x => x.company_id === args.company_id && x.status === args.status))
+      case 'api_filter_all':
+        return createFakeData(datas.filter(x => x.company_id === args.company_id && x.status !== args.status))
+      case 'api_update':
+        datas.push(args.entityList)
+        return createFakeData(true)
+      case 'api_revert':
+        const found = datas.filter(x => args.selected.includes(x.id))
+        if (found) {
+          found.forEach(x => {
+            x['status'] = '归还'
+            x['order_id'] = orderId
+          })
+          return createFakeData(orderId)
+        } else {
+          return this.fakeApiData({type: 'default'})
+        }
       default:
         return {status: false, code: -100, msg: ''}
     }
   }
 
-  list () {
-    return this.fetch({type: 'api_list'})
-      .then(x => x.msg)
+  filter (args) {
+    return this.fetch({type: 'api_filter', ...args})
   }
 
-  filter (data) {
-    return this.fetch({type: 'api_filter', data})
-      .then(x => x.msg)
+  filterAll (args) {
+    return this.fetch({type: 'api_filter_all', ...args})
   }
 
-  add (data) {
-    return this.fetch({type: 'api_add', data})
-      .then(x => x.msg)
+  update (args) {
+    return this.fetch({type: 'api_update', ...args})
+  }
+
+  revert (args) {
+    return this.fetch({type: 'api_revert', ...args})
   }
 }
 

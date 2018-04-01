@@ -4,8 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import BaseApi from './api/base'
-import getStore from './store'
-import Vuex from 'vuex'
+import store from './store'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 
@@ -14,12 +13,11 @@ BaseApi.prototype._devMode = window._devMode || false
 
 Vue.config.productionTip = false
 Vue.use(iView)
-Vue.use(Vuex)
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  store: getStore(),
+  store: store,
   router,
   components: { App },
   template: '<App />'

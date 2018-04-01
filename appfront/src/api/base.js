@@ -14,6 +14,11 @@ class BaseApi {
     return {status: true, msg: '', code: 0}
   }
 
+  _fakeApiData (...args) {
+    console.log('fetch api: ', this.constructor.name, args)
+    return this.fakeApiData(...args)
+  }
+
   /**
    * 向后端请求接口的方法
    *
@@ -21,7 +26,7 @@ class BaseApi {
    */
   fetch(data = {}, header = {}) {
     return this._devMode
-      ? Promise.resolve(this.fakeApiData(data, header))
+      ? Promise.resolve(this._fakeApiData(data, header))
       : myfetch(this._url, data, header).then(toJSON)
   }
 }

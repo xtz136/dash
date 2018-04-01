@@ -1,5 +1,5 @@
 from django.db import models
-from crm.models import company, people
+from crm.models import company
 from django.contrib.auth.models import User
 from .entity import Entity
 
@@ -8,6 +8,7 @@ class EntityList(models.Model):
 
     """代表了实体清单
     Args:
+        order_id(str): 代表所属归还单的编号
         company(Company): 关联某个公司
         entity(Entity): 关联某个实体
         amount(int): 数量
@@ -20,6 +21,7 @@ class EntityList(models.Model):
         status(str): 状态
         descript(str): 备注
     """
+    order_id = models.CharField(verbose_name="归还单编号", max_length=100, blank=True)
 
     company = models.ForeignKey(
         company.Company,
