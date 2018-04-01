@@ -71,11 +71,11 @@ export default {
         entity_id: '',
         amount: 0,
         signer_id: '',
-        sign_date: '',
-        borrower_id: '',
-        borrow_date: '',
-        revert_borrow_date: '',
-        revert_date: '',
+        sign_date: undefined,
+        borrower_id: undefined,
+        borrow_date: undefined,
+        revert_borrow_date: undefined,
+        revert_date: undefined,
         status: '寄存',
         descript: ''
       },
@@ -110,14 +110,16 @@ export default {
       }
     }()),
     addEntity () {
+      console.log('before', this.formItem)
       const entityList = Object.assign({}, this.formItem, {
-        sign_date: date2str(this.formItem.sign_date),
-        borrow_date: date2str(this.formItem.borrow_date),
-        revert_borrow_date: date2str(this.formItem.revert_borrow_date),
-        revert_date: date2str(this.formItem.revert_date),
+        sign_date: date2str(this.formItem.sign_date || undefined),
+        borrow_date: date2str(this.formItem.borrow_date || undefined),
+        revert_borrow_date: date2str(this.formItem.revert_borrow_date || undefined),
+        revert_date: date2str(this.formItem.revert_date || undefined),
         company_id: this.companyId,
         id: this.entityListId
       })
+      console.log('after', this.formItem)
       return this.$store.dispatch(UPDATE_ENTITYS, {entityList})
     },
     addEntityAndBack () {
