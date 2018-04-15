@@ -16,8 +16,12 @@ class CompanyApi extends BaseApi {
         if (args.title) {
           datas = datas.filter(x => x.title.includes(args.title))
         }
+        if (args.id) {
+          datas = datas.filter(x => x.id === args.id)
+        }
         const count = datas.length
-        const start = pageSize * (args.page - 1)
+        const page = args.page || 1
+        const start = pageSize * (page - 1)
         const result = datas.slice(start, start + pageSize)
         return createFakePageData(result, count)
       default:

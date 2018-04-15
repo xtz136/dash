@@ -71,6 +71,10 @@ const createFakeData = function (datas) {
  * 方便修改接口的返回的列表
  */
 const fitData = function(path, cb, data) {
+  if (data.code === -1) {
+    return data
+  }
+
   const paths = path.split('.')
   const [last] = paths.slice(-1)
   const maybe = paths.slice(0, -1).reduce((a, b) => a ? a[b] : null, data)
@@ -104,4 +108,24 @@ const date2str = function(date) {
     : date
 }
 
-export {myfetch, createFakePageData, createFakeData, fitData, date2str}
+/**
+ * 清洗归还单的数据结构
+ */
+const object2entitys = function(obj) {
+  return {
+    id: obj.id,
+    company_id: parseInt(obj.companyId),
+    amount: obj.amount,
+    borrower_id: obj.borrower_id,
+    entity_id: obj.entity_id,
+    signer_id: obj.signer_id,
+    sign_date: date2str(obj.sign_date || undefined),
+    borrow_date: date2str(obj.borrow_date || undefined),
+    revert_borrow_date: date2str(obj.revert_borrow_date || undefined),
+    revert_date: date2str(obj.revert_date || undefined),
+    descript: obj.descript,
+    status: obj.status
+  }
+}
+
+export {myfetch, createFakePageData, createFakeData, fitData, date2str, object2entitys}

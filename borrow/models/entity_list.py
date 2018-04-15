@@ -2,6 +2,7 @@ from django.db import models
 from crm.models import company
 from django.contrib.auth.models import User
 from .entity import Entity
+from .revert_list import RevertList
 
 
 class EntityList(models.Model):
@@ -21,7 +22,11 @@ class EntityList(models.Model):
         status(str): 状态
         descript(str): 备注
     """
-    order_id = models.CharField(verbose_name="归还单编号", max_length=100, blank=True)
+    order_id = models.ForeignKey(
+        RevertList,
+        on_delete=models.SET_NULL,
+        null=True,
+        verbose_name="归还单编号")
 
     company = models.ForeignKey(
         company.Company,

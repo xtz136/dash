@@ -41,14 +41,15 @@ class ApiView(View):
         api_type = request.POST.get('type', 'api_empty')
         api_data = request.POST.get('data', None) or '{}'
 
-        method = getattr(self, api_type, None)
-        if method is None:
-            return self.failed('api not found.')
-
         log.info(
             'call api. name => {}, method => {}'.format(
                 type(self).__name__, api_type)
         )
+
+        method = getattr(self, api_type, None)
+        if method is None:
+            log.error('api not found.')
+            return self.failed('api not found.')
 
         try:
             return method(request, json.loads(api_data))
@@ -82,6 +83,28 @@ class ApiView(View):
         result = json.dumps(
             {'msg': msg, 'code': code, 'status': False}, cls=ModelEncoder)
         return HttpResponse(result, content_type="application/json")
+
+
+class CheckPerm:
+    @classmethod
+    def check(_, perm_name, error_msg='你没有权限执行这个操作'):
+        def _(func):
+            def inner(api_cls, request, args):
+                if not request.user.has_perm(perm_name):
+                    log.error('user(%s) request perm(%s) not in %s' % (
+                        request.user.username,
+                        perm_name,
+                        request.user.get_all_permissions()
+                    ))
+                    return api_cls.failed(error_msg)
+                else:
+                    log.debug('user(%s) has perm(%s)' % (
+                        request.user.username,
+                        perm_name,
+                    ))
+                    return func(api_cls, request, args)
+            return inner
+        return _
 
 
 class Pagination:
