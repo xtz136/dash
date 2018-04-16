@@ -14,13 +14,14 @@ class Base:
         self.change = '{package}.{perm}_{obj}'.format(perm='change', **default)
         self.delete = '{package}.{perm}_{obj}'.format(perm='delete', **default)
 
+        self.view_codename = '{perm}_{obj}'.format(perm='view', **default)
+        self.add_codename = '{perm}_{obj}'.format(perm='add', **default)
+        self.change_codename = '{perm}_{obj}'.format(perm='change', **default)
+        self.delete_codename = '{perm}_{obj}'.format(perm='delete', **default)
+
 
 class Company(Base):
     package = 'crm'
-
-
-class Entity(Base):
-    package = 'borrow'
 
 
 class EntityList(Base):
@@ -32,6 +33,5 @@ class RevertList(Base):
 
 
 company_perm = Company()
-entity_perm = Entity()
 entity_list_perm = EntityList()
 revert_list_perm = RevertList()

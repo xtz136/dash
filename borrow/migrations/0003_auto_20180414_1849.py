@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('crm', '0112_auto_20180329_2333'),
-        ('borrow', '0002_auto_20180331_2311'),
+        ('borrow', 'remove_old_entitylist'),
     ]
 
     operations = [

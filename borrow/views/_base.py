@@ -49,7 +49,7 @@ class ApiView(View):
         method = getattr(self, api_type, None)
         if method is None:
             log.error('api not found.')
-            return self.failed('api not found.')
+            return self.failed('api not found.', -10)
 
         try:
             return method(request, json.loads(api_data))
@@ -58,7 +58,7 @@ class ApiView(View):
                 'api error. api => {}, method => {}, data => {}'.format(
                     str(self.__class__), api_type, api_data)
             )
-            return self.failed('api error.')
+            return self.failed('api error.', -11)
 
     def success(self, msg, code=0):
         """ 接口执行成功
@@ -96,7 +96,7 @@ class CheckPerm:
                         perm_name,
                         request.user.get_all_permissions()
                     ))
-                    return api_cls.failed(error_msg)
+                    return api_cls.failed(error_msg, -100)
                 else:
                     log.debug('user(%s) has perm(%s)' % (
                         request.user.username,

@@ -1,26 +1,18 @@
-import json
 import pytest
 
-from django.test import RequestFactory
-from django.urls import reverse
-from mixer.backend.django import mixer
-
 from ..views import company
+from ..perm_types import company_perm
+from .test_base import BaseApiView
 
 pytestmark = pytest.mark.django_db
 
 
-class TestCompanyApiView(object):
+class TestCompanyApiView(BaseApiView):
 
-    def test_api_list(self):
-        req = RequestFactory().post(reverse('api.company'), {'type': 'api_list'})
-        user = mixer.blend('auth.User')
-        req.user = user
-        resp = company.CompanyApiView.as_view()(req)
-        assert resp.status_code == 200
-
-        data = json.loads(resp.content)
-        assert data['status'], data['msg']
-
-        result = data['msg']
-        assert result.get('count', -1) >= 0, '获取分页数据失败'
+    _view = company.CompanyApiView
+    _view_url = 'api.company'
+    _perm = company_perm
+    _test_api_chain = (
+        ('api_list', 'view_codename', True),
+        ('api_filter', 'view_codename', True),
+    )
