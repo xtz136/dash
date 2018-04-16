@@ -27,7 +27,7 @@ def migrate():
 
 
 def install_depends():
-    run('{0} install -r ./requirements/prod.txt'.format(PIP))
+    run('{0} install - r . / requirements / prod.txt'.format(PIP))
 
 
 def restart():
@@ -40,6 +40,11 @@ def publish():
         install_depends()
         migrate()
         restart()
+        collect_static()
+
+
+def collect_static():
+    run('{0} {1} collectstatic -l --no-input'.format(PYTHON, MANAGE))
 
 
 def reload():
