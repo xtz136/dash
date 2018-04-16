@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from django.views.generic import RedirectView
-from .views import index, company, people, entity_list, entity
+from .views import index, company, people, entity_list, entity, revert_list
 
 urlpatterns = [
     url(r'^$', RedirectView.as_view(pattern_name="index")),
@@ -12,4 +12,6 @@ urlpatterns = [
         entity.EntityApiView.as_view(), name='api.entity'),
     url(r'^api/entity_list$',
         entity_list.EntityListApiView.as_view(), name='api.entity_list'),
+    url(r'^api/revert_list$',
+        revert_list.RevertListApiView.as_view(), name='api.ervert_list'),
 ]

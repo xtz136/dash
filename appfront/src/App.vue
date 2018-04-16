@@ -26,11 +26,20 @@ html, body {
 .layout-logo{
     width: 60px;
     height: 60px;
+    border-radius: 3px;
+    float: left;
+    position: relative;
+    left: 20px;
+}
+.layout-company-name{
+    height: 60px;
     background: #5b6270;
     border-radius: 3px;
     float: left;
     position: relative;
     left: 20px;
+    color: white;
+    padding: 0 .5em;
 }
 .layout-nav{
     width: 420px;
@@ -42,9 +51,6 @@ html, body {
 }
 .layout .content {
     padding: 0 50px;
-}
-.layout .breadcrumb {
-    margin: 20px 0;
 }
 .ivu-menu-item a {
     color: rgba(255,255,255,.7);
@@ -60,22 +66,15 @@ html, body {
             <Header>
                 <Menu mode="horizontal" theme="dark" active-name="1">
                     <img class="layout-logo" :src="$store.state.config.logoImg" />
+                    <div class="layout-company-name">{{ $store.state.config.companyName }}</div>
                     <div class="layout-nav">
-                        <MenuItem name="1"> <Icon type="ios-navigate"></Icon> <router-link to="/company">资料借用</router-link> </MenuItem>
-                        <MenuItem name="2"> <Icon type="ios-keypad"></Icon> <a target="_blank" :href="$store.state.config.adminUrl">管理后台</a> </MenuItem>
+                        <MenuItem name="1"> <Icon type="ios-navigate"></Icon> <router-link to="/company">资料录入</router-link> </MenuItem>
+                        <MenuItem name="2"> <Icon type="ios-navigate"></Icon> <router-link to="/revertentitys">资料归还单</router-link> </MenuItem>
+                        <MenuItem name="3"> <Icon type="ios-keypad"></Icon> <a target="_blank" :href="$store.state.config.adminUrl">管理后台</a> </MenuItem>
                     </div>
                 </Menu>
             </Header>
-            <Content class="content">
-                <Breadcrumb class="breadcrumb">
-                    <BreadcrumbItem v-for="bc in bcs" :key="bc.id">{{ bc.title }}</BreadcrumbItem>
-                </Breadcrumb>
-                <Card>
-                    <div style="min-height: 200px;">
-                    <router-view></router-view>
-                    </div>
-                </Card>
-            </Content>
+            <router-view></router-view>
             <Footer class="layout-footer-center">2018 &copy; {{ $store.state.config.companyName }}</Footer>
         </Layout>
     </div>
@@ -84,9 +83,6 @@ html, body {
 <script>
 export default {
   computed: {
-    bcs () {
-      return this.$store.getters.breadcrumb
-    }
   }
 }
 </script>

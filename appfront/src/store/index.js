@@ -5,19 +5,21 @@ import CompanyApi from '../api/company'
 import EntityListApi from '../api/entity_list'
 import EntityApi from '../api/entity'
 import PeopleApi from '../api/people'
+import RevertListApi from '../api/revert_list.js'
 
 import notify from './notify'
 import pagination from './pagination'
+import breadcrumb from './breadcrumb'
 import config from './config'
 
 import {
-  PUSH_BREADCRUMB,
-  POP_BREADCRUMB,
   FETCH_COMPANY_LIST,
   FILTER_ENTITY_LIST,
   FILTER_ENTITYS_LIST,
   FILTER_ENTITYS_ALL_LIST,
+  GET_ENTITYS_REVERT,
   REVERT_ENTITYS,
+  FILTER_REVERTLIST,
   FILTER_PEOPLES_LIST,
   UPDATE_ENTITYS,
   SHOW_NOTIFY
@@ -53,9 +55,7 @@ const company = {
     companyList (state) {
       return state.companyList
     },
-    companyById: (state) => (id) => {
-      return state.companyList.find(x => x.id === id)
-    }
+    companyById: (state) => (id) => state.companyList.find(x => x.id === id)
   },
   mutations: {
     [FETCH_COMPANY_LIST] (state, datas) {
@@ -69,6 +69,31 @@ const company = {
           commit(FETCH_COMPANY_LIST, result.msg.datas)
           return result
         })
+    }
+  }
+}
+
+const revertList = {
+  state: {
+    revertList: [],
+    revertEnttiyList: []
+  },
+  getters: {
+    revertList (state) {
+      return state.revertList
+    }
+  },
+  mutations: {
+    [FILTER_REVERTLIST] (state, datas) {
+      Vue.set(state, 'revertList', datas)
+    }
+  },
+  actions: {
+    [FILTER_REVERTLIST] ({commit}, payload) {
+      return withErrorP(RevertListApi.filter(payload)).then(result => {
+        commit(FILTER_REVERTLIST, result.msg.datas)
+        return result
+      })
     }
   }
 }
@@ -96,6 +121,7 @@ const entity = {
 
       return EntityApi.filter().then(result => {
         commit(FILTER_ENTITY_LIST, result.msg)
+        return result
       })
     }
   }
@@ -121,6 +147,9 @@ const entitys = {
           Vue.set(x, 'status', '归还')
         })
       }
+    },
+    [GET_ENTITYS_REVERT] (state, datas) {
+      Vue.set(state, 'entitys', datas)
     }
   },
   actions: {
@@ -145,6 +174,13 @@ const entitys = {
       return withErrorP(EntityListApi.revert(payload))
         .then(result => {
           commit(REVERT_ENTITYS, payload)
+          return result
+        })
+    },
+    [GET_ENTITYS_REVERT] ({commit}, payload) {
+      return withErrorP(EntityListApi.getRevert(payload))
+        .then(result => {
+          commit(GET_ENTITYS_REVERT, result.msg)
           return result
         })
     }
@@ -175,6 +211,7 @@ const people = {
   }
 }
 
+/*
 const breadcrumb = {
   state: {
     breadcrumb: []
@@ -193,9 +230,10 @@ const breadcrumb = {
     }
   }
 }
+*/
 
 const store = new Vuex.Store({
-  modules: {config, company, entity, entitys, people, breadcrumb, notify, pagination},
+  modules: {config, company, entity, entitys, people, revertList, breadcrumb, notify, pagination},
   strict: true
 })
 

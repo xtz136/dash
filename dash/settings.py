@@ -68,6 +68,8 @@ INSTALLED_APPS = [
 ADMIN_VIEW_PERMISSION_MODELS = [
     'auth.User',
     'crm.Company',
+    'borrow.EntityList',
+    'borrow.RevertList'
 ]
 
 MIDDLEWARE = [

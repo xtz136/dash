@@ -39,7 +39,8 @@ export default {
                     this.toListEntity(params.row.id)
                   }
                 }
-              }, '资料管理'),
+              }, '资料管理')
+              /*
               h('Button', {
                 props: {type: 'info', size: 'small'},
                 on: {
@@ -48,6 +49,7 @@ export default {
                   }
                 }
               }, '归还记录')
+              */
             ])
           }
         }
