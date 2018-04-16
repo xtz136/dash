@@ -13,5 +13,5 @@ urlpatterns = [
     url(r'^api/entity_list$',
         entity_list.EntityListApiView.as_view(), name='api.entity_list'),
     url(r'^api/revert_list$',
-        revert_list.RevertListApiView.as_view(), name='api.ervert_list'),
+        revert_list.RevertListApiView.as_view(), name='api.revert_list'),
 ]
