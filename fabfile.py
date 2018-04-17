@@ -27,7 +27,7 @@ def migrate():
 
 
 def install_depends():
-    run('{0} install - r . / requirements / prod.txt'.format(PIP))
+    run('{0} install - r ./requirements/prod.txt'.format(PIP))
 
 
 def restart():
