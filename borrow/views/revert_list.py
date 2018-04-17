@@ -16,6 +16,7 @@ class RevertListApiView(ApiView, Pagination):
         'id',
         'order_id',
         'company',
+        'company_id',
         'revert_borrow_date')
 
     @CheckPerm.check(revert_list_perm.view)

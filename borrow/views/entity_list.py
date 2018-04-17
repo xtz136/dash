@@ -87,13 +87,13 @@ class EntityListApiView(Pagination, ApiView):
             return self.failed('没有选择归还物品', 2)
 
         # 生成订单编号
-        order_id = RevertList.create(args['company_id'])
+        revert_list = RevertList.create(args['company_id'])
 
         EntityList.objects.filter(
             pk__in=args['selected']).update(
-            status='归还', order_id=order_id)
+            status='归还', order_id=revert_list)
 
-        return self.success(order_id)
+        return self.success(revert_list.order_id)
 
     @CheckPerm.check(revert_list_perm.view)
     def api_get_revert(self, request, args):
