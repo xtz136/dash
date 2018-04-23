@@ -21,10 +21,14 @@ urlpatterns = [
     url(r'^library/', include('library.urls', namespace="library")),
     url('^activity/', include('actstream.urls')),
 
-    url(r'^borrow/', include('borrow.urls')),
-    url(r'^index/', RedirectView.as_view(url='/borrow/')),
+    # 系统登录页，默认使用 crm 系统的登录页
+    url(r'^accounts/register/', RedirectView.as_view(url='/crm/accounts/register/')),
+    url(r'^accounts/login/', RedirectView.as_view(url='/crm/accounts/login/')),
+    url(r'^accounts/logout/', RedirectView.as_view(url='/crm/accounts/logout/')),
 
-    url(r'^', include('borrow.urls', namespace="borrow")),
+    url(r'^crm/', include('crm.urls', namespace='crm')),
+    url(r'^borrow/', include('borrow.urls')),
+    url(r'^', RedirectView.as_view(url='/borrow/')),
 ]
 
 if settings.DEBUG:
