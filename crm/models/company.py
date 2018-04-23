@@ -129,6 +129,12 @@ class Company(models.Model):
         max_length=100,
         choices=BASE_TYPE)
 
+    environmental_tax = models.CharField(
+        verbose_name="环保税",
+        blank=True,
+        max_length=100,
+        choices=BASE_TYPE)
+
     ELECTRONIC_INVOICING = BASE_TYPE + [('手撕发票', '手撕发票')]
     electronic_invoicing = models.CharField(
         verbose_name='电子发票',

@@ -91,6 +91,7 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
                 'stamp_duty',
                 'culture_expenses',
                 'sale_tax',
+                'environmental_tax',
                 'electronic_invoicing',
                 'quota_month',
                 'quota_quarter',

@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^borrow/', include('borrow.urls')),
     url(r'^index/', RedirectView.as_view(url='/borrow/')),
 
-    url(r'^', include('crm.urls', namespace="crm")),
+    url(r'^', include('borrow.urls', namespace="borrow")),
 ]
 
 if settings.DEBUG:

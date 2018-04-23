@@ -7,6 +7,7 @@
 }
 .fields > .field-opt {
     width: 6em;
+    margin-left: 1em;
     padding-left: 1em;
     border-left: 1px solid #b5ada8;
 }
@@ -36,48 +37,48 @@
     <div class="field">
         <div class="item">
             <FormItem label="物品：">
-                <Select v-model="item.entity_id">
+                <Select v-model="item.entity_id" filterable style="width: 10em">
                     <Option v-for="entity in entityList" :key="entity.id" :value="entity.id">{{ entity.name }}</Option>
                 </Select>
             </FormItem>
         </div>
         <div class="item">
             <FormItem label="数量：">
-                <InputNumber :min="0" v-model="item.amount"></InputNumber>
+                <InputNumber :min="0" v-model="item.amount" style="width: 5em"></InputNumber>
             </FormItem>
         </div>
         <div class="item">
             <FormItem label="签收人：">
-                <Select v-model="item.signer_id" filterable remote :label="defaultFormSigner" :remote-method="handlePeopleSearch" :loading="searchPeopleLoading">
+                <Select v-model="item.signer_id" filterable remote :label="defaultFormSigner" :remote-method="handlePeopleSearch" :loading="searchPeopleLoading" style="width: 10em">
                     <Option v-for="people in peoples" :key="people.id" :value="people.id">{{ people.name }}</Option>
                 </Select>
             </FormItem>
         </div>
         <div class="item">
-            <FormItem label="签收时间：">
-                <DatePicker type="date" :options="dateOptions" v-model="item.sign_date"></DatePicker>
+            <FormItem label="签收日期：">
+                <DatePicker type="date" :options="dateOptions" v-model="item.sign_date" style="width: 10em"></DatePicker>
             </FormItem>
         </div>
         <div class="item">
             <FormItem label="借用人：">
-                <Select v-model="item.borrower_id" filterable remote :label="defaultFormBorrower" :remote-method="handlePeopleSearch" :loading="searchPeopleLoading">
+                <Select v-model="item.borrower_id" filterable remote :label="defaultFormBorrower" :remote-method="handlePeopleSearch" :loading="searchPeopleLoading" style="width: 10em">
                     <Option v-for="people in peoples" :key="people.id" :value="people.id">{{ people.name }}</Option>
                 </Select>
             </FormItem>
         </div>
         <div class="item">
             <FormItem label="借用日期：">
-                <DatePicker type="date" :options="dateOptions" v-model="item.borrow_date"></DatePicker>
+                <DatePicker type="date" :options="dateOptions" v-model="item.borrow_date" style="width: 10em"></DatePicker>
             </FormItem>
         </div>
         <div class="item">
             <FormItem label="还回日期：">
-                <DatePicker type="date" :options="dateOptions" v-model="item.revert_borrow_date"></DatePicker>
+                <DatePicker type="date" :options="dateOptions" v-model="item.revert_borrow_date" style="width: 10em"></DatePicker>
             </FormItem>
         </div>
         <div class="item">
             <FormItem label="归还日期：">
-                <DatePicker type="date" :options="dateOptions" v-model="item.revert_date"></DatePicker>
+                <DatePicker type="date" :options="dateOptions" v-model="item.revert_date" style="width: 10em"></DatePicker>
             </FormItem>
         </div>
         <div class="item">
