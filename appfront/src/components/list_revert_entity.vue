@@ -100,7 +100,8 @@ export default {
             params: {
               entitys: this.entitys,
               companyId: data.company_id,
-              orderId: data.order_id
+              orderId: data.order_id,
+              orderDateTime: new Date(data.revert_borrow_date)
             }
           })
         })
