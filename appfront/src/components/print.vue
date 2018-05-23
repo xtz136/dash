@@ -170,20 +170,22 @@ import {
 
 export default {
   name: 'Print',
-  props: ['entitys', 'companyId', 'orderId'],
+  props: ['entitys', 'companyId', 'orderId', 'orderDateTime'],
   data () {
     return {
       columns: [
         {type: 'index', align: 'center', width: 60},
         {title: '物品', key: 'entity'},
         {title: '数量', key: 'amount', width: 60}
-      ],
-      now: new Date()
+      ]
     }
   },
   computed: {
     client () {
       return this.$store.getters.companyById(parseInt(this.companyId)) || {}
+    },
+    now () {
+      return this.orderDateTime || new Date()
     }
   },
   methods: {

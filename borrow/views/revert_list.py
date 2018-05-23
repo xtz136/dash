@@ -23,7 +23,11 @@ class RevertListApiView(ApiView, Pagination):
     def api_filter(self, request, args):
         # 先搜索一次公司表
         if args.get('company'):
-            company = Company.objects.get(title__contains=args['company'])
+            try:
+                company = Company.objects.get(title__contains=args['company'])
+            except BaseException:
+                company = None
+
             if company:
                 args['company'] = company
             else:
