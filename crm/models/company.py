@@ -1,20 +1,22 @@
 from collections import OrderedDict
 from datetime import timedelta
 
-from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User
-from django.db import models
 from django.contrib.contenttypes.fields import GenericRelation
+from django.db import models
 from django.utils import timezone
+from django.utils.safestring import mark_safe
+from jsonfield import JSONField
 from taggit.managers import TaggableManager
 
-from jsonfield import JSONField
-
 from core.models import Attachment
+
 from .tax import TaxBureau
 
-User.add_to_class("__str__", lambda u: "{0}{1}".format(
-    u.last_name, u.first_name) if u.last_name else u.username)
+User.add_to_class(
+    "__str__",
+    lambda u: "{0}{1}".format(u.last_name, u.first_name) if u.last_name else u.username
+)
 
 
 class Company(models.Model):
@@ -23,18 +25,13 @@ class Company(models.Model):
     tax_username = models.CharField(
         verbose_name="电子税务局用户名", blank=True, max_length=255)
     tax_password = models.CharField(
-        verbose_name="电子税务局密码",  blank=True, max_length=255)
+        verbose_name="电子税务局密码", blank=True, max_length=255)
 
-    TYPES = (
-        ('有限责任公司', '有限责任公司'),
-        ('个体工商户', '个体工商户'),
-        ('股份有限公司', '股份有限公司'),
-        ('合伙企业(有限合伙)', '合伙企业(有限合伙)'),
-        ('集体所有制(股份合作)', '集体所有制(股份合作)'),
-        ('个人独资企业', '个人独资企业')
-    )
-    type = models.CharField(verbose_name="公司类型", choices=TYPES,
-                            default='有限责任公司', max_length=20)
+    TYPES = (('有限责任公司', '有限责任公司'), ('个体工商户', '个体工商户'), ('股份有限公司', '股份有限公司'),
+             ('合伙企业(有限合伙)', '合伙企业(有限合伙)'), ('集体所有制(股份合作)', '集体所有制(股份合作)'),
+             ('个人独资企业', '个人独资企业'))
+    type = models.CharField(
+        verbose_name="公司类型", choices=TYPES, default='有限责任公司', max_length=20)
     registered_capital = models.DecimalField(
         help_text="单位 (万元)",
         default=1,
@@ -45,23 +42,37 @@ class Company(models.Model):
     op_address = models.CharField(
         verbose_name="实际经营地址",
         help_text="不填，默认为公司注册地址",
-        blank=True, max_length=255)
+        blank=True,
+        max_length=255)
 
     # 主要业务负责人
-    salesman = models.ForeignKey(User,
-                                 on_delete=models.SET_NULL,
-                                 verbose_name="业务员",
-                                 blank=True, null=True,
-                                 related_name="customers")
+    salesman = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        verbose_name="业务员",
+        blank=True,
+        null=True,
+        related_name="customers")
     # 管账人
-    bookkeeper = models.ForeignKey(User,
-                                   on_delete=models.SET_NULL,
-                                   verbose_name="记账会计",
-                                   blank=True, null=True,
-                                   related_name="accounts")
+    bookkeeper = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        verbose_name="记账会计",
+        blank=True,
+        null=True,
+        related_name="accounts")
+
+    taxpayer = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        verbose_name="报税会计",
+        blank=True,
+        null=True,
+        related_name="taxpayer")
+
     # unified social credit code
-    uscc = models.CharField(verbose_name="社会统一信用代码号",
-                            blank=True, max_length=255)
+    uscc = models.CharField(
+        verbose_name="社会统一信用代码号", blank=True, max_length=255)
 
     registered_at = models.DateField(
         verbose_name="注册日期", blank=True, null=True)
@@ -71,21 +82,11 @@ class Company(models.Model):
     business_license = models.CharField(
         verbose_name="营业执照注册号", blank=True, max_length=255)
 
-    INDUSTRIES = [
-        ('餐饮', '餐饮'),
-        ('服务业', '服务业'),
-        ('广告', '广告'),
-        ('兼服务业', '兼服务业'),
-        ('建筑', '建筑'),
-        ('零售业', '零售业'),
-        ('贸易', '贸易'),
-        ('租赁业', '租赁业'),
-        ('制造业', '制造业'),
-        ('娱乐', '娱乐'),
-        ('其它', '其它')]
+    INDUSTRIES = [('餐饮', '餐饮'), ('服务业', '服务业'), ('广告', '广告'), ('兼服务业', '兼服务业'),
+                  ('建筑', '建筑'), ('零售业', '零售业'), ('贸易', '贸易'), ('租赁业', '租赁业'),
+                  ('制造业', '制造业'), ('娱乐', '娱乐'), ('其它', '其它')]
     industry = models.CharField(
-        choices=INDUSTRIES, verbose_name="所属行业", default='汽配',
-        max_length=50)
+        choices=INDUSTRIES, verbose_name="所属行业", default='汽配', max_length=50)
 
     national_tax_id = models.CharField(
         verbose_name="国税登记证", blank=True, max_length=255)
@@ -100,40 +101,22 @@ class Company(models.Model):
     BASE_TYPE = [('有', '有'), ('无', '无')]
 
     national_tax_type = models.CharField(
-        verbose_name='国税税种',
-        blank=True,
-        max_length=100,
-        choices=BASE_TYPE)
+        verbose_name='国税税种', blank=True, max_length=100, choices=BASE_TYPE)
 
     individual_tax = models.CharField(
-        verbose_name='个税',
-        blank=True,
-        max_length=100,
-        choices=BASE_TYPE)
+        verbose_name='个税', blank=True, max_length=100, choices=BASE_TYPE)
 
     stamp_duty = models.CharField(
-        verbose_name='印花税',
-        blank=True,
-        max_length=100,
-        choices=BASE_TYPE)
+        verbose_name='印花税', blank=True, max_length=100, choices=BASE_TYPE)
 
     culture_expenses = models.CharField(
-        verbose_name='文化事业费',
-        blank=True,
-        max_length=100,
-        choices=BASE_TYPE)
+        verbose_name='文化事业费', blank=True, max_length=100, choices=BASE_TYPE)
 
     sale_tax = models.CharField(
-        verbose_name='消费税',
-        blank=True,
-        max_length=100,
-        choices=BASE_TYPE)
+        verbose_name='消费税', blank=True, max_length=100, choices=BASE_TYPE)
 
     environmental_tax = models.CharField(
-        verbose_name="环保税",
-        blank=True,
-        max_length=100,
-        choices=BASE_TYPE)
+        verbose_name="环保税", blank=True, max_length=100, choices=BASE_TYPE)
 
     ELECTRONIC_INVOICING = BASE_TYPE + [('手撕发票', '手撕发票')]
     electronic_invoicing = models.CharField(
@@ -171,14 +154,17 @@ class Company(models.Model):
     # social security
     ss_bank = models.CharField(
         verbose_name="社保开户银行",
-        help_text="不填，默认为纳税开户行", blank=True, max_length=255)
+        help_text="不填，默认为纳税开户行",
+        blank=True,
+        max_length=255)
     ss_account = models.CharField(
         verbose_name="代扣社保账号",
-        help_text="不填，默认为纳税账号", blank=True, max_length=255)
+        help_text="不填，默认为纳税账号",
+        blank=True,
+        max_length=255)
     ss_number = models.CharField(
         verbose_name="单位社保号", blank=True, max_length=255)
-    ss_date = models.DateField(
-        verbose_name="社保购买时间", blank=True, null=True)
+    ss_date = models.DateField(verbose_name="社保购买时间", blank=True, null=True)
     ss_declared = models.CharField(
         verbose_name="社保申报",
         choices=(
@@ -197,55 +183,41 @@ class Company(models.Model):
     tax_disk = models.CharField(
         max_length=100,
         default="无",
-        verbose_name="税控盘", choices=TAX_DISKS, blank=True)
+        verbose_name="税控盘",
+        choices=TAX_DISKS,
+        blank=True)
 
     tax_declared_begin = models.DateField(
         verbose_name="税务申报开始时间", blank=True, null=True)
     special_taxes = models.CharField(
-        verbose_name="特别税种", blank=True, max_length=255
-    )
-    const_tax = models.CharField(
-        verbose_name="定税", blank=True, max_length=255
-    )
+        verbose_name="特别税种", blank=True, max_length=255)
+    const_tax = models.CharField(verbose_name="定税", blank=True, max_length=255)
     declare_info = models.TextField(
-        verbose_name="申报区备注", blank=True,
+        verbose_name="申报区备注",
+        blank=True,
     )
     income_tax = models.CharField(
-        verbose_name="所得税", blank=True, max_length=255
-    )
+        verbose_name="所得税", blank=True, max_length=255)
     added_value_tax = models.CharField(
-        verbose_name="增值税", blank=True, max_length=255
-    )
-    cut_tax = models.CharField(
-        verbose_name="减税", blank=True, max_length=255
-    )
-    invoice = models.CharField(
-        verbose_name="代开发票", blank=True, max_length=255
-    )
+        verbose_name="增值税", blank=True, max_length=255)
+    cut_tax = models.CharField(verbose_name="减税", blank=True, max_length=255)
+    invoice = models.CharField(verbose_name="代开发票", blank=True, max_length=255)
     batch = models.CharField(
         verbose_name="批量",
         default="",
         blank=True,
-        choices=(
-            ("批量", "批量"),
-        ),
+        choices=(("批量", "批量"), ),
         max_length=100,
     )
 
     # 个体户
     individual_bank = models.CharField(
-        verbose_name='基本户开户银行',
-        blank=True,
-        max_length=255)
+        verbose_name='基本户开户银行', blank=True, max_length=255)
     individual_account = models.CharField(
-        verbose_name='基本户开账号',
-        blank=True,
-        max_length=255)
+        verbose_name='基本户开账号', blank=True, max_length=255)
 
     credit_rating = models.CharField(
-        verbose_name="信用等级",
-        blank=True,
-        max_length=100)
+        verbose_name="信用等级", blank=True, max_length=100)
 
     RATINGS = (
         ('A', 'A'),
@@ -254,11 +226,7 @@ class Company(models.Model):
         ('D', 'D'),
     )
     rating = models.CharField(
-        verbose_name='评级',
-        blank=True,
-        max_length=10,
-        choices=RATINGS
-    )
+        verbose_name='评级', blank=True, max_length=10, choices=RATINGS)
 
     TAXPAYER_TYPES = [('一般纳税人', '一般纳税人'), ('小规模纳税人', '小规模纳税人')]
     taxpayer_type = models.CharField(
@@ -269,19 +237,13 @@ class Company(models.Model):
 
     # 海关信息
     custom_register_no = models.CharField(
-        verbose_name='海关注册代码',
-        blank=True,
-        max_length=255)
+        verbose_name='海关注册代码', blank=True, max_length=255)
 
     custom_registered_at = models.DateField(
-        verbose_name='海关登记日期',
-        blank=True,
-        null=True)
+        verbose_name='海关登记日期', blank=True, null=True)
 
     custom_expired_at = models.DateField(
-        verbose_name="报关有效期",
-        null=True,
-        blank=True)
+        verbose_name="报关有效期", null=True, blank=True)
     has_czk = models.CharField(
         verbose_name="财智卡",
         blank=True,
@@ -308,14 +270,18 @@ class Company(models.Model):
     STATUS = [('有效', '有效'), ('无效', '无效'), ('歇业', '歇业'), ('筹备', '筹备')]
     status = models.CharField(
         help_text="无效状态，不再为客户提供服务",
-        verbose_name="代理状态", default='有效',
-        max_length=10, choices=STATUS)
+        verbose_name="代理状态",
+        default='有效',
+        max_length=10,
+        choices=STATUS)
 
     IC_STATUS = [('正常', '正常'), ('经营异常', '经营异常')]
     ic_status = models.CharField(
         help_text="经营异常: 已被工商局列入经营异常名录",
         verbose_name="经营状态",
-        default='正常', max_length=10, choices=IC_STATUS)
+        default='正常',
+        max_length=10,
+        choices=IC_STATUS)
 
     # 附件
     website = models.CharField(verbose_name="公司网站", blank=True, max_length=255)
@@ -328,9 +294,7 @@ class Company(models.Model):
         verbose_name='法人电话', blank=True, max_length=200)
 
     has_customer_files = models.BooleanField(
-        verbose_name='是否有存放客户资料',
-        help_text='详细的资料信息请在备注里添加',
-        default=False)
+        verbose_name='是否有存放客户资料', help_text='详细的资料信息请在备注里添加', default=False)
     shareholder_info = JSONField(
         verbose_name="股东信息",
         default=[],
@@ -346,12 +310,8 @@ class Company(models.Model):
     updated = models.DateTimeField(auto_now=True)
     tags = TaggableManager(blank=True)
 
-    LICENSE_STATUS = (
-        ('有效', '有效'),
-        ('即将过期', '即将过期'),
-        ('已过期', '已过期'),
-        ('永久有效', '永久有效')
-    )
+    LICENSE_STATUS = (('有效', '有效'), ('即将过期', '即将过期'), ('已过期', '已过期'), ('永久有效',
+                                                                       '永久有效'))
 
     license_status = models.CharField(
         max_length=50,
@@ -361,13 +321,18 @@ class Company(models.Model):
         default='有效')
 
     def show_shareholder_info(self):
-        t = ''.join(['<li>{role} {name} {phone}</li>'.format(**o)
-                     for o in self.shareholder_info])
+        t = ''.join([
+            '<li>{role} {name} {phone}</li>'.format(**o)
+            for o in self.shareholder_info
+        ])
         return mark_safe('<ul>{0}</ul>'.format(t))
+
     show_shareholder_info.short_description = '股东信息'
 
     def show_contactor_info(self):
-        return mark_safe('{0} {1}'.format(self.contactor, self.contactor_phone))
+        return mark_safe('{0} {1}'.format(self.contactor,
+                                          self.contactor_phone))
+
     show_contactor_info.short_description = '联系人信息'
 
     def __str__(self):
