@@ -1,37 +1,34 @@
 import logging
-from datetime import datetime
 from collections import namedtuple
-
-from django.views.generic import TemplateView, DetailView, UpdateView, CreateView, FormView
-from django.http import HttpResponse
-from django.urls import reverse
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.db.models import Q
-from django.forms import inlineformset_factory, modelformset_factory, all_valid
-from django.contrib.auth.models import User
+from datetime import datetime
 
 import xlrd
-from django_tables2 import Column
+from core.models import Attachment
 from crispy_forms.helper import FormHelper, Layout
-from extra_views import CreateWithInlinesView, UpdateWithInlinesView, InlineFormSet
+from django.contrib.auth.mixins import (LoginRequiredMixin,
+                                        PermissionRequiredMixin)
+from django.contrib.auth.models import User
+from django.db.models import Q
+from django.forms import all_valid, inlineformset_factory, modelformset_factory
+from django.http import HttpResponse
+from django.urls import reverse
+from django.views.generic import (CreateView, DetailView, FormView,
+                                  TemplateView, UpdateView)
+from django_tables2 import Column
+from extra_views import (CreateWithInlinesView, InlineFormSet,
+                         UpdateWithInlinesView)
 from extra_views.generic import GenericInlineFormSet
 
-from .. import filters
-from .. import tables
-from .. import models
-from .. import forms
+from .. import filters, forms, models, tables
 from ..formsets import MyTableInlineFormset
 from .mixins import SearchViewMixin
-from core.models import Attachment
-
 
 logger = logging.getLogger(__name__)
 
 
 class ClientSearchView(SearchViewMixin, LoginRequiredMixin, TemplateView):
     template_name = 'crm/client/index.html'
-    search_fields = ('title', 'note', 'address',
-                     'op_address', 'legal_people')
+    search_fields = ('title', 'note', 'address', 'op_address', 'legal_people')
 
     def get_filter(self, queryset):
         _filter = filters.CompanyFilter(self.request.GET, queryset=queryset)
@@ -57,18 +54,16 @@ class ClientSearchView(SearchViewMixin, LoginRequiredMixin, TemplateView):
 
         queryset = models.Company.objects.none()
         if q:
-            queryset = self.get_search_results(
-                models.Company.objects.all(), q)
+            queryset = self.get_search_results(models.Company.objects.all(), q)
 
         context['filter'] = self.get_filter(queryset)
         context['search_form'] = self.get_search_form()
-        extra_columns = [(i, Column()) for i in
-                         self.request.user.profile.prefs.get(
+        extra_columns = [(i, Column())
+                         for i in self.request.user.profile.prefs.get(
                              'company_list_fields', ['status'])]
-        context['table'] = tables.CompanyTable(context['filter'].qs,
-                                               extra_columns=extra_columns)
-        pre_form = forms.PreferenceForm(
-            data=self.request.user.profile.prefs)
+        context['table'] = tables.CompanyTable(
+            context['filter'].qs, extra_columns=extra_columns)
+        pre_form = forms.PreferenceForm(data=self.request.user.profile.prefs)
 
         context['pre_form'] = pre_form
         context['has_add_perm'] = self.request.user.has_perm('crm.add_company')
@@ -112,8 +107,7 @@ class AttachmentInline(GenericInlineFormSet):
         return formset
 
 
-class ClientEditView(LoginRequiredMixin,
-                     PermissionRequiredMixin,
+class ClientEditView(LoginRequiredMixin, PermissionRequiredMixin,
                      UpdateWithInlinesView):
     model = models.Company
     template_name = "crm/client/edit.html"
@@ -128,8 +122,7 @@ class ClientEditView(LoginRequiredMixin,
         return reverse('crm:client-detail', kwargs={'pk': self.object.pk})
 
 
-class ClientCreateView(LoginRequiredMixin,
-                       PermissionRequiredMixin,
+class ClientCreateView(LoginRequiredMixin, PermissionRequiredMixin,
                        CreateWithInlinesView):
 
     model = models.Company
@@ -144,8 +137,7 @@ class ClientCreateView(LoginRequiredMixin,
         return reverse('crm:client-detail', kwargs={'pk': self.object.pk})
 
 
-class BatchClientUpdateView(LoginRequiredMixin,
-                            PermissionRequiredMixin,
+class BatchClientUpdateView(LoginRequiredMixin, PermissionRequiredMixin,
                             FormView):
     """批量更新客户信息，模板格式必须约定好"""
     template_name = 'crm/client/batch.html'
@@ -167,8 +159,8 @@ class BatchClientUpdateView(LoginRequiredMixin,
         names = sheet.row_values(0)
 
         fields = [
-            f.name for name in names
-            for f in models.Company._meta.fields if f.verbose_name == name
+            f.name for name in names for f in models.Company._meta.fields
+            if f.verbose_name == name
         ]
 
         # 错误的模板
@@ -215,6 +207,9 @@ class BatchClientUpdateView(LoginRequiredMixin,
         return User.objects.get(username=value) if value else None
 
     def _format_bookkeeper(self, value):
+        return User.objects.get(username=value) if value else None
+
+    def _format_taxpayer(self, value):
         return User.objects.get(username=value) if value else None
 
     def _format_registered_at(self, value):
