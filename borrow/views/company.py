@@ -12,7 +12,7 @@ class CompanyApiView(ApiView, Pagination):
     _list_fields = (
         'id',
         'title',
-        'address',
+        'op_address',
         'industry',
         'salesman',
         'bookkeeper',
