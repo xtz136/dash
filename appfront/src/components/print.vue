@@ -152,7 +152,7 @@ table td {
             <span class="nav-item width50">咨询电话：020-87313109</span>
           </div>
           <div class="nav">
-            <span class="nav-item width50">客户地址：{{ client.address }}</span>
+            <span class="nav-item width50">客户地址：{{ client.op_address }}</span>
             <span class="nav-item width50">地址：广州越秀区永福路8号永怡新都808室</span>
           </div>
       </div>
