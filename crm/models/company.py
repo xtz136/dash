@@ -1,6 +1,7 @@
 from collections import OrderedDict
 from datetime import timedelta
 
+from core.models import Attachment
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
@@ -8,8 +9,6 @@ from django.utils import timezone
 from django.utils.safestring import mark_safe
 from jsonfield import JSONField
 from taggit.managers import TaggableManager
-
-from core.models import Attachment
 
 from .tax import TaxBureau
 
@@ -74,10 +73,10 @@ class Company(models.Model):
     uscc = models.CharField(
         verbose_name="社会统一信用代码号", blank=True, max_length=255)
 
-    registered_at = models.DateField(
-        verbose_name="注册日期", blank=True, null=True)
-    expired_at = models.DateField(
-        verbose_name="执照有效日期至", blank=True, null=True)
+    registered_at = models.DateField(verbose_name="注册日期", blank=True, null=True)
+    expired_at = models.DateField(verbose_name="执照有效日期至", blank=True, null=True)
+    food_licence_expired_at = models.DateField(
+        verbose_name="食品经营许可证有效期", blank=True, null=True)
 
     business_license = models.CharField(
         verbose_name="营业执照注册号", blank=True, max_length=255)
@@ -89,14 +88,14 @@ class Company(models.Model):
         choices=INDUSTRIES, verbose_name="所属行业", default='汽配', max_length=50)
 
     national_tax_id = models.CharField(
-        verbose_name="国税登记证", blank=True, max_length=255)
+        verbose_name="税务登记证", blank=True, max_length=255)
     # national_tax_sn = models.CharField(
     #     verbose_name="国税编码", blank=True, max_length=255)
     national_tax_staff = models.CharField(
-        verbose_name="国税专管员", blank=True, max_length=255)
+        verbose_name="税管员", blank=True, max_length=255)
 
     national_tax_office = models.CharField(
-        verbose_name='国税局', blank=True, max_length=255)
+        verbose_name='税务所', blank=True, max_length=255)
 
     BASE_TYPE = [('有', '有'), ('无', '无')]
 
@@ -132,7 +131,7 @@ class Company(models.Model):
         verbose_name="定额(季)", blank=True, max_length=255)
 
     national_tax_phone = models.CharField(
-        verbose_name="国税电话", blank=True, max_length=255)
+        verbose_name="税管员电话", blank=True, max_length=255)
 
     local_tax_id = models.CharField(
         verbose_name="地税登记证", blank=True, max_length=255)
@@ -154,12 +153,12 @@ class Company(models.Model):
     # social security
     ss_bank = models.CharField(
         verbose_name="社保开户银行",
-        help_text="不填，默认为纳税开户行",
+        # help_text="不填，默认为纳税开户行",
         blank=True,
         max_length=255)
     ss_account = models.CharField(
         verbose_name="代扣社保账号",
-        help_text="不填，默认为纳税账号",
+        # help_text="不填，默认为纳税账号",
         blank=True,
         max_length=255)
     ss_number = models.CharField(
@@ -206,7 +205,7 @@ class Company(models.Model):
         verbose_name="批量",
         default="",
         blank=True,
-        choices=(("批量", "批量"), ),
+        choices=(("批量", "批量"),),
         max_length=100,
     )
 
@@ -301,8 +300,7 @@ class Company(models.Model):
         null=False,
         editable=False,
     )
-    contactor = models.CharField(
-        verbose_name='负责人', max_length=255, blank=True)
+    contactor = models.CharField(verbose_name='负责人', max_length=255, blank=True)
     contactor_phone = models.CharField(
         verbose_name='负责人电话', max_length=255, blank=True)
     attachments = GenericRelation(Attachment)
@@ -330,8 +328,7 @@ class Company(models.Model):
     show_shareholder_info.short_description = '股东信息'
 
     def show_contactor_info(self):
-        return mark_safe('{0} {1}'.format(self.contactor,
-                                          self.contactor_phone))
+        return mark_safe('{0} {1}'.format(self.contactor, self.contactor_phone))
 
     show_contactor_info.short_description = '联系人信息'
 
