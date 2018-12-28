@@ -66,49 +66,51 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
 
     fieldsets = (
         ('公司信息', {
-            'fields':
-            ('title', 'industry', 'type', 'scale_size', 'taxpayer_type',
-             'rating', 'status', 'ic_status', 'has_customer_files',
-             'registered_capital', 'address', 'op_address', 'uscc',
-             'business_license', 'website', 'salesman', 'bookkeeper',
-             'taxpayer', 'registered_at', 'expired_at', 'tax_declared_begin',
-             'contactor', 'contactor_phone', 'legal_people', 'legal_phone',
-             'tags', 'note')
+            'fields': ('title', 'industry', 'type', 'scale_size',
+                       'taxpayer_type', 'rating', 'status', 'ic_status',
+                       'has_customer_files', 'registered_capital', 'address',
+                       'op_address', 'uscc', 'business_license', 'website',
+                       'salesman', 'bookkeeper', 'taxpayer', 'registered_at',
+                       'expired_at', 'food_licence_expired_at', 'tax_declared_begin', 'contactor',
+                       'contactor_phone', 'legal_people', 'legal_phone', 'tags',
+                       'note')
         }),
-        ('申报区', {
-            'fields': (
-                'alias',
-                'batch',
-                'ss_declared',
-                'tax_disk',
-                'national_tax_type',
-                'individual_tax',
-                'stamp_duty',
-                'culture_expenses',
-                'sale_tax',
-                'environmental_tax',
-                'electronic_invoicing',
-                'quota_month',
-                'quota_quarter',
-                'tax_username',
-                'tax_password',
-                'added_value_tax',
-                'income_tax',
-                'cut_tax',
-                'invoice',
-                'const_tax',
-                'special_taxes',
-                'declare_info',
-            )
-        }),
+        (
+            '申报区',
+            {
+                'fields': (
+                    'alias',
+                    # 'batch',
+                    'ss_declared',
+                    'tax_disk',
+                    # 'national_tax_type',
+                    'individual_tax',
+                    'stamp_duty',
+                    'culture_expenses',
+                    'sale_tax',
+                    'environmental_tax',
+                    'electronic_invoicing',
+                    'quota_month',
+                    'quota_quarter',
+                    'tax_username',
+                    'tax_password',
+                    # 'added_value_tax',
+                    # 'income_tax',
+                    # 'cut_tax',
+                    'invoice',
+                    # 'const_tax',
+                    'special_taxes',
+                    'declare_info',
+                )
+            }),
         ('银行信息', {
             'fields': ('has_czk', ('ss_number', 'ss_date'),
-                       ('taxpayer_bank', 'taxpayer_account'),
+                       # ('taxpayer_bank', 'taxpayer_account'),
                        ('ss_bank', 'ss_account'), ('individual_bank',
                                                    'individual_account'))
         }),
         (
-            '国税',
+            '税务',
             {
                 # 'classes': ('collapse',),
                 'fields': (
@@ -118,10 +120,10 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
                     'national_tax_staff',
                     'national_tax_phone')
             }),
-        ('地税', {
-            'fields': ('local_tax_office', 'local_tax_id', 'local_tax_sn',
-                       'local_tax_staff', 'local_tax_phone')
-        }),
+        # ('地税', {
+        #     'fields': ('local_tax_office', 'local_tax_id', 'local_tax_sn',
+        #                'local_tax_staff', 'local_tax_phone')
+        # }),
         ('海关信息', {
             'fields': (
                 'has_custom_info',
