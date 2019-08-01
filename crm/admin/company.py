@@ -72,7 +72,7 @@ class CompanyModelAdmin(AdminViewPermissionModelAdmin):
                        'op_address', 'uscc', 'business_license', 'website',
                        'salesman', 'bookkeeper', 'taxpayer', 'registered_at',
                        'expired_at', 'food_licence_expired_at', 'tax_declared_begin', 'contactor',
-                       'contactor_phone', 'legal_people', 'legal_phone', 'tags',
+                       'contactor_phone', 'legal_people', 'legal_phone', 'tag',
                        'note')
         }),
         (
