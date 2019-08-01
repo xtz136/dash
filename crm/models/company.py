@@ -306,7 +306,8 @@ class Company(models.Model):
     attachments = GenericRelation(Attachment)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    tags = TaggableManager(blank=True)
+
+    tag = models.CharField(verbose_name='标签', max_length=100, blank=True)
 
     LICENSE_STATUS = (('有效', '有效'), ('即将过期', '即将过期'), ('已过期', '已过期'), ('永久有效',
                                                                        '永久有效'))
