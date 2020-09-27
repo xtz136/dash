@@ -180,7 +180,7 @@ class Company(models.Model):
         ("航天", "航天"),
         ("托管(百望)", "托管(百望)"),
         ("托管(航天)", "托管(航天)"),
-        ("托管(uk)", "托管(uk)"),
+        ("托管(UK)", "托管(UK)"),
         ("UK", "UK"),
     )
     tax_disk = models.CharField(
