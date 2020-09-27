@@ -178,6 +178,9 @@ class Company(models.Model):
         ("无", "无"),
         ("百望", "百望"),
         ("航天", "航天"),
+        ("托管(百望)", "托管(百望)"),
+        ("托管(航天)", "托管(航天)"),
+        ("UK", "UK"),
     )
     tax_disk = models.CharField(
         max_length=100,
