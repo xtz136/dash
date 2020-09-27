@@ -117,7 +117,7 @@ class Company(models.Model):
     environmental_tax = models.CharField(
         verbose_name="环保税", blank=True, max_length=100, choices=BASE_TYPE)
 
-    ELECTRONIC_INVOICING = BASE_TYPE + [('手撕发票', '手撕发票')]
+    ELECTRONIC_INVOICING = BASE_TYPE + [('手撕发票', '手撕发票'), ('区块链', '区块链'), ('网络', '网络')]
     electronic_invoicing = models.CharField(
         verbose_name='电子发票',
         blank=True,
@@ -180,6 +180,7 @@ class Company(models.Model):
         ("航天", "航天"),
         ("托管(百望)", "托管(百望)"),
         ("托管(航天)", "托管(航天)"),
+        ("托管(uk)", "托管(uk)"),
         ("UK", "UK"),
     )
     tax_disk = models.CharField(
